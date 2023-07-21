@@ -140,6 +140,7 @@
     <ClCompile Include="exGreenMush.cpp" />
     <ClCompile Include="exMonsters.cpp" />
     <ClCompile Include="exRigidbody.cpp" />
+    <ClCompile Include="exUI.cpp" />
     <ClCompile Include="exVillageScene.cpp" />
     <ClCompile Include="exEntity.cpp" />
     <ClCompile Include="exAnimation.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="exGreenMush.h" />
     <ClInclude Include="exMonsters.h" />
     <ClInclude Include="exRigidbody.h" />
+    <ClInclude Include="exUI.h" />
     <ClInclude Include="exVillageScene.h" />
     <ClInclude Include="exAnimation.h" />
     <ClInclude Include="exAnimator.h" />

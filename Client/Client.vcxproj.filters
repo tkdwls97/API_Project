@@ -219,6 +219,9 @@
     <ClCompile Include="exRigidbody.cpp">
       <Filter>Engine\Component\05.Rigidbody</Filter>
     </ClCompile>
+    <ClCompile Include="exUI.cpp">
+      <Filter>Contents\GameObject\04.UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -334,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="exRigidbody.h">
       <Filter>Engine\Component\05.Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="exUI.h">
+      <Filter>Contents\GameObject\04.UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
