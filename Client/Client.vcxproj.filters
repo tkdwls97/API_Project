@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{7822f1e9-746b-49ad-a355-29e2294d72a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows\Resource">
+      <UniqueIdentifier>{6de0db2e-5c38-4c07-aa03-ebdb475fc3b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows\Header">
+      <UniqueIdentifier>{1321d307-5725-4b6b-b929-f6e951e21f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{cc6742f2-4f0b-42e9-80ce-33dc4ed504ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\High Level Interface">
+      <UniqueIdentifier>{2dfd0a04-9131-4df6-9fc8-04198a1efd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{f03ff7a4-e32e-467e-bb32-a4aa2d19837e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Time">
+      <UniqueIdentifier>{1ea244ed-e495-4f04-b6e2-1a35e96a4d15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{9f727487-4563-43c1-bcdd-db9983ce88b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity">
+      <UniqueIdentifier>{604b1ad3-3cf0-4355-8e46-f96dbdce9058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Layer">
+      <UniqueIdentifier>{614dd6f4-9486-4247-84a4-ff2831563c95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject">
+      <UniqueIdentifier>{60da317a-4cb8-4c7a-84a3-3743d3292038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{f2428ed5-1aa6-4352-b3f0-fa39e4fc74f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{0b2c3a71-b16f-4b0e-bc2d-ad2f850f3c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{f5775738-061a-473f-9331-98cb8c6b2efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene">
+      <UniqueIdentifier>{cab1d942-db45-4394-99d1-1a45844f0454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{12590699-b7d3-4aac-98fc-da8464d48b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject">
+      <UniqueIdentifier>{3c4d4714-e6d5-4013-abed-ef75fd5fa5be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\01.Player">
+      <UniqueIdentifier>{336275de-17ab-4c11-ae19-6c8848838efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster">
+      <UniqueIdentifier>{37c7323d-6ac3-4733-802c-0fb39c6b3731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\00.BackGround">
+      <UniqueIdentifier>{0e0cd107-6c96-4791-8a6f-9586b93f1048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{b1a4ea04-0de6-479f-acac-c53aab20746c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\00.Transform">
+      <UniqueIdentifier>{6cb22f6b-2642-4b75-bb4b-5c116ae94cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\01.SpriteRenderer">
+      <UniqueIdentifier>{8925ed3c-0b27-4ffa-a99f-597bfc10587b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\02.Animator">
+      <UniqueIdentifier>{3f46fa47-2e4f-4671-92e9-64451a9f3f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Animation">
+      <UniqueIdentifier>{67fa3087-845c-4481-9909-463e78384900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\00.TitleScene">
+      <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\01.StageScene">
+      <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\02.VillageScene">
+      <UniqueIdentifier>{f345812a-ff6e-491d-9a03-3ad440b0b55c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\00.GreenMush">
+      <UniqueIdentifier>{b861b221-4316-4800-a3a9-226a52f89f2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect">
+      <UniqueIdentifier>{a9360dca-e2cb-4c55-a80e-0e3af5946e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\03.EndScene">
+      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\01.CoupleMush">
+      <UniqueIdentifier>{fd43bfa0-b869-409f-ae74-9c59573f3902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\03.Collider">
+      <UniqueIdentifier>{c67beacd-c660-44be-99d3-5a73103a699a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\04.CollisionManager">
+      <UniqueIdentifier>{389c4587-2ffb-44ba-a5b1-6cebbb7df706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Texture">
+      <UniqueIdentifier>{6222d243-d96c-4240-afae-99f1505f8013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI">
+      <UniqueIdentifier>{ea64d050-dd42-4465-97bd-78001271fe23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\05.Rigidbody">
+      <UniqueIdentifier>{f92547d1-8bb5-4375-a847-efe2b4993b31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Client.ico">
+      <Filter>Windows\Resource</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>Windows\Resource</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="exApplication.cpp">
+      <Filter>Engine\High Level Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="exInput.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="exTime.cpp">
+      <Filter>Engine\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="exScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="exEntity.cpp">
+      <Filter>Engine\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="exLayer.cpp">
+      <Filter>Engine\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="exGameObject.cpp">
+      <Filter>Engine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="exTransform.cpp">
+      <Filter>Engine\Component\00.Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="exSpriteRenderer.cpp">
+      <Filter>Engine\Component\01.SpriteRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="exComponent.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="exSceneManager.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="exPlayer.cpp">
+      <Filter>Contents\GameObject\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="exResource.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="exResourceManager.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="exTexture.cpp">
+      <Filter>Engine\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="exBackGround.cpp">
+      <Filter>Contents\GameObject\00.BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="exMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="exCamera.cpp">
+      <Filter>Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="exAnimator.cpp">
+      <Filter>Engine\Component\02.Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="exAnimation.cpp">
+      <Filter>Engine\Resource\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="exTitleScene.cpp">
+      <Filter>Contents\Scene\00.TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="exStageScene.cpp">
+      <Filter>Contents\Scene\01.StageScene</Filter>
+    </ClCompile>
+    <ClCompile Include="exVillageScene.cpp">
+      <Filter>Contents\Scene\02.VillageScene</Filter>
+    </ClCompile>
+    <ClCompile Include="exBossScene.cpp">
+      <Filter>Contents\Scene\01.StageScene</Filter>
+    </ClCompile>
+    <ClCompile Include="exStageScene2.cpp">
+      <Filter>Contents\Scene\01.StageScene</Filter>
+    </ClCompile>
+    <ClCompile Include="exGreenMush.cpp">
+      <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
+    </ClCompile>
+    <ClCompile Include="exGameEffect.cpp">
+      <Filter>Contents\GameObject\03.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="exMonsters.cpp">
+      <Filter>Contents\GameObject\02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="exCupleMush.cpp">
+      <Filter>Contents\GameObject\02.Monster\01.CoupleMush</Filter>
+    </ClCompile>
+    <ClCompile Include="exCollider.cpp">
+      <Filter>Engine\Component\03.Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="exCollisionManager.cpp">
+      <Filter>Engine\Component\04.CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="exRigidbody.cpp">
+      <Filter>Engine\Component\05.Rigidbody</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Client.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="exCommonInclude.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="exMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="exApplication.h">
+      <Filter>Engine\High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="exInput.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="exTime.h">
+      <Filter>Engine\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="exScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="exEntity.h">
+      <Filter>Engine\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="exLayer.h">
+      <Filter>Engine\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="exGameObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="exTransform.h">
+      <Filter>Engine\Component\00.Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="exSpriteRenderer.h">
+      <Filter>Engine\Component\01.SpriteRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="exComponent.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="exObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="exSceneManager.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="exPlayer.h">
+      <Filter>Contents\GameObject\01.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="exResource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="exResourceManager.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="exTexture.h">
+      <Filter>Engine\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="exBackGround.h">
+      <Filter>Contents\GameObject\00.BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="exCamera.h">
+      <Filter>Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="exAnimator.h">
+      <Filter>Engine\Component\02.Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="exAnimation.h">
+      <Filter>Engine\Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="exTitleScene.h">
+      <Filter>Contents\Scene\00.TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="exStageScene.h">
+      <Filter>Contents\Scene\01.StageScene</Filter>
+    </ClInclude>
+    <ClInclude Include="exVillageScene.h">
+      <Filter>Contents\Scene\02.VillageScene</Filter>
+    </ClInclude>
+    <ClInclude Include="exBossScene.h">
+      <Filter>Contents\Scene\01.StageScene</Filter>
+    </ClInclude>
+    <ClInclude Include="exStageScene2.h">
+      <Filter>Contents\Scene\01.StageScene</Filter>
+    </ClInclude>
+    <ClInclude Include="exGreenMush.h">
+      <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
+    </ClInclude>
+    <ClInclude Include="exMonsters.h">
+      <Filter>Contents\GameObject\02.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="exGameEffect.h">
+      <Filter>Contents\GameObject\03.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="exCupleMush.h">
+      <Filter>Contents\GameObject\02.Monster\01.CoupleMush</Filter>
+    </ClInclude>
+    <ClInclude Include="exCollider.h">
+      <Filter>Engine\Component\03.Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="exCollisionManager.h">
+      <Filter>Engine\Component\04.CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="exRigidbody.h">
+      <Filter>Engine\Component\05.Rigidbody</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc">
+      <Filter>Windows\Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
