@@ -10,10 +10,11 @@
 #include "exBackGround.h"
 #include "exCamera.h"
 #include "exAnimator.h"
-#include "exMonsterObject.h"
 #include "exGameEffect.h"
 #include "exCollider.h"
 #include "exCollisionManager.h"
+#include "exGreenMush.h"
+#include "exCupleMush.h"
 
 
 namespace ex
