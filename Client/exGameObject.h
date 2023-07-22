@@ -39,6 +39,7 @@ namespace ex
 			Move,
 			Jump,
 			Down,
+			Rope,
 			Attack,
 			Skill,
 			Death,

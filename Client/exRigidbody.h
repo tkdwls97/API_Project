@@ -16,17 +16,30 @@ namespace ex
 		void AddForce(math::Vector2 _force) { mForce += _force; }
 		void SetMass(float _mass) { mMass = _mass; }
 
-	private:
-		float mMass;
+		void  SetFriction(float _friction) { mFriction = _friction; }
+		float GetFriction() { return mFriction; }
 
+	private:
+		// 무게
+		float mMass;
+		// 마찰력
 		float mFriction;
-		float mStaticFriction;
-		float mKineticFrction;
+		//// 정지 마찰력
+		//float mStaticFriction;
+		//// 운동 마찰력
+		//float mKineticFrction;
+		// 계수
 		float mCoefficentFrction;
 
+		// 힘
 		math::Vector2 mForce;
+		// 가속도
 		math::Vector2 mAccelation;
+		// 속도
 		math::Vector2 mVelocity;
+		//최대 속도
+		math::Vector2 mMaxVelocity;
+		// 중력 가속도
 		math::Vector2 mGravity;
 	};
 

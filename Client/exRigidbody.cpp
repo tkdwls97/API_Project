@@ -9,6 +9,7 @@ namespace ex
 		: Component(enums::eComponentType::Rigidbody)
 		, mMass(1.0f)
 		, mFriction(10.0f)
+		, mMaxVelocity(300.0f)
 	{
 	}
 
@@ -27,8 +28,13 @@ namespace ex
 		mAccelation = mForce / mMass;
 
 		// 속도에 가속도를 더해줘야 총 속도가 나온다
-		mVelocity += mAccelation * Time::GetDeltaTime();
 
+		// 속도는 최대속도를 넘지못하게 만든다
+		if (mVelocity <= mMaxVelocity && mVelocity >= -mMaxVelocity)
+		{
+			mVelocity += mAccelation * Time::GetDeltaTime();
+		}
+		
 		if (!(mVelocity == math::Vector2::Zero))
 		{
 
@@ -37,7 +43,6 @@ namespace ex
 			friction = friction.Normalize() * mFriction * mMass * Time::GetDeltaTime();
 
 			// 마찰력으로 의한 속도 감소량이 현재 속도보다 큰 경우
-
 			if (mVelocity.Length() < friction.Length())
 			{
 				// 멈춰

@@ -124,10 +124,12 @@ namespace ex::math
 		x *= _value.x;
 		y *= _value.y;
 	}
-	void Vector2::operator+=(const Vector2& _value)
+	Vector2& Vector2::operator+=(const Vector2& _other)
 	{
-		x += _value.x;
-		y += _value.y;
+		x += _other.x;
+		y += _other.y;
+
+		return *this;
 	}
 	void Vector2::operator-=(const Vector2& _value)
 	{
@@ -138,6 +140,16 @@ namespace ex::math
 	bool Vector2::operator ==(const Vector2 _other)
 	{
 		return (x == _other.x && y == _other.y);
+	}
+
+	bool Vector2::operator<=(const Vector2 _other)
+	{
+		return (x <= _other.x && y <= _other.y);
+	}
+
+	bool Vector2::operator>=(const Vector2 _other)
+	{
+		return (x >= _other.x && y >= _other.y);
 	}
 
 	Vector2 Vector2::operator-()

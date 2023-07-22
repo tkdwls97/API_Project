@@ -30,10 +30,12 @@ namespace ex::math
 
 		void operator/=(const Vector2& _value);
 		void operator*=(const Vector2& _value);
-		void operator+=(const Vector2& _value);
+		Vector2& operator+=(const Vector2& _other);
 		void operator-=(const Vector2& _value);
 
 		bool operator ==(const Vector2 _other);
+		bool operator<=(const Vector2 _other);
+		bool operator>=(const Vector2 _other);
 
 		Vector2 operator-();
 
@@ -57,3 +59,5 @@ namespace ex::math
 	
 
 }
+
+

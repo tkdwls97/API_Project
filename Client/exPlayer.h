@@ -9,6 +9,7 @@ namespace ex
 	class Transform;
 	class Animator;
 	class Collider;
+	class Rigidbody;
 
 	class Player : public GameObject
 	{
@@ -24,10 +25,10 @@ namespace ex
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
-
-	public:
 		void Idle();
 		void Move();
+		void Down();
+		void Rope();
 		void Attack();
 		void Skill();
 		void Jump();
@@ -36,6 +37,8 @@ namespace ex
 	private:
 		Animator*	mAnimator;
 		eState		mState;
+		Rigidbody*  mRigidbody;
+
 
 	};
 }

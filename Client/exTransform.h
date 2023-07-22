@@ -39,7 +39,7 @@ namespace ex
 
 	private:
 		math::Vector2	mPos;
-		float			mRotation;
 		enums::eMoveDir mMoveDir;
+		float			mRotation;
 	};
 }
