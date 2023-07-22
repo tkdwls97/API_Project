@@ -93,9 +93,7 @@ namespace ex
 
 	void Player::Idle()
 	{
-
 		mAnimator = GetComponent<Animator>();
-
 		enums::eMoveDir playerType = GetTransform()->GetMoveDir();
 
 		if (playerType == enums::eMoveDir::Left)
@@ -115,19 +113,19 @@ namespace ex
 			GetTransform()->SetMoveDir(enums::eMoveDir::Right);
 			mState = eState::Move;
 		}
-		if (Input::GetKey(eKeyCode::Left))
+		if (Input::GetKeyDown(eKeyCode::Left))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftMove", true);
 			GetTransform()->SetMoveDir(enums::eMoveDir::Left);
 			mState = eState::Move;
 		}
-		if (Input::GetKey(eKeyCode::Up))
+		if (Input::GetKeyDown(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			GetTransform()->SetMoveDir(enums::eMoveDir::Up);
 			mState = eState::Move;
 		}
-		if (Input::GetKey(eKeyCode::Down))
+		if (Input::GetKeyDown(eKeyCode::Down))
 		{
 			if (GetTransform()->GetMoveDir() == enums::eMoveDir::Right)
 			{
@@ -151,37 +149,46 @@ namespace ex
 		mAnimator = AddComponent<Animator>();
 		math::Vector2 pos = GetTransform()->GetPosition();
 
-		if (Input::GetKey(eKeyCode::Up))
+		// 상하좌우 키 입력
+		if (Input::GetKeyPressed(eKeyCode::Up))
 		{
-			pos.y -= 200.0f * Time::GetDeltaTime();
+			//pos.y -= 200.0f * Time::GetDeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::Left))
+		else if (Input::GetKeyPressed(eKeyCode::Left))
 		{
 			pos.x -= 200.0f * Time::GetDeltaTime();
 		}
-		
-		else if (Input::GetKey(eKeyCode::Down))
+		else if (Input::GetKeyPressed(eKeyCode::Down))
 		{
-			pos.y += 200.0f * Time::GetDeltaTime();
+			//pos.y += 200.0f * Time::GetDeltaTime();
 		}
-		else if (Input::GetKey(eKeyCode::Right))
+		else if (Input::GetKeyPressed(eKeyCode::Right))
 		{
 			pos.x += 200.0f * Time::GetDeltaTime();
-			if (Input::GetKey(eKeyCode::Left))
-			{
-				GetTransform()->SetMoveDir(enums::eMoveDir::Left);
-				mAnimator->PlayAnimation(L"PlayerLeftMove");
-
-			}
-			if (Input::GetKey(eKeyCode::Left) && (Input::GetKey(eKeyCode::Right)))
-			{
-				GetTransform()->SetMoveDir(enums::eMoveDir::Left);
-					mAnimator->PlayAnimation(L"PlayerLeftMove");
-
-			}
 		}
-		
-	
+
+		// 동시 키 입력
+		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Left))
+		{
+			mState = eState::Idle;
+			mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+
+		}
+		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Right))
+		{
+			mState = eState::Idle;
+			mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
+		}
+		if (Input::GetKeyDown(eKeyCode::Down) && Input::GetKeyPressed(eKeyCode::Left))
+		{
+			mState = eState::Down;
+			mAnimator->PlayAnimation(L"PlayerLeftMove", true);
+		}
+
+
+
+
+		// 키 안누른 상태
 		if (Input::GetKeyUp(eKeyCode::Up)
 			|| Input::GetKeyUp(eKeyCode::Left)
 			|| Input::GetKeyUp(eKeyCode::Down)
@@ -201,8 +208,8 @@ namespace ex
 		}
 
 		GetTransform()->SetPosition(pos);
-	}
 
+	}
 	void Player::Attack()
 	{
 	}

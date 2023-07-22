@@ -61,7 +61,7 @@ namespace ex
 			return mKeys[(int)_keycode].keyState == eKeyState::Up;
 		}
 
-		__forceinline static bool GetKey(eKeyCode _keycode)
+		__forceinline static bool GetKeyPressed(eKeyCode _keycode)
 		{
 			return mKeys[(int)_keycode].keyState == eKeyState::Pressed;
 		}
