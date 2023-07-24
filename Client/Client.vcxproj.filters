@@ -112,6 +112,9 @@
     <Filter Include="Engine\Component\05.Rigidbody">
       <UniqueIdentifier>{f92547d1-8bb5-4375-a847-efe2b4993b31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\05.Floor">
+      <UniqueIdentifier>{6580049a-c94d-47cf-a127-bec9a91fb9a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -221,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="exUI.cpp">
       <Filter>Contents\GameObject\04.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="exFloor.cpp">
+      <Filter>Contents\GameObject\05.Floor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="exUI.h">
       <Filter>Contents\GameObject\04.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="exFloor.h">
+      <Filter>Contents\GameObject\05.Floor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

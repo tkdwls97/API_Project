@@ -1,4 +1,4 @@
-#include "exRigidbody.h"
+ï»¿#include "exRigidbody.h"
 #include "exTime.h"
 #include "exGameObject.h"
 #include "exTransform.h"
@@ -8,9 +8,12 @@ namespace ex
 	Rigidbody::Rigidbody()
 		: Component(enums::eComponentType::Rigidbody)
 		, mMass(1.0f)
-		, mFriction(10.0f)
-		, mMaxVelocity(300.0f)
+		, mFriction(200.0f)
+		, mbGround(false)
 	{
+		mLimitedVelocty.x = 200.0f;
+		mLimitedVelocty.y = 1000.0f;
+		mGravity = math::Vector2(0.0f, 800.0f);
 	}
 
 	Rigidbody::~Rigidbody()
@@ -23,33 +26,65 @@ namespace ex
 
 	void Rigidbody::Update()
 	{
-		//f(Èû) = m(Áú·®)a °¡¼Óµµ
-	
+		//ì´ë™
+		// F = M x A
+		// A = F / M
 		mAccelation = mForce / mMass;
 
-		// ¼Óµµ¿¡ °¡¼Óµµ¸¦ ´õÇØÁà¾ß ÃÑ ¼Óµµ°¡ ³ª¿Â´Ù
+		// ì†ë„ì— ê°€ì†ë„ë¥¼ ë”í•œë‹¤
+		mVelocity += mAccelation * Time::GetDeltaTime();
 
-		// ¼Óµµ´Â ÃÖ´ë¼Óµµ¸¦ ³ÑÁö¸øÇÏ°Ô ¸¸µç´Ù
-		if (mVelocity <= mMaxVelocity && mVelocity >= -mMaxVelocity)
+		if (mbGround)
 		{
-			mVelocity += mAccelation * Time::GetDeltaTime();
+			// ë•…ìœ„ì— ìˆì„ë•Œ
+			math::Vector2 gravity = mGravity;
+			gravity.Normalize();
+			float dot = math::Dot(mVelocity, gravity);
+			mVelocity -= gravity * dot;
 		}
-		
+		else
+		{
+			// ê³µì¤‘ì— ìˆì„ ë•Œ
+			mVelocity += mGravity * Time::GetDeltaTime();
+		}
+
+
+		// ìµœëŒ€ ì†ë„ ì œí•œ
+		math::Vector2 gravity = mGravity;
+		gravity.Normalize();
+		float dot = math::Dot(mVelocity, gravity);
+		gravity = gravity * dot;
+
+		math::Vector2 sideVelocity = mVelocity - gravity;
+		if (mLimitedVelocty.y < gravity.Length())
+		{
+			gravity.Normalize();
+			gravity *= mLimitedVelocty.y;
+		}
+
+		if (mLimitedVelocty.x < sideVelocity.Length())
+		{
+			sideVelocity.Normalize();
+			sideVelocity *= mLimitedVelocty.x;
+		}
+		mVelocity = gravity + sideVelocity;
+
+		//ë§ˆì°°ë ¥ ì¡°ê±´ ( ì ìš©ëœ í˜ì´ ì—†ê³ , ì†ë„ê°€ 0 ì´ ì•„ë‹ Â‹Âš)
 		if (!(mVelocity == math::Vector2::Zero))
 		{
-
-			// ¼Óµµ¿¡ ¹İ´ë ¹æÇâÀ¸·Î ¸¶Âû·Â Àû¿ë
+			// ì†ë„ì— ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ë§ˆì°°ë ¥ì„ ì ìš©
 			math::Vector2 friction = -mVelocity;
 			friction = friction.Normalize() * mFriction * mMass * Time::GetDeltaTime();
 
-			// ¸¶Âû·ÂÀ¸·Î ÀÇÇÑ ¼Óµµ °¨¼Ò·®ÀÌ ÇöÀç ¼Óµµº¸´Ù Å« °æ¿ì
+			// ë§ˆì°°ë ¥ìœ¼ë¡œ ì¸í•œ ì†ë„ ê°ì†ŒëŸ‰ì´ í˜„ì¬ ì†ë„ë³´ë‹¤ ë” í° ê²½ìš°
 			if (mVelocity.Length() < friction.Length())
 			{
-				// ¸ØÃç
-				mVelocity = math::Vector2::Zero;
+				// ì†ë„ë¥¼ 0 ë¡œ ë§Œë“ ë‹¤.
+				mVelocity = math::Vector2(0.f, 0.f);
 			}
 			else
 			{
+				// ì†ë„ì—ì„œ ë§ˆì°°ë ¥ìœ¼ë¡œ ì¸í•œ ë°˜ëŒ€ë°©í–¥ìœ¼ë¡œ ì†ë„ë¥¼ ì°¨ê°í•œë‹¤.
 				mVelocity += friction;
 			}
 		}
@@ -62,8 +97,9 @@ namespace ex
 		mForce.Clear();
 	}
 
-	void Rigidbody::Render(HDC _hdc)
+	void Rigidbody::Render(HDC hdc)
 	{
+
 	}
 
 }

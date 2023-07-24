@@ -2,12 +2,12 @@
 
 namespace ex::math
 {
-	Vector2 Vector2::Zero	= Vector2(0.0f, 0.0f);
-	Vector2 Vector2::One	= Vector2(1.0f, 1.0f);
-	Vector2 Vector2::Right	= Vector2(1.0f, 0.0f);
-	Vector2 Vector2::Left	= Vector2(-1.0f, 0.0f);
-	Vector2 Vector2::Up		= Vector2(0.0f, -1.0f);
-	Vector2 Vector2::Down	= Vector2(0.0f, 1.0f);
+	Vector2 Vector2::Zero = Vector2(0.0f, 0.0f);
+	Vector2 Vector2::One = Vector2(1.0f, 1.0f);
+	Vector2 Vector2::Right = Vector2(1.0f, 0.0f);
+	Vector2 Vector2::Left = Vector2(-1.0f, 0.0f);
+	Vector2 Vector2::Up = Vector2(0.0f, -1.0f);
+	Vector2 Vector2::Down = Vector2(0.0f, 1.0f);
 
 	Vector2::Vector2()
 		: x(0.f)
@@ -65,11 +65,7 @@ namespace ex::math
 		x /= _value;
 		y /= _value;
 	}
-	void Vector2::operator*=(const float _value)
-	{
-		x *= _value;
-		y *= _value;
-	}
+
 	void Vector2::operator+=(const float _value)
 	{
 		x += _value;
@@ -135,6 +131,14 @@ namespace ex::math
 	{
 		x -= _value.x;
 		y -= _value.y;
+	}
+
+	Vector2& Vector2::operator*=(const float& _value)
+	{
+		x *= _value;
+		y *= _value;
+
+		return *this;
 	}
 
 	bool Vector2::operator ==(const Vector2 _other)

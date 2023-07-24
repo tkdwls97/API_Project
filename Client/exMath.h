@@ -3,6 +3,8 @@
 
 namespace ex::math
 {
+#define PI 3.141592f
+
 	struct Vector2
 	{
 		Vector2();
@@ -17,7 +19,6 @@ namespace ex::math
 		Vector2 operator-(const float _value);
 		
 		void operator/=(const float _value);
-		void operator*=(const float _value);
 		void operator+=(const float _value);
 		void operator-=(const float _value);
 
@@ -30,15 +31,16 @@ namespace ex::math
 
 		void operator/=(const Vector2& _value);
 		void operator*=(const Vector2& _value);
-		Vector2& operator+=(const Vector2& _other);
 		void operator-=(const Vector2& _value);
+		Vector2& operator*=(const float& _value);
+		Vector2& operator+=(const Vector2& _other);
+		
 
 		bool operator ==(const Vector2 _other);
 		bool operator<=(const Vector2 _other);
 		bool operator>=(const Vector2 _other);
 
 		Vector2 operator-();
-
 
 		void Clear();
 		float Length();
@@ -56,8 +58,25 @@ namespace ex::math
 
 	};
 
-	
+	inline Vector2 Rotate(Vector2 _vector, float _degree)
+	{
+		float radian = (_degree / 180.f) * PI;
+		_vector.Normalize();
+		float x = cosf(radian) * _vector.x - sinf(radian) * _vector.y;
+		float y = sinf(radian) * _vector.x + cosf(radian) * _vector.y;
 
+		return Vector2(x, y);
+	}
+
+	inline float Dot(Vector2& _v1, Vector2& _v2)
+	{
+		return _v1.x * _v2.x + _v1.y * _v2.y;
+	}
+
+	inline float Cross(Vector2 _v1, Vector2 _v2)
+	{
+		return _v1.x * _v2.y - _v1.y * _v2.x;
+	}
 }
 
 

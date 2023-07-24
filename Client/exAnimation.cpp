@@ -132,6 +132,7 @@ namespace ex
 		, math::Vector2 _leftTop, math::Vector2 _size, math::Vector2 _offset
 		, UINT _spriteLength, float _duration)
 	{
+		SetName(_name);
 		mTexture = _texture;
 
 		for (UINT i = 0; i < _spriteLength; i++)

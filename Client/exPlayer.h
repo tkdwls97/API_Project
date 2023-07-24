@@ -33,6 +33,7 @@ namespace ex
 		void Skill();
 		void Jump();
 		void Death();
+		void DownJump();
 
 	private:
 		Animator*	mAnimator;

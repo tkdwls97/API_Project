@@ -19,6 +19,11 @@ namespace ex
 		void  SetFriction(float _friction) { mFriction = _friction; }
 		float GetFriction() { return mFriction; }
 
+		void SetGround(bool _ground) { mbGround = _ground; }
+		math::Vector2 GetVelocity() { return mVelocity; }
+		void SetVelocity(math::Vector2 _velocity) { mVelocity = _velocity; }
+		
+
 	private:
 		// 무게
 		float mMass;
@@ -37,10 +42,14 @@ namespace ex
 		math::Vector2 mAccelation;
 		// 속도
 		math::Vector2 mVelocity;
-		//최대 속도
-		math::Vector2 mMaxVelocity;
 		// 중력 가속도
 		math::Vector2 mGravity;
+
+		// 가속도가 붙은 후 최대 속도를 제한하는 리미트 변수
+		math::Vector2 mLimitedVelocty;
+
+		// true -> 땅에 붙은 상태 false -> 공중에 뜬 상태
+		bool mbGround;
 	};
 
 }

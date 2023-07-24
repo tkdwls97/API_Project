@@ -20,6 +20,7 @@ namespace ex::enums
 	enum class eLayerType
 	{
 		Background,
+		Floor,
 		Monster,
 		Player,
 		Effect,

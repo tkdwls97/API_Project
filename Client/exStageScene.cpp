@@ -15,6 +15,7 @@
 #include "exCollisionManager.h"
 #include "exGreenMush.h"
 #include "exCupleMush.h"
+#include "exFloor.h"
 
 
 namespace ex
@@ -78,6 +79,17 @@ namespace ex
 		moncol->SetOffset(math::Vector2(4.0f, 4.0f));
 		
 
+		Collider* col = player->AddComponent<Collider>();
+		col->SetSize(math::Vector2(50.0f, 70.0f));
+		col->SetOffset(math::Vector2(5.0f, 4.0f));
+
+		Floor* floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		col = floor->AddComponent<Collider>();
+		col->SetSize(math::Vector2(1500.0f, 100.0f));
+		tr = floor->GetComponent<Transform>();
+
+		tr->SetPosition(math::Vector2(600.0f, 600.0f));
+
 
 		// 카메라의 영향을 true || false
 		at->SetAffectedCamera(true);
@@ -85,11 +97,10 @@ namespace ex
 		// 카메라의 Target을 플레이어한테 Set
 		Camera::SetTarget(player);
 
-		Collider* col = player->AddComponent<Collider>();
-		col->SetSize(math::Vector2(50.0f, 70.0f));
-		col->SetOffset(math::Vector2(5.0f, 4.0f));
+		
 
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		
 	}
 

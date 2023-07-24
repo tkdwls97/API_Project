@@ -9,7 +9,7 @@ extern ex::Application application;
 namespace ex
 {
 	// static 변수 전역초기화
-	math::Vector2	Camera::mResolution	= math::Vector2::Zero;
+	math::Vector2	Camera::mResolution		= math::Vector2::Zero;
 	math::Vector2	Camera::mLookPosition	= math::Vector2::Zero;
 	math::Vector2	Camera::mDistance		= math::Vector2::Zero;
 	GameObject* Camera::mTargetObj			= nullptr;	
