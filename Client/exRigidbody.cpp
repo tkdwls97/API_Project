@@ -12,7 +12,7 @@ namespace ex
 		, mbGround(false)
 	{
 		mLimitedVelocty.x = 200.0f;
-		mLimitedVelocty.y = 1000.0f;
+		mLimitedVelocty.y = 500.0f;
 		mGravity = math::Vector2(0.0f, 800.0f);
 	}
 
@@ -69,7 +69,7 @@ namespace ex
 		}
 		mVelocity = gravity + sideVelocity;
 
-		//마찰력 조건 ( 적용된 힘이 없고, 속도가 0 이 아닐 )
+		// 마찰력 조건 ( 적용된 힘이 없고, 속도가 0 이 아닐 )
 		if (!(mVelocity == math::Vector2::Zero))
 		{
 			// 속도에 반대 방향으로 마찰력을 적용
@@ -88,7 +88,6 @@ namespace ex
 				mVelocity += friction;
 			}
 		}
-
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		math::Vector2 pos = tr->GetPosition();

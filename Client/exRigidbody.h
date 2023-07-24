@@ -20,6 +20,8 @@ namespace ex
 		float GetFriction() { return mFriction; }
 
 		void SetGround(bool _ground) { mbGround = _ground; }
+		bool GetGround() { return mbGround; }
+
 		math::Vector2 GetVelocity() { return mVelocity; }
 		void SetVelocity(math::Vector2 _velocity) { mVelocity = _velocity; }
 		

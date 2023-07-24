@@ -17,6 +17,7 @@ namespace ex
 
 		// 이미지를 멤버 변수에 세팅할 함수
 		void SetImage(Texture* _texture) { mTexture = _texture; }
+		Texture* GetImage() { return mTexture; }
 
 		// 이미지 크기에 곱할 값을 세팅할 함수
 		void SetScale(math::Vector2 _scale) { mScale = _scale; }

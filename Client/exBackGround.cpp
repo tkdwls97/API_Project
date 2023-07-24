@@ -3,6 +3,8 @@
 #include "exInput.h"
 #include "exTime.h"
 #include "exSpriteRenderer.h"
+#include "exResourceManager.h"
+#include "exObject.h"
 
 namespace ex
 {
@@ -33,6 +35,35 @@ namespace ex
 	void BackGround::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
+	}
+
+	void BackGround::SetAutoCameraLimit()
+	{
+		// 
+		SpriteRenderer* bgsr = this->GetComponent<SpriteRenderer>();
+
+		if (nullptr == bgsr)
+		{
+			return;
+		}
+		Texture* image = bgsr->GetImage();
+
+		if (nullptr == image)
+		{
+			return;
+		}
+	
+		math::Vector2 pos = GetComponent<Transform>()->GetPosition();
+		math::Vector2 imageSize = image->GetSize() / 2.0f;
+
+		math::Vector2 tempLimit = pos - imageSize;
+
+		tempLimit.x = std::fabsf(tempLimit.x);
+		tempLimit.y = std::fabsf(tempLimit.y);
+
+		mCameraLimitLeft = -tempLimit.x;
+		mCameraLimitRight = tempLimit.x;
+
 	}
 
 }

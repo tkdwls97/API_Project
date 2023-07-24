@@ -10,13 +10,19 @@ namespace ex
 		static void Update();
 
 		// GameObject가 이동하는 좌표에 따라 카메라도 같이 이동하기위해 오차를 계산하는 함수
-		static math::Vector2 CalculatePosition(math::Vector2 pos) { return pos - mDistance; }
+		static math::Vector2 CalculatePosition(math::Vector2 _pos) { return _pos - mDistance; }
 
 		// 카메라가 바라보는 GameObject를 반환하는 함수
 		static GameObject* GetTarget() { return mTargetObj; }
 		
 		// 멤버 변수 m_Target에 카메라로 지정할 GameObject를 세팅하는 함수
-		static void SetTarget(GameObject* target) { mTargetObj = target; }
+		static void SetTarget(GameObject* _target) { mTargetObj = _target; }
+
+		static void SetLimitDistance(math::Vector2 _widthLimit, math::Vector2 _heightLimit)
+		{
+			mWidthLimit = _widthLimit;
+			mHeightLimit = _heightLimit;
+		}
 
 	private:
 
@@ -31,6 +37,9 @@ namespace ex
 
 		// 카메라가 바라보는 게임 오브젝트
 		static GameObject* mTargetObj;
+
+		static math::Vector2 mWidthLimit;
+		static math::Vector2 mHeightLimit;
 
 
 	};

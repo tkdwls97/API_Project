@@ -138,7 +138,6 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-			GetTransform()->SetMoveDir(enums::eMoveDir::Up);
 			mState = eState::Rope;
 
 			// Portal 이거나 Rope거나
@@ -209,7 +208,6 @@ namespace ex
 		// 상하좌우 키 입력
 		if (Input::GetKeyPressed(eKeyCode::Up))
 		{
-			//pos.y -= 200.0f * Time::GetDeltaTime();
 		}
 		if (Input::GetKeyPressed(eKeyCode::Down))
 		{
@@ -339,12 +337,12 @@ namespace ex
 		}
 
 		////if(만약 로프에 충돌한다면)
-		//if (Input::GetKeyDown(eKeyCode::Down))
-		//{
-		//	GetTransform()->SetMoveDir(enums::eMoveDir::Down);
-		//	mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-		//	mState = eState::Rope;
-		//}
+		if (Input::GetKeyDown(eKeyCode::Down))
+		{
+			GetTransform()->SetMoveDir(enums::eMoveDir::Down);
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+			mState = eState::Rope;
+		}
 
 
 		// 밑에 키 Up상태면 다시 Idle상태로 돌아오게 만듬
@@ -373,7 +371,7 @@ namespace ex
 	{
 		math::Vector2 pos = GetTransform()->GetPosition();
 		enums::eMoveDir playerDir = GetTransform()->GetMoveDir();
-		// 윗 방향키 때면 다시 Idle상태로 전환
+		
 
 		//if (만약 로프에 충돌한다면?)
 		if (Input::GetKeyPressed(eKeyCode::Up))
@@ -386,7 +384,7 @@ namespace ex
 		}
 
 
-
+		// 윗 방향키 때면 다시 Idle상태로 전환
 		if (Input::GetKeyUp(eKeyCode::Up))
 		{
 			mAnimator = AddComponent<Animator>();
@@ -540,11 +538,26 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightJump", true);
 			}
-			mState = eState::Jump;
+			mState = eState::DownJump;
 			velocity.x = 0.0f;
 			velocity.y = 500.0f;
-
 		}
+
+		if (rb->GetGround())
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
+				mState = eState::Idle;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+				mState = eState::Idle;
+			}
+		}
+
+
 	}
 	void Player::Skill()
 	{
