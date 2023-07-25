@@ -10,7 +10,7 @@
 #include "exBackGround.h"
 #include "exCamera.h"
 #include "exAnimator.h"
-#include "exZaqqum.h"
+#include "exPapulatus.h"
 
 namespace ex
 {
@@ -26,24 +26,26 @@ namespace ex
 	void BossScene::Initialize()
 	{
 		Texture* image = ResourceManager::Load<Texture>(L"BossBackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Map\\BossStage.png");
+			, L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
 
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		bgsr->SetScale(math::Vector2(1.1f, 1.4f));
 		bgsr->SetAffectCamera(true);
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
 
-		//Zaqqum* zaqqum = object::Instantiate<Zaqqum>(enums::eLayerType::Monster);
-		//zaqqum->Initialize();
-		//Transform* zaqqumTr = zaqqum->GetComponent<Transform>();
-		//Animator* zaqqumat = zaqqum->GetComponent<Animator>();
-		//zaqqumTr->SetPosition(math::Vector2(640.0f, 360.0f));
-		//zaqqumat->SetAffectedCamera(true);
+		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
+		papulatus->Initialize();
+		Transform* papulatusTr = papulatus->GetComponent<Transform>();
+		Animator* papulatusat = papulatus->GetComponent<Animator>();
+		papulatusTr->SetPosition(math::Vector2(640.0f, 360.0f));
+		papulatusat->SetAffectedCamera(true);
 
-		//Camera::SetTarget(player);
+		//Camera::SetTarget(nullptr);
+
+	
 	}
 
 	void BossScene::Update()

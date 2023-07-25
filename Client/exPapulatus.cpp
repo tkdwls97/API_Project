@@ -19,15 +19,61 @@ namespace ex
 	void Papulatus::Initialize()
 	{
 		Animator* animator = AddComponent<Animator>();
-		animator->CreateAnimationFolder(L"PapulatusIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle");
+		animator->CreateAnimationFolder(L"PapulatusLeftIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Left");
 
-		animator->PlayAnimation(L"PapulatusIdle", true);
+		animator->CreateAnimationFolder(L"PapulatusLeftMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Left");
+
+		//animator->CreateAnimationFolder(L"PapulatusLeftSkill1",
+		//	L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Sill1\\Left");
+
+		animator->PlayAnimation(L"PapulatusLeftIdle", true);
+		GetTransform()->SetMoveDir(enums::eMoveDir::Left);
 	}
 
 	void Papulatus::Update()
 	{
 		GameObject::Update();
+		Transform* tr = GetComponent<Transform>();
+		math::Vector2 pos = tr->GetPosition();
+		Animator* anim = GetComponent<Animator>();
+
+
+		static float PMoveDelay = 0.0f;
+		
+
+		PMoveDelay += Time::GetDeltaTime();
+
+		mDirection = tr->GetMoveDir();
+		if (PMoveDelay >= 6.0f)
+		{
+			if (mDirection == enums::eMoveDir::Right)
+			{
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mDirection = enums::eMoveDir::Right;
+			}
+			PMoveDelay = 0.0f;
+		}
+
+
+		if (mDirection == enums::eMoveDir::Left)
+		{
+			tr->SetMoveDir(enums::eMoveDir::Left);
+			anim->PlayAnimation(L"PapulatusLeftMove", true);
+			pos.x -= 50.0f * Time::GetDeltaTime();
+		}
+
+		else if (mDirection == enums::eMoveDir::Right)
+		{
+			tr->SetMoveDir(enums::eMoveDir::Right);
+			anim->PlayAnimation(L"PapulatusLeftMove", true);
+			pos.x += 50.0f * Time::GetDeltaTime();
+		}
+		tr->SetPosition(pos);
 	}
 
 	void Papulatus::Render(HDC _hdc)

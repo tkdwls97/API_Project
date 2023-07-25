@@ -27,9 +27,9 @@ namespace ex
 
 		SpriteRenderer* sr = GetComponent<SpriteRenderer>();
 
-		float alpha = sr->GetAlpha();
+		//float alpha = sr->GetAlpha();
 		//alpha -= 0.2f * Time::GetDeltaTime();
-		sr->SetAlpha(alpha);
+		//sr->SetAlpha(alpha);
 	}
 
 	void BackGround::Render(HDC _hdc)
@@ -54,16 +54,23 @@ namespace ex
 		}
 	
 	
-		math::Vector2 pos = this->GetComponent<Transform>()->GetPosition();
+		math::Vector2 pos = GetComponent<Transform>()->GetPosition();
 		math::Vector2 imageSize = image->GetSize() / 2.0f;
 
-		math::Vector2 tempLimit = pos - imageSize;
+		math::Vector2 tempLimitX = pos.x - imageSize.x;
+		math::Vector2 tempLimitY = pos.y - imageSize.y;
 
-		tempLimit.x = std::fabsf(tempLimit.x);
-		tempLimit.y = std::fabsf(tempLimit.y);
+		tempLimitX.x = std::fabsf(tempLimitX.x);
+		tempLimitX.y = std::fabsf(tempLimitX.y);
 
-		mCameraLimitLeft = -tempLimit.x;
-		mCameraLimitRight = tempLimit.x;
+		tempLimitY.x = std::fabsf(tempLimitY.x);
+		tempLimitY.y = std::fabsf(tempLimitY.y);
+
+		mCameraLimitLeft = -tempLimitX.x;
+		mCameraLimitRight = tempLimitX.y;
+
+		mCameraLimitUp = -tempLimitY.x;
+		mCameraLimitDown = tempLimitY.y;
 
 	}
 

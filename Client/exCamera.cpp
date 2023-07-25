@@ -51,20 +51,20 @@ namespace ex
 
 		// 이미지의 x의 왼쪽 최대 값 (이미지를 넘어서 윈도우 화면이 보이지않는 값)
 		// 보다 작아지지 않게(왼쪽으로가면 -= x) 리미트 값으로 고정함
-		if (mDistance.x < mWidthLimit.x)
+		if (mDistance.x <= mWidthLimit.x)
 		{
 			mDistance.x = mWidthLimit.x;
 		}
-		if (mDistance.x > mWidthLimit.y)
+		if (mDistance.x >= mWidthLimit.y)
 		{
 			mDistance.x = mWidthLimit.y;
 		}
 
-		if (mDistance.y < mHeightLimit.x)
+		if (mDistance.y <= mHeightLimit.x)
 		{			  
 			mDistance.y = mHeightLimit.x;
 		}			  
-		if (mDistance.y > mHeightLimit.y)
+		if (mDistance.y >= mHeightLimit.y)
 		{			  
 			mDistance.y = mHeightLimit.y;
 		}
