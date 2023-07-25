@@ -115,6 +115,9 @@
     <Filter Include="Contents\GameObject\05.Floor">
       <UniqueIdentifier>{6580049a-c94d-47cf-a127-bec9a91fb9a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\02.Papulatus">
+      <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -227,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="exFloor.cpp">
       <Filter>Contents\GameObject\05.Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatus.cpp">
+      <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="exFloor.h">
       <Filter>Contents\GameObject\05.Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatus.h">
+      <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

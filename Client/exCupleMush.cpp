@@ -22,18 +22,18 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"CoupleMushLeft"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\CoupleMush_LEFT.bmp");
 
-		Animator* m_Animator = AddComponent<Animator>();
+		Animator* animator = AddComponent<Animator>();
 
-		m_Animator->CreateAnimation(L"CoupleMushLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f), 8);
-		m_Animator->CreateAnimation(L"CoupleMushLeftMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f), 13);
+		animator->CreateAnimation(L"CoupleMushLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f), 8);
+		animator->CreateAnimation(L"CoupleMushLeftMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f), 13);
 
 		image = ResourceManager::Load<Texture>(L"CoupleMushRight"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\CoupleMush_RIGHT.bmp");
 
-		m_Animator->CreateAnimation(L"CoupleMushRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f), 8);
-		m_Animator->CreateAnimation(L"CoupleMushRightMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f), 13);
+		animator->CreateAnimation(L"CoupleMushRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f), 8);
+		animator->CreateAnimation(L"CoupleMushRightMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f), 13);
 
-		m_Animator->PlayAnimation(L"CoupleMushRightIdle", true);
+		animator->PlayAnimation(L"CoupleMushRightIdle", true);
 
 		GetTransform()->SetMoveDir(enums::eMoveDir::Right);
 	}

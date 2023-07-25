@@ -156,6 +156,7 @@
     <ClCompile Include="exGameObject.cpp" />
     <ClCompile Include="exInput.cpp" />
     <ClCompile Include="exLayer.cpp" />
+    <ClCompile Include="exPapulatus.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="exMath.cpp" />
     <ClCompile Include="exPlayer.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="exCommonInclude.h" />
     <ClInclude Include="exComponent.h" />
     <ClInclude Include="exEntity.h" />
+    <ClInclude Include="exPapulatus.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="exGameObject.h" />
     <ClInclude Include="exInput.h" />

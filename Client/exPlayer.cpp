@@ -163,6 +163,7 @@ namespace ex
 			Rigidbody* rb = GetComponent<Rigidbody>();
 			math::Vector2 velocity = rb->GetVelocity();
 			velocity.y = -500.0f;
+			velocity.x = 0.0f;
 			rb->SetVelocity(velocity);
 			rb->SetGround(false);
 			if (playerDir == enums::eMoveDir::Right)
@@ -181,6 +182,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 				mState = eState::DownJump;
 			}
+
 		}
 
 		// 기본 공격 키 
@@ -200,6 +202,7 @@ namespace ex
 
 
 	}
+
 	void Player::Move()
 	{
 		mAnimator = GetComponent<Animator>();
@@ -269,7 +272,7 @@ namespace ex
 			|| Input::GetKeyUp(eKeyCode::Down)
 			|| Input::GetKeyUp(eKeyCode::Right))
 		{
-			mAnimator = AddComponent<Animator>();
+			mAnimator = GetComponent<Animator>();
 
 			if (playerDir == enums::eMoveDir::Left)
 			{
@@ -348,7 +351,7 @@ namespace ex
 		// 밑에 키 Up상태면 다시 Idle상태로 돌아오게 만듬
 		if (Input::GetKeyUp(eKeyCode::Down))
 		{
-			mAnimator = AddComponent<Animator>();
+			mAnimator = GetComponent<Animator>();
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				GetTransform()->SetMoveDir(enums::eMoveDir::Left);
@@ -371,7 +374,7 @@ namespace ex
 	{
 		math::Vector2 pos = GetTransform()->GetPosition();
 		enums::eMoveDir playerDir = GetTransform()->GetMoveDir();
-		
+
 
 		//if (만약 로프에 충돌한다면?)
 		if (Input::GetKeyPressed(eKeyCode::Up))
@@ -387,7 +390,7 @@ namespace ex
 		// 윗 방향키 때면 다시 Idle상태로 전환
 		if (Input::GetKeyUp(eKeyCode::Up))
 		{
-			mAnimator = AddComponent<Animator>();
+			mAnimator = GetComponent<Animator>();
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
@@ -407,38 +410,36 @@ namespace ex
 		enums::eMoveDir playerDir = GetTransform()->GetMoveDir();
 
 		// 컨트롤 누를시 좌우 상태에따라 공격 
-		if (Input::GetKeyPressed(eKeyCode::Ctrl))
+
+		if (playerDir == enums::eMoveDir::Left)
 		{
-			mAnimator = AddComponent<Animator>();
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftAttack", true);
-				mState = eState::Attack;
-			}
-			else
-			{
-				mAnimator->PlayAnimation(L"PlayerRightAttack", true);
-				mState = eState::Attack;
-			}
-
-			// 이동중 공격
-			if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Ctrl))
-			{
-				mAnimator->PlayAnimation(L"PlayerRightAttack", true);
-				mState = eState::Attack;
-			}
-
-			if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftAttack", true);
-				mState = eState::Attack;
-			}
+			mAnimator->PlayAnimation(L"PlayerLeftAttack", true);
+			mState = eState::Attack;
 		}
+		else
+		{
+			mAnimator->PlayAnimation(L"PlayerRightAttack", true);
+			mState = eState::Attack;
+		}
+
+		// 이동중 공격
+		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Ctrl))
+		{
+			mAnimator->PlayAnimation(L"PlayerRightAttack", true);
+			mState = eState::Attack;
+		}
+
+		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
+		{
+			mAnimator->PlayAnimation(L"PlayerLeftAttack", true);
+			mState = eState::Attack;
+		}
+
 
 
 		if (Input::GetKeyUp(eKeyCode::Ctrl))
 		{
-			mAnimator = AddComponent<Animator>();
+			mAnimator = GetComponent<Animator>();
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
@@ -451,6 +452,7 @@ namespace ex
 			}
 		}
 	}
+
 	void Player::Jump()
 	{
 		math::Vector2 pos = GetTransform()->GetPosition();
@@ -458,15 +460,19 @@ namespace ex
 		Rigidbody* rb = GetComponent<Rigidbody>();
 		math::Vector2 velocity = rb->GetVelocity();
 
-		if (playerDir == enums::eMoveDir::Left)
+		// 키를 누르고있을때만 x값이 추가
+		if (playerDir == enums::eMoveDir::Left && Input::GetKeyPressed(eKeyCode::Left))
 		{
 			velocity.x = -300.0f;
+			velocity.y = -500.0f;
 		}
-		else
+		else if (playerDir == enums::eMoveDir::Right && Input::GetKeyPressed(eKeyCode::Right))
 		{
 			velocity.x = 300.0f;
+			velocity.y = -500.0f;
 		}
-		velocity.y = -500.0f;
+
+
 		rb->SetVelocity(velocity);
 		rb->SetGround(false);
 
@@ -486,7 +492,7 @@ namespace ex
 		// 점프 + 공격
 		if (Input::GetKeyPressed(eKeyCode::Jump) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
-			mAnimator = AddComponent<Animator>();
+			mAnimator = GetComponent<Animator>();
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftAttack", true);
@@ -502,7 +508,7 @@ namespace ex
 		//윗 방향키 때면 다시 Idle상태로 전환
 		if (Input::GetKeyUp(eKeyCode::Jump))
 		{
-			mAnimator = AddComponent<Animator>();
+			mAnimator = GetComponent<Animator>();
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
@@ -517,9 +523,11 @@ namespace ex
 		}
 		GetTransform()->SetPosition(pos);
 	}
+
 	void Player::Death()
 	{
 	}
+
 	void Player::DownJump()
 	{
 		math::Vector2 pos = GetTransform()->GetPosition();
@@ -559,6 +567,7 @@ namespace ex
 
 
 	}
+
 	void Player::Skill()
 	{
 	}

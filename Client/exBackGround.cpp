@@ -53,7 +53,8 @@ namespace ex
 			return;
 		}
 	
-		math::Vector2 pos = GetComponent<Transform>()->GetPosition();
+	
+		math::Vector2 pos = this->GetComponent<Transform>()->GetPosition();
 		math::Vector2 imageSize = image->GetSize() / 2.0f;
 
 		math::Vector2 tempLimit = pos - imageSize;

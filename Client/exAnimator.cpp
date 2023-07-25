@@ -111,6 +111,8 @@ namespace ex
 		std::filesystem::path fs(path);
 		std::vector<Texture*> images = {};
 
+		eTextureType tempType = eTextureType::None;
+
 		for (auto& p : std::filesystem::recursive_directory_iterator(path))
 		{
 			std::wstring fileName = p.path().filename();
@@ -118,6 +120,7 @@ namespace ex
 
 			// 이미지 로드
 			Texture* image = ResourceManager::Load<Texture>(fileName, fullName);
+			tempType = image->GetTextType();
 			
 			images.push_back(image);
 
@@ -135,13 +138,7 @@ namespace ex
 		
 
 		// Video 기본 타입 Bmp로 설정
-		spriteSheet->SetTextType(eTextureType::Bmp);
-
-		// 32bit 비트맵 파일인경우 AlphaBmp 타입으로 설정한다
-		BITMAP info = {};
-		GetObject(spriteSheet->GetBitmap(), sizeof(BITMAP), &info);
-		if (info.bmBitsPixel == 32)
-			spriteSheet->SetTextType(eTextureType::AlphaBmp);
+		spriteSheet->SetTextType(tempType);
 
 
 		int idx = 0;

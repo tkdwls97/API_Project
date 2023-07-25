@@ -37,6 +37,7 @@ namespace ex
 		bgsr->SetAffectCamera(true);
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		Camera::SetTarget(nullptr);
 	}
 
 	void TitleScene::Update()

@@ -10,6 +10,7 @@
 #include "exBackGround.h"
 #include "exCamera.h"
 #include "exAnimator.h"
+#include "exZaqqum.h"
 
 namespace ex
 {
@@ -34,6 +35,13 @@ namespace ex
 		bgsr->SetAffectCamera(true);
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
+
+		//Zaqqum* zaqqum = object::Instantiate<Zaqqum>(enums::eLayerType::Monster);
+		//zaqqum->Initialize();
+		//Transform* zaqqumTr = zaqqum->GetComponent<Transform>();
+		//Animator* zaqqumat = zaqqum->GetComponent<Animator>();
+		//zaqqumTr->SetPosition(math::Vector2(640.0f, 360.0f));
+		//zaqqumat->SetAffectedCamera(true);
 
 		//Camera::SetTarget(player);
 	}

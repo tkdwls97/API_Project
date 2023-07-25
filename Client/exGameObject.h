@@ -27,7 +27,7 @@ namespace ex
 		Dead,
 		End,
 	};
-		
+
 
 
 	class GameObject : public Entity
@@ -81,7 +81,7 @@ namespace ex
 		virtual void OnCollisionEnter(Collider* _other);
 		virtual void OnCollisionStay(Collider* _other);
 		virtual void OnCollisionExit(Collider* _other);
-	
+
 	private:
 		std::vector<Component*> mComponents;
 
@@ -91,6 +91,15 @@ namespace ex
 	template<typename T>
 	__forceinline T* GameObject::AddComponent()
 	{
+		for (Component* com : mComponents)
+		{
+			Component* temp = dynamic_cast<T*>(com);
+			if (temp != nullptr)
+			{
+				assert(nullptr);
+			}
+		}
+
 		// 들어온 Component 타입의 새로운 객체를 생성하고 
 		T* comp = new T();
 

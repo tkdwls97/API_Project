@@ -39,7 +39,7 @@ namespace ex
 		//player->Initialize();
 
 		// 모든 씬에서 카메라를 set하면 안됌
-		//Camera::SetTarget(player);
+		Camera::SetTarget(nullptr);
 	}
 
 	void StageScene2::Update()
