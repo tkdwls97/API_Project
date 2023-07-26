@@ -30,6 +30,8 @@ namespace ex
 
 	void Floor::OnCollisionEnter(Collider* other)
 	{
+ 		other->GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
+
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
 		Transform* tr = player->GetComponent<Transform>();
 		Rigidbody* rb = player->GetComponent<Rigidbody>();

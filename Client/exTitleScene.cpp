@@ -30,11 +30,12 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"TitleBackGroundImgae"
 			, L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
 
+
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(2.0f, 1.8f));
-		bgsr->SetAffectCamera(true);
+		bgsr->SetScale(math::Vector2(1.7f, 1.8f));
+		bgsr->SetAffectCamera(true) ;
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 		Camera::SetTarget(nullptr);

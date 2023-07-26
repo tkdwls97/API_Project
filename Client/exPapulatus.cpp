@@ -25,10 +25,10 @@ namespace ex
 		animator->CreateAnimationFolder(L"PapulatusLeftMove",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Left");
 
-		//animator->CreateAnimationFolder(L"PapulatusLeftSkill1",
-		//	L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Sill1\\Left");
+		animator->CreateAnimationFolder(L"PapulatusLeftSkill1",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left");
 
-		animator->PlayAnimation(L"PapulatusLeftIdle", true);
+		animator->PlayAnimation(L"PapulatusLeftSkill1", true);
 		GetTransform()->SetMoveDir(enums::eMoveDir::Left);
 	}
 
@@ -63,14 +63,14 @@ namespace ex
 		if (mDirection == enums::eMoveDir::Left)
 		{
 			tr->SetMoveDir(enums::eMoveDir::Left);
-			anim->PlayAnimation(L"PapulatusLeftMove", true);
+			anim->PlayAnimation(L"PapulatusLeftSkill1", true);
 			pos.x -= 50.0f * Time::GetDeltaTime();
 		}
 
 		else if (mDirection == enums::eMoveDir::Right)
 		{
 			tr->SetMoveDir(enums::eMoveDir::Right);
-			anim->PlayAnimation(L"PapulatusLeftMove", true);
+			anim->PlayAnimation(L"PapulatusLeftSkill1", true);
 			pos.x += 50.0f * Time::GetDeltaTime();
 		}
 		tr->SetPosition(pos);

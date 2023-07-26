@@ -25,16 +25,16 @@ namespace ex
 
 	void BossScene::Initialize()
 	{
-		Texture* image = ResourceManager::Load<Texture>(L"BossBackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
+		//Texture* image = ResourceManager::Load<Texture>(L"BossBackGroundImgae"
+		//	, L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
 
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.1f, 1.4f));
-		bgsr->SetAffectCamera(true);
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
+		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		//bgsr->SetImage(image);
+		//bgsr->SetScale(math::Vector2(1.1f, 1.4f));
+		//bgsr->SetAffectCamera(true);
+		////bgsr->SetAlpha(0.2f);
+		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
 
 		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
 		papulatus->Initialize();
