@@ -62,7 +62,7 @@ namespace ex
 	{
 		GameObject::Update();
 
-		switch (mState)
+	 	switch (mState)
 		{
 		case Player::eState::Idle:
 			Idle();
@@ -164,7 +164,6 @@ namespace ex
 		{
 			mRigidbody = GetComponent<Rigidbody>();
 			math::Vector2 velocity = mRigidbody->GetVelocity();
-			velocity.y = -330.0f;
 
 			mRigidbody->SetGround(false);
 
@@ -172,13 +171,14 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightJump", true);
 				mState = eState::Jump;
+				velocity.y = -400.0f;
 			}
 			else
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 				mState = eState::Jump;
+				velocity.y = -400.0f;
 			}
-
 
 
 			if (Input::GetKeyPressed(eKeyCode::Down))
@@ -186,7 +186,6 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 				mState = eState::DownJump;
 			}
-
 			mRigidbody->SetVelocity(velocity);
 
 		}
@@ -215,7 +214,6 @@ namespace ex
 		math::Vector2 pos = GetTransform()->GetPosition();
 		Transform* tr = GetTransform();
 		enums::eMoveDir playerDir = tr->GetMoveDir();
-
 		mRigidbody = GetComponent<Rigidbody>();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 
@@ -254,17 +252,17 @@ namespace ex
 		// 좌우 이동중 점프
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mAnimator->PlayAnimation(L"PlayerRightJump", true);
+			velocity.x = 330.0f;
 			velocity.y = -330.0f;
-			//velocity.x = +330.0f;
 			mState = eState::Jump;
+			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+			velocity.x = -330.0f;
 			velocity.y = -330.0f;
-			//velocity.x = -330.0f;
 			mState = eState::Jump;
+			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 		}
 
 		// 좌우 키 입력 중 반대 방향 키 입력 시 Idle상태로 전환
@@ -313,7 +311,7 @@ namespace ex
 		}
 
 
-		GetTransform()->SetPosition(pos);
+		tr->SetPosition(pos);
 		mRigidbody->SetVelocity(velocity);
 
 	}
@@ -322,8 +320,8 @@ namespace ex
 	{
 		math::Vector2 pos = GetTransform()->GetPosition();
 		enums::eMoveDir playerDir = GetTransform()->GetMoveDir();
-		Rigidbody* rb = GetComponent<Rigidbody>();
-		math::Vector2 velocity = rb->GetVelocity();
+		mRigidbody = GetComponent<Rigidbody>();
+		math::Vector2 velocity = mRigidbody->GetVelocity();
 
 
 		// 밑에 누르고 좌우 이동키 누르면 방향에 따라 move
@@ -352,8 +350,8 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerRightJump", true);
 				mState = eState::DownJump;
 			}
-			//rb->SetGround(false);
-			velocity.y = +700.0f;
+			//mRigidbody->SetGround(false);
+			velocity.y = 700.0f;
 
 		}
 
@@ -473,21 +471,24 @@ namespace ex
 
 	void Player::Jump()
 	{
-		math::Vector2 pos = GetTransform()->GetPosition();
-		Transform* tr = GetTransform();
-		enums::eMoveDir playerDir = GetTransform()->GetMoveDir();
-		Rigidbody* rb = GetComponent<Rigidbody>();
-		math::Vector2 velocity = rb->GetVelocity();
+		Transform* tr = GetComponent<Transform>();
+		math::Vector2 pos = tr->GetPosition();
+		enums::eMoveDir playerDir = tr->GetMoveDir();
+		math::Vector2 velocity = mRigidbody->GetVelocity();
 
 		// 좌우 이동중 점프
-		if (Input::GetKeyPressed(eKeyCode::Right))
+		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mAnimator->PlayAnimation(L"PlayerRightJump", true);
+			velocity.x = -200.0f;
+			velocity.y = -330.0f;
+			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 
 		}
-		else if (Input::GetKeyDown(eKeyCode::Jump) && Input::GetKeyPressed(eKeyCode::Left))
+		else if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+			velocity.x = 200.0f;
+			velocity.y = -330.0f;
+			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
 
 
@@ -507,11 +508,9 @@ namespace ex
 			}
 		}
 
-		tr->SetPosition(pos);
-		rb->SetVelocity(velocity);
 
 		// 점프 키 때면 다시 Idle상태로 전환
-		if (rb->GetGround() == true)
+		if (mRigidbody->GetGround() == true)
 		{
 			mAnimator = GetComponent<Animator>();
 			if (playerDir == enums::eMoveDir::Left)
@@ -525,9 +524,11 @@ namespace ex
 				mState = eState::Idle;
 			}
 
-			rb->SetGround(true);
 
 		}
+
+		tr->SetPosition(pos);
+		mRigidbody->SetVelocity(velocity);
 	}
 
 	void Player::Death()
