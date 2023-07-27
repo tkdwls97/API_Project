@@ -32,16 +32,16 @@ namespace ex
 	void StageScene::Initialize()
 	{
 		// 백그라운드
-		//Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
-		//	, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
+		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
+			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
 
-		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		//bgsr->SetImage(image);
-		//bgsr->SetScale(math::Vector2(1.0f, 1.0f));
-		//bgsr->SetAffectCamera(true);
-		////bgsr->SetAlpha(0.2f);
-		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetImage(image);
+		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		bgsr->SetAffectCamera(true);
+		//bgsr->SetAlpha(0.2f);
+		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
 		// 플레이어
 		Player* player = object::Instantiate<Player>(enums::eLayerType::Player);
@@ -105,26 +105,26 @@ namespace ex
 		tr = floor->GetComponent<Transform>();
 		tr->SetPosition(math::Vector2(680.0f, 415.0f));
 		
-		//// 4층
-		//floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
-		//col = floor->AddComponent<Collider>();
-		//col->SetSize(math::Vector2(950.0f, 30.0f));
-		//tr = floor->GetComponent<Transform>();
-		//tr->SetPosition(math::Vector2(680.0f, 180.0f));
+		// 4층
+		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		col = floor->AddComponent<Collider>();
+		col->SetSize(math::Vector2(950.0f, 30.0f));
+		tr = floor->GetComponent<Transform>();
+		tr->SetPosition(math::Vector2(680.0f, 180.0f));
 
-		//// 5층
-		//floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
-		//col = floor->AddComponent<Collider>();
-		//col->SetSize(math::Vector2(760.0f, 30.0f));
-		//tr = floor->GetComponent<Transform>();
-		//tr->SetPosition(math::Vector2(680.0f, -60.0f));
+		// 5층
+		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		col = floor->AddComponent<Collider>();
+		col->SetSize(math::Vector2(760.0f, 30.0f));
+		tr = floor->GetComponent<Transform>();
+		tr->SetPosition(math::Vector2(680.0f, -60.0f));
 
 	
 
-		//bg->SetAutoCameraLimit();
-		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		//Camera::SetLimitDistance(widthLimit, heightLimit);
+		bg->SetAutoCameraLimit();
+		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		Camera::SetLimitDistance(widthLimit, heightLimit);
 
 		// 카메라의 Target을 플레이어한테 Set
 		Camera::SetTarget(player);

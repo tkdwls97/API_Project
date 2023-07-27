@@ -31,14 +31,15 @@ namespace ex
 		void Rope();
 		void Attack();
 		void Skill();
+		void Fall();
 		void Jump();
 		void Death();
-		void DownJump();
 
 	private:
 		Animator*	mAnimator;
-		eState		mState;
+		Transform*  mTransform;
 		Rigidbody*  mRigidbody;
+		eState		mState;
 
 
 	};

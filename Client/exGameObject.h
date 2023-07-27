@@ -39,7 +39,7 @@ namespace ex
 			Move,
 			Jump,
 			Down,
-			DownJump,
+			Fall,
 			Rope,
 			Attack,
 			Skill,

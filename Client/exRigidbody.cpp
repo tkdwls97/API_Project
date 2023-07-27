@@ -8,12 +8,13 @@ namespace ex
 	Rigidbody::Rigidbody()
 		: Component(enums::eComponentType::Rigidbody)
 		, mMass(1.0f)
-		, mFriction(300.0f)
+		, mFriction(0.0f)
 		, mbGround(false)
+		, mAccelation(500.0f)
 	{
-		mLimitedVelocty.x = 300.0f;
-		mLimitedVelocty.y = 300.0f;
-		mGravity = math::Vector2(0.0f, 1000.0f);
+		mLimitedVelocty.x = 200.0f;
+		mLimitedVelocty.y = 1000.0f;
+		mGravity = math::Vector2(0.0f, 2000.0f);
 	}
 
 	Rigidbody::~Rigidbody()
@@ -47,7 +48,6 @@ namespace ex
 			// 공중에 있을 때
 			mVelocity += mGravity * Time::GetDeltaTime();
 		}
-
 
 		// 최대 속도 제한
 		math::Vector2 gravity = mGravity;
