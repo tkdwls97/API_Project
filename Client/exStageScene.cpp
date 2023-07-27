@@ -43,16 +43,6 @@ namespace ex
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
-		// 플레이어
-		Player* player = object::Instantiate<Player>(enums::eLayerType::Player);
-		player->Initialize();
-
-		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
-		Transform* tr = player->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(640.0f, 360.0f));
-		Animator* at = player->GetComponent<Animator>();
-		// 카메라의 영향을 true || false
-		at->SetAffectedCamera(true);
 		
 		// 몬스터1 초록버섯
 		GreenMush* greenMush = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
@@ -79,13 +69,11 @@ namespace ex
 		moncol->SetSize(math::Vector2(100.0f, 70.0f));
 		moncol->SetOffset(math::Vector2(4.0f, 4.0f));
 
-
-		Collider* col = player->AddComponent<Collider>();
-		col->SetSize(math::Vector2(50.0f, 70.0f));
-		col->SetOffset(math::Vector2(5.0f, 4.0f));
-
+	
 		// 1층
 		Floor* floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col = floor->GetComponent<Collider>();
+		Transform* tr = floor->GetComponent<Transform>();
 		col = floor->AddComponent<Collider>();
 		col->SetSize(math::Vector2(2000.0f, 50.0f));
 		tr = floor->GetComponent<Transform>();
@@ -120,17 +108,13 @@ namespace ex
 		tr->SetPosition(math::Vector2(680.0f, -60.0f));
 
 	
-
+		// 카메라가 백그라운드 밖으로 나가지못하게 설정
 		bg->SetAutoCameraLimit();
 		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
 		Camera::SetLimitDistance(widthLimit, heightLimit);
 
-		// 카메라의 Target을 플레이어한테 Set
-		Camera::SetTarget(player);
-
-		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
-		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		
 		
 	}
 
@@ -165,5 +149,36 @@ namespace ex
 	void StageScene::Render(HDC _hdc)
 	{
 		Scene::Render(_hdc);
+	}
+	void StageScene::SceneIN()
+	{
+		// 플레이어
+		Player* player = object::Instantiate<Player>(enums::eLayerType::Player);
+		player->Initialize();
+
+		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
+		Transform* playerTF = player->GetComponent<Transform>();
+		playerTF->SetPosition(math::Vector2(-50.0f, 900.0f));
+		Animator* playerAt = player->GetComponent<Animator>();
+
+		// 카메라의 영향을 true || false
+		playerAt->SetAffectedCamera(true);
+		Collider* playerCol = player->AddComponent<Collider>();
+		playerCol->SetSize(math::Vector2(40.0f, 55.0f));
+		playerCol->SetOffset(math::Vector2(5.0f, 4.0f));
+
+		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
+		Camera::SetTarget(player);
+
+		// 씬에 들어갈때 충돌체크 세팅
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+	}
+		
+	void StageScene::SceneOut()
+	{
+		// 씬에서 나올때 카메라 타겟 초기화
+		Camera::SetTarget(nullptr);
+		CollisionManager::Clear();
 	}
 }

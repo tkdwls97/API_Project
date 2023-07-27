@@ -97,7 +97,6 @@ namespace ex
 			break;
 		}
 
-
 	}
 
 	void Player::Render(HDC _hdc)

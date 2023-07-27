@@ -26,7 +26,6 @@ namespace ex
 		// 템플릿이니까 Texture 타입으로 넣어주고 타이틀 백그라운드 이미지라고 이름을 설정하고
 		// 경로를 두번째 인자로 주었다.
 		// 로드 함수를 이제 호출한다.
-		// 
 		Texture* image = ResourceManager::Load<Texture>(L"TitleBackGroundImgae"
 			, L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
 
@@ -38,7 +37,11 @@ namespace ex
 		bgsr->SetAffectCamera(true) ;
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
-		Camera::SetTarget(nullptr);
+
+		bg->SetAutoCameraLimit();
+		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		Camera::SetLimitDistance(widthLimit, heightLimit);
 	}
 
 	void TitleScene::Update()
@@ -71,5 +74,14 @@ namespace ex
 	void TitleScene::Render(HDC _hdc)
 	{
 		Scene::Render(_hdc);		
+	}
+	void TitleScene::SceneIN()
+	{
+		Camera::SetTarget(nullptr);
+	}
+	void TitleScene::SceneOut()
+	{
+		Camera::SetTarget(nullptr);
+		CollisionManager::Clear();
 	}
 }

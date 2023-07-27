@@ -11,6 +11,7 @@
 #include "exCamera.h"
 #include "exAnimator.h"
 #include "exPapulatus.h"
+#include "exCollisionManager.h"
 
 namespace ex
 {
@@ -36,16 +37,11 @@ namespace ex
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
 
-		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
-		papulatus->Initialize();
-		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		Animator* papulatusat = papulatus->GetComponent<Animator>();
-		papulatusTr->SetPosition(math::Vector2(640.0f, 360.0f));
-		papulatusat->SetAffectedCamera(true);
-
-		//Camera::SetTarget(nullptr);
-
 	
+		/*bg->SetAutoCameraLimit();
+		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		Camera::SetLimitDistance(widthLimit, heightLimit);*/
 	}
 
 	void BossScene::Update()
@@ -78,5 +74,20 @@ namespace ex
 	void BossScene::Render(HDC _hdc)
 	{
 		Scene::Render(_hdc);
+	}
+	void BossScene::SceneIN()
+	{
+		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
+		papulatus->Initialize();
+		Transform* papulatusTr = papulatus->GetComponent<Transform>();
+		Animator* papulatusat = papulatus->GetComponent<Animator>();
+		papulatusTr->SetPosition(math::Vector2(640.0f, 360.0f));
+		papulatusat->SetAffectedCamera(true);
+		Camera::SetTarget(papulatus);
+	}
+	void BossScene::SceneOut()
+	{
+		Camera::SetTarget(nullptr);
+		CollisionManager::Clear();
 	}
 }

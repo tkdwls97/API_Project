@@ -33,12 +33,16 @@ namespace ex
 
 	Scene* SceneManager::LoadScene(const std::wstring& _name)
 	{
+		mActiveScene->SceneOut();
+
 		std::map<std::wstring, Scene*>::iterator iter = mScenes.find(_name);
 
 		if (iter == mScenes.end())
 			return nullptr;
 
 		mActiveScene = iter->second;
+
+		mActiveScene->SceneIN();
 		return iter->second;
 	}
 

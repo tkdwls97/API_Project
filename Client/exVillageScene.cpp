@@ -10,6 +10,7 @@
 #include "exBackGround.h"
 #include "exCamera.h"
 #include "exAnimator.h"
+#include "exCollisionManager.h"
 
 namespace ex
 {
@@ -34,7 +35,10 @@ namespace ex
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
-		//Camera::SetTarget(player);
+		//bg->SetAutoCameraLimit();
+		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 	}
 
 	void VillageScene::Update()
@@ -71,6 +75,17 @@ namespace ex
 
 
 
+	}
+
+	void VillageScene::SceneIN()
+	{
+		Camera::SetTarget(nullptr);
+	}
+
+	void VillageScene::SceneOut()
+	{
+		Camera::SetTarget(nullptr);
+		CollisionManager::Clear();
 	}
 
 

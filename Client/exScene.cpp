@@ -10,6 +10,7 @@ namespace ex
 
 	Scene::~Scene()
 	{
+		mLayers.clear();
 	}
 
 	void Scene::Initialize()
@@ -33,6 +34,15 @@ namespace ex
 		}
 		Time::Render(_hdc);
 	}
+
+	void Scene::SceneIN()
+	{
+	}
+
+	void Scene::SceneOut()
+	{
+	}
+
 	Layer& Scene::GetLayer(enums::eLayerType _type)
 	{
 		return mLayers[(UINT)_type];

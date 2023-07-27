@@ -76,23 +76,11 @@
     <Filter Include="Engine\Resource\Animation">
       <UniqueIdentifier>{67fa3087-845c-4481-9909-463e78384900}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\00.TitleScene">
-      <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\01.StageScene">
-      <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\02.VillageScene">
-      <UniqueIdentifier>{f345812a-ff6e-491d-9a03-3ad440b0b55c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\02.Monster\00.GreenMush">
       <UniqueIdentifier>{b861b221-4316-4800-a3a9-226a52f89f2b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\GameObject\03.Effect">
       <UniqueIdentifier>{a9360dca-e2cb-4c55-a80e-0e3af5946e95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\03.EndScene">
-      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\GameObject\02.Monster\01.CoupleMush">
       <UniqueIdentifier>{fd43bfa0-b869-409f-ae74-9c59573f3902}</UniqueIdentifier>
@@ -117,6 +105,24 @@
     </Filter>
     <Filter Include="Contents\GameObject\02.Monster\02.Papulatus">
       <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\05.End">
+      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\04.BossScene">
+      <UniqueIdentifier>{1286d215-18ea-4204-8b43-9e955040448e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\01.StageScene">
+      <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\00.TitleScene">
+      <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\02.Stage2Scene">
+      <UniqueIdentifier>{643d2e27-0841-4cac-bfce-0eabf5d944d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\03.VillageScene">
+      <UniqueIdentifier>{f345812a-ff6e-491d-9a03-3ad440b0b55c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -196,13 +202,7 @@
       <Filter>Contents\Scene\01.StageScene</Filter>
     </ClCompile>
     <ClCompile Include="exVillageScene.cpp">
-      <Filter>Contents\Scene\02.VillageScene</Filter>
-    </ClCompile>
-    <ClCompile Include="exBossScene.cpp">
-      <Filter>Contents\Scene\01.StageScene</Filter>
-    </ClCompile>
-    <ClCompile Include="exStageScene2.cpp">
-      <Filter>Contents\Scene\01.StageScene</Filter>
+      <Filter>Contents\Scene\03.VillageScene</Filter>
     </ClCompile>
     <ClCompile Include="exGreenMush.cpp">
       <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
@@ -233,6 +233,12 @@
     </ClCompile>
     <ClCompile Include="exPapulatus.cpp">
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
+    </ClCompile>
+    <ClCompile Include="exStageScene2.cpp">
+      <Filter>Contents\Scene\02.Stage2Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="exBossScene.cpp">
+      <Filter>Contents\Scene\04.BossScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -321,13 +327,7 @@
       <Filter>Contents\Scene\01.StageScene</Filter>
     </ClInclude>
     <ClInclude Include="exVillageScene.h">
-      <Filter>Contents\Scene\02.VillageScene</Filter>
-    </ClInclude>
-    <ClInclude Include="exBossScene.h">
-      <Filter>Contents\Scene\01.StageScene</Filter>
-    </ClInclude>
-    <ClInclude Include="exStageScene2.h">
-      <Filter>Contents\Scene\01.StageScene</Filter>
+      <Filter>Contents\Scene\03.VillageScene</Filter>
     </ClInclude>
     <ClInclude Include="exGreenMush.h">
       <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
@@ -358,6 +358,12 @@
     </ClInclude>
     <ClInclude Include="exPapulatus.h">
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
+    </ClInclude>
+    <ClInclude Include="exStageScene2.h">
+      <Filter>Contents\Scene\02.Stage2Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="exBossScene.h">
+      <Filter>Contents\Scene\04.BossScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -36,7 +36,11 @@ namespace ex
 			// tr(GameObject* mTarget)의 현재 좌표를 카메라가 바라보는 위치에 복사
 			mLookPosition = tr->GetPosition();
 
-
+		}
+		else
+		{
+			// 타겟 설정이 nullptr이면 가운데를 바라보게 설정
+			mLookPosition = math::Vector2(640.0f, 360.0f);
 		}
 
 

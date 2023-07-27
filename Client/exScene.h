@@ -16,6 +16,10 @@ namespace ex
 		virtual void Update();
 		virtual void Render(HDC _hdc);
 
+		virtual void SceneIN();
+		virtual void SceneOut();
+
+
 		Layer& GetLayer(enums::eLayerType _type);
 
 

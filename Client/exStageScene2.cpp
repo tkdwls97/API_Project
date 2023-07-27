@@ -10,7 +10,7 @@
 #include "exBackGround.h"
 #include "exCamera.h"
 #include "exAnimator.h"
-
+#include "exCollisionManager.h"
 namespace ex
 {
 	StageScene2::StageScene2()
@@ -35,11 +35,12 @@ namespace ex
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
 
-		//Player* player = object::Instantiate<Player>(enums::eLayerType::Player);
-		//player->Initialize();
+		
+		//bg->SetAutoCameraLimit();
+		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 
-		// 모든 씬에서 카메라를 set하면 안됌
-		//Camera::SetTarget(nullptr);
 	}
 
 	void StageScene2::Update()
@@ -73,5 +74,14 @@ namespace ex
 	void StageScene2::Render(HDC _hdc)
 	{
 		Scene::Render(_hdc);
+	}
+	void StageScene2::SceneIN()
+	{
+		Camera::SetTarget(nullptr);
+	}
+	void StageScene2::SceneOut()
+	{
+		Camera::SetTarget(nullptr);
+		CollisionManager::Clear();
 	}
 }
