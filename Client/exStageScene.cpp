@@ -86,28 +86,28 @@ namespace ex
 		col = floor->AddComponent<Collider>();
 		col->SetSize(math::Vector2(1300.0f, 1.0f));
 		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 652.0f));
+		tr->SetPosition(math::Vector2(680.0f, 645.0f));
 
 		// 3층
 		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		col = floor->AddComponent<Collider>();
 		col->SetSize(math::Vector2(1100.0f, 1.0f));
 		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 415.0f));
+		tr->SetPosition(math::Vector2(680.0f, 405.0f));
 
 		// 4층
 		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		col = floor->AddComponent<Collider>();
 		col->SetSize(math::Vector2(950.0f, 1.0f));
 		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 180.0f));
+		tr->SetPosition(math::Vector2(680.0f, 165.0f));
 
 		// 5층
 		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		col = floor->AddComponent<Collider>();
-		col->SetSize(math::Vector2(760.0f, 30.0f));
+		col->SetSize(math::Vector2(760.0f, 1.0f));
 		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, -60.0f));
+		tr->SetPosition(math::Vector2(680.0f, -75.0f));
 
 
 		// 카메라가 백그라운드 밖으로 나가지못하게 설정
