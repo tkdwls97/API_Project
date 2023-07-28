@@ -25,6 +25,8 @@ namespace ex
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
+		eState GetState() { return mState; }
+
 		void Idle();
 		void Move();
 		void Down();
@@ -39,6 +41,7 @@ namespace ex
 		Animator*	mAnimator;
 		Transform*  mTransform;
 		Rigidbody*  mRigidbody;
+		Collider*   mCollider;
 		eState		mState;
 
 

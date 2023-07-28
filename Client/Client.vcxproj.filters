@@ -76,6 +76,9 @@
     <Filter Include="Engine\Resource\Animation">
       <UniqueIdentifier>{67fa3087-845c-4481-9909-463e78384900}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Scene\00.TitleScene">
+      <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Contents\GameObject\02.Monster\00.GreenMush">
       <UniqueIdentifier>{b861b221-4316-4800-a3a9-226a52f89f2b}</UniqueIdentifier>
     </Filter>
@@ -106,22 +109,19 @@
     <Filter Include="Contents\GameObject\02.Monster\02.Papulatus">
       <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\05.End">
-      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\04.BossScene">
-      <UniqueIdentifier>{1286d215-18ea-4204-8b43-9e955040448e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\01.StageScene">
+    <Filter Include="Contents\Scene\02.StageScene">
       <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\00.TitleScene">
-      <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
+    <Filter Include="Contents\Scene\03.Stage2Scene">
+      <UniqueIdentifier>{941c8e49-64ab-487f-9113-b20653e10eb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\02.Stage2Scene">
-      <UniqueIdentifier>{643d2e27-0841-4cac-bfce-0eabf5d944d3}</UniqueIdentifier>
+    <Filter Include="Contents\Scene\04.BossScene">
+      <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\03.VillageScene">
+    <Filter Include="Contents\Scene\05.EndScene">
+      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\01.VillageScene">
       <UniqueIdentifier>{f345812a-ff6e-491d-9a03-3ad440b0b55c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -199,10 +199,10 @@
       <Filter>Contents\Scene\00.TitleScene</Filter>
     </ClCompile>
     <ClCompile Include="exStageScene.cpp">
-      <Filter>Contents\Scene\01.StageScene</Filter>
+      <Filter>Contents\Scene\02.StageScene</Filter>
     </ClCompile>
     <ClCompile Include="exVillageScene.cpp">
-      <Filter>Contents\Scene\03.VillageScene</Filter>
+      <Filter>Contents\Scene\01.VillageScene</Filter>
     </ClCompile>
     <ClCompile Include="exGreenMush.cpp">
       <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
@@ -235,7 +235,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClCompile>
     <ClCompile Include="exStageScene2.cpp">
-      <Filter>Contents\Scene\02.Stage2Scene</Filter>
+      <Filter>Contents\Scene\03.Stage2Scene</Filter>
     </ClCompile>
     <ClCompile Include="exBossScene.cpp">
       <Filter>Contents\Scene\04.BossScene</Filter>
@@ -324,10 +324,10 @@
       <Filter>Contents\Scene\00.TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="exStageScene.h">
-      <Filter>Contents\Scene\01.StageScene</Filter>
+      <Filter>Contents\Scene\02.StageScene</Filter>
     </ClInclude>
     <ClInclude Include="exVillageScene.h">
-      <Filter>Contents\Scene\03.VillageScene</Filter>
+      <Filter>Contents\Scene\01.VillageScene</Filter>
     </ClInclude>
     <ClInclude Include="exGreenMush.h">
       <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
@@ -360,7 +360,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClInclude>
     <ClInclude Include="exStageScene2.h">
-      <Filter>Contents\Scene\02.Stage2Scene</Filter>
+      <Filter>Contents\Scene\03.Stage2Scene</Filter>
     </ClInclude>
     <ClInclude Include="exBossScene.h">
       <Filter>Contents\Scene\04.BossScene</Filter>

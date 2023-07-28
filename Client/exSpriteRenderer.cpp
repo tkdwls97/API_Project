@@ -2,7 +2,7 @@
 #include "exTransform.h"
 #include "exGameObject.h"
 #include "exCamera.h"
-
+#include "exSceneManager.h"
 
 
 namespace ex
