@@ -41,7 +41,7 @@ namespace ex
 		bg->SetAutoCameraLimit();
 		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 	}
 
 	void TitleScene::Update()

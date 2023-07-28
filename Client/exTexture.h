@@ -39,6 +39,8 @@ namespace ex
 		UINT GetHeight() { return mHeight; }
 		void SetHeight(UINT _height) { mHeight = _height; }
 
+		COLORREF GetTexturePixel(int _x, int _y);
+
 		math::Vector2 GetSize() { return math::Vector2(static_cast<float>(mWidth), static_cast<float>(mHeight)); }
 
 		// 사용중인 HDC반환(멤버가 private이기 때문에 Get함수사용)

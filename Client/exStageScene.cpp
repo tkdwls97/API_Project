@@ -46,40 +46,42 @@ namespace ex
 
 
 		// 몬스터1 초록버섯
-		GreenMush* greenMush = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		GreenMush * greenMush = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
 		greenMush->Initialize();
 
-		Transform* grMushtr = greenMush->GetComponent<Transform>();
-		Animator* grMushat = greenMush->GetComponent<Animator>();
+		Transform * grMushtr = greenMush->GetComponent<Transform>();
+		Animator * grMushat = greenMush->GetComponent<Animator>();
 		grMushtr->SetPosition(math::Vector2(640.0f, 360.0f));
 		grMushat->SetAffectedCamera(true);
-		Collider* moncol = greenMush->AddComponent<Collider>();
+		Collider * moncol = greenMush->AddComponent<Collider>();
 		moncol->SetSize(math::Vector2(55.0f, 70.0f));
 		moncol->SetOffset(math::Vector2(5.0f, 4.0f));
 
 		// 몬스터2 커플 버섯
-		CupleMush* cupleMush = object::Instantiate<CupleMush>(enums::eLayerType::Monster);
+		CupleMush * cupleMush = object::Instantiate<CupleMush>(enums::eLayerType::Monster);
 		cupleMush->Initialize();
 
-		Transform* cupleMushtr = cupleMush->GetComponent<Transform>();
-		Animator* cupleMushat = cupleMush->GetComponent<Animator>();
+		Transform * cupleMushtr = cupleMush->GetComponent<Transform>();
+		Animator * cupleMushat = cupleMush->GetComponent<Animator>();
 		cupleMushat->SetAffectedCamera(true);
 		cupleMushtr->SetPosition(math::Vector2(800.0f, 360.0f));
 		moncol = cupleMush->AddComponent<Collider>();
 		moncol->SetSize(math::Vector2(100.0f, 70.0f));
 		moncol->SetOffset(math::Vector2(4.0f, 4.0f));
 
-
+		// 플레이어 static으로 SceneManager에서 한개만 생성
+		//Player* player = SceneManager::GetPlayer();
 		// 1층
-		Floor* floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
-		Collider* col = floor->GetComponent<Collider>();
-		Transform* tr = floor->GetComponent<Transform>();
-		col = floor->AddComponent<Collider>();
-		col->SetSize(math::Vector2(2000.0f, 1.0f));
-		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 880.0f));
+		Floor * floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
 
-		// 2층
+		Collider * col = floor->GetComponent<Collider>();
+		Transform * tr = floor->GetComponent<Transform>();
+		col = floor->AddComponent<Collider>();
+		col->SetSize(math::Vector2(2000.0f, 50.0f));
+		tr = floor->GetComponent<Transform>();
+		tr->SetPosition(math::Vector2(680.0f, 910.0f));
+
+		//2층
 		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		col = floor->AddComponent<Collider>();
 		col->SetSize(math::Vector2(1300.0f, 1.0f));
@@ -113,9 +115,6 @@ namespace ex
 		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
 		Camera::SetLimitDistance(widthLimit, heightLimit);
-
-
-
 	}
 
 	void StageScene::Update()
@@ -158,7 +157,7 @@ namespace ex
 
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
-		playerTF->SetPosition(math::Vector2(-50.0f, 810.0f));
+		playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
 		Animator* playerAt = player->GetComponent<Animator>();
 
 		// 카메라의 영향을 true || false

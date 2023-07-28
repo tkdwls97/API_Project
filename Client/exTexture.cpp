@@ -164,8 +164,6 @@ namespace ex
 			// 버퍼에 쓸 바이트 크기,
 			// 지정된 그래픽 개체에 대한 정보를 받는 버퍼에 대한 포인터 ) 
 
-			
-			
 
 			//Texture클래스의 멤버변수에 받아온 가로 사이즈의 정보를 복사
 			mWidth = info.bmWidth;
@@ -210,6 +208,13 @@ namespace ex
 
 		// 정상적으로 수행했음을 의미하는 S_OK를 반환
 		return S_OK;
+	}
+
+	COLORREF Texture::GetTexturePixel(int _x, int _y)
+	{
+		COLORREF rgb = ::GetPixel(mHdc, _x, _y);
+
+		return rgb;
 	}
 
 	Texture* Texture::Create(const std::wstring& _name, UINT _width, UINT _height)

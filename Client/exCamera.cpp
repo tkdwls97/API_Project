@@ -14,7 +14,9 @@ namespace ex
 	math::Vector2	Camera::mDistance = math::Vector2::Zero;
 	math::Vector2	Camera::mWidthLimit = math::Vector2::Zero;
 	math::Vector2	Camera::mHeightLimit = math::Vector2::Zero;
+
 	GameObject* Camera::mTargetObj = nullptr;
+	//math::Vector2 Camera::mCameraLimit = math::Vector2::Zero;
 
 	void Camera::Initialize()
 	{
@@ -65,13 +67,34 @@ namespace ex
 		}
 
 		if (mDistance.y <= mHeightLimit.x)
-		{			  
+		{
 			mDistance.y = mHeightLimit.x;
-		}			  
+		}
 		if (mDistance.y >= mHeightLimit.y)
-		{			  
+		{
 			mDistance.y = mHeightLimit.y;
 		}
+
+		//// 카메라 이동제한
+		//if (mDistance.x < 0)
+		//{
+		//	mDistance.x = 0;
+		//}
+
+		//if (mDistance.y < 0)
+		//{
+		//	mDistance.y = 0;
+		//}
+
+		//if (mDistance.x > mCameraLimit.x - mResolution.x)
+		//{
+		//	mDistance.x = mCameraLimit.x - mResolution.x;
+		//}
+
+		//if (mDistance.y > mCameraLimit.y - mResolution.y)
+		//{
+		//	mDistance.y = mCameraLimit.y - mResolution.y;
+		//}
 
 	}
 

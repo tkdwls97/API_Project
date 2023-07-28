@@ -24,6 +24,12 @@ namespace ex
 			mHeightLimit = _heightLimit;
 		}
 
+
+		//static void SetLimitDistance(math::Vector2 CameraLimit)
+		//{
+		//	mCameraLimit = CameraLimit;
+		//}
+
 	private:
 
 		// 화면 해상도
@@ -41,6 +47,7 @@ namespace ex
 		static math::Vector2 mWidthLimit;
 		static math::Vector2 mHeightLimit;
 
+		//static math::Vector2 mCameraLimit;
 
 	};
 

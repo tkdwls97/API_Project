@@ -69,6 +69,9 @@ namespace ex
 
 	void Floor::OnCollisionExit(Collider* other)
 	{
+		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		other->GetOwner()->GetComponent<Rigidbody>()->SetGround(false);
+		player->SetState(eState::Fall);
 	}
 
 }

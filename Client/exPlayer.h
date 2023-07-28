@@ -10,6 +10,7 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Rigidbody;
+	class Texture;
 
 	class Player : public GameObject
 	{
@@ -26,6 +27,9 @@ namespace ex
 		virtual void OnCollisionExit(Collider* other) override;
 
 		eState GetState() { return mState; }
+		void SetState(eState _state) {  mState = _state; }
+
+		Texture* mFloorTexture;
 
 		void Idle();
 		void Move();

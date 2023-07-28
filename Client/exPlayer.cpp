@@ -68,6 +68,7 @@ namespace ex
 	void Player::Update()
 	{
 		GameObject::Update();
+		
 
 		if (mState == eState::Jump)
 		{
@@ -173,7 +174,7 @@ namespace ex
 		}
 
 		// 점프키
-		if (Input::GetKeyDown(eKeyCode::Jump))
+		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
 			math::Vector2 velocity = mRigidbody->GetVelocity();
 			mRigidbody->SetGround(false);
@@ -256,7 +257,8 @@ namespace ex
 		}
 
 		// 좌우 이동중 점프
-		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
+		if ((Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump)) ||
+			(Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = 220.0f;
@@ -264,7 +266,8 @@ namespace ex
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
-		else if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
+		else if ((Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump)) ||
+			(Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = -220.0f;
@@ -501,13 +504,13 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
 
-		if (Input::GetKeyDown(eKeyCode::Right))
+		if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
 		{
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 			mTransform->SetMoveDir(enums::eMoveDir::Right);
 
 		}
-		if (Input::GetKeyDown(eKeyCode::Left))
+		if (Input::GetKeyDown(eKeyCode::Left) || Input::GetKeyPressed(eKeyCode::Left))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
@@ -536,7 +539,6 @@ namespace ex
 
 		}
 
-
 		mTransform->SetPosition(pos);
 		mRigidbody->SetVelocity(velocity);
 	}
@@ -555,6 +557,15 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 		bool bGround = mRigidbody->GetGround();
+
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+		}
+		else if (playerDir == enums::eMoveDir::Right)
+		{
+			mAnimator->PlayAnimation(L"PlayerRightJump", true);
+		}
 
 
 		// fall상태 중 좌우 방향키 입력
