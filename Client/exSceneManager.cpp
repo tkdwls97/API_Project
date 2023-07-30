@@ -5,11 +5,13 @@
 #include "exBossScene.h"
 #include "exStageScene2.h"
 #include "exVillageScene.h"
+#include "exPlayer.h"
 
 namespace ex
 {
 	std::map<std::wstring, Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
+	Player* SceneManager::mPlayer = new Player;
 
 	void SceneManager::Initialize()
 	{
@@ -18,6 +20,8 @@ namespace ex
 		CreateScene<StageScene2>(L"StageScene2");
 		CreateScene<BossScene>(L"BossScene");
 		CreateScene<VillageScene>(L"VillageScene");
+
+		mPlayer->Initialize();
 		LoadScene(L"TitleScene");
 	}
 
@@ -42,7 +46,12 @@ namespace ex
 
 		mActiveScene = iter->second;
 
+		if (_name != L"TitleScene" && _name != L"EndScene")
+		{
+			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);
+		}
 		mActiveScene->SceneIN();
+
 		return iter->second;
 	}
 

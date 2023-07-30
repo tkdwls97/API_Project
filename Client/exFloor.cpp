@@ -51,10 +51,27 @@ namespace ex
 
 	void Floor::OnCollisionStay(Collider* other)
 	{
+		float len = fabs(other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y);
+		float scale = fabs(other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f);
+
+		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		Transform* tr = player->GetComponent<Transform>();
+		Rigidbody* rb = player->GetComponent<Rigidbody>();
+
+		if (len < scale)
+		{
+			math::Vector2 playerPos = tr->GetPosition();
+			playerPos.y -= (scale - len) - 1.0f;
+			tr->SetPosition(playerPos);
+
+		}
 	}
 
 	void Floor::OnCollisionExit(Collider* other)
 	{
+		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		other->GetOwner()->GetComponent<Rigidbody>()->SetGround(false);
+		player->SetState(eState::Fall);
 	}
 
 }

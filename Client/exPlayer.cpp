@@ -8,6 +8,8 @@
 #include "exGameEffect.h"
 #include "exObject.h"
 #include "exRigidbody.h"
+#include "exCollider.h"
+#include "exCollisionManager.h"
 
 namespace ex
 {
@@ -15,6 +17,7 @@ namespace ex
 		: mAnimator(nullptr)
 		, mTransform(nullptr)
 		, mRigidbody(nullptr)
+		, mCollider(nullptr)
 		, mState(eState::End)
 	{
 
@@ -28,6 +31,9 @@ namespace ex
 	void Player::Initialize()
 	{
 		mAnimator = AddComponent<Animator>();
+		mTransform = GetComponent<Transform>();
+		mRigidbody = AddComponent<Rigidbody>();
+		mCollider = AddComponent<Collider>();
 
 		Texture* image = ResourceManager::Load<Texture>(L"PlayerLeft"
 			, L"..\\Resources\\Maple\\Image\\Player\\Player_Left.bmp");
@@ -50,10 +56,11 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player\\Player_ROPE.bmp");
 		mAnimator->CreateAnimation(L"PlayerRopeMove", image, math::Vector2(0.0f, 0.0f), math::Vector2(100.0f, 100.0f), 2);
 
-		mTransform = GetComponent<Transform>();
+		
+		mCollider->SetSize(math::Vector2(45.0f, 60.0f));
+		mCollider->SetOffset(math::Vector2(5.0f, 3.0f));
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mAnimator->PlayAnimation(L"PlayerRightIdle", true);
-		mRigidbody = AddComponent<Rigidbody>();
 		mState = eState::Idle;
 
 	}
@@ -61,6 +68,17 @@ namespace ex
 	void Player::Update()
 	{
 		GameObject::Update();
+		
+
+		if (mState == eState::Jump)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
+		}
+		else
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		}
+
 
 		switch (mState)
 		{
@@ -102,7 +120,6 @@ namespace ex
 	void Player::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
-
 	}
 
 	void Player::Idle()
@@ -157,12 +174,11 @@ namespace ex
 		}
 
 		// 점프키
-		if (Input::GetKeyDown(eKeyCode::Jump))
+		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
 			math::Vector2 velocity = mRigidbody->GetVelocity();
-
 			mRigidbody->SetGround(false);
-			velocity.y = -500.0f;
+			velocity.y = -800.0f;
 			if (playerDir == enums::eMoveDir::Right)
 			{
 				mAnimator->PlayAnimation(L"PlayerRightJump", true);
@@ -241,19 +257,21 @@ namespace ex
 		}
 
 		// 좌우 이동중 점프
-		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
+		if ((Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump)) ||
+			(Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = 220.0f;
-			velocity.y = -500.0f;
+			velocity.y = -1200.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
-		else if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
+		else if ((Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump)) ||
+			(Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = -220.0f;
-			velocity.y = -500.0f;
+			velocity.y = -1200.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 		}
@@ -486,13 +504,13 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
 
-		if (Input::GetKeyDown(eKeyCode::Right))
+		if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
 		{
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 			mTransform->SetMoveDir(enums::eMoveDir::Right);
 
 		}
-		if (Input::GetKeyDown(eKeyCode::Left))
+		if (Input::GetKeyDown(eKeyCode::Left) || Input::GetKeyPressed(eKeyCode::Left))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
@@ -521,7 +539,6 @@ namespace ex
 
 		}
 
-
 		mTransform->SetPosition(pos);
 		mRigidbody->SetVelocity(velocity);
 	}
@@ -540,6 +557,15 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 		bool bGround = mRigidbody->GetGround();
+
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+		}
+		else if (playerDir == enums::eMoveDir::Right)
+		{
+			mAnimator->PlayAnimation(L"PlayerRightJump", true);
+		}
 
 
 		// fall상태 중 좌우 방향키 입력
