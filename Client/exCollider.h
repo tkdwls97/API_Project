@@ -37,6 +37,12 @@ namespace ex
 		math::Vector2 GetPosition() { return mPosition; }
 		UINT GetCollisionNumber() { return mCollisionNumber; }
 
+		bool GetCollisionType() { return mbCollisionType; }
+		void SetCollisionType(bool _type) { mbCollisionType = _type; }
+
+		bool GetRopeCollision() { return mbRopeCollision; }
+		void SetRopeCollision(bool _type) { mbRopeCollision = _type; }
+
 	private:
 		math::Vector2 mSize;
 		math::Vector2 mOffset;
@@ -45,5 +51,7 @@ namespace ex
 		static UINT mCollisionCount;
 		UINT mCollisionNumber;
 		bool mbIsCollision;
+		bool mbCollisionType;
+		bool mbRopeCollision;
 	};
 }

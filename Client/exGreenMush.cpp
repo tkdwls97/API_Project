@@ -25,13 +25,17 @@ namespace ex
 
 		Animator* animator = AddComponent<Animator>();
 
-		animator->CreateAnimation(L"GreenMushLeftIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f), 1);
-		animator->CreateAnimation(L"GreenMushLeftMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f), 4);
+		animator->CreateAnimation(L"GreenMushLeftIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+			,math::Vector2(60.0f, 60.0f), 1);
+		animator->CreateAnimation(L"GreenMushLeftMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 4);
 
 		image = ResourceManager::Load<Texture>(L"GreenMushRight"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\GreenMush_RIGHT.bmp");
-		animator->CreateAnimation(L"GreenMushRightIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f), 1);
-		animator->CreateAnimation(L"GreenMushRightMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f), 4);
+		animator->CreateAnimation(L"GreenMushRightIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 1);
+		animator->CreateAnimation(L"GreenMushRightMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 4);
 
 		animator->PlayAnimation(L"GreenMushLeftIdle", true);
 

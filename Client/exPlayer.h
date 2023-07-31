@@ -14,6 +14,18 @@ namespace ex
 
 	class Player : public GameObject
 	{
+	private:
+		struct PlayerInfo
+		{
+			int mHp;
+			int mMP;
+			int mSpeed;
+			int mDamage;
+			int mDef;
+			int mLevel;
+
+		};
+
 	public:
 		Player();
 		virtual ~Player();
@@ -39,6 +51,7 @@ namespace ex
 		void Skill();
 		void Fall();
 		void Jump();
+		void Hit();
 		void Death();
 
 	private:
@@ -46,8 +59,8 @@ namespace ex
 		Transform*  mTransform;
 		Rigidbody*  mRigidbody;
 		Collider*   mCollider;
-		eState		mState;
-
+		eState		mState;	
+		PlayerInfo	mInfo;
 
 	};
 }

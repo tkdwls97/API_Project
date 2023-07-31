@@ -11,6 +11,7 @@ namespace ex::object
 		T* gameObject = new T();
 		Scene* scene = SceneManager::GetActiveScene();
 		scene->AddGameObject(_type, gameObject);
+		gameObject->SetLayerType(_type);
 
 		return gameObject;
 	}

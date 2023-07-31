@@ -44,6 +44,7 @@ namespace ex
 
 	void GameObject::OnCollisionEnter(Collider* _other)
 	{
+
 	}
 
 	void GameObject::OnCollisionStay(Collider* _other)

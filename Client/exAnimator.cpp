@@ -47,8 +47,8 @@ namespace ex
 	Animation* Animator::CreateAnimation(const std::wstring& name
 		, class Texture* texture
 		, math::Vector2 leftTop, math::Vector2 size
-		, UINT spriteLength, math::Vector2 offset
-		, float duration)
+		, math::Vector2 interval, UINT spriteLength
+		, math::Vector2 offset, float duration)
 	{
 
 		//// 애니메이션이 절대로 만들어 지지 않는다.
@@ -79,12 +79,12 @@ namespace ex
 
 		animation = new Animation();
 		animation->Create(name, texture
-			, leftTop, size, offset
+			, leftTop, size, interval, offset
 			, spriteLength, duration);
 		animation->SetAnimator(this);
 
 		mAnimations.insert(std::make_pair(name, animation));
-		
+
 
 		return animation;
 
@@ -121,7 +121,7 @@ namespace ex
 			// 이미지 로드
 			Texture* image = ResourceManager::Load<Texture>(fileName, fullName);
 			tempType = image->GetTextType();
-			
+
 			images.push_back(image);
 
 			if (width < image->GetWidth())
@@ -135,7 +135,7 @@ namespace ex
 
 
 		Texture* spriteSheet = Texture::Create(name, width * fileCout, height);
-		
+
 
 		// Video 기본 타입 Bmp로 설정
 		spriteSheet->SetTextType(tempType);
@@ -153,8 +153,8 @@ namespace ex
 
 		CreateAnimation(name
 			, spriteSheet, math::Vector2(0.0f, 0.0f)
-			, math::Vector2(static_cast<float>(width), static_cast<float>(height)), fileCout
-			, offset, duration);
+			, math::Vector2(static_cast<float>(width), static_cast<float>(height))
+			, math::Vector2(static_cast<float>(width), 0), fileCout, offset, duration);
 	}
 
 	void Animator::PlayAnimation(const std::wstring& name, bool loop)

@@ -65,7 +65,7 @@ namespace ex
 				, (int)leftTop.y
 				, (int)rightBottom.x
 				, (int)rightBottom.y
-				, RGB(0, 255, 0));
+				, RGB(255, 0, 255));
 
 		}
 		// 만약 알파값(투명도)이 있는 bmp

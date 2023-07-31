@@ -82,7 +82,7 @@ namespace ex
 		// spriteLength : 아틀라스 텍스처에서 추출할 프레임의 개수
 		// duration : 각 프레임당 유지 시간
 		void Create(const std::wstring& _name, class Texture* _texture
-					, math::Vector2 _leftTop, math::Vector2 _size, math::Vector2 _offset
+					, math::Vector2 _leftTop, math::Vector2 _size, math::Vector2 _Interval, math::Vector2 _offset
 					, UINT _spriteLength, float _duration);
 
 		// 재생과 관련된 정보를 전부 초기화해준다. 즉, 애니메이션이 재생되기 전으로

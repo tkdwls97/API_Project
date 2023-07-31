@@ -43,6 +43,7 @@ namespace ex
 			Rope,
 			Attack,
 			Skill,
+			Hit,
 			Death,
 			End,
 		};
@@ -82,8 +83,12 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other);
 		virtual void OnCollisionExit(Collider* _other);
 
+		void SetLayerType(enums::eLayerType _type) { mLayerType = _type; }
+		enums::eLayerType GetLayerType() { return mLayerType; }
+
 	private:
 		std::vector<Component*> mComponents;
+		enums::eLayerType		mLayerType;
 
 
 	};

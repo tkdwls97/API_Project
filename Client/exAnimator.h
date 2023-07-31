@@ -19,6 +19,7 @@ namespace ex
 			, class Texture* _texture
 			, math::Vector2 _leftTop
 			, math::Vector2 _size
+			, math::Vector2 _interval
 			, UINT _spriteLength
 			, math::Vector2 _offset = math::Vector2::Zero
 			, float _duration = 0.2f);

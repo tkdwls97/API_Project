@@ -24,14 +24,18 @@ namespace ex
 
 		Animator* animator = AddComponent<Animator>();
 
-		animator->CreateAnimation(L"CoupleMushLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f), 8);
-		animator->CreateAnimation(L"CoupleMushLeftMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f), 13);
+		animator->CreateAnimation(L"CoupleMushLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f)
+			, math::Vector2(170.0f, 170.0f), 8);
+		animator->CreateAnimation(L"CoupleMushLeftMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f,170.0f)
+			, math::Vector2(170.0f, 170.0f), 13);
 
 		image = ResourceManager::Load<Texture>(L"CoupleMushRight"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\CoupleMush_RIGHT.bmp");
 
-		animator->CreateAnimation(L"CoupleMushRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f), 8);
-		animator->CreateAnimation(L"CoupleMushRightMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f), 13);
+		animator->CreateAnimation(L"CoupleMushRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f)
+			, math::Vector2(170.0f, 170.0f), 8);
+		animator->CreateAnimation(L"CoupleMushRightMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f)
+			, math::Vector2(170.0f, 170.0f), 13);
 
 		animator->PlayAnimation(L"CoupleMushRightIdle", true);
 
@@ -77,7 +81,7 @@ namespace ex
 			anim->PlayAnimation(L"CoupleMushRightMove", true);
 			pos.x += 50.0f * Time::GetDeltaTime();
 		}
-	
+
 
 		tr->SetPosition(pos);
 

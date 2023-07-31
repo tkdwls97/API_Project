@@ -43,7 +43,7 @@ namespace ex
 	{
 	}
 
-	
+
 	void Animation::Update()
 	{
 		// 완료되었으면 더 이상 재생할 필요가 없으므로 데이터의 갱신을 해 주지 않음.
@@ -112,7 +112,7 @@ namespace ex
 		{
 			return;
 		}
-		
+
 		// 위치를 트랜스폼으로부터 가져오고 현재 프레임에 offset 값을 더해서 그려질 최종 위치를 구한다.
 		math::Vector2 pos = tr->GetPosition() + sprite.offset;
 
@@ -129,21 +129,30 @@ namespace ex
 	// 전달받은 인자를 이용해서 m_SpriteSheet에 실제 프레임 정보를 넣어준다.
 	// 근데, 이 함수는 애니메이션을 만들 때, 한 줄로 프레임을 찾아내서 넣어준다.
 	void Animation::Create(const std::wstring& _name, Texture* _texture
-		, math::Vector2 _leftTop, math::Vector2 _size, math::Vector2 _offset
+		, math::Vector2 _leftTop, math::Vector2 _size, math::Vector2 _interval, math::Vector2 _offset
 		, UINT _spriteLength, float _duration)
 	{
 		SetName(_name);
 		mTexture = _texture;
 
+
 		for (UINT i = 0; i < _spriteLength; i++)
 		{
+			int temp = i;
+
+			// 이미지를 뒤에서 부터 읽어야 할 경우 1번 인덱스부터 읽게 만들어준다.
+			if (0 > _interval.x)
+			{
+				++temp;
+			}
+
 			Sprite sprite = {};
 
-			sprite.leftTop.x = _leftTop.x + (_size.x * i);
+			sprite.leftTop.x = _leftTop.x + (_interval.x * temp);
 			sprite.leftTop.y = _leftTop.y;
 			// 아틀라스 이미지의 한 동작이 다음줄 까지 이어질때
 			// 가져온 텍스처의 이미지의 가로 길이를 넘어서 다음줄에서 다시 읽어야 할경우
-			if (sprite.leftTop.x >= _texture->GetWidth())
+			if (sprite.leftTop.x > _texture->GetWidth())
 			{
 				sprite.leftTop.x = sprite.leftTop.x - _texture->GetWidth();
 				sprite.leftTop.y = _leftTop.y + _size.y;

@@ -2,7 +2,6 @@
 #include "exTransform.h"
 #include "exGameObject.h"
 #include "exCamera.h"
-
 namespace ex
 {
 	UINT Collider::mCollisionCount = 0;
@@ -13,6 +12,8 @@ namespace ex
 		, mOffset(math::Vector2::Zero)
 		, mCollisionNumber(-1)
 		, mbIsCollision(false)
+		, mbCollisionType(false)
+		, mbRopeCollision(false)
 	{
 		mCollisionNumber = mCollisionCount;
 		++mCollisionCount;
