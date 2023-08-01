@@ -5,11 +5,11 @@
 #include "exResourceManager.h"
 #include "exAnimator.h"
 #include "exTexture.h"
-#include "exGameEffect.h"
 #include "exObject.h"
 #include "exRigidbody.h"
 #include "exCollider.h"
 #include "exCollisionManager.h"
+#include "exObejctAttack.h"
 
 namespace ex
 {
@@ -19,6 +19,8 @@ namespace ex
 		, mRigidbody(nullptr)
 		, mCollider(nullptr)
 		, mState(eState::End)
+		, mhitDelay(0.0f)
+		, mbInvincible(false)
 	{
 		mInfo.mHp = 50000;
 		mInfo.mMP = 30000;
@@ -26,8 +28,6 @@ namespace ex
 		mInfo.mSpeed = 300;
 		mInfo.mDamage = 10000;
 		mInfo.mDef = 1000;
-
-
 	}
 
 	Player::~Player()
@@ -40,7 +40,6 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 		mRigidbody = AddComponent<Rigidbody>();
 		mCollider = AddComponent<Collider>();
-
 
 		// 왼쪽 애니메이션
 		Texture* image = ResourceManager::Load<Texture>(L"PlayerLeftIdle"
@@ -67,7 +66,6 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Player_Left_Hit.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftHit", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 3, math::Vector2(-23.0f, 0.0f));
-
 
 		image = ResourceManager::Load<Texture>(L"PlayerLeftAttack"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Player_Left_Attack.bmp");
@@ -126,6 +124,19 @@ namespace ex
 	{
 		GameObject::Update();
 
+		if (mState == eState::Hit || mhitDelay > 0.0f)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
+			mhitDelay += Time::GetDeltaTime();
+			if (mhitDelay >= 2.0f)
+			{
+				CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
+				mbInvincible = false;
+				mhitDelay = 0.0f;
+
+			}
+
+		}
 
 		if (mState == eState::Jump)
 		{
@@ -135,7 +146,7 @@ namespace ex
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		}
-	
+
 		switch (mState)
 		{
 		case Player::eState::Idle:
@@ -231,6 +242,7 @@ namespace ex
 
 		}
 
+
 		// 점프키
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
@@ -267,19 +279,17 @@ namespace ex
 
 		// Idle 중 피격
 		bool bCheck = mCollider->GetCollisionType();
-		if (bCheck)
+		if (bCheck && !mbInvincible)
 		{
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-				mState = eState::Hit;
 			}
 			else if (playerDir == enums::eMoveDir::Right)
 			{
 				mAnimator->PlayAnimation(L"PlayerRightHit", true);
-				mState = eState::Hit;
 			}
-
+			mState = eState::Hit;
 		}
 
 		mRigidbody->SetVelocity(velocity);
@@ -302,12 +312,14 @@ namespace ex
 		if (Input::GetKeyPressed(eKeyCode::Left))
 		{
 			//pos.x -= 200.0f * Time::GetDeltaTime();
+			mAnimator->PlayAnimation(L"PlayerLeftMove", true);
 			mRigidbody->AddForce(math::Vector2(-500.0f, 0.0f));
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
 		}
 		if (Input::GetKeyPressed(eKeyCode::Right))
 		{
 			//pos.x += 200.0f * Time::GetDeltaTime();
+			mAnimator->PlayAnimation(L"PlayerRightMove", true);
 			mRigidbody->AddForce(math::Vector2(500.0f, 0.0f));
 			mTransform->SetMoveDir(enums::eMoveDir::Right);
 		}
@@ -332,7 +344,7 @@ namespace ex
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = 220.0f;
-			velocity.y = -1200.0f;
+			velocity.y = -1100.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
@@ -383,22 +395,21 @@ namespace ex
 			mRigidbody->SetFriction(0.0f);
 		}
 
+		// Move 중 피격 상태
 		bool bCheck = mCollider->GetCollisionType();
-		if (bCheck)
+		if (bCheck && !mbInvincible)
 		{
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-				mState = eState::Hit;
 			}
 			else if (playerDir == enums::eMoveDir::Right)
 			{
 				mAnimator->PlayAnimation(L"PlayerRightHit", true);
-				mState = eState::Hit;
 			}
+			mState = eState::Hit;
 			velocity.x = 0;
 		}
-
 		mRigidbody->SetVelocity(velocity);
 	}
 
@@ -480,17 +491,20 @@ namespace ex
 
 	void Player::Rope()
 	{
-		mTransform = GetComponent<Transform>();
 		math::Vector2 pos = mTransform->GetPosition();
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 
 		//if (만약 로프에 충돌한다면?)
-		if (Input::GetKeyPressed(eKeyCode::Up))
+		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			pos.y -= 200.0f * Time::GetDeltaTime();
 		}
-		if (Input::GetKeyPressed(eKeyCode::Down))
+
+
+		if (Input::GetKeyPressed(eKeyCode::Down)|| Input::GetKeyDown(eKeyCode::Down))
 		{
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			pos.y += 200.0f * Time::GetDeltaTime();
 		}
 
@@ -498,7 +512,6 @@ namespace ex
 		// 윗 방향키 때면 다시 Idle상태로 전환
 		if (Input::GetKeyUp(eKeyCode::Up))
 		{
-			mAnimator = GetComponent<Animator>();
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
@@ -510,14 +523,15 @@ namespace ex
 				mState = eState::Idle;
 			}
 		}
-		GetTransform()->SetPosition(pos);
+		mTransform->SetPosition(pos);
 	}
 
 	void Player::Attack()
 	{
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
-
-
+		ObejctAttack* playerAtt = new ObejctAttack(this);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerAtt);
+	
 		// 이동중 공격
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
@@ -607,6 +621,7 @@ namespace ex
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftHit", true);
@@ -616,63 +631,60 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerRightHit", true);
 		}
 
-
-		if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
-		{
-			mAnimator->PlayAnimation(L"PlayerRightMove", true);
-			mState = eState::Move;
-		}
 		if (Input::GetKeyDown(eKeyCode::Left) || Input::GetKeyPressed(eKeyCode::Left))
 		{
-			mAnimator->PlayAnimation(L"PlayerLeftMove", true);
+			mAnimator->PlayAnimation(L"PlayerLeftMove");
 			mState = eState::Move;
 		}
-
+		else if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
+		{
+			mAnimator->PlayAnimation(L"PlayerRightMove");
+			mState = eState::Move;
+		}
 
 		if (Input::GetKeyDown(eKeyCode::Ctrl) || Input::GetKeyPressed(eKeyCode::Ctrl))
 		{
 			if (playerDir == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"PlayerLeftAttack", true);
+				mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
 			}
-			else if (playerDir == enums::eMoveDir::Right)
+			else
 			{
-				mAnimator->PlayAnimation(L"PlayerRightAttack", true);
+				mAnimator->PlayAnimation(L"PlayerRightAttack", false);
 			}
 			mState = eState::Attack;
 		}
-
-
 
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
 			if (playerDir == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+				mAnimator->PlayAnimation(L"PlayerLeftJump", false);
 			}
-			else if (playerDir == enums::eMoveDir::Right)
+			else
 			{
-				mAnimator->PlayAnimation(L"PlayerRightJump", true);
+				mAnimator->PlayAnimation(L"PlayerRightJump", false);
 			}
 			mState = eState::Jump;
 		}
 
-
-
-		bool bCheck = mCollider->GetCollisionType();
-		if (!bCheck)
+		if (Input::GetKeyDown(eKeyCode::Down) || Input::GetKeyPressed(eKeyCode::Down))
 		{
 			if (playerDir == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"PlayerLeftIdle", false);
-				mState = eState::Idle;
+				mAnimator->PlayAnimation(L"PlayerLeftDown", false);
 			}
-			else if (playerDir == enums::eMoveDir::Right)
+			else
 			{
-				mAnimator->PlayAnimation(L"PlayerRightIdle", false);
-				mState = eState::Idle;
+				mAnimator->PlayAnimation(L"PlayerRightDown", false);
 			}
+			mState = eState::Down;
 		}
+
+	
+
+		velocity.x = 0.0f;
+		mbInvincible = true;
 
 		mRigidbody->SetVelocity(velocity);
 	}
@@ -733,7 +745,6 @@ namespace ex
 			mRigidbody->SetFriction(1000.0f);
 		}
 
-
 		if (bGround && Input::GetKeyPressed(eKeyCode::Left))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftMove", true);
@@ -744,28 +755,32 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerRightMove", true);
 			mState = eState::Move;
 		}
+
+		if (bGround && mbInvincible)
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightHit", true);
+				
+			}
+			mState = eState::Hit;
+			mRigidbody->SetFriction(1000.0f);
+		}
 	}
 
 	void Player::OnCollisionEnter(Collider* other)
 	{
 		enums::eLayerType Type = other->GetOwner()->GetLayerType();
-		if (Type == enums::eLayerType::Monster)
+
+		if (Type == enums::eLayerType::Monster && mbInvincible == false)
 		{
 			mCollider->SetCollisionType(true);
+			mState = eState::Hit;
 		}
-
-		static float hitDelay = 0.0f;
-		hitDelay += Time::GetDeltaTime();
-		if (mState == eState::Hit)
-		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
-		}
-		if (hitDelay >= 2.0f)
-		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
-			hitDelay = 0.0f;
-		}
-
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{

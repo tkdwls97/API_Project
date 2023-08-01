@@ -15,4 +15,10 @@ namespace ex::object
 
 		return gameObject;
 	}
+
+	static __forceinline void ActiveSceneAddGameObject(enums::eLayerType _type, GameObject* _obj)
+	{
+		Scene* scene = SceneManager::GetActiveScene();
+		scene->AddGameObject(_type, _obj);
+	}
 }

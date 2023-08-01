@@ -1,6 +1,7 @@
 #include "exGameObject.h"
-#include "exTransform.h"
 #include "exSpriteRenderer.h"
+#include "exCollider.h"
+#include "exRigidbody.h"
 
 namespace ex
 {
@@ -17,6 +18,10 @@ namespace ex
 
 	void GameObject::Initialize()
 	{
+		for (Component* comp : mComponents)
+		{
+			comp->Initialize();
+		}
 	}
 
 	void GameObject::Update()

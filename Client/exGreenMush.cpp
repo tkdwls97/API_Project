@@ -109,4 +109,16 @@ namespace ex
 		GameObject::Render(_hdc);
 	}
 
+	void GreenMush::OnCollisionEnter(Collider* other)
+	{
+	}
+
+	void GreenMush::OnCollisionStay(Collider* other)
+	{
+	}
+
+	void GreenMush::OnCollisionExit(Collider* other)
+	{
+	}
+
 }

@@ -21,6 +21,12 @@ namespace ex
 		CreateScene<BossScene>(L"BossScene");
 		CreateScene<VillageScene>(L"VillageScene");
 
+		for (auto iter : mScenes)
+		{
+			mActiveScene = iter.second;
+			iter.second->Initialize();
+		}
+
 		mPlayer->Initialize();
 		LoadScene(L"TitleScene");
 	}

@@ -1,8 +1,6 @@
 #pragma once
 #include "exGameObject.h"
 
-
-
 namespace ex
 {
 	class Monsters :public GameObject

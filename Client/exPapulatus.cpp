@@ -84,4 +84,16 @@ namespace ex
 		GameObject::Render(_hdc);
 	}
 
+	void Papulatus::OnCollisionEnter(Collider* other)
+	{
+	}
+
+	void Papulatus::OnCollisionStay(Collider* other)
+	{
+	}
+
+	void Papulatus::OnCollisionExit(Collider* other)
+	{
+	}
+
 }

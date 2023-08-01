@@ -42,8 +42,6 @@ namespace ex::enums
 	{
 		Right,
 		Left,
-		Up,
-		Down,
 		End,
 	};
 

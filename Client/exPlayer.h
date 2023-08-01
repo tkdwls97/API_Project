@@ -62,5 +62,7 @@ namespace ex
 		eState		mState;	
 		PlayerInfo	mInfo;
 
+		bool		mbInvincible;
+		float		mhitDelay;
 	};
 }

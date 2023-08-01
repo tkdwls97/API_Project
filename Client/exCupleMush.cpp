@@ -93,4 +93,16 @@ namespace ex
 		GameObject::Render(_hdc);
 	}
 
+	void CupleMush::OnCollisionEnter(Collider* other)
+	{
+	}
+
+	void CupleMush::OnCollisionStay(Collider* other)
+	{
+	}
+
+	void CupleMush::OnCollisionExit(Collider* other)
+	{
+	}
+
 }

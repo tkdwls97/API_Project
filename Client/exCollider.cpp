@@ -32,6 +32,7 @@ namespace ex
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		math::Vector2 pos = tr->GetPosition();
 		mPosition = pos + mOffset;
+
 		pos.x -= mSize.x / 2.0f;
 		pos.y -= mSize.y / 2.0f;
 		pos.x += mOffset.x;
@@ -39,32 +40,32 @@ namespace ex
 
 		pos = Camera::CalculatePosition(pos);
 
-		HBRUSH transparentBrush = (HBRUSH)::GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)::SelectObject(_hdc, transparentBrush);
+		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, transparentBrush);
 
 		HPEN pen = NULL;
 		if (mbIsCollision)
 		{
-			pen = ::CreatePen(PS_SOLID, 2, RGB(255, 50, 50));
+			pen = CreatePen(PS_SOLID, 2, RGB(255, 50, 50));
 		}
 		else
 		{
-			pen = ::CreatePen(PS_SOLID, 2, RGB(50, 255, 50));
+			pen = CreatePen(PS_SOLID, 2, RGB(50, 255, 50));
 		}
 
 		HPEN oldPen = (HPEN)SelectObject(_hdc, pen);
 
-		::Rectangle(_hdc
+		Rectangle(_hdc
 			, (int)pos.x
 			, (int)pos.y
 			, (int)(pos.x + mSize.x)
 			, (int)(pos.y + mSize.y));
 
-		::SelectObject(_hdc, oldBrush);
-		::DeleteObject(transparentBrush);
+		SelectObject(_hdc, oldBrush);
+		DeleteObject(transparentBrush);
 
-		::SelectObject(_hdc, oldPen);
-		::DeleteObject(pen);
+		SelectObject(_hdc, oldPen);
+		DeleteObject(pen);
 	}
 
 	void Collider::OnCollisionEnter(Collider* _other)

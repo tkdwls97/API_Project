@@ -13,6 +13,7 @@ namespace ex
 
 	void Monsters::Initialize()
 	{
+		GameObject::Initialize();
 	}
 
 	void Monsters::Update()

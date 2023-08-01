@@ -15,14 +15,12 @@ namespace ex
 
 	void Scene::Initialize()
 	{
-
 	}
 	void Scene::Update()
 	{
 		for (Layer& layer : mLayers)
 		{
 			layer.Update();
-
 		}
 	}
 
@@ -32,7 +30,6 @@ namespace ex
 		{
 			layer.Render(_hdc);
 		}
-		Time::Render(_hdc);
 	}
 
 	void Scene::SceneIN()

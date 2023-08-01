@@ -2,6 +2,7 @@
 #include "exEntity.h"
 #include "exComponent.h"
 #include "exTransform.h"
+#include "exRigidbody.h"
 
 namespace ex
 {
@@ -44,6 +45,7 @@ namespace ex
 			Attack,
 			Skill,
 			Hit,
+			Invincible,
 			Death,
 			End,
 		};
