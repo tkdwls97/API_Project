@@ -41,10 +41,14 @@ namespace ex
 		{
 			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
+		collider->SetAttackCollor(RGB(0, 0, 255));
+		collider->SetAttackCollisionCollor(RGB(255, 0, 0));
 	}
 
 	void PlayerAttack::Update()
 	{
+
+
 		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
@@ -64,7 +68,7 @@ namespace ex
 		eState playerState = SceneManager::GetPlayer()->GetState();
 		if (playerState == eState::Attack)
 		{
-
+			// 충돌 이벤트구현
 		}
 		else
 		{
@@ -83,22 +87,11 @@ namespace ex
 
 	void PlayerAttack::OnCollisionEnter(Collider* _other)
 	{
-		eState playerState = SceneManager::GetPlayer()->GetState();
-
-		//if (playerState == eState::Attack)
-		//{
-		//	Destroy(_other->GetOwner());
-		//}
-		//else
-		//{
-
-		//}
 	}
 
 	void PlayerAttack::OnCollisionStay(Collider* _other)
 	{
 		eState playerState = SceneManager::GetPlayer()->GetState();
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 
 		if (playerState == eState::Attack)
 		{

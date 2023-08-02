@@ -46,6 +46,12 @@ namespace ex
 		bool GetCollisonCheck() { return mbIsneedtoCollisonCheck; }
 		void SetCollisonCheck(bool _check) { mbIsneedtoCollisonCheck = _check; }
 
+		COLORREF GetAttackCollisionCollor() { return mAttackCollisionCollor; }
+		void SetAttackCollisionCollor(COLORREF _color) { mAttackCollisionCollor = _color; }
+
+		COLORREF GetAttackCollor() { return mAttackCollor; }
+		void SetAttackCollor(COLORREF _color) { mAttackCollor = _color; }
+
 	private:
 		math::Vector2 mSize;
 		math::Vector2 mOffset;
@@ -58,5 +64,8 @@ namespace ex
 		bool mbRopeCollision;
 
 		bool mbIsneedtoCollisonCheck;
+
+		COLORREF mAttackCollor;
+		COLORREF mAttackCollisionCollor;
 	};
 }
