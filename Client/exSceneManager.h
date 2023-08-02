@@ -30,18 +30,13 @@ namespace ex
 		static Scene* GetActiveScene() { return mActiveScene; }
 
 		static Player* GetPlayer() { return mPlayer; }
-		static PlayerAttack* GetPlayerLeftAttack() { return mPlayerLeftAtt; }
-		static PlayerAttack* GetPlayerRightAttack() { return mPlayerRightAtt; }
-
-
-
-		
+		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
+						
 	private:
 		static std::map<std::wstring, Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Player* mPlayer;
-		static PlayerAttack* mPlayerLeftAtt;
-		static PlayerAttack* mPlayerRightAtt;
+		static PlayerAttack* mPlayerAtt;
 	};
 
 }

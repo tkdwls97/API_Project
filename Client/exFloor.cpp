@@ -42,7 +42,7 @@ namespace ex
 		if (len < scale)
 		{
 			math::Vector2 playerPos = tr->GetPosition();
-			playerPos.y -= (scale - len) - 1.0f;
+			playerPos.y -= fabs(scale - len) - 1.0f;
 			tr->SetPosition(playerPos);
 
 		}
@@ -61,7 +61,7 @@ namespace ex
 		if (len < scale)
 		{
 			math::Vector2 playerPos = tr->GetPosition();
-			playerPos.y -= (scale - len) - 1.0f;
+			playerPos.y -= fabs(scale - len) - 1.0f;
 			tr->SetPosition(playerPos);
 
 		}

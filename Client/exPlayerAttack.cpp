@@ -45,10 +45,19 @@ namespace ex
 
 	void PlayerAttack::Update()
 	{
-		// 애니메이션이 끝나면 삭제
 		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
+		Collider* collider = GetComponent<Collider>();
+
+		if (dir == enums::eMoveDir::Right)
+		{
+			collider->SetOffset(math::Vector2(42.0f, 10.0f));
+		}
+		else
+		{
+			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
+		}
 
 		tr->SetPosition(pos);
 
@@ -72,36 +81,35 @@ namespace ex
 	}
 
 
-	void PlayerAttack::OnCollisionEnter(Collider* other)
+	void PlayerAttack::OnCollisionEnter(Collider* _other)
 	{
 		eState playerState = SceneManager::GetPlayer()->GetState();
 
-		if (playerState == eState::Attack)
-		{
-			Destroy(other->GetOwner());
-		}
-		else
-		{
+		//if (playerState == eState::Attack)
+		//{
+		//	Destroy(_other->GetOwner());
+		//}
+		//else
+		//{
 
-		}
+		//}
 	}
 
-	void PlayerAttack::OnCollisionStay(Collider* other)
+	void PlayerAttack::OnCollisionStay(Collider* _other)
 	{
 		eState playerState = SceneManager::GetPlayer()->GetState();
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 
 		if (playerState == eState::Attack)
 		{
-			Destroy(other->GetOwner());
+			Destroy(_other->GetOwner());
 		}
 		else
 		{
-
 		}
 	}
 
-	void PlayerAttack::OnCollisionExit(Collider* other)
+	void PlayerAttack::OnCollisionExit(Collider* _other)
 	{
 	}
-
 }

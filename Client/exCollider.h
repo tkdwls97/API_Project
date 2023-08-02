@@ -43,6 +43,9 @@ namespace ex
 		bool GetRopeCollision() { return mbRopeCollision; }
 		void SetRopeCollision(bool _type) { mbRopeCollision = _type; }
 
+		bool GetCollisonCheck() { return mbIsneedtoCollisonCheck; }
+		void SetCollisonCheck(bool _check) { mbIsneedtoCollisonCheck = _check; }
+
 	private:
 		math::Vector2 mSize;
 		math::Vector2 mOffset;
@@ -53,5 +56,7 @@ namespace ex
 		bool mbIsCollision;
 		bool mbCollisionType;
 		bool mbRopeCollision;
+
+		bool mbIsneedtoCollisonCheck;
 	};
 }

@@ -325,12 +325,14 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"PlayerRightAttack", false);
 			velocity.x = 0.0f;
+			mRigidbody->SetFriction(1000.0f);
 			mState = eState::Attack;
 		}
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
-			velocity.x = 0.0f;
+			mRigidbody->SetVelocity(0.0f);
+			mRigidbody->SetFriction(1000.0f);
 			mState = eState::Attack;
 		}
 
@@ -537,6 +539,7 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
 			mRigidbody->SetFriction(1000.0f);
+			mRigidbody->SetVelocity(0);
 		}
 
 		if (Input::GetKeyPressed(eKeyCode::Jump) || Input::GetKeyDown(eKeyCode::Jump))
@@ -748,7 +751,6 @@ namespace ex
 			else
 			{
 				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
-
 				mState = eState::Idle;
 			}
 			mRigidbody->SetFriction(1000.0f);
@@ -784,7 +786,6 @@ namespace ex
 	void Player::OnCollisionEnter(Collider* other)
 	{
 		enums::eLayerType Type = other->GetOwner()->GetLayerType();
-
 		if (Type == enums::eLayerType::Monster && mbInvincible == false)
 		{
 			mCollider->SetCollisionType(true);

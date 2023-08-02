@@ -14,8 +14,8 @@ namespace ex
 	std::map<std::wstring, Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
 	Player* SceneManager::mPlayer = new Player;
-	PlayerAttack* SceneManager::mPlayerLeftAtt = new PlayerAttack(mPlayer);
-	PlayerAttack* SceneManager::mPlayerRightAtt = new PlayerAttack(mPlayer);
+	PlayerAttack* SceneManager::mPlayerAtt = new PlayerAttack(mPlayer);
+
 	
 	void SceneManager::Initialize()
 	{
@@ -32,12 +32,7 @@ namespace ex
 		}
 
 		mPlayer->Initialize();
-		mPlayer->GetComponent<Transform>()->SetMoveDir(enums::eMoveDir::Left);
-		mPlayerLeftAtt->Initialize();
-		mPlayer->GetComponent<Transform>()->SetMoveDir(enums::eMoveDir::Right);
-		mPlayerRightAtt->Initialize();
-
-
+		mPlayerAtt->Initialize();
 
 		LoadScene(L"TitleScene");
 	}
@@ -67,8 +62,8 @@ namespace ex
 		if (_name != L"TitleScene" && _name != L"EndScene")
 		{
 			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);
-			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerLeftAtt);
-			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerRightAtt);
+			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerAtt);
+
 		}
 		mActiveScene->SceneIN();
 

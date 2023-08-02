@@ -57,7 +57,7 @@ namespace ex
 		MoveDelay += Time::GetDeltaTime();
 
 		mDirection = tr->GetMoveDir();
-		if (MoveDelay >= 4.0f)
+		if (MoveDelay >= 3.0f)
 		{
 			if (mDirection == enums::eMoveDir::Right)
 			{
@@ -84,22 +84,6 @@ namespace ex
 			anim->PlayAnimation(L"GreenMushRightMove", true);
 			pos.x += 50.0f * Time::GetDeltaTime();
 		}
-
-		IdleDelay += Time::GetDeltaTime();
-		if (IdleDelay >= 2.0f)
-		{
-			if (mDirection == enums::eMoveDir::Left)
-			{
-				anim->PlayAnimation(L"GreenMushLeftIdle", true);
-			}
-			else if (mDirection == enums::eMoveDir::Right)
-			{
-				anim->PlayAnimation(L"GreenMushRightIdle", true);
-			}
-			IdleDelay = 0.0f;
-
-		}
-		
 		tr->SetPosition(pos);
 	}
 

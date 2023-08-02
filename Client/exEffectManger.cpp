@@ -27,15 +27,15 @@ namespace ex
 	{
 	}
 
-	void EffectManger::OnCollisionEnter(Collider* other)
+	void EffectManger::OnCollisionEnter(Collider* _other)
 	{
 	}
 
-	void EffectManger::OnCollisionStay(Collider* other)
+	void EffectManger::OnCollisionStay(Collider* _other)
 	{
 	}
 
-	void EffectManger::OnCollisionExit(Collider* other)
+	void EffectManger::OnCollisionExit(Collider* _other)
 	{
 	}
 

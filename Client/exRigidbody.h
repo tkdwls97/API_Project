@@ -24,6 +24,10 @@ namespace ex
 
 		math::Vector2 GetVelocity() { return mVelocity; }
 		void SetVelocity(math::Vector2 _velocity) { mVelocity = _velocity; }
+
+		math::Vector2 GetGravity() { return mGravity; }
+		void SetGravity(math::Vector2 _gravity) { mGravity = _gravity; }
+
 		
 
 	private:

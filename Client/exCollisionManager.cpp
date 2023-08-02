@@ -98,6 +98,7 @@ namespace ex
 		ColliderID ID;
 		ID.left = (UINT)_left->GetCollisionNumber();
 		ID.right = (UINT)_right->GetCollisionNumber();
+		
 
 
 		// 이전 충돌체의 정보를 가져와서 확인한다.
@@ -111,8 +112,12 @@ namespace ex
 			iter = mCollisionMap.find(ID.id);
 		}
 
+		//if (_left->GetCollisonCheck() || _right->GetCollisonCheck())
+		//{
+		//	return;
+		//}
 
-		//충돌함수 호출
+		// 충돌함수 호출
 		if (Intersect(_left, _right))
 		{
 			// 충돌 중인상태

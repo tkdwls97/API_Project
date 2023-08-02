@@ -54,7 +54,7 @@ namespace ex
 
 		static float MoveDelay = 0.0f;
 		MoveDelay += Time::GetDeltaTime();
-		if (MoveDelay >= 4.0f)
+		if (MoveDelay >= 3.0f)
 		{
 			if (mDirection == enums::eMoveDir::Right)
 			{

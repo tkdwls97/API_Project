@@ -14,6 +14,7 @@ namespace ex
 		, mbIsCollision(false)
 		, mbCollisionType(false)
 		, mbRopeCollision(false)
+		, mbIsneedtoCollisonCheck(false)
 	{
 		mCollisionNumber = mCollisionCount;
 		++mCollisionCount;
