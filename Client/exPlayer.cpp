@@ -324,13 +324,15 @@ namespace ex
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
 			mAnimator->PlayAnimation(L"PlayerRightAttack", false);
-			velocity.x = 0.0f;
+			//velocity.x = 0.0f;
+			mRigidbody->SetVelocity(0.0f);
 			mRigidbody->SetFriction(1000.0f);
 			mState = eState::Attack;
 		}
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
+			//velocity.x = 0.0f;
 			mRigidbody->SetVelocity(0.0f);
 			mRigidbody->SetFriction(1000.0f);
 			mState = eState::Attack;
@@ -532,14 +534,11 @@ namespace ex
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
 			mAnimator->PlayAnimation(L"PlayerRightAttack", false);
-			mRigidbody->SetFriction(1000.0f);
 		}
 
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
-			mRigidbody->SetFriction(1000.0f);
-			mRigidbody->SetVelocity(0);
 		}
 
 		if (Input::GetKeyPressed(eKeyCode::Jump) || Input::GetKeyDown(eKeyCode::Jump))
@@ -569,6 +568,7 @@ namespace ex
 				mState = eState::Idle;
 			}
 		}
+		mRigidbody->SetFriction(1000.0f);
 	}
 
 	void Player::Jump()
