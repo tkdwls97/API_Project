@@ -41,8 +41,10 @@ namespace ex
 		{
 			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
-		collider->SetAttackCollor(RGB(0, 0, 255));
-		collider->SetAttackCollisionCollor(RGB(255, 0, 0));
+
+		collider->SetNomalCollor(RGB(255, 0, 255));
+		collider->SetCollisionCollor(RGB(255, 0, 0));
+
 	}
 
 	void PlayerAttack::Update()

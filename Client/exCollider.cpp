@@ -15,8 +15,8 @@ namespace ex
 		, mbCollisionType(false)
 		, mbRopeCollision(false)
 		, mbIsneedtoCollisonCheck(false)
-		, mAttackCollor(RGB(255,0,255))
-	    , mAttackCollisionCollor(RGB(255, 0, 0))
+		, mNomalCollor(RGB(255, 50, 50))
+	    , mCollisionCollor(RGB(50, 255, 50))
 	{
 		mCollisionNumber = mCollisionCount;
 		++mCollisionCount;
@@ -49,11 +49,11 @@ namespace ex
 		HPEN pen = NULL;
 		if (mbIsCollision)
 		{
-			pen = CreatePen(PS_SOLID, 2, RGB(255, 50, 50));
+			pen = CreatePen(PS_SOLID, 2, mCollisionCollor);
 		}
 		else
 		{
-			pen = CreatePen(PS_SOLID, 2, RGB(50, 255, 50));
+			pen = CreatePen(PS_SOLID, 2, mNomalCollor);
 		}
 
 		HPEN oldPen = (HPEN)SelectObject(_hdc, pen);

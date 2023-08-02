@@ -46,11 +46,11 @@ namespace ex
 		bool GetCollisonCheck() { return mbIsneedtoCollisonCheck; }
 		void SetCollisonCheck(bool _check) { mbIsneedtoCollisonCheck = _check; }
 
-		COLORREF GetAttackCollisionCollor() { return mAttackCollisionCollor; }
-		void SetAttackCollisionCollor(COLORREF _color) { mAttackCollisionCollor = _color; }
+		COLORREF GetCollisionCollor() { return mCollisionCollor; }
+		void SetCollisionCollor(COLORREF _color) { mCollisionCollor = _color; }
 
-		COLORREF GetAttackCollor() { return mAttackCollor; }
-		void SetAttackCollor(COLORREF _color) { mAttackCollor = _color; }
+		COLORREF GetNomalCollor() { return mNomalCollor; }
+		void SetNomalCollor(COLORREF _color) { mNomalCollor = _color; }
 
 	private:
 		math::Vector2 mSize;
@@ -65,7 +65,7 @@ namespace ex
 
 		bool mbIsneedtoCollisonCheck;
 
-		COLORREF mAttackCollor;
-		COLORREF mAttackCollisionCollor;
+		COLORREF mNomalCollor;
+		COLORREF mCollisionCollor;
 	};
 }
