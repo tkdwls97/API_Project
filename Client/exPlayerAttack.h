@@ -7,11 +7,11 @@ namespace ex
 	class Transform;
 	class Animator;
 
-	class ObejctAttack : public EffectManger
+	class PlayerAttack : public EffectManger
 	{
 	public:
-		ObejctAttack(GameObject* _owner);
-		virtual ~ObejctAttack();
+		PlayerAttack(GameObject* _owner);
+		virtual ~PlayerAttack();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

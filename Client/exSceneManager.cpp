@@ -6,20 +6,24 @@
 #include "exStageScene2.h"
 #include "exVillageScene.h"
 #include "exPlayer.h"
+#include "exObject.h"
+#include "exPlayerAttack.h"
 
 namespace ex
 {
 	std::map<std::wstring, Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
 	Player* SceneManager::mPlayer = new Player;
-
+	PlayerAttack* SceneManager::mPlayerLeftAtt = new PlayerAttack(mPlayer);
+	PlayerAttack* SceneManager::mPlayerRightAtt = new PlayerAttack(mPlayer);
+	
 	void SceneManager::Initialize()
 	{
 		CreateScene<TitleScene>(L"TitleScene");
+		CreateScene<VillageScene>(L"VillageScene");
 		CreateScene<StageScene>(L"StageScene");
 		CreateScene<StageScene2>(L"StageScene2");
 		CreateScene<BossScene>(L"BossScene");
-		CreateScene<VillageScene>(L"VillageScene");
 
 		for (auto iter : mScenes)
 		{
@@ -28,6 +32,13 @@ namespace ex
 		}
 
 		mPlayer->Initialize();
+		mPlayer->GetComponent<Transform>()->SetMoveDir(enums::eMoveDir::Left);
+		mPlayerLeftAtt->Initialize();
+		mPlayer->GetComponent<Transform>()->SetMoveDir(enums::eMoveDir::Right);
+		mPlayerRightAtt->Initialize();
+
+
+
 		LoadScene(L"TitleScene");
 	}
 
@@ -56,6 +67,8 @@ namespace ex
 		if (_name != L"TitleScene" && _name != L"EndScene")
 		{
 			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);
+			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerLeftAtt);
+			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerRightAtt);
 		}
 		mActiveScene->SceneIN();
 

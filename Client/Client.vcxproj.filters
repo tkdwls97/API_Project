@@ -240,7 +240,7 @@
     <ClCompile Include="exBossScene.cpp">
       <Filter>Contents\Scene\04.BossScene</Filter>
     </ClCompile>
-    <ClCompile Include="exObejctAttack.cpp">
+    <ClCompile Include="exPlayerAttack.cpp">
       <Filter>Contents\GameObject\03.Effect\00.Attack</Filter>
     </ClCompile>
     <ClCompile Include="exEffectManger.cpp">
@@ -368,7 +368,7 @@
     <ClInclude Include="exBossScene.h">
       <Filter>Contents\Scene\04.BossScene</Filter>
     </ClInclude>
-    <ClInclude Include="exObejctAttack.h">
+    <ClInclude Include="exPlayerAttack.h">
       <Filter>Contents\GameObject\03.Effect\00.Attack</Filter>
     </ClInclude>
     <ClInclude Include="exEffectManger.h">

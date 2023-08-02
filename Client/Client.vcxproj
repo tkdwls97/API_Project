@@ -140,7 +140,7 @@
     <ClCompile Include="exFloor.cpp" />
     <ClCompile Include="exGreenMush.cpp" />
     <ClCompile Include="exMonsters.cpp" />
-    <ClCompile Include="exObejctAttack.cpp" />
+    <ClCompile Include="exPlayerAttack.cpp" />
     <ClCompile Include="exRigidbody.cpp" />
     <ClCompile Include="exUI.cpp" />
     <ClCompile Include="exVillageScene.cpp" />
@@ -184,7 +184,7 @@
     <ClInclude Include="exFloor.h" />
     <ClInclude Include="exGreenMush.h" />
     <ClInclude Include="exMonsters.h" />
-    <ClInclude Include="exObejctAttack.h" />
+    <ClInclude Include="exPlayerAttack.h" />
     <ClInclude Include="exRigidbody.h" />
     <ClInclude Include="exUI.h" />
     <ClInclude Include="exVillageScene.h" />

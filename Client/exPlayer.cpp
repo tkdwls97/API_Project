@@ -9,7 +9,7 @@
 #include "exRigidbody.h"
 #include "exCollider.h"
 #include "exCollisionManager.h"
-#include "exObejctAttack.h"
+
 
 namespace ex
 {
@@ -21,8 +21,6 @@ namespace ex
 		, mState(eState::End)
 		, mhitDelay(0.0f)
 		, mbInvincible(false)
-		, mPlayerLeftAtt(nullptr)
-		, mPlayerRightAtt(nullptr)
 	{
 		mInfo.mHp = 50000;
 		mInfo.mMP = 30000;
@@ -34,18 +32,6 @@ namespace ex
 
 	Player::~Player()
 	{
-		// Player에서 ObjectAtt* 타입으로 Left,Right어택을 들고있기때문에
-		if (mPlayerLeftAtt != nullptr)
-		{
-			delete mPlayerLeftAtt;
-			mPlayerLeftAtt = nullptr;
-		}
-
-		if (mPlayerRightAtt != nullptr)
-		{
-			delete mPlayerRightAtt;
-			mPlayerRightAtt = nullptr;
-		}
 	}
 
 	void Player::Initialize()
@@ -124,17 +110,11 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerRopeMove", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 2, math::Vector2(-23.0f, 0.0f));
 
-
-
+		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(45.0f, 80.0f));
 		mCollider->SetOffset(math::Vector2(-12.0f, 10.0f));
 		mState = eState::Idle;
 
-		mTransform->SetMoveDir(enums::eMoveDir::Left);
-		mPlayerLeftAtt = new ObejctAttack(this);
-
-		mTransform->SetMoveDir(enums::eMoveDir::Right);
-		mPlayerRightAtt = new ObejctAttack(this);
 	}
 
 	void Player::Update()
@@ -205,15 +185,11 @@ namespace ex
 			break;
 		}
 
-		mPlayerLeftAtt->Update();
-		mPlayerRightAtt->Update();
 	}
 
 	void Player::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
-		mPlayerLeftAtt->Render(_hdc);
-		mPlayerRightAtt->Render(_hdc);
 	}
 
 	void Player::Idle()
@@ -597,17 +573,17 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 
-		// 좌우 이동중 점프
+		// 방향에 따라 점프
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
-
 		}
 		if (playerDir == enums::eMoveDir::Right)
 		{
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
 
+		// 점프중 좌우 움직이게 
 		if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
 		{
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);

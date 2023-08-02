@@ -1,4 +1,4 @@
-#include "exObejctAttack.h"
+#include "exPlayerAttack.h"
 #include "exTexture.h"
 #include "exResourceManager.h"
 #include "exAnimator.h"
@@ -8,16 +8,25 @@
 #include "exPlayer.h"
 #include "exSceneManager.h"
 #include "exCollisionManager.h"
+#include "exObject.h"
 
 namespace ex
 {
-	ObejctAttack::ObejctAttack(GameObject* _owner)
+	PlayerAttack::PlayerAttack(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
+	}
+
+	PlayerAttack::~PlayerAttack()
+	{
+	}
+
+	void PlayerAttack::Initialize()
+	{
 		Animator* animator = GetComponent<Animator>();
 		Transform* tr = GetComponent<Transform>();
-		math::Vector2 pos = _owner->GetComponent<Transform>()->GetPosition();
+		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 		tr->SetPosition(pos);
 		Collider* collider = AddComponent<Collider>();
 
@@ -32,55 +41,66 @@ namespace ex
 		{
 			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
-
 	}
 
-	ObejctAttack::~ObejctAttack()
-	{
-	}
-
-	void ObejctAttack::Initialize()
-	{
-	}
-
-	void ObejctAttack::Update()
+	void PlayerAttack::Update()
 	{
 		// 애니메이션이 끝나면 삭제
 		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
+		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
+
 		tr->SetPosition(pos);
 
 		eState playerState = SceneManager::GetPlayer()->GetState();
 		if (playerState == eState::Attack)
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
+
 		}
 		else
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, false);
+
 		}
 
 		GameObject::Update();
 
-
-
 	}
 
-	void ObejctAttack::Render(HDC _hdc)
+	void PlayerAttack::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
 	}
 
 
-	void ObejctAttack::OnCollisionEnter(Collider* other)
+	void PlayerAttack::OnCollisionEnter(Collider* other)
 	{
+		eState playerState = SceneManager::GetPlayer()->GetState();
+
+		if (playerState == eState::Attack)
+		{
+			Destroy(other->GetOwner());
+		}
+		else
+		{
+
+		}
 	}
 
-	void ObejctAttack::OnCollisionStay(Collider* other)
+	void PlayerAttack::OnCollisionStay(Collider* other)
 	{
+		eState playerState = SceneManager::GetPlayer()->GetState();
+
+		if (playerState == eState::Attack)
+		{
+			Destroy(other->GetOwner());
+		}
+		else
+		{
+
+		}
 	}
 
-	void ObejctAttack::OnCollisionExit(Collider* other)
+	void PlayerAttack::OnCollisionExit(Collider* other)
 	{
 	}
 

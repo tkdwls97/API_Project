@@ -1,6 +1,5 @@
 #pragma once
 #include "exGameObject.h"
-#include "exObejctAttack.h"
 
 
 namespace ex
@@ -60,8 +59,6 @@ namespace ex
 		Transform*		mTransform;
 		Rigidbody*		mRigidbody;
 		Collider*		mCollider;
-		ObejctAttack*	mPlayerLeftAtt;
-		ObejctAttack*	mPlayerRightAtt;
 		eState			mState;	
 		PlayerInfo		mInfo;
 
