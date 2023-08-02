@@ -25,7 +25,7 @@ namespace ex
 	{
 
 		Texture* image = ResourceManager::Load<Texture>(L"Stage2BackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Map\\Stage2.png");
+			, L"..\\Resources\\Maple\\Image\\Map\\Stage2.bmp");
 
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();

@@ -34,12 +34,14 @@ namespace ex
 	class GameObject : public Entity
 	{
 	public:
+
 		enum class eState
 		{
 			Idle,
 			Move,
 			Jump,
 			Down,
+			DownJump,
 			Fall,
 			Rope,
 			Attack,
@@ -49,6 +51,18 @@ namespace ex
 			Death,
 			End,
 		};
+
+		//
+		enum class eObjectState
+		{
+			Active,
+			Pause,
+			Dead,
+			End,
+		};
+
+		friend static __forceinline void Destroy(GameObject* gameObject);
+
 		GameObject();
 		virtual ~GameObject();
 
@@ -88,13 +102,28 @@ namespace ex
 		void SetLayerType(enums::eLayerType _type) { mLayerType = _type; }
 		enums::eLayerType GetLayerType() { return mLayerType; }
 
+		eObjectState GetObjectState() { return mObjectState; }
+		void Pause() { mObjectState = eObjectState::Pause; }
+
+	private:
+		void death() { mObjectState = eObjectState::Dead; }
+
 	private:
 		std::vector<Component*> mComponents;
 		enums::eLayerType		mLayerType;
-
+		eObjectState			mObjectState;
 
 	};
 
+	static __forceinline void Destroy(GameObject* gameObject)
+	{
+		gameObject->death();
+	}
+
+
+
+
+	// Component를 추가 해주는 함수
 	template<typename T>
 	__forceinline T* GameObject::AddComponent()
 	{
@@ -120,6 +149,7 @@ namespace ex
 		return comp;
 	}
 
+	// 추가된 Component가 있다면 가져오는 함수
 	template<typename T>
 	__forceinline T* GameObject::GetComponent()
 	{
@@ -141,5 +171,6 @@ namespace ex
 		// 없다면 nullptr을 리턴
 		return comp;
 	}
+
 }
 

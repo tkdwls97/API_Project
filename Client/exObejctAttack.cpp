@@ -5,6 +5,9 @@
 #include "exTransform.h"
 #include "exCollider.h"
 #include "exTime.h"
+#include "exPlayer.h"
+#include "exSceneManager.h"
+#include "exCollisionManager.h"
 
 namespace ex
 {
@@ -12,12 +15,6 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
-		Texture* Rightimage = ResourceManager::Load<Texture>(L"PlayerRightAttack"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Right\\Bmp\\Player_Right_Attack.bmp");
-
-		Texture* Leftimage = ResourceManager::Load<Texture>(L"PlayerRightAttack"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Player_Left_Attack.bmp");
-
 		Animator* animator = GetComponent<Animator>();
 		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = _owner->GetComponent<Transform>()->GetPosition();
@@ -25,16 +22,17 @@ namespace ex
 		Collider* collider = AddComponent<Collider>();
 
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
-		collider->SetSize(math::Vector2(60.0f, 80.0f));
+		collider->SetSize(math::Vector2(65.0f, 80.0f));
+
 		if (dir == enums::eMoveDir::Right)
 		{
-			collider->SetOffset(math::Vector2(40.0f, 0.0f));
+			collider->SetOffset(math::Vector2(42.0f, 10.0f));
 		}
 		else
 		{
-			collider->SetOffset(math::Vector2(-70.0f, 0.0f));
+			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
-		
+
 	}
 
 	ObejctAttack::~ObejctAttack()
@@ -48,7 +46,24 @@ namespace ex
 	void ObejctAttack::Update()
 	{
 		// 애니메이션이 끝나면 삭제
+		Transform* tr = GetComponent<Transform>();
+		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
+		tr->SetPosition(pos);
+
+		eState playerState = SceneManager::GetPlayer()->GetState();
+		if (playerState == eState::Attack)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
+		}
+		else
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, false);
+		}
+
 		GameObject::Update();
+
+
+
 	}
 
 	void ObejctAttack::Render(HDC _hdc)

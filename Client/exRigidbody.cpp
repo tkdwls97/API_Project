@@ -98,7 +98,6 @@ namespace ex
 
 	void Rigidbody::Render(HDC hdc)
 	{
-
 	}
 
 }

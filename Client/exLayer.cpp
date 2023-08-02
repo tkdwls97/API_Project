@@ -18,6 +18,9 @@ namespace ex
 	{
 		for (GameObject* obj : mGameObjects)
 		{
+			if (obj->GetObjectState() == GameObject::eObjectState::Pause)
+				continue;
+
 			obj->Update();
 		}
 	}
@@ -26,9 +29,28 @@ namespace ex
 	{
 		for (GameObject* obj : mGameObjects)
 		{
+			if (obj->GetObjectState() == GameObject::eObjectState::Pause)
+				continue;
+
 			obj->Render(_hdc);
 		}
+
+		for (std::vector<GameObject*>::iterator iter = mGameObjects.begin()
+			; iter != mGameObjects.end()
+			; )
+		{
+			if ((*iter)->GetObjectState() == GameObject::eObjectState::Dead)
+			{
+				iter = mGameObjects.erase(iter);
+			}
+			else
+			{
+				iter++;
+			}
+		}
 	}
+
+	
 	std::vector<GameObject*>& Layer::GetGameObjects()
 	{
 		return mGameObjects;

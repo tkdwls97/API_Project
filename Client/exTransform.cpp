@@ -19,11 +19,8 @@ void ex::Transform::Initialize()
 
 void ex::Transform::Update()
 {
-
-
 }
 
 void ex::Transform::Render(HDC hdc)
 {
-
 }

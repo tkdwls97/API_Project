@@ -1,6 +1,6 @@
 #pragma once
 #include "exGameObject.h"
-
+#include "exObejctAttack.h"
 
 
 namespace ex
@@ -51,18 +51,21 @@ namespace ex
 		void Skill();
 		void Fall();
 		void Jump();
+		void DownJump();
 		void Hit();
 		void Death();
 
 	private:
-		Animator*	mAnimator;
-		Transform*  mTransform;
-		Rigidbody*  mRigidbody;
-		Collider*   mCollider;
-		eState		mState;	
-		PlayerInfo	mInfo;
+		Animator*		mAnimator;
+		Transform*		mTransform;
+		Rigidbody*		mRigidbody;
+		Collider*		mCollider;
+		ObejctAttack*	mPlayerLeftAtt;
+		ObejctAttack*	mPlayerRightAtt;
+		eState			mState;	
+		PlayerInfo		mInfo;
 
-		bool		mbInvincible;
-		float		mhitDelay;
+		bool			mbInvincible;
+		float			mhitDelay;
 	};
 }

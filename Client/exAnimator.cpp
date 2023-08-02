@@ -85,7 +85,6 @@ namespace ex
 
 		mAnimations.insert(std::make_pair(name, animation));
 
-
 		return animation;
 
 	}

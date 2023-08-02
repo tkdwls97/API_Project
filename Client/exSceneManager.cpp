@@ -52,6 +52,7 @@ namespace ex
 
 		mActiveScene = iter->second;
 
+		// Å¸ÀÌÆ² ¾À End¾ÀÀÌ ¾Æ´Ï¸é ÇÃ·¹ÀÌ¾î¸¦ ¾À¿¡ ³Ö¾îÁÜ
 		if (_name != L"TitleScene" && _name != L"EndScene")
 		{
 			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);

@@ -6,6 +6,7 @@
 namespace ex
 {
 	GameObject::GameObject()
+		: mObjectState(eObjectState::Active)
 	{
 		// GameObject는 기본적으로 위치정보를 사용하기 때문에
 		// Transform을 생성자에서 AddComponent해준다
@@ -49,7 +50,6 @@ namespace ex
 
 	void GameObject::OnCollisionEnter(Collider* _other)
 	{
-
 	}
 
 	void GameObject::OnCollisionStay(Collider* _other)
@@ -59,5 +59,6 @@ namespace ex
 	void GameObject::OnCollisionExit(Collider* _other)
 	{
 	}
+
 
 }
