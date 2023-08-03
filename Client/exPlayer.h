@@ -40,8 +40,6 @@ namespace ex
 		eState GetState() { return mState; }
 		void SetState(eState _state) {  mState = _state; }
 
-		Texture* mFloorTexture;
-
 		void Idle();
 		void Move();
 		void Down();
@@ -50,7 +48,6 @@ namespace ex
 		void Skill();
 		void Fall();
 		void Jump();
-		void DownJump();
 		void Hit();
 		void Death();
 

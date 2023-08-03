@@ -35,13 +35,13 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
 			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
 
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
-		bgsr->SetAffectCamera(true);
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		//bgsr->SetImage(image);
+		//bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		//bgsr->SetAffectCamera(true);
+		////bgsr->SetAlpha(0.2f);
+		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
 
 		// 몬스터 초록버섯
@@ -68,8 +68,7 @@ namespace ex
 		moncol->SetSize(math::Vector2(100.0f, 70.0f));
 		moncol->SetOffset(math::Vector2(4.0f, 4.0f));
 
-		// 플레이어 static으로 SceneManager에서 한개만 생성
-		//Player* player = SceneManager::GetPlayer();
+		
 		// 1층
 		Floor * floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
 
@@ -110,10 +109,10 @@ namespace ex
 
 
 		// 카메라가 백그라운드 밖으로 나가지못하게 설정
-		bg->SetAutoCameraLimit();
+	/*	bg->SetAutoCameraLimit();
 		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);
+		Camera::SetLimitDistance(widthLimit, heightLimit);*/
 	}
 
 	void StageScene::Update()

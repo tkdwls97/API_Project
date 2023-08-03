@@ -42,15 +42,13 @@ namespace ex
 			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
 
-		collider->SetNomalCollor(RGB(255, 0, 255));
-		collider->SetCollisionCollor(RGB(255, 0, 0));
+		// 평타 Collider 색 세팅
+		collider->SetNomalCollor(RGB(255, 255, 0));
 
 	}
 
 	void PlayerAttack::Update()
 	{
-
-
 		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();

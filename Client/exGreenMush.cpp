@@ -11,6 +11,11 @@ namespace ex
 {
 
 	GreenMush::GreenMush()
+		: mAnimator(nullptr)
+		, mTransform(nullptr)
+		, mRigidbody(nullptr)
+		, mCollider(nullptr)
+		, mMonsterState(eMonsterState::Idle)
 	{
 	}
 
@@ -23,21 +28,26 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"GreenMushLeft"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\GreenMush_LEFT.bmp");
 
-		Animator* animator = AddComponent<Animator>();
+		mAnimator = AddComponent<Animator>();
+		
 
-		animator->CreateAnimation(L"GreenMushLeftIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
-			,math::Vector2(60.0f, 60.0f), 1);
-		animator->CreateAnimation(L"GreenMushLeftMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+		mAnimator->CreateAnimation(L"GreenMushLeftIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 1);
+		mAnimator->CreateAnimation(L"GreenMushLeftMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 4);
+		mAnimator->CreateAnimation(L"GreenMushLeftDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
 
 		image = ResourceManager::Load<Texture>(L"GreenMushRight"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\GreenMush_RIGHT.bmp");
-		animator->CreateAnimation(L"GreenMushRightIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+		mAnimator->CreateAnimation(L"GreenMushRightIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 1);
-		animator->CreateAnimation(L"GreenMushRightMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+		mAnimator->CreateAnimation(L"GreenMushRightMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 4);
+		mAnimator->CreateAnimation(L"GreenMushRightDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
 
-		animator->PlayAnimation(L"GreenMushLeftIdle", true);
+		mAnimator->PlayAnimation(L"GreenMushLeftIdle", true);
 
 		GetTransform()->SetMoveDir(enums::eMoveDir::Left);
 	}
@@ -46,17 +56,40 @@ namespace ex
 	{
 		GameObject::Update();
 
-		Transform* tr = GetComponent<Transform>();
-		math::Vector2 pos = tr->GetPosition();
-		Animator* anim = GetComponent<Animator>();
+		mTransform = GetComponent<Transform>();
+		math::Vector2 pos = mTransform->GetPosition();
+
+
+		switch (mMonsterState)
+		{
+		case ex::Monsters::eMonsterState::Idle:
+			Idle();
+			break;
+		case ex::Monsters::eMonsterState::Move:
+			Move();
+			break;
+		case ex::Monsters::eMonsterState::Attack:
+			Attack();
+			break;
+		case ex::Monsters::eMonsterState::Chase:
+			Chase();
+			break;
+		case ex::Monsters::eMonsterState::Hit:
+			Hit();
+			break;
+		case ex::Monsters::eMonsterState::Dead:
+			Dead();
+			break;
+		default:
+			break;
+		}
 
 
 		static float MoveDelay = 0.0f;
-		static float IdleDelay = 0.0f;
 
 		MoveDelay += Time::GetDeltaTime();
 
-		mDirection = tr->GetMoveDir();
+		mDirection = mTransform->GetMoveDir();
 		if (MoveDelay >= 3.0f)
 		{
 			if (mDirection == enums::eMoveDir::Right)
@@ -71,20 +104,8 @@ namespace ex
 		}
 
 
-		if (mDirection == enums::eMoveDir::Left)
-		{
-			tr->SetMoveDir(enums::eMoveDir::Left);
-			anim->PlayAnimation(L"GreenMushLeftMove", true);
-			pos.x -= 50.0f * Time::GetDeltaTime();
-		}
-
-		else if (mDirection == enums::eMoveDir::Right)
-		{
-			tr->SetMoveDir(enums::eMoveDir::Right);
-			anim->PlayAnimation(L"GreenMushRightMove", true);
-			pos.x += 50.0f * Time::GetDeltaTime();
-		}
-		tr->SetPosition(pos);
+	
+		mTransform->SetPosition(pos);
 	}
 
 	void GreenMush::Render(HDC _hdc)
@@ -102,6 +123,30 @@ namespace ex
 	}
 
 	void GreenMush::OnCollisionExit(Collider* other)
+	{
+	}
+
+	void GreenMush::Idle()
+	{
+	}
+
+	void GreenMush::Move()
+	{
+	}
+
+	void GreenMush::Attack()
+	{
+	}
+
+	void GreenMush::Chase()
+	{
+	}
+
+	void GreenMush::Hit()
+	{
+	}
+
+	void GreenMush::Dead()
 	{
 	}
 

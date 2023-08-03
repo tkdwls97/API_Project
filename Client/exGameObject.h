@@ -8,15 +8,6 @@ namespace ex
 {
 	class Collider;
 
-	enum class eActionType
-	{
-		Idle,
-		Walk,
-		Jump,
-		Attack,
-		Rope,
-	};
-
 	// 오브젝트의 상태
 	enum class eObjectState
 	{
@@ -41,7 +32,6 @@ namespace ex
 			Move,
 			Jump,
 			Down,
-			DownJump,
 			Fall,
 			Rope,
 			Attack,

@@ -15,8 +15,8 @@ namespace ex
 		, mbCollisionType(false)
 		, mbRopeCollision(false)
 		, mbIsneedtoCollisonCheck(false)
-		, mNomalCollor(RGB(255, 50, 50))
-	    , mCollisionCollor(RGB(50, 255, 50))
+		, mNomalCollor(RGB(50, 255, 50))
+	    , mCollisionCollor(RGB(255, 50, 50))
 	{
 		mCollisionNumber = mCollisionCount;
 		++mCollisionCount;

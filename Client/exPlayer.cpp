@@ -37,9 +37,9 @@ namespace ex
 	void Player::Initialize()
 	{
 		mAnimator = AddComponent<Animator>();
-		mTransform = GetComponent<Transform>();
 		mRigidbody = AddComponent<Rigidbody>();
 		mCollider = AddComponent<Collider>();
+		mTransform = GetComponent<Transform>();
 
 		// 왼쪽 애니메이션
 		Texture* image = ResourceManager::Load<Texture>(L"PlayerLeftIdle"
@@ -155,9 +155,6 @@ namespace ex
 		case Player::eState::Jump:
 			Jump();
 			break;
-		case Player::eState::DownJump:
-			DownJump();
-			break;
 		case Player::eState::Down:
 			Down();
 			break;
@@ -224,8 +221,6 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			mState = eState::Rope;
-
-			// Portal 이거나 Rope거나
 		}
 		if (Input::GetKeyDown(eKeyCode::Down))
 		{
@@ -243,7 +238,7 @@ namespace ex
 		}
 
 
-		// 점프키
+		// Idle상태일때 점프키 입력
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
 
@@ -622,10 +617,6 @@ namespace ex
 		}
 
 		mRigidbody->SetVelocity(velocity);
-	}
-
-	void Player::DownJump()
-	{
 	}
 
 	void Player::Hit()

@@ -6,6 +6,16 @@ namespace ex
 	class Monsters :public GameObject
 	{
 	public:
+		enum class eMonsterState
+		{
+			Idle,
+			Move,
+			Attack,
+			Chase,
+			Hit,
+			Dead,
+		};
+
 		Monsters();
 		virtual ~Monsters();
 

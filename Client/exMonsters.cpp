@@ -26,6 +26,7 @@ namespace ex
 		GameObject::Render(_hdc);
 	}
 
+
 	void Monsters::OnCollisionEnter(Collider* _other)
 	{
 	}

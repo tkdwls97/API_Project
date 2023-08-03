@@ -46,44 +46,7 @@ namespace ex
 	{
 		GameObject::Update();
 
-		Transform* tr = GetComponent<Transform>();
-		math::Vector2 pos = tr->GetPosition();
-		Animator* anim = GetComponent<Animator>();
 
-		mDirection = tr->GetMoveDir();
-
-		static float MoveDelay = 0.0f;
-		MoveDelay += Time::GetDeltaTime();
-		if (MoveDelay >= 3.0f)
-		{
-			if (mDirection == enums::eMoveDir::Right)
-			{
-				mDirection = enums::eMoveDir::Left;
-			}
-			else
-			{
-				mDirection = enums::eMoveDir::Right;
-			}
-			MoveDelay = 0.0f;
-		}
-
-
-		if (mDirection == enums::eMoveDir::Left)
-		{
-			tr->SetMoveDir(enums::eMoveDir::Left);
-			anim->PlayAnimation(L"CoupleMushLeftMove", true);
-			pos.x -= 50.0f * Time::GetDeltaTime();
-		}
-
-		else if (mDirection == enums::eMoveDir::Right)
-		{
-			tr->SetMoveDir(enums::eMoveDir::Right);
-			anim->PlayAnimation(L"CoupleMushRightMove", true);
-			pos.x += 50.0f * Time::GetDeltaTime();
-		}
-
-
-		tr->SetPosition(pos);
 
 	}
 
