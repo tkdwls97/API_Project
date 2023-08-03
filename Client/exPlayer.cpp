@@ -70,7 +70,7 @@ namespace ex
 		image = ResourceManager::Load<Texture>(L"PlayerLeftAttack"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Player_Left_Attack.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftAttack", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 3, math::Vector2(-23.0f, 0.0f));
+			, math::Vector2(224.0f, 156.0f), 3, math::Vector2(-23.0f, 0.0f), 0.14f);
 
 		// 오른쪽 애니메이션
 		image = ResourceManager::Load<Texture>(L"PlayerRightIdle"
@@ -101,7 +101,7 @@ namespace ex
 		image = ResourceManager::Load<Texture>(L"PlayerRightAttack"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Right\\Bmp\\Player_Right_Attack.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightAttack", image, math::Vector2(672.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(-224.0f, 0.0f), 3);
+			, math::Vector2(-224.0f, 0.0f), 3, math::Vector2(0.f, 0.f), 0.14f);
 
 
 		// 로프 애니메이션
@@ -286,6 +286,7 @@ namespace ex
 			}
 			mState = eState::Hit;
 		}
+
 
 		mRigidbody->SetVelocity(velocity);
 
@@ -782,6 +783,7 @@ namespace ex
 			mCollider->SetCollisionType(true);
 			mState = eState::Hit;
 		}
+
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{

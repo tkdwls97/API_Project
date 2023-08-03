@@ -21,9 +21,9 @@ namespace ex::enums
 	{
 		Background,
 		Floor,
+		Potal,
 		Monster,
 		Player,
-		Potal,
 		Effect,
 		UI,
 		End,

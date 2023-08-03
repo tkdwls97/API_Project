@@ -23,7 +23,8 @@ namespace ex
 
 	void TitleScene::Initialize()
 	{
-		// 템플릿이니까 Texture 타입으로 넣어주고 타이틀 백그라운드 이미지라고 이름을 설정하고
+		// 템플릿이니까 Texture 타입으로 넣어주고 타이틀 백그라운드 이미지라고 이름을 
+		// 설정하고
 		// 경로를 두번째 인자로 주었다.
 		// 로드 함수를 이제 호출한다.
 		Texture* image = ResourceManager::Load<Texture>(L"TitleBackGroundImgae"
