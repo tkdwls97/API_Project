@@ -44,20 +44,20 @@ namespace ex
 	{
 		// 다이나믹 캐스트로 변경해야함
 
-		if (Type == enums::eLayerType::Player && Input::GetKeyDown(eKeyCode::Up))
-		{
-			if (activeScene->GetName() == L"StageScene")
-			{
-				SceneManager::LoadScene(L"StageScene2");
-			}
-		}
-		else if (Type == enums::eLayerType::Player && activeScene->GetName() == L"StageScene2")
-		{
-			if (Input::GetKeyDown(eKeyCode::Up))
-			{
-				SceneManager::LoadScene(L"BossScene");
-			}
-		}
+		//if (Type == enums::eLayerType::Player && Input::GetKeyDown(eKeyCode::Up))
+		//{
+		//	if (activeScene->GetName() == L"StageScene")
+		//	{
+		//		SceneManager::LoadScene(L"StageScene2");
+		//	}
+		//}
+		//else if (Type == enums::eLayerType::Player && activeScene->GetName() == L"StageScene2")
+		//{
+		//	if (Input::GetKeyDown(eKeyCode::Up))
+		//	{
+		//		SceneManager::LoadScene(L"BossScene");
+		//	}
+		//}
 	}
 	void Potal::OnCollisionExit(Collider* _other)
 	{
