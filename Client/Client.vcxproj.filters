@@ -127,6 +127,9 @@
     <Filter Include="Contents\GameObject\03.Effect\00.Attack">
       <UniqueIdentifier>{3b1a4412-d469-42ba-9aa3-13a6ec09e140}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\06.Potal">
+      <UniqueIdentifier>{91054db1-1c17-4547-ab7f-d58bb657d45f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -245,6 +248,9 @@
     </ClCompile>
     <ClCompile Include="exEffectManger.cpp">
       <Filter>Contents\GameObject\03.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="exPotal.cpp">
+      <Filter>Contents\GameObject\06.Potal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +379,9 @@
     </ClInclude>
     <ClInclude Include="exEffectManger.h">
       <Filter>Contents\GameObject\03.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="exPotal.h">
+      <Filter>Contents\GameObject\06.Potal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

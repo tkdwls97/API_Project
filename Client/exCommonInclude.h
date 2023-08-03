@@ -23,6 +23,7 @@ namespace ex::enums
 		Floor,
 		Monster,
 		Player,
+		Potal,
 		Effect,
 		UI,
 		End,

@@ -17,6 +17,7 @@
 #include "exCupleMush.h"
 #include "exFloor.h"
 #include "exPapulatus.h"
+#include "exPotal.h"
 
 namespace ex
 {
@@ -45,35 +46,35 @@ namespace ex
 
 
 		// 몬스터 초록버섯
-		GreenMush * greenMush = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		GreenMush* greenMush = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
 		greenMush->Initialize();
 
-		Transform * grMushtr = greenMush->GetComponent<Transform>();
-		Animator * grMushat = greenMush->GetComponent<Animator>();
+		Transform* grMushtr = greenMush->GetComponent<Transform>();
+		Animator* grMushat = greenMush->GetComponent<Animator>();
 		grMushtr->SetPosition(math::Vector2(640.0f, 360.0f));
 		grMushat->SetAffectedCamera(true);
-		Collider * moncol = greenMush->AddComponent<Collider>();
+		Collider* moncol = greenMush->AddComponent<Collider>();
 		moncol->SetSize(math::Vector2(55.0f, 70.0f));
-		moncol->SetOffset(math::Vector2(5.0f, 4.0f));
+		moncol->SetOffset(math::Vector2(5.0f, 4.0f)); 
 
 		// 몬스터 커플 버섯
-		CupleMush * cupleMush = object::Instantiate<CupleMush>(enums::eLayerType::Monster);
+		CupleMush* cupleMush = object::Instantiate<CupleMush>(enums::eLayerType::Monster);
 		cupleMush->Initialize();
 
-		Transform * cupleMushtr = cupleMush->GetComponent<Transform>();
-		Animator * cupleMushat = cupleMush->GetComponent<Animator>();
+		Transform* cupleMushtr = cupleMush->GetComponent<Transform>();
+		Animator* cupleMushat = cupleMush->GetComponent<Animator>();
 		cupleMushat->SetAffectedCamera(true);
 		cupleMushtr->SetPosition(math::Vector2(800.0f, 360.0f));
 		moncol = cupleMush->AddComponent<Collider>();
 		moncol->SetSize(math::Vector2(100.0f, 70.0f));
 		moncol->SetOffset(math::Vector2(4.0f, 4.0f));
 
-		
-		// 1층
-		Floor * floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
 
-		Collider * col = floor->GetComponent<Collider>();
-		Transform * tr = floor->GetComponent<Transform>();
+		// 1층
+		Floor* floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
+
+		Collider* col = floor->GetComponent<Collider>();
+		Transform* tr = floor->GetComponent<Transform>();
 		col = floor->AddComponent<Collider>();
 		col->SetSize(math::Vector2(2000.0f, 50.0f));
 		tr = floor->GetComponent<Transform>();
@@ -107,12 +108,21 @@ namespace ex
 		tr = floor->GetComponent<Transform>();
 		tr->SetPosition(math::Vector2(680.0f, -75.0f));
 
+		// 포탈
+		Potal* potal = object::Instantiate<Potal>(enums::eLayerType::Potal);
+		potal->Initialize();
+
+		Transform* potalTr = potal->GetComponent<Transform>();
+		Animator* potalAt = potal->GetComponent<Animator>();
+		Collider* potalCol = potal->AddComponent<Collider>();
+		potalAt->SetScale(math::Vector2(0.8f, 0.8f));
+		potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
 
 		// 카메라가 백그라운드 밖으로 나가지못하게 설정
-	/*	bg->SetAutoCameraLimit();
-		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);*/
+		//bg->SetAutoCameraLimit();
+		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 	}
 
 	void StageScene::Update()
