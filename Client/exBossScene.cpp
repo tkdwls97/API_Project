@@ -27,7 +27,7 @@ namespace ex
 	void BossScene::Initialize()
 	{
 		Texture* image = ResourceManager::Load<Texture>(L"BossBackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
+			, L"..\\Resources\\Maple\\Image\\Map\\BossStage2.bmp");
 
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();

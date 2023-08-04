@@ -161,8 +161,8 @@ namespace ex
 
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
-		playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
-		//playerTF->SetPosition(math::Vector2(640.0f, 500.0f));
+		//playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
+		playerTF->SetPosition(math::Vector2(640.0f, 500.0f));
 		Animator* playerAt = player->GetComponent<Animator>();
 
 		// 카메라의 영향을 true || false

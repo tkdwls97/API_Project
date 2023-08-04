@@ -109,9 +109,6 @@
     <Filter Include="Contents\Scene\02.StageScene">
       <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\03.Stage2Scene">
-      <UniqueIdentifier>{941c8e49-64ab-487f-9113-b20653e10eb2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Scene\04.BossScene">
       <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
     </Filter>
@@ -129,6 +126,15 @@
     </Filter>
     <Filter Include="Contents\GameObject\06.Potal">
       <UniqueIdentifier>{91054db1-1c17-4547-ab7f-d58bb657d45f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\07.Wall">
+      <UniqueIdentifier>{2686ca28-01e5-4909-8cf7-aeaaa197baf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\08.Rope">
+      <UniqueIdentifier>{6cae7a5a-935a-4167-8460-4a0960a40df4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\03.MushMomScene">
+      <UniqueIdentifier>{941c8e49-64ab-487f-9113-b20653e10eb2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -238,7 +244,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClCompile>
     <ClCompile Include="exStageScene2.cpp">
-      <Filter>Contents\Scene\03.Stage2Scene</Filter>
+      <Filter>Contents\Scene\03.MushMomScene</Filter>
     </ClCompile>
     <ClCompile Include="exBossScene.cpp">
       <Filter>Contents\Scene\04.BossScene</Filter>
@@ -249,8 +255,14 @@
     <ClCompile Include="exEffectManger.cpp">
       <Filter>Contents\GameObject\03.Effect</Filter>
     </ClCompile>
-    <ClCompile Include="exPotal.cpp">
+    <ClCompile Include="exPortal.cpp">
       <Filter>Contents\GameObject\06.Potal</Filter>
+    </ClCompile>
+    <ClCompile Include="exWall.cpp">
+      <Filter>Contents\GameObject\07.Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="exRope.cpp">
+      <Filter>Contents\GameObject\08.Rope</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,7 +381,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClInclude>
     <ClInclude Include="exStageScene2.h">
-      <Filter>Contents\Scene\03.Stage2Scene</Filter>
+      <Filter>Contents\Scene\03.MushMomScene</Filter>
     </ClInclude>
     <ClInclude Include="exBossScene.h">
       <Filter>Contents\Scene\04.BossScene</Filter>
@@ -380,8 +392,14 @@
     <ClInclude Include="exEffectManger.h">
       <Filter>Contents\GameObject\03.Effect</Filter>
     </ClInclude>
-    <ClInclude Include="exPotal.h">
+    <ClInclude Include="exPortal.h">
       <Filter>Contents\GameObject\06.Potal</Filter>
+    </ClInclude>
+    <ClInclude Include="exWall.h">
+      <Filter>Contents\GameObject\07.Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="exRope.h">
+      <Filter>Contents\GameObject\08.Rope</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
