@@ -1,14 +1,13 @@
 #pragma once
 #include "exScene.h"
 
-
 namespace ex
 {
-	class VillageScene: public Scene
+	class StageScene3 : public Scene
 	{
 	public:
-		VillageScene();
-		virtual ~VillageScene();
+		StageScene3();
+		virtual ~StageScene3();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -20,4 +19,3 @@ namespace ex
 	private:
 	};
 }
-

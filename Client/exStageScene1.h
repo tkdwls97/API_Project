@@ -4,11 +4,11 @@
 
 namespace ex
 {
-	class MushMomScene : public Scene
+	class StageScene : public Scene
 	{
 	public:
-		MushMomScene();
-		virtual ~MushMomScene();
+		StageScene();
+		virtual ~StageScene();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -16,8 +16,6 @@ namespace ex
 
 		virtual void SceneIN() override;
 		virtual void SceneOut() override;
-
 	private:
 	};
 }
-

@@ -51,9 +51,17 @@ namespace ex
 		{
 			if (ActiveSceneName == L"StageScene")
 			{
-				SceneManager::LoadScene(L"StageScene2");
+				SceneManager::LoadScene(L"MushMomScene");
 			}
-			else if (ActiveSceneName == L"StageScene2")
+			else if (ActiveSceneName == L"MushMomScene")
+			{
+				SceneManager::LoadScene(L"Stage2Scene");
+			}
+			else if (ActiveSceneName == L"Stage2Scene")
+			{
+				SceneManager::LoadScene(L"Stage3Scene");
+			}
+			else if (ActiveSceneName == L"Stage3Scene")
 			{
 				SceneManager::LoadScene(L"BossScene");
 			}

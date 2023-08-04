@@ -4,7 +4,8 @@
 #include "exInput.h"
 #include "exBossScene.h"
 #include "exStageScene2.h"
-#include "exVillageScene.h"
+#include "exStageScene3.h"
+#include "exMushMomScene.h"
 #include "exPlayer.h"
 #include "exObject.h"
 #include "exPlayerAttack.h"
@@ -20,9 +21,10 @@ namespace ex
 	void SceneManager::Initialize()
 	{
 		CreateScene<TitleScene>(L"TitleScene");
-		CreateScene<VillageScene>(L"VillageScene");
 		CreateScene<StageScene>(L"StageScene");
-		CreateScene<StageScene2>(L"StageScene2");
+		CreateScene<MushMomScene>(L"MushMomScene");
+		CreateScene<StageScene2>(L"Stage2Scene");
+		CreateScene<StageScene3>(L"Stage3Scene");
 		CreateScene<BossScene>(L"BossScene");
 
 		for (auto iter : mScenes)

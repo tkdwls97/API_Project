@@ -221,9 +221,9 @@ namespace ex
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
 			mState = eState::Move;
 		}
-		if (Input::GetKeyDown(eKeyCode::Up) && mbRopeState) // 로프와 충돌 했다면
+		if (Input::GetKeyDown(eKeyCode::Up) /*&& mbRopeState*/) // 로프와 충돌 했다면
 		{
-			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			pos.y -= 300.0f;
 			mState = eState::Rope;
 		}
@@ -499,12 +499,12 @@ namespace ex
 	
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
-			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			pos.y -= 200.0f * Time::GetDeltaTime();
 		}
 		else if (Input::GetKeyPressed(eKeyCode::Down) || Input::GetKeyDown(eKeyCode::Down))
 		{
-			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			pos.y += 200.0f * Time::GetDeltaTime();
 		}
 
@@ -514,7 +514,7 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
 			mRigidbody->SetGravity(0);
 		}
-		mRigidbody->SetGravity(math::Vector2(0.0f, 0.0f));
+		//mRigidbody->SetGravity(math::Vector2(0.0f, 0.0f));
 		mTransform->SetPosition(pos);
 		//mRigidbody->SetVelocity(velocity);
 	}

@@ -145,8 +145,9 @@
     <ClCompile Include="exPortal.cpp" />
     <ClCompile Include="exRigidbody.cpp" />
     <ClCompile Include="exRope.cpp" />
+    <ClCompile Include="exStageScene3.cpp" />
     <ClCompile Include="exUI.cpp" />
-    <ClCompile Include="exVillageScene.cpp" />
+    <ClCompile Include="exMushMomScene.cpp" />
     <ClCompile Include="exEntity.cpp" />
     <ClCompile Include="exAnimation.cpp" />
     <ClCompile Include="exAnimator.cpp" />
@@ -192,8 +193,9 @@
     <ClInclude Include="exPortal.h" />
     <ClInclude Include="exRigidbody.h" />
     <ClInclude Include="exRope.h" />
+    <ClInclude Include="exStageScene3.h" />
     <ClInclude Include="exUI.h" />
-    <ClInclude Include="exVillageScene.h" />
+    <ClInclude Include="exMushMomScene.h" />
     <ClInclude Include="exAnimation.h" />
     <ClInclude Include="exAnimator.h" />
     <ClInclude Include="exBackGround.h" />

@@ -33,19 +33,7 @@ namespace ex
 		col = floor1->AddComponent<Collider>();
 		col->SetSize(math::Vector2(3000.0f, 50.0f));
 		tr = floor1->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 730.0f));
-
-
-		// 바닥 2층
-		//Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
-
-		//Collider* col = floor2->GetComponent<Collider>();
-		//Transform* tr = floor2->GetComponent<Transform>();
-		//col = floor2->AddComponent<Collider>();
-		//col->SetSize(math::Vector2(2000.0f, 50.0f));
-		//tr = floor2->GetComponent<Transform>();
-		//tr->SetPosition(math::Vector2(680.0f, 685.0f));
-
+		tr->SetPosition(math::Vector2(680.0f, 566.0f));
 
 		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
 		portal->Initialize();
@@ -55,7 +43,7 @@ namespace ex
 		Collider* portalCol = portal->AddComponent<Collider>();
 		portalAt->SetScale(math::Vector2(0.8f, 0.8f));
 		//potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
-		portalTr->SetPosition(math::Vector2(640.0f, 650.0f));
+		portalTr->SetPosition(math::Vector2(640.0f, 500.0f));
 		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
 
 	}
@@ -72,12 +60,12 @@ namespace ex
 	void StageScene2::SceneIN()
 	{
 		Texture* image = ResourceManager::Load<Texture>(L"Stage2BackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
+			, L"..\\Resources\\Maple\\Image\\Map\\Stage2.bmp");
 
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		bgsr->SetScale(math::Vector2(1.0f, 1.1f));
 		bgsr->SetAffectCamera(true);
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
@@ -92,7 +80,7 @@ namespace ex
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
 		//playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
-		playerTF->SetPosition(math::Vector2(400.0f, 600.0f));
+		playerTF->SetPosition(math::Vector2(400.0f, 500.0f));
 		// 플레이어가 중력을 받기위해 
 		player->GetComponent<Rigidbody>()->SetGround(false);
 
