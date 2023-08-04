@@ -39,7 +39,6 @@ namespace ex
 
 	void BackGround::SetAutoCameraLimit()
 	{
-		
 		SpriteRenderer* bgsr = this->GetComponent<SpriteRenderer>();
 
 		if (nullptr == bgsr)

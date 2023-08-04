@@ -9,6 +9,7 @@
 #include "exRigidbody.h"
 #include "exCollider.h"
 #include "exCollisionManager.h"
+#include "exPortal.h"
 
 
 namespace ex
@@ -21,6 +22,7 @@ namespace ex
 		, mState(eState::End)
 		, mhitDelay(0.0f)
 		, mbInvincible(false)
+		, mPortalState(false)
 	{
 		mInfo.mHp = 50000;
 		mInfo.mMP = 30000;
@@ -494,7 +496,7 @@ namespace ex
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-			pos.y -= 200.0f * Time::GetDeltaTime();
+			pos.y -= 800.0f * Time::GetDeltaTime();
 		}
 
 
@@ -787,10 +789,22 @@ namespace ex
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
+	
+		enums::eLayerType Type = other->GetOwner()->GetLayerType();
+		if (Type == enums::eLayerType::Potal)
+		{
+			mPortalState = true;
+		}
 	}
 	void Player::OnCollisionExit(Collider* other)
 	{
 		mCollider->SetCollisionType(false);
+
+		Portal* potal = dynamic_cast<Portal*>(other->GetOwner());
+		if (potal != nullptr)
+		{
+			mPortalState = false;
+		}
 	}
 
 }

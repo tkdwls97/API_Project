@@ -30,7 +30,6 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"TitleBackGroundImgae"
 			, L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
 
-
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
@@ -39,10 +38,7 @@ namespace ex
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
-		bg->SetAutoCameraLimit();
-		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		//Camera::SetLimitDistance(widthLimit, heightLimit);
+		
 	}
 
 	void TitleScene::Update()
@@ -51,24 +47,6 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::Q))
 		{
 			SceneManager::LoadScene(L"StageScene");
-		}
-
-		if (Input::GetKeyDown(eKeyCode::W))
-		{
-			SceneManager::LoadScene(L"StageScene2");
-		}
-		
-		if (Input::GetKeyDown(eKeyCode::E))
-		{
-			SceneManager::LoadScene(L"BossScene");
-		}
-		if (Input::GetKeyDown(eKeyCode::R))
-		{
-			SceneManager::LoadScene(L"VillageScene");
-		}
-		if (Input::GetKeyDown(eKeyCode::T))
-		{
-			SceneManager::LoadScene(L"TitleScene");
 		}
 	}
 

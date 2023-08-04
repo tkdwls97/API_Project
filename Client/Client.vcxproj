@@ -122,6 +122,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,7 +142,7 @@
     <ClCompile Include="exGreenMush.cpp" />
     <ClCompile Include="exMonsters.cpp" />
     <ClCompile Include="exPlayerAttack.cpp" />
-    <ClCompile Include="exPotal.cpp" />
+    <ClCompile Include="exPortal.cpp" />
     <ClCompile Include="exRigidbody.cpp" />
     <ClCompile Include="exUI.cpp" />
     <ClCompile Include="exVillageScene.cpp" />
@@ -186,7 +187,7 @@
     <ClInclude Include="exGreenMush.h" />
     <ClInclude Include="exMonsters.h" />
     <ClInclude Include="exPlayerAttack.h" />
-    <ClInclude Include="exPotal.h" />
+    <ClInclude Include="exPortal.h" />
     <ClInclude Include="exRigidbody.h" />
     <ClInclude Include="exUI.h" />
     <ClInclude Include="exVillageScene.h" />

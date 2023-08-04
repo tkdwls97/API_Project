@@ -38,7 +38,9 @@ namespace ex
 		virtual void OnCollisionExit(Collider* other) override;
 
 		eState GetState() { return mState; }
-		void SetState(eState _state) {  mState = _state; }
+		void SetState(eState _state) { mState = _state; }
+
+		bool GetPotalState() { return mPortalState; }
 
 		void Idle();
 		void Move();
@@ -48,17 +50,19 @@ namespace ex
 		void Skill();
 		void Fall();
 		void Jump();
+		void DoubleJump();
 		void Hit();
 		void Death();
 
 	private:
-		Animator*		mAnimator;
-		Transform*		mTransform;
-		Rigidbody*		mRigidbody;
-		Collider*		mCollider;
-		eState			mState;	
+		Animator* mAnimator;
+		Transform* mTransform;
+		Rigidbody* mRigidbody;
+		Collider* mCollider;
+		eState			mState;
 		PlayerInfo		mInfo;
 
+		bool			mPortalState;
 		bool			mbInvincible;
 		float			mhitDelay;
 	};

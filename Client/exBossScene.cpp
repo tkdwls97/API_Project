@@ -47,28 +47,6 @@ namespace ex
 	void BossScene::Update()
 	{
 		Scene::Update();
-
-		if (Input::GetKeyDown(eKeyCode::Q))
-		{
-			SceneManager::LoadScene(L"StageScene");
-		}
-		if (Input::GetKeyDown(eKeyCode::W))
-		{
-			SceneManager::LoadScene(L"StageScene2");
-		}
-
-		if (Input::GetKeyDown(eKeyCode::E))
-		{
-			SceneManager::LoadScene(L"BossScene");
-		}
-		if (Input::GetKeyDown(eKeyCode::R))
-		{
-			SceneManager::LoadScene(L"VillageScene");
-		}
-		if (Input::GetKeyDown(eKeyCode::T))
-		{
-			SceneManager::LoadScene(L"TitleScene");
-		}
 	}
 
 	void BossScene::Render(HDC _hdc)

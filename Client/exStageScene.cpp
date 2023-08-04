@@ -17,7 +17,7 @@
 #include "exCupleMush.h"
 #include "exFloor.h"
 #include "exPapulatus.h"
-#include "exPotal.h"
+#include "exPortal.h"
 
 namespace ex
 {
@@ -32,19 +32,6 @@ namespace ex
 
 	void StageScene::Initialize()
 	{
-		// 백그라운드
-		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
-
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
-		bgsr->SetAffectCamera(true);
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
-
-
 		// 몬스터 초록버섯
 		GreenMush* greenMush = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
 		greenMush->Initialize();
@@ -109,50 +96,22 @@ namespace ex
 		tr->SetPosition(math::Vector2(680.0f, -75.0f));
 
 		// 포탈
-		Potal* potal = object::Instantiate<Potal>(enums::eLayerType::Potal);
-		potal->Initialize();
+		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
+		portal->Initialize();
 
-		Transform* potalTr = potal->GetComponent<Transform>();
-		Animator* potalAt = potal->GetComponent<Animator>();
-		Collider* potalCol = potal->AddComponent<Collider>();
-		potalAt->SetScale(math::Vector2(0.8f, 0.8f));
+		Transform* portalTr = portal->GetComponent<Transform>();
+		Animator* portalAt = portal->GetComponent<Animator>();
+		Collider* portalCol = portal->AddComponent<Collider>();
+		portalTr->SetPosition(math::Vector2(800.0f, 600.0f));
 		//potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
-		potalTr->SetPosition(math::Vector2(640.0f, 600.0f));
-		potalCol->SetSize(math::Vector2(45.0f, 80.0f));
-
-		// 카메라가 백그라운드 밖으로 나가지못하게 설정
-		bg->SetAutoCameraLimit();
-		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);
+		portalAt->SetScale(math::Vector2(0.8f, 0.8f));
+		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
 	}
 
 	void StageScene::Update()
 	{
 		Scene::Update();
 
-		if (Input::GetKeyDown(eKeyCode::Q))
-		{
-			SceneManager::LoadScene(L"StageScene");
-		}
-
-		if (Input::GetKeyDown(eKeyCode::W))
-		{
-			SceneManager::LoadScene(L"StageScene2");
-		}
-
-		if (Input::GetKeyDown(eKeyCode::E))
-		{
-			SceneManager::LoadScene(L"BossScene");
-		}
-		if (Input::GetKeyDown(eKeyCode::R))
-		{
-			SceneManager::LoadScene(L"VillageScene");
-		}
-		if (Input::GetKeyDown(eKeyCode::T))
-		{
-			SceneManager::LoadScene(L"TitleScene");
-		}
 	}
 
 	void StageScene::Render(HDC _hdc)
@@ -161,21 +120,36 @@ namespace ex
 	}
 	void StageScene::SceneIN()
 	{
+		// 백그라운드
+		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
+			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
+
+		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetImage(image);
+		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		bgsr->SetAffectCamera(true);
+		//bgsr->SetAlpha(0.2f);
+		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+
+		//카메라가 백그라운드 밖으로 나가지못하게 설정
+		bg->SetAutoCameraLimit();
+		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		Camera::SetLimitDistance(widthLimit, heightLimit);
+
 
 		// 플레이어 static으로 SceneManager에서 한개만 생성
 		Player* player = SceneManager::GetPlayer();
 
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
-		//playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
-		playerTF->SetPosition(math::Vector2(640.0f, 500.0f));
+		playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
+		//playerTF->SetPosition(math::Vector2(640.0f, 500.0f));
 		Animator* playerAt = player->GetComponent<Animator>();
 
 		// 카메라의 영향을 true || false
 		playerAt->SetAffectedCamera(true);
-		//Collider* playerCol = player->GetComponent<Collider>();
-		//playerCol->SetSize(math::Vector2(40.0f, 55.0f));
-		//playerCol->SetOffset(math::Vector2(5.0f, 4.0f));
 
 		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
 		Camera::SetTarget(player);
