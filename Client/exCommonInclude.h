@@ -21,6 +21,8 @@ namespace ex::enums
 	{
 		Background,
 		Floor,
+		Wall,
+		Rope,
 		Potal,
 		Monster,
 		Player,

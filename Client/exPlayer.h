@@ -40,7 +40,12 @@ namespace ex
 		eState GetState() { return mState; }
 		void SetState(eState _state) { mState = _state; }
 
-		bool GetPotalState() { return mPortalState; }
+		bool IsPotalState() { return mbPortalState; }
+		void SetPotalState(bool _state) { mbPortalState = _state; }
+
+		bool IsRopeState() { return mbRopeState ; }
+		void SetRopeState(bool _state) { mbRopeState = _state; }
+
 
 		void Idle();
 		void Move();
@@ -50,7 +55,7 @@ namespace ex
 		void Skill();
 		void Fall();
 		void Jump();
-		void DoubleJump();
+		//void DoubleJump();
 		void Hit();
 		void Death();
 
@@ -62,7 +67,8 @@ namespace ex
 		eState			mState;
 		PlayerInfo		mInfo;
 
-		bool			mPortalState;
+		bool			mbPortalState;
+		bool			mbRopeState;
 		bool			mbInvincible;
 		float			mhitDelay;
 	};

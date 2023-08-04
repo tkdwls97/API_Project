@@ -144,6 +144,7 @@
     <ClCompile Include="exPlayerAttack.cpp" />
     <ClCompile Include="exPortal.cpp" />
     <ClCompile Include="exRigidbody.cpp" />
+    <ClCompile Include="exRope.cpp" />
     <ClCompile Include="exUI.cpp" />
     <ClCompile Include="exVillageScene.cpp" />
     <ClCompile Include="exEntity.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="exInput.cpp" />
     <ClCompile Include="exLayer.cpp" />
     <ClCompile Include="exPapulatus.cpp" />
+    <ClCompile Include="exWall.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="exMath.cpp" />
     <ClCompile Include="exPlayer.cpp" />
@@ -189,6 +191,7 @@
     <ClInclude Include="exPlayerAttack.h" />
     <ClInclude Include="exPortal.h" />
     <ClInclude Include="exRigidbody.h" />
+    <ClInclude Include="exRope.h" />
     <ClInclude Include="exUI.h" />
     <ClInclude Include="exVillageScene.h" />
     <ClInclude Include="exAnimation.h" />
@@ -207,6 +210,7 @@
     <ClInclude Include="exComponent.h" />
     <ClInclude Include="exEntity.h" />
     <ClInclude Include="exPapulatus.h" />
+    <ClInclude Include="exWall.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="exGameObject.h" />
     <ClInclude Include="exInput.h" />

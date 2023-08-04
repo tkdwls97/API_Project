@@ -45,7 +45,7 @@ namespace ex
 	}
 	void Portal::OnCollisionStay(Collider* _other)
 	{
-		bool portalState = SceneManager::GetPlayer()->GetPotalState();
+		bool portalState = SceneManager::GetPlayer()->IsPotalState();
 		std::wstring ActiveSceneName = SceneManager::GetActiveScene()->GetName();
 		if (portalState && Input::GetKeyDown(eKeyCode::Up))
 		{

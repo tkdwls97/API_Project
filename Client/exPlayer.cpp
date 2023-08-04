@@ -22,7 +22,8 @@ namespace ex
 		, mState(eState::End)
 		, mhitDelay(0.0f)
 		, mbInvincible(false)
-		, mPortalState(false)
+		, mbPortalState(false)
+		, mbRopeState(false)
 	{
 		mInfo.mHp = 50000;
 		mInfo.mMP = 30000;
@@ -195,6 +196,7 @@ namespace ex
 	{
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
+		math::Vector2 pos = mTransform->GetPosition();
 
 		// 좌우 Idle 상태
 		if (playerDir == enums::eMoveDir::Left)
@@ -219,9 +221,10 @@ namespace ex
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
 			mState = eState::Move;
 		}
-		if (Input::GetKeyDown(eKeyCode::Up))
+		if (Input::GetKeyDown(eKeyCode::Up) && mbRopeState) // 로프와 충돌 했다면
 		{
-			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+			pos.y -= 300.0f;
 			mState = eState::Rope;
 		}
 		if (Input::GetKeyDown(eKeyCode::Down))
@@ -237,6 +240,15 @@ namespace ex
 				mState = eState::Down;
 			}
 
+			if (mbRopeState)
+			{
+				mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+				mState = eState::Rope;
+				pos.y += 300.0f;
+			}
+
+			mTransform->SetPosition(pos);
+			mRigidbody->SetVelocity(velocity);
 		}
 
 
@@ -457,14 +469,6 @@ namespace ex
 
 		}
 
-		////if(만약 로프에 충돌한다면)
-		//if (Input::GetKeyDown(eKeyCode::Down))
-		//{
-		//	mTransform->SetMoveDir(enums::eMoveDir::Down);
-		//	mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-		//	mState = eState::Rope;
-		//}
-
 
 		// 밑에 키 Up상태면 다시 Idle상태로 돌아오게 만듬
 		if (Input::GetKeyUp(eKeyCode::Down))
@@ -491,37 +495,28 @@ namespace ex
 	{
 		math::Vector2 pos = mTransform->GetPosition();
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
-
-		//if (만약 로프에 충돌한다면?)
+		math::Vector2 velocity = mRigidbody->GetVelocity();
+	
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
-			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-			pos.y -= 800.0f * Time::GetDeltaTime();
+			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+			pos.y -= 200.0f * Time::GetDeltaTime();
 		}
-
-
-		if (Input::GetKeyPressed(eKeyCode::Down) || Input::GetKeyDown(eKeyCode::Down))
+		else if (Input::GetKeyPressed(eKeyCode::Down) || Input::GetKeyDown(eKeyCode::Down))
 		{
-			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
 			pos.y += 200.0f * Time::GetDeltaTime();
 		}
 
 
-		// 윗 방향키 때면 다시 Idle상태로 전환
-		if (Input::GetKeyUp(eKeyCode::Up))
+		if (Input::GetKeyUp(eKeyCode::Up) || Input::GetKeyUp(eKeyCode::Down))
 		{
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
-				mState = eState::Idle;
-			}
-			else
-			{
-				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
-				mState = eState::Idle;
-			}
+			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+			mRigidbody->SetGravity(0);
 		}
+		mRigidbody->SetGravity(math::Vector2(0.0f, 0.0f));
 		mTransform->SetPosition(pos);
+		//mRigidbody->SetVelocity(velocity);
 	}
 
 	void Player::Attack()
@@ -789,11 +784,11 @@ namespace ex
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
-	
+
 		enums::eLayerType Type = other->GetOwner()->GetLayerType();
 		if (Type == enums::eLayerType::Potal)
 		{
-			mPortalState = true;
+			mbPortalState = true;
 		}
 	}
 	void Player::OnCollisionExit(Collider* other)
@@ -803,7 +798,7 @@ namespace ex
 		Portal* potal = dynamic_cast<Portal*>(other->GetOwner());
 		if (potal != nullptr)
 		{
-			mPortalState = false;
+			mbPortalState = false;
 		}
 	}
 

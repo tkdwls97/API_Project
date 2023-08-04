@@ -2,6 +2,8 @@
 #include "exTime.h"
 #include "exGameObject.h"
 #include "exTransform.h"
+#include "exSceneManager.h"
+#include "exPlayer.h"
 
 namespace ex
 {
@@ -27,6 +29,8 @@ namespace ex
 
 	void Rigidbody::Update()
 	{
+
+		Player* player = SceneManager::GetPlayer();
 		//이동
 		// F = M x A
 		// A = F / M

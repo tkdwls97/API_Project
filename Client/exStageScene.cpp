@@ -18,6 +18,8 @@
 #include "exFloor.h"
 #include "exPapulatus.h"
 #include "exPortal.h"
+#include "exWall.h"
+#include "exRope.h"
 
 namespace ex
 {
@@ -95,6 +97,21 @@ namespace ex
 		tr = floor->GetComponent<Transform>();
 		tr->SetPosition(math::Vector2(680.0f, -75.0f));
 
+		// ¿ÞÂÊ º®
+		Wall* wall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		col = wall->AddComponent<Collider>();
+		col->SetSize(math::Vector2(10.0f, 1500.0f));
+		tr = wall->GetComponent<Transform>();
+		tr->SetPosition(math::Vector2(-237.0f, 360.0f));
+
+		// 1Ãþ -> 2Ãþ ·ÎÇÁ
+		Rope* rope = object::Instantiate<Rope>(enums::eLayerType::Rope);
+		rope->Initialize();
+		col = rope->GetComponent<Collider>();
+		col->SetSize(math::Vector2(1.0f, 194.0f));
+		tr = rope->GetComponent<Transform>();
+		tr->SetPosition(math::Vector2(393.0f, 737.0f));
+
 		// Æ÷Å»
 		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
 		portal->Initialize();
@@ -156,9 +173,11 @@ namespace ex
 
 		// ¾À¿¡ µé¾î°¥¶§ Ãæµ¹Ã¼Å© ¼¼ÆÃ
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
-		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Wall, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
 	}
 
 	void StageScene::SceneOut()

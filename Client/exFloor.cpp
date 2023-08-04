@@ -48,7 +48,6 @@ namespace ex
 		math::Vector2 velocityY = rb->GetVelocity();
 
 		rb->SetGround(true);
-		rb->SetVelocity(-velocityY);
 
 	}
 
