@@ -5,11 +5,13 @@
 #include "exResourceManager.h"
 #include "exAnimator.h"
 #include "exTexture.h"
-
+#include "exCollider.h"
+#include "exPlayerAttack.h"
+#include "exPlayer.h"
+#include "exSceneManager.h"
 
 namespace ex
 {
-
 	GreenMush::GreenMush()
 		: mAnimator(nullptr)
 		, mTransform(nullptr)
@@ -28,13 +30,15 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"GreenMushLeft"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\GreenMush_LEFT.bmp");
 
+		Transform* tr = GetComponent<Transform>();
 		mAnimator = AddComponent<Animator>();
-		
 
 		mAnimator->CreateAnimation(L"GreenMushLeftIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 1);
 		mAnimator->CreateAnimation(L"GreenMushLeftMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
+		mAnimator->CreateAnimation(L"GreenMushLeftHit", image, math::Vector2(0.0f, 120.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 1);
 		mAnimator->CreateAnimation(L"GreenMushLeftDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
 
@@ -44,12 +48,14 @@ namespace ex
 			, math::Vector2(60.0f, 60.0f), 1);
 		mAnimator->CreateAnimation(L"GreenMushRightMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
+		mAnimator->CreateAnimation(L"GreenMushRightHit", image, math::Vector2(0.0f, 120.0f), math::Vector2(60.0f, 60.0f)
+			, math::Vector2(60.0f, 60.0f), 1);
 		mAnimator->CreateAnimation(L"GreenMushRightDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
 
 		mAnimator->PlayAnimation(L"GreenMushLeftIdle", true);
 
-		GetTransform()->SetMoveDir(enums::eMoveDir::Left);
+		tr->SetMoveDir(enums::eMoveDir::Left);
 	}
 
 	void GreenMush::Update()
@@ -102,9 +108,6 @@ namespace ex
 			}
 			MoveDelay = 0.0f;
 		}
-
-
-	
 		mTransform->SetPosition(pos);
 	}
 
@@ -120,6 +123,28 @@ namespace ex
 
 	void GreenMush::OnCollisionStay(Collider* other)
 	{
+		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(other->GetOwner());
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+		if (playerAtt != nullptr)
+		{
+			std::set<GameObject*>* attList = playerAtt->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+				if (playerDir == enums::eMoveDir::Left)
+				{
+					mAnimator->PlayAnimation(L"GreenMushRightDead", false);
+				}
+				else
+				{
+					mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
+
+				}
+			}
+		}
 	}
 
 	void GreenMush::OnCollisionExit(Collider* other)
@@ -144,6 +169,11 @@ namespace ex
 
 	void GreenMush::Hit()
 	{
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			Destroy(this);
+		}
 	}
 
 	void GreenMush::Dead()

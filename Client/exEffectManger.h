@@ -22,6 +22,8 @@ namespace ex
 
 	private:
 		GameObject* mOwner;
+
+
 	};
 
 }

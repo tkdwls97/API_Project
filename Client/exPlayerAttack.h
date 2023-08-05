@@ -21,8 +21,12 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
+		std::set<GameObject*>* GetAttackList() { return &mAttackList; }
+
 	private:
 		GameObject* mOwner;
+		std::set<GameObject*> mAttackList;
+
 	};
 
 }

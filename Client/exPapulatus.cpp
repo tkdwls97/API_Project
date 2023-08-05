@@ -49,7 +49,7 @@ namespace ex
 		PMoveDelay += Time::GetDeltaTime();
 
 		mDirection = tr->GetMoveDir();
-		if (PMoveDelay >= 6.0f)
+		if (PMoveDelay >= 4.0f)
 		{
 			if (mDirection == enums::eMoveDir::Right)
 			{
@@ -67,14 +67,14 @@ namespace ex
 		{
 			tr->SetMoveDir(enums::eMoveDir::Left);
 			anim->PlayAnimation(L"PapulatusLeftMove", true);
-			pos.x -= 50.0f * Time::GetDeltaTime();
+			pos.x -= 30.0f * Time::GetDeltaTime();
 		}
 
 		else if (mDirection == enums::eMoveDir::Right)
 		{
 			tr->SetMoveDir(enums::eMoveDir::Right);
 			anim->PlayAnimation(L"PapulatusRightMove", true);
-			pos.x += 50.0f * Time::GetDeltaTime();
+			pos.x += 30.0f * Time::GetDeltaTime();
 		}
 		tr->SetPosition(pos);
 	}

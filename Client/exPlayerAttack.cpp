@@ -33,14 +33,6 @@ namespace ex
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
 		collider->SetSize(math::Vector2(65.0f, 80.0f));
 
-		if (dir == enums::eMoveDir::Right)
-		{
-			collider->SetOffset(math::Vector2(42.0f, 10.0f));
-		}
-		else
-		{
-			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
-		}
 
 		// 평타 Collider 색 세팅
 		collider->SetNomalCollor(RGB(255, 255, 0));
@@ -63,18 +55,27 @@ namespace ex
 			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
 
-		tr->SetPosition(pos);
-
 		eState playerState = SceneManager::GetPlayer()->GetState();
+		if (playerState == eState::Attack)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
+		}
+		else
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, false);
+		}
+
 		if (playerState == eState::Attack)
 		{
 			// 충돌 이벤트구현
 		}
 		else
 		{
-
+			// 어택이 끝나면 초기화해줌
+			mAttackList.clear();
 		}
 
+		tr->SetPosition(pos);
 		GameObject::Update();
 
 	}
@@ -91,15 +92,6 @@ namespace ex
 
 	void PlayerAttack::OnCollisionStay(Collider* _other)
 	{
-		eState playerState = SceneManager::GetPlayer()->GetState();
-
-		if (playerState == eState::Attack)
-		{
-			Destroy(_other->GetOwner());
-		}
-		else
-		{
-		}
 	}
 
 	void PlayerAttack::OnCollisionExit(Collider* _other)

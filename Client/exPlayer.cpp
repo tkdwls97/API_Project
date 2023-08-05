@@ -221,10 +221,10 @@ namespace ex
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
 			mState = eState::Move;
 		}
-		if (Input::GetKeyDown(eKeyCode::Up) /*&& mbRopeState*/) // 로프와 충돌 했다면
+		if (Input::GetKeyDown(eKeyCode::Up) && mbRopeState) // 로프와 충돌 했다면
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-			pos.y -= 300.0f;
+			pos.y -= 200.0f;
 			mState = eState::Rope;
 		}
 		if (Input::GetKeyDown(eKeyCode::Down))
@@ -242,14 +242,14 @@ namespace ex
 
 			if (mbRopeState)
 			{
-				mAnimator->PlayAnimation(L"PlayerRopeMove", false);
+				mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+				pos.y += 200.0f;
 				mState = eState::Rope;
-				pos.y += 300.0f;
 			}
 
 			mTransform->SetPosition(pos);
 			mRigidbody->SetVelocity(velocity);
-		}
+		} 
 
 
 		// Idle상태일때 점프키 입력
@@ -268,7 +268,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 				mState = eState::Jump;
 			}
-
+			mRigidbody->SetVelocity(velocity);
 		}
 
 		// 기본 공격 키 
@@ -302,7 +302,7 @@ namespace ex
 		}
 
 
-		mRigidbody->SetVelocity(velocity);
+		//mRigidbody->SetVelocity(velocity);
 
 	}
 
@@ -487,16 +487,13 @@ namespace ex
 			}
 
 		}
-
-		//mTransform->SetPosition(velocity);
 	}
 
 	void Player::Rope()
 	{
 		math::Vector2 pos = mTransform->GetPosition();
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
-		math::Vector2 velocity = mRigidbody->GetVelocity();
-	
+
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
@@ -508,12 +505,6 @@ namespace ex
 			pos.y += 200.0f * Time::GetDeltaTime();
 		}
 
-
-		if (Input::GetKeyUp(eKeyCode::Up) || Input::GetKeyUp(eKeyCode::Down))
-		{
-			mAnimator->PlayAnimation(L"PlayerRopeMove", false);
-			mRigidbody->SetGravity(0);
-		}
 		//mRigidbody->SetGravity(math::Vector2(0.0f, 0.0f));
 		mTransform->SetPosition(pos);
 		//mRigidbody->SetVelocity(velocity);

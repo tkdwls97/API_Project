@@ -31,10 +31,10 @@ namespace ex
 		void Dead();
 
 	private:
-		Animator* mAnimator;
-		Transform* mTransform;
-		Rigidbody* mRigidbody;
-		Collider* mCollider;
+		Animator*		mAnimator;
+		Transform*		mTransform;
+		Rigidbody*		mRigidbody;
+		Collider*		mCollider;
 		eMonsterState	mMonsterState;
 	};
 

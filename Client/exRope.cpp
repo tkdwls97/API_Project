@@ -3,7 +3,7 @@
 #include "exCollider.h"
 #include "exRigidbody.h"
 #include "exTransform.h"
-
+#include "exInput.h"
 namespace ex
 {
 	Rope::Rope()
@@ -37,9 +37,11 @@ namespace ex
 	void Rope::OnCollisionStay(Collider* other)
 	{
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
-		player->SetRopeState(true);
-		Rigidbody* rb = player->GetComponent<Rigidbody>();
-
+		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyPressed(eKeyCode::Down))
+		{
+			player->SetRopeState(true);
+		}
+		
 	}
 	void Rope::OnCollisionExit(Collider* other)
 	{

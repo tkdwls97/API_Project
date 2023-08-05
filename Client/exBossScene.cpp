@@ -26,13 +26,6 @@ namespace ex
 
 	void BossScene::Initialize()
 	{
-		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
-		papulatus->Initialize();
-		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		Animator* papulatusat = papulatus->GetComponent<Animator>();
-		papulatusTr->SetPosition(math::Vector2(640.0f, 360.0f));
-		papulatusat->SetAffectedCamera(true);
-
 		// 바닥 1층
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 
@@ -67,14 +60,19 @@ namespace ex
 		bgsr->SetAffectCamera(true);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
 
-
 		bg->SetAutoCameraLimit();
 		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
 		Camera::SetLimitDistance(widthLimit, heightLimit);
 
-		Player* player = SceneManager::GetPlayer();
+		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
+		papulatus->Initialize();
+		Transform* papulatusTr = papulatus->GetComponent<Transform>();
+		Animator* papulatusat = papulatus->GetComponent<Animator>();
+		papulatusTr->SetPosition(math::Vector2(640.0f, 360.0f));
+		papulatusat->SetAffectedCamera(true);
 
+		Player* player = SceneManager::GetPlayer();
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
 		playerTF->SetPosition(math::Vector2(400.0f, 300.0f));
