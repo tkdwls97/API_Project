@@ -35,11 +35,13 @@ namespace ex
 	void StageScene::Initialize()
 	{
 		// 몬스터 초록버섯
-		GreenMush* greenMush = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
-		greenMush->Initialize();
+		GreenMush* greenMush1 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
 
-		Transform* grMushtr = greenMush->GetComponent<Transform>();
-		grMushtr->SetPosition(math::Vector2(640.0f, 330.0f));
+		Transform* grMushtr1 = greenMush1->GetComponent<Transform>();
+		grMushtr1->SetMoveDir(enums::eMoveDir::Left);
+		grMushtr1->SetPosition(math::Vector2(640.0f, 330.0f));
+		greenMush1->Initialize();
+
 
 
 		// 몬스터 커플 버섯

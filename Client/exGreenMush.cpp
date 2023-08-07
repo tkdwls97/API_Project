@@ -50,10 +50,7 @@ namespace ex
 		mCollider->SetSize(math::Vector2(55.0f, 70.0f));
 		mCollider->SetOffset(math::Vector2(5.0f, 4.0f));
 		mAnimator->SetAffectedCamera(true);
-
-		mTransform->SetMoveDir(enums::eMoveDir::Left);
-		mAnimator->PlayAnimation(L"GreenMushLeftIdle", true);
-		mMonsterState = eMonsterState::Idle;
+		mDirection = mTransform->GetMoveDir();
 	}
 
 	void GreenMush::Update()

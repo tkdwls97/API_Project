@@ -6,7 +6,7 @@
 namespace ex
 {
 	Monsters::Monsters()
-		: mDirection(enums::eMoveDir::End)
+		: mMonsterState(eMonsterState::Idle)
 	{
 		mRigidbody = AddComponent<Rigidbody>();
 		mCollider = AddComponent<Collider>();

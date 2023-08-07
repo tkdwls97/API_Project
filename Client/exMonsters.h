@@ -37,6 +37,7 @@ namespace ex
 		void SetRigidbodyr(Rigidbody* _rigidbody) { mRigidbody = _rigidbody; }
 		void SetAnimator(Collider* _collider) { mCollider = _collider; }
 		void SetMonsterState(eMonsterState _state) { mMonsterState = _state; }
+		void SetMonsterDir(enums::eMoveDir _dir) { mDirection = _dir; }
 
 	protected:
 		enums::eMoveDir mDirection;
