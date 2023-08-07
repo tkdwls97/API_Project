@@ -1,10 +1,17 @@
 #include "exMonsters.h"
-
+#include "exTransform.h"
+#include "exRigidbody.h"
+#include "exCollider.h"
+#include "exAnimator.h"
 namespace ex
 {
 	Monsters::Monsters()
 		: mDirection(enums::eMoveDir::End)
 	{
+		mRigidbody = AddComponent<Rigidbody>();
+		mCollider = AddComponent<Collider>();
+		mAnimator = AddComponent<Animator>();
+		mTransform = GetComponent<Transform>();
 	}
 
 	Monsters::~Monsters()
@@ -13,7 +20,6 @@ namespace ex
 
 	void Monsters::Initialize()
 	{
-		GameObject::Initialize();
 	}
 
 	void Monsters::Update()

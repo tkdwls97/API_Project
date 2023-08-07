@@ -224,7 +224,7 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::Up) && mbRopeState) // 로프와 충돌 했다면
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-			pos.y -= 200.0f;
+			pos.y -= 200.0f * Time::GetDeltaTime();
 			mState = eState::Rope;
 		}
 		if (Input::GetKeyDown(eKeyCode::Down))
@@ -243,13 +243,13 @@ namespace ex
 			if (mbRopeState)
 			{
 				mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-				pos.y += 200.0f;
+				pos.y += 200.0f * Time::GetDeltaTime();
 				mState = eState::Rope;
 			}
 
 			mTransform->SetPosition(pos);
 			mRigidbody->SetVelocity(velocity);
-		} 
+		}
 
 
 		// Idle상태일때 점프키 입력
@@ -493,6 +493,7 @@ namespace ex
 	{
 		math::Vector2 pos = mTransform->GetPosition();
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		math::Vector2 velocity = mRigidbody->GetVelocity();
 
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
@@ -505,9 +506,26 @@ namespace ex
 			pos.y += 200.0f * Time::GetDeltaTime();
 		}
 
+
+		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
+		{
+			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+			velocity.x = -300.0f;
+			velocity.y = -150.0f;
+			mRigidbody->SetGround(false);
+			mState = eState::Jump;
+		}
+		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
+		{
+			mAnimator->PlayAnimation(L"PlayerRightJump", true);
+			velocity.x = 300.0f;
+			velocity.y = -150.0f;
+			mState = eState::Jump;
+			mRigidbody->SetGround(false);
+		}
 		//mRigidbody->SetGravity(math::Vector2(0.0f, 0.0f));
 		mTransform->SetPosition(pos);
-		//mRigidbody->SetVelocity(velocity);
+		mRigidbody->SetVelocity(velocity);
 	}
 
 	void Player::Attack()
@@ -763,9 +781,9 @@ namespace ex
 		}
 	}
 
-	void Player::OnCollisionEnter(Collider* other)
+	void Player::OnCollisionEnter(Collider* _other)
 	{
-		enums::eLayerType Type = other->GetOwner()->GetLayerType();
+		enums::eLayerType Type = _other->GetOwner()->GetLayerType();
 		if (Type == enums::eLayerType::Monster && mbInvincible == false)
 		{
 			mCollider->SetCollisionType(true);
@@ -773,20 +791,20 @@ namespace ex
 		}
 
 	}
-	void Player::OnCollisionStay(Collider* other)
+	void Player::OnCollisionStay(Collider* _other)
 	{
 
-		enums::eLayerType Type = other->GetOwner()->GetLayerType();
+		enums::eLayerType Type = _other->GetOwner()->GetLayerType();
 		if (Type == enums::eLayerType::Potal)
 		{
 			mbPortalState = true;
 		}
 	}
-	void Player::OnCollisionExit(Collider* other)
+	void Player::OnCollisionExit(Collider* _other)
 	{
 		mCollider->SetCollisionType(false);
 
-		Portal* potal = dynamic_cast<Portal*>(other->GetOwner());
+		Portal* potal = dynamic_cast<Portal*>(_other->GetOwner());
 		if (potal != nullptr)
 		{
 			mbPortalState = false;

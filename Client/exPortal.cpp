@@ -6,6 +6,7 @@
 #include "exInput.h"
 #include "exCollider.h"
 #include "exPlayer.h"
+#include "exTransform.h"
 
 namespace ex
 {
@@ -17,14 +18,21 @@ namespace ex
 	}
 	void Portal::Initialize()
 	{
-		Animator* potalAt = AddComponent<Animator>();
 
 		Texture* image = ResourceManager::Load<Texture>(L"Potal"
 			, L"..\\Resources\\Maple\\Image\\Potal\\Potal.bmp");
-		potalAt->CreateAnimation(L"Potal", image, math::Vector2(0.0f, 0.0f), math::Vector2(104.0f, 142.0f)
-			, math::Vector2(104.0f, 142.0f), 8, math::Vector2(0.0f, 0.0f), 0.1f);
 
-		potalAt->PlayAnimation(L"Potal", true);
+		mAnimator = AddComponent<Animator>();
+		mCollider = AddComponent<Collider>();
+		mAnimator->CreateAnimation(L"Potal", image, math::Vector2(0.0f, 0.0f), math::Vector2(104.0f, 142.0f)
+			, math::Vector2(104.0f, 142.0f), 8, math::Vector2(0.0f, 0.0f), 0.1f);
+		
+		// 포탈 collider 사이즈 설정
+		mCollider->SetSize(math::Vector2(45.0f, 80.0f));
+		// 포탈 스케일 설정
+		mAnimator->SetScale(math::Vector2(0.8f, 0.8f));
+
+		mAnimator->PlayAnimation(L"Potal", true);
 	}
 
 	void Portal::Update()

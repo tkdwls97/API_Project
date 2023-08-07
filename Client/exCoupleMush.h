@@ -4,11 +4,11 @@
 namespace ex
 {
 
-	class Papulatus : public Monsters
+	class CoupleMush : public Monsters
 	{
 	public:
-		Papulatus();
-		virtual ~Papulatus();
+		CoupleMush();
+		virtual ~CoupleMush();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -25,9 +25,8 @@ namespace ex
 		void Hit();
 		void Dead();
 
-	private:
+	private:	
 		float mIdleDelay;
 		float mMoveDelay;
 	};
-
 }

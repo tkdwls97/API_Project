@@ -39,12 +39,8 @@ namespace ex
 		portal->Initialize();
 
 		Transform* portalTr = portal->GetComponent<Transform>();
-		Animator* portalAt = portal->GetComponent<Animator>();
-		Collider* portalCol = portal->AddComponent<Collider>();
-		portalAt->SetScale(math::Vector2(0.8f, 0.8f));
 		//potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
 		portalTr->SetPosition(math::Vector2(640.0f, 500.0f));
-		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
 
 	}
 
@@ -96,6 +92,7 @@ namespace ex
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
 	}
 	void StageScene2::SceneOut()
 	{

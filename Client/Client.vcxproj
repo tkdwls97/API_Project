@@ -137,7 +137,7 @@
     <ClCompile Include="exCollisionManager.cpp" />
     <ClCompile Include="exComponent.cpp" />
     <ClCompile Include="exCollider.cpp" />
-    <ClCompile Include="exCupleMush.cpp" />
+    <ClCompile Include="exCoupleMush.cpp" />
     <ClCompile Include="exFloor.cpp" />
     <ClCompile Include="exGreenMush.cpp" />
     <ClCompile Include="exMonsters.cpp" />
@@ -185,7 +185,7 @@
     <ClInclude Include="exEffectManger.h" />
     <ClInclude Include="exCollisionManager.h" />
     <ClInclude Include="exCollider.h" />
-    <ClInclude Include="exCupleMush.h" />
+    <ClInclude Include="exCoupleMush.h" />
     <ClInclude Include="exFloor.h" />
     <ClInclude Include="exGreenMush.h" />
     <ClInclude Include="exMonsters.h" />

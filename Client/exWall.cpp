@@ -28,16 +28,16 @@ namespace ex
 		GameObject::Render(_hdc);
 	}
 
-	void Wall::OnCollisionEnter(Collider* other)
+	void Wall::OnCollisionEnter(Collider* _other)
 	{
-		other->GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
+		_other->GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
 
-		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 		Transform* tr = player->GetComponent<Transform>();
 		Rigidbody* rb = player->GetComponent<Rigidbody>();
 
-		float len = fabs(other->GetPosition().x - this->GetComponent<Collider>()->GetPosition().x);
-		float scale = fabs(other->GetSize().x / 2.0f + this->GetComponent<Collider>()->GetSize().x / 2.0f);
+		float len = fabs(_other->GetPosition().x - this->GetComponent<Collider>()->GetPosition().x);
+		float scale = fabs(_other->GetSize().x / 2.0f + this->GetComponent<Collider>()->GetSize().x / 2.0f);
 
 		if (len < scale)
 		{
@@ -52,10 +52,10 @@ namespace ex
 
 	}
 
-	void Wall::OnCollisionStay(Collider* other)
+	void Wall::OnCollisionStay(Collider* _other)
 	{
 	}
-	void Wall::OnCollisionExit(Collider* other)
+	void Wall::OnCollisionExit(Collider* _other)
 	{
 	}
 

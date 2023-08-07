@@ -30,27 +30,30 @@ namespace ex
 		GameObject::Render(_hdc);
 	}
 
-	void Rope::OnCollisionEnter(Collider* other)
+	void Rope::OnCollisionEnter(Collider* _other)
 	{
 	}
 
-	void Rope::OnCollisionStay(Collider* other)
+	void Rope::OnCollisionStay(Collider* _other)
 	{
-		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyPressed(eKeyCode::Down))
 		{
 			player->SetRopeState(true);
 		}
 		
 	}
-	void Rope::OnCollisionExit(Collider* other)
+	void Rope::OnCollisionExit(Collider* _other)
 	{
-		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 
-		//other->GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
+		_other->GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
 
 		player->SetRopeState(false);
-		player->SetState(eState::Idle);
+		if (player->GetState() == eState::Rope)
+		{
+			player->SetState(eState::Idle);
+		}
 	}
 
 }

@@ -7,7 +7,6 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Rigidbody;
-	class Texture;
 
 	class GreenMush : public Monsters
 	{
@@ -19,9 +18,9 @@ namespace ex
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-		virtual void OnCollisionEnter(Collider* other) override;
-		virtual void OnCollisionStay(Collider* other) override;
-		virtual void OnCollisionExit(Collider* other) override;
+		virtual void OnCollisionEnter(Collider* _other) override;
+		virtual void OnCollisionStay(Collider* _other) override;
+		virtual void OnCollisionExit(Collider* _other) override;
 
 		void Idle();
 		void Move();
@@ -31,11 +30,8 @@ namespace ex
 		void Dead();
 
 	private:
-		Animator*		mAnimator;
-		Transform*		mTransform;
-		Rigidbody*		mRigidbody;
-		Collider*		mCollider;
-		eMonsterState	mMonsterState;
+		float mIdleDelay;
+		float mMoveDelay;
 	};
 
 }

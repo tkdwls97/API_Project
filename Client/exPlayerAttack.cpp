@@ -32,6 +32,7 @@ namespace ex
 
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
 		collider->SetSize(math::Vector2(65.0f, 80.0f));
+		
 
 
 		// 평타 Collider 색 세팅

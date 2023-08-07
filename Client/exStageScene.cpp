@@ -14,7 +14,7 @@
 #include "exCollider.h"
 #include "exCollisionManager.h"
 #include "exGreenMush.h"
-#include "exCupleMush.h"
+#include "exCoupleMush.h"
 #include "exFloor.h"
 #include "exPapulatus.h"
 #include "exPortal.h"
@@ -39,90 +39,74 @@ namespace ex
 		greenMush->Initialize();
 
 		Transform* grMushtr = greenMush->GetComponent<Transform>();
-		Animator* grMushat = greenMush->GetComponent<Animator>();
-		grMushtr->SetPosition(math::Vector2(640.0f, 360.0f));
-		grMushat->SetAffectedCamera(true);
-		Collider* moncol = greenMush->AddComponent<Collider>();
-		moncol->SetSize(math::Vector2(55.0f, 70.0f));
-		moncol->SetOffset(math::Vector2(5.0f, 4.0f)); 
+		grMushtr->SetPosition(math::Vector2(640.0f, 330.0f));
+
 
 		// ¸ó½ºÅÍ Ä¿ÇÃ ¹ö¼¸
-		CupleMush* cupleMush = object::Instantiate<CupleMush>(enums::eLayerType::Monster);
-		cupleMush->Initialize();
+		CoupleMush* coupleMush = object::Instantiate<CoupleMush>(enums::eLayerType::Monster);
+		coupleMush->Initialize();
 
-		Transform* cupleMushtr = cupleMush->GetComponent<Transform>();
-		Animator* cupleMushat = cupleMush->GetComponent<Animator>();
-		cupleMushat->SetAffectedCamera(true);
+		Transform* cupleMushtr = coupleMush->GetComponent<Transform>();
 		cupleMushtr->SetPosition(math::Vector2(800.0f, 360.0f));
-		moncol = cupleMush->AddComponent<Collider>();
-		moncol->SetSize(math::Vector2(100.0f, 70.0f));
-		moncol->SetOffset(math::Vector2(4.0f, 4.0f));
 
 
-		// 1Ãþ
-		Floor* floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		// 1Ãþ ¹Ù´Ú
+		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Transform* floorTr = floor1->GetComponent<Transform>();
+		Collider* floorCol = floor1->AddComponent<Collider>();
+		floorCol->SetSize(math::Vector2(2000.0f, 50.0f));
+		floorTr->SetPosition(math::Vector2(680.0f, 910.0f));
 
-		Collider* col = floor->GetComponent<Collider>();
-		Transform* tr = floor->GetComponent<Transform>();
-		col = floor->AddComponent<Collider>();
-		col->SetSize(math::Vector2(2000.0f, 50.0f));
-		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 910.0f));
-
-		//2Ãþ
-		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
-		col = floor->AddComponent<Collider>();
-		col->SetSize(math::Vector2(1300.0f, 1.0f));
-		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 645.0f));
+		// 2Ãþ
+		Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* floorCol2 = floor2->AddComponent<Collider>();
+		Transform* floorTr2 = floor2->GetComponent<Transform>();
+		floorCol2->SetSize(math::Vector2(1300.0f, 1.0f));
+		floorTr2->SetPosition(math::Vector2(680.0f, 645.0f));
 
 		// 3Ãþ
-		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
-		col = floor->AddComponent<Collider>();
-		col->SetSize(math::Vector2(1100.0f, 1.0f));
-		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 405.0f));
+		Floor* floor3 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* floorCol3 = floor3->AddComponent<Collider>();
+		Transform* floorTr3 = floor3->GetComponent<Transform>();
+		floorCol3->SetSize(math::Vector2(1100.0f, 1.0f));
+		floorTr3->SetPosition(math::Vector2(680.0f, 405.0f));
 
 		// 4Ãþ
-		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
-		col = floor->AddComponent<Collider>();
-		col->SetSize(math::Vector2(950.0f, 1.0f));
-		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 165.0f));
+		Floor* floor4 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* floorCol4 = floor4->AddComponent<Collider>();
+		Transform* floorTr4 = floor4->GetComponent<Transform>();
+		floorCol4->SetSize(math::Vector2(950.0f, 1.0f));
+		floorTr4->SetPosition(math::Vector2(680.0f, 165.0f));
 
 		// 5Ãþ
-		floor = object::Instantiate<Floor>(enums::eLayerType::Floor);
-		col = floor->AddComponent<Collider>();
-		col->SetSize(math::Vector2(760.0f, 1.0f));
-		tr = floor->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, -75.0f));
+		Floor* floor5 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* floorCol5 = floor5->AddComponent<Collider>();
+		Transform* floorTr5 = floor5->GetComponent<Transform>();
+		floorCol5->SetSize(math::Vector2(760.0f, 1.0f));
+		floorTr5->SetPosition(math::Vector2(680.0f, -75.0f));
 
-		// ¿ÞÂÊ º®
-		Wall* wall = object::Instantiate<Wall>(enums::eLayerType::Wall);
-		col = wall->AddComponent<Collider>();
-		col->SetSize(math::Vector2(10.0f, 1500.0f));
-		tr = wall->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(-237.0f, 360.0f));
+		//	// ¿ÞÂÊ º®
+		//	Wall* wall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		//	col = wall->AddComponent<Collider>();
+		//	col->SetSize(math::Vector2(10.0f, 1500.0f));
+		//	tr = wall->GetComponent<Transform>();
+		//	tr->SetPosition(math::Vector2(-237.0f, 360.0f));
 
 		// 1Ãþ -> 2Ãþ ·ÎÇÁ
 		Rope* rope = object::Instantiate<Rope>(enums::eLayerType::Rope);
 		rope->Initialize();
-		col = rope->GetComponent<Collider>();
-		col->SetSize(math::Vector2(1.0f, 194.0f));
-		tr = rope->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(393.0f, 737.0f));
+		Collider* RopeCol = rope->GetComponent<Collider>();
+		RopeCol->SetSize(math::Vector2(1.0f, 194.0f));
+		Transform* RopeTr = rope->GetComponent<Transform>();
+		RopeTr->SetPosition(math::Vector2(393.0f, 737.0f));
 
 		// Æ÷Å»
 		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
 		portal->Initialize();
 
 		Transform* portalTr = portal->GetComponent<Transform>();
-		Animator* portalAt = portal->GetComponent<Animator>();
-		Collider* portalCol = portal->AddComponent<Collider>();
 		portalTr->SetPosition(math::Vector2(800.0f, 600.0f));
 		//potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
-		portalAt->SetScale(math::Vector2(0.8f, 0.8f));
-		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
 	}
 
 	void StageScene::Update()
@@ -178,6 +162,7 @@ namespace ex
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Wall, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
 	}
 
 	void StageScene::SceneOut()

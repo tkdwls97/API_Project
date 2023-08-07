@@ -26,13 +26,6 @@ namespace ex
 		CreateScene<StageScene2>(L"Stage2Scene");
 		CreateScene<StageScene3>(L"Stage3Scene");
 		CreateScene<BossScene>(L"BossScene");
-
-		for (auto iter : mScenes)
-		{
-			mActiveScene = iter.second;
-			iter.second->Initialize();
-		}
-
 		mPlayer->Initialize();
 		mPlayerAtt->Initialize();
 

@@ -33,9 +33,9 @@ namespace ex
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-		virtual void OnCollisionEnter(Collider* other) override;
-		virtual void OnCollisionStay(Collider* other) override;
-		virtual void OnCollisionExit(Collider* other) override;
+		virtual void OnCollisionEnter(Collider* _other) override;
+		virtual void OnCollisionStay(Collider* _other) override;
+		virtual void OnCollisionExit(Collider* _other) override;
 
 		eState GetState() { return mState; }
 		void SetState(eState _state) { mState = _state; }
@@ -60,10 +60,10 @@ namespace ex
 		void Death();
 
 	private:
-		Animator* mAnimator;
-		Transform* mTransform;
-		Rigidbody* mRigidbody;
-		Collider* mCollider;
+		Animator*		mAnimator;
+		Transform*		mTransform;
+		Rigidbody*		mRigidbody;
+		Collider*		mCollider;
 		eState			mState;
 		PlayerInfo		mInfo;
 

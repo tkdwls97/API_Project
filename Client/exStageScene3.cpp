@@ -26,13 +26,11 @@ namespace ex
 	void StageScene3::Initialize()
 	{
 		// ¹Ù´Ú 1Ãþ
-		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Floor* stage3_floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 
-		Collider* col = floor1->GetComponent<Collider>();
-		Transform* tr = floor1->GetComponent<Transform>();
-		col = floor1->AddComponent<Collider>();
+		Collider* col = stage3_floor1->AddComponent<Collider>();
+		Transform* tr = stage3_floor1->GetComponent<Transform>();
 		col->SetSize(math::Vector2(3300.0f, 50.0f));
-		tr = floor1->GetComponent<Transform>();
 		tr->SetPosition(math::Vector2(680.0f, 943.0f));
 
 
@@ -52,7 +50,7 @@ namespace ex
 
 		Transform* portalTr = portal->GetComponent<Transform>();
 		Animator* portalAt = portal->GetComponent<Animator>();
-		Collider* portalCol = portal->AddComponent<Collider>();
+		Collider* portalCol = portal->GetComponent<Collider>();
 		portalAt->SetScale(math::Vector2(0.8f, 0.8f));
 		portalTr->SetPosition(math::Vector2(640.0f, 862.0f));
 		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
@@ -107,6 +105,7 @@ namespace ex
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
 	}
 	void StageScene3::SceneOut()
 	{

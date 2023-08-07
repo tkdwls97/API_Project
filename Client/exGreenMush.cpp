@@ -13,11 +13,8 @@
 namespace ex
 {
 	GreenMush::GreenMush()
-		: mAnimator(nullptr)
-		, mTransform(nullptr)
-		, mRigidbody(nullptr)
-		, mCollider(nullptr)
-		, mMonsterState(eMonsterState::Idle)
+		: mIdleDelay(0.0f)
+		, mMoveDelay(0.0f)
 	{
 	}
 
@@ -29,9 +26,6 @@ namespace ex
 	{
 		Texture* image = ResourceManager::Load<Texture>(L"GreenMushLeft"
 			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\GreenMush_LEFT.bmp");
-
-		Transform* tr = GetComponent<Transform>();
-		mAnimator = AddComponent<Animator>();
 
 		mAnimator->CreateAnimation(L"GreenMushLeftIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 1);
@@ -53,19 +47,18 @@ namespace ex
 		mAnimator->CreateAnimation(L"GreenMushRightDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
 
-		mAnimator->PlayAnimation(L"GreenMushLeftIdle", true);
+		mCollider->SetSize(math::Vector2(55.0f, 70.0f));
+		mCollider->SetOffset(math::Vector2(5.0f, 4.0f));
+		mAnimator->SetAffectedCamera(true);
 
-		tr->SetMoveDir(enums::eMoveDir::Left);
+		mTransform->SetMoveDir(enums::eMoveDir::Left);
+		mAnimator->PlayAnimation(L"GreenMushLeftIdle", true);
+		mMonsterState = eMonsterState::Idle;
 	}
 
 	void GreenMush::Update()
 	{
-		GameObject::Update();
-
-		mTransform = GetComponent<Transform>();
-		math::Vector2 pos = mTransform->GetPosition();
-
-
+		
 		switch (mMonsterState)
 		{
 		case ex::Monsters::eMonsterState::Idle:
@@ -90,25 +83,7 @@ namespace ex
 			break;
 		}
 
-
-		static float MoveDelay = 0.0f;
-
-		MoveDelay += Time::GetDeltaTime();
-
-		mDirection = mTransform->GetMoveDir();
-		if (MoveDelay >= 3.0f)
-		{
-			if (mDirection == enums::eMoveDir::Right)
-			{
-				mDirection = enums::eMoveDir::Left;
-			}
-			else
-			{
-				mDirection = enums::eMoveDir::Right;
-			}
-			MoveDelay = 0.0f;
-		}
-		mTransform->SetPosition(pos);
+		GameObject::Update();
 	}
 
 	void GreenMush::Render(HDC _hdc)
@@ -117,46 +92,62 @@ namespace ex
 		GameObject::Render(_hdc);
 	}
 
-	void GreenMush::OnCollisionEnter(Collider* other)
+	void GreenMush::Idle()
 	{
-	}
+		mIdleDelay += Time::GetDeltaTime();
 
-	void GreenMush::OnCollisionStay(Collider* other)
-	{
-		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(other->GetOwner());
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-		if (playerAtt != nullptr)
+		math::Vector2 pos = mTransform->GetPosition();
+		if (mIdleDelay >= 2.3f)
 		{
-			std::set<GameObject*>* attList = playerAtt->GetAttackList();
-
-			if (attList->find(this) == attList->end())
+			if (mDirection == enums::eMoveDir::Left)
 			{
-				mMonsterState = eMonsterState::Hit;
-				attList->insert(this);
-
-				if (playerDir == enums::eMoveDir::Left)
-				{
-					mAnimator->PlayAnimation(L"GreenMushRightDead", false);
-				}
-				else
-				{
-					mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
-
-				}
+				mDirection = enums::eMoveDir::Right;
+			}
+			else
+			{
+				mDirection = enums::eMoveDir::Left;
+			}
+			mMonsterState = eMonsterState::Move;
+			mIdleDelay = 0.0f;
+		}
+		else
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"GreenMushLeftIdle", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"GreenMushRightIdle", true);
 			}
 		}
 	}
 
-	void GreenMush::OnCollisionExit(Collider* other)
-	{
-	}
-
-	void GreenMush::Idle()
-	{
-	}
-
 	void GreenMush::Move()
 	{
+		mMoveDelay += Time::GetDeltaTime();
+
+		math::Vector2 pos = mTransform->GetPosition();
+		if (mMoveDelay >= 4.0f)
+		{
+			mMonsterState = eMonsterState::Idle;
+			mMoveDelay = 0.0f;
+		}
+		else
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"GreenMushLeftMove", true);
+				pos.x -= 50.0f * Time::GetDeltaTime();
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"GreenMushRightMove", true);
+				pos.x += 50.0f * Time::GetDeltaTime();
+			}
+		}
+
+		mTransform->SetPosition(pos);
 	}
 
 	void GreenMush::Attack()
@@ -169,15 +160,51 @@ namespace ex
 
 	void GreenMush::Hit()
 	{
+		mMonsterState = eMonsterState::Dead;
+	}
+
+	void GreenMush::Dead()
+	{
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
+
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"GreenMushRightDead", false);
+		}
+		else
+		{
+			mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
+
+		}
+
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
 			Destroy(this);
 		}
 	}
-
-	void GreenMush::Dead()
+	void GreenMush::OnCollisionEnter(Collider* _other)
 	{
 	}
 
+	void GreenMush::OnCollisionStay(Collider* _other)
+	{
+		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+		if (playerAtt != nullptr)
+		{
+			std::set<GameObject*>* attList = playerAtt->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+	}
+
+	void GreenMush::OnCollisionExit(Collider* _other)
+	{
+	}
 }

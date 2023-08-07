@@ -106,18 +106,6 @@
     <Filter Include="Contents\GameObject\02.Monster\02.Papulatus">
       <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\02.StageScene">
-      <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\04.BossScene">
-      <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\05.EndScene">
-      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\01.VillageScene">
-      <UniqueIdentifier>{f345812a-ff6e-491d-9a03-3ad440b0b55c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\03.Effect">
       <UniqueIdentifier>{a9360dca-e2cb-4c55-a80e-0e3af5946e95}</UniqueIdentifier>
     </Filter>
@@ -133,8 +121,23 @@
     <Filter Include="Contents\GameObject\08.Rope">
       <UniqueIdentifier>{6cae7a5a-935a-4167-8460-4a0960a40df4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\03.MushMomScene">
+    <Filter Include="Contents\Scene\01.StageScene">
+      <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\02.MushMomScene">
       <UniqueIdentifier>{941c8e49-64ab-487f-9113-b20653e10eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\03.StageScene2">
+      <UniqueIdentifier>{9be67ea4-d7b4-4376-9689-48569839a3ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\05.BossScene">
+      <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\06.EndScene">
+      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\04.StageScene3">
+      <UniqueIdentifier>{76e88cc0-57ae-4836-aacf-a4baa64f3a42}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -211,10 +214,7 @@
       <Filter>Contents\Scene\00.TitleScene</Filter>
     </ClCompile>
     <ClCompile Include="exStageScene.cpp">
-      <Filter>Contents\Scene\02.StageScene</Filter>
-    </ClCompile>
-    <ClCompile Include="exVillageScene.cpp">
-      <Filter>Contents\Scene\01.VillageScene</Filter>
+      <Filter>Contents\Scene\01.StageScene</Filter>
     </ClCompile>
     <ClCompile Include="exGreenMush.cpp">
       <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
@@ -222,7 +222,7 @@
     <ClCompile Include="exMonsters.cpp">
       <Filter>Contents\GameObject\02.Monster</Filter>
     </ClCompile>
-    <ClCompile Include="exCupleMush.cpp">
+    <ClCompile Include="exCoupleMush.cpp">
       <Filter>Contents\GameObject\02.Monster\01.CoupleMush</Filter>
     </ClCompile>
     <ClCompile Include="exCollider.cpp">
@@ -243,11 +243,8 @@
     <ClCompile Include="exPapulatus.cpp">
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClCompile>
-    <ClCompile Include="exStageScene2.cpp">
-      <Filter>Contents\Scene\03.MushMomScene</Filter>
-    </ClCompile>
     <ClCompile Include="exBossScene.cpp">
-      <Filter>Contents\Scene\04.BossScene</Filter>
+      <Filter>Contents\Scene\05.BossScene</Filter>
     </ClCompile>
     <ClCompile Include="exPlayerAttack.cpp">
       <Filter>Contents\GameObject\03.Effect\00.Attack</Filter>
@@ -263,6 +260,15 @@
     </ClCompile>
     <ClCompile Include="exRope.cpp">
       <Filter>Contents\GameObject\08.Rope</Filter>
+    </ClCompile>
+    <ClCompile Include="exStageScene2.cpp">
+      <Filter>Contents\Scene\03.StageScene2</Filter>
+    </ClCompile>
+    <ClCompile Include="exMushMomScene.cpp">
+      <Filter>Contents\Scene\02.MushMomScene</Filter>
+    </ClCompile>
+    <ClCompile Include="exStageScene3.cpp">
+      <Filter>Contents\Scene\04.StageScene3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -348,10 +354,7 @@
       <Filter>Contents\Scene\00.TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="exStageScene.h">
-      <Filter>Contents\Scene\02.StageScene</Filter>
-    </ClInclude>
-    <ClInclude Include="exVillageScene.h">
-      <Filter>Contents\Scene\01.VillageScene</Filter>
+      <Filter>Contents\Scene\01.StageScene</Filter>
     </ClInclude>
     <ClInclude Include="exGreenMush.h">
       <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
@@ -359,7 +362,7 @@
     <ClInclude Include="exMonsters.h">
       <Filter>Contents\GameObject\02.Monster</Filter>
     </ClInclude>
-    <ClInclude Include="exCupleMush.h">
+    <ClInclude Include="exCoupleMush.h">
       <Filter>Contents\GameObject\02.Monster\01.CoupleMush</Filter>
     </ClInclude>
     <ClInclude Include="exCollider.h">
@@ -380,11 +383,8 @@
     <ClInclude Include="exPapulatus.h">
       <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
     </ClInclude>
-    <ClInclude Include="exStageScene2.h">
-      <Filter>Contents\Scene\03.MushMomScene</Filter>
-    </ClInclude>
     <ClInclude Include="exBossScene.h">
-      <Filter>Contents\Scene\04.BossScene</Filter>
+      <Filter>Contents\Scene\05.BossScene</Filter>
     </ClInclude>
     <ClInclude Include="exPlayerAttack.h">
       <Filter>Contents\GameObject\03.Effect\00.Attack</Filter>
@@ -400,6 +400,15 @@
     </ClInclude>
     <ClInclude Include="exRope.h">
       <Filter>Contents\GameObject\08.Rope</Filter>
+    </ClInclude>
+    <ClInclude Include="exStageScene2.h">
+      <Filter>Contents\Scene\03.StageScene2</Filter>
+    </ClInclude>
+    <ClInclude Include="exMushMomScene.h">
+      <Filter>Contents\Scene\02.MushMomScene</Filter>
+    </ClInclude>
+    <ClInclude Include="exStageScene3.h">
+      <Filter>Contents\Scene\04.StageScene3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

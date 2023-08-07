@@ -3,6 +3,8 @@
 
 namespace ex
 {
+	class Transform;
+	class Collider;
 
 	class Floor : public GameObject
 	{
@@ -14,12 +16,14 @@ namespace ex
 		virtual void Update() override;
 		virtual void Render(HDC _hdc) override;
 
-		virtual void OnCollisionEnter(class Collider* other) override;
-		virtual void OnCollisionStay(class Collider* other) override;
-		virtual void OnCollisionExit(class Collider* other) override;
+
+		virtual void OnCollisionEnter(class Collider* _other) override;
+		virtual void OnCollisionStay(class Collider* _other) override;
+		virtual void OnCollisionExit(class Collider* _other) override;
 
 	private:
-
+		Transform* mTransform;
+		Collider* mCollider;
 
 	};
 

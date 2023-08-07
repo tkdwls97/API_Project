@@ -6,6 +6,7 @@ namespace ex
 {
 	class Transform;
 	class Collider;
+	class Animator;
 
 	class Portal : public GameObject
 	{
@@ -22,7 +23,9 @@ namespace ex
 		virtual void OnCollisionExit(Collider* _other) override;
 
 	private:
-		
+		Animator* mAnimator;
+		Transform* mTransform;
+		Collider* mCollider;
 	};
 
 }
