@@ -26,8 +26,6 @@ namespace ex
 		void Dead();
 
 	private:
-		float mIdleDelay;
-		float mMoveDelay;
 	};
 
 }

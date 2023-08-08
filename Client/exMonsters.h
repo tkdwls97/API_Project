@@ -50,5 +50,6 @@ namespace ex
 		float mIdleDelay;
 		float mMoveDelay;
 		float mMoveTime;
+		float mHitDelay;
 	};
 }

@@ -32,7 +32,7 @@ namespace ex
 
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
 		collider->SetSize(math::Vector2(65.0f, 80.0f));
-		
+
 
 
 		// 평타 Collider 색 세팅
@@ -55,9 +55,9 @@ namespace ex
 		{
 			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
-
+		Animator* at = SceneManager::GetPlayer()->GetComponent<Animator>();
 		eState playerState = SceneManager::GetPlayer()->GetState();
-		if (playerState == eState::Attack)
+		if (playerState == eState::Attack || playerState == eState::JumpAttack)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		}
@@ -66,7 +66,8 @@ namespace ex
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, false);
 		}
 
-		if (playerState == eState::Attack)
+		bool bCheck = at->IsActiveAnimationComplete();
+		if (playerState == eState::Attack || playerState == eState::JumpAttack)
 		{
 			// 충돌 이벤트구현
 		}

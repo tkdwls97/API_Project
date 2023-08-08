@@ -14,8 +14,6 @@
 namespace ex
 {
 	Papulatus::Papulatus()
-		: mIdleDelay(0.0f)
-		, mMoveDelay(0.0f)
 	{
 	}
 
@@ -30,6 +28,7 @@ namespace ex
 		mRigidbody = GetComponent<Rigidbody>();
 		mCollider = GetComponent<Collider>();
 
+		// Left
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftIdle",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Left");
 
@@ -41,6 +40,10 @@ namespace ex
 		
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftHit",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left");
+
+		// Right
+		mAnimator->CreateAnimationFolder(L"PapulatusRightIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Right");
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightMove",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Right");
@@ -140,7 +143,7 @@ namespace ex
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
+				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
 				pos.x += 50.0f * Time::GetDeltaTime();
 			}
 		}
@@ -167,6 +170,20 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"PapulatusLeftHit", false);
 
+		}
+		mHitDelay += Time::GetDeltaTime();
+		if (mHitDelay >= 1.3f)
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
+				mMonsterState = eMonsterState::Move;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
+				mMonsterState = eMonsterState::Move;
+			}
 		}
 		//mMonsterState = eMonsterState::Dead;
 	}

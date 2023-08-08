@@ -35,41 +35,41 @@ namespace ex
 	void StageScene::Initialize()
 	{
 		// ¸ó½ºÅÍ ÃÊ·Ï¹ö¼¸ / floor 2Ãþ
-		//GreenMush* greenMush1 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
-		//Transform* grMushtr1 = greenMush1->GetComponent<Transform>();
-		//grMushtr1->SetMoveDir(enums::eMoveDir::Left);
-		//grMushtr1->SetPosition(math::Vector2(440.0f, 530.0f));
-		//greenMush1->SetMoveDelay(4.5f);
-		//greenMush1->Initialize();
+		GreenMush* greenMush1 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		Transform* grMushtr1 = greenMush1->GetComponent<Transform>();
+		grMushtr1->SetMoveDir(enums::eMoveDir::Left);
+		grMushtr1->SetPosition(math::Vector2(440.0f, 530.0f));
+		greenMush1->SetMoveDelay(4.5f);
+		greenMush1->Initialize();
 
-		//// 2Ãþ
-		//GreenMush* greenMush2 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
-		//Transform* grMushtr2 = greenMush2->GetComponent<Transform>();
-		//grMushtr2->SetMoveDir(enums::eMoveDir::Right);
-		//grMushtr2->SetPosition(math::Vector2(400.0f, 530.0f));
-		//greenMush2->SetMoveDelay(3.5f);
-		//greenMush2->Initialize();
+		// 2Ãþ
+		GreenMush* greenMush2 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		Transform* grMushtr2 = greenMush2->GetComponent<Transform>();
+		grMushtr2->SetMoveDir(enums::eMoveDir::Right);
+		grMushtr2->SetPosition(math::Vector2(400.0f, 530.0f));
+		greenMush2->SetMoveDelay(3.5f);
+		greenMush2->Initialize();
 
-		//// 3Ãþ
-		//GreenMush* greenMush3 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
-		//Transform* grMushtr3 = greenMush3->GetComponent<Transform>();
-		//grMushtr3->SetMoveDir(enums::eMoveDir::Right);
-		//grMushtr3->SetPosition(math::Vector2(440.0f, 330.0f));
-		//greenMush3->Initialize();
-		//// 3Ãþ
-		//GreenMush* greenMush4 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
-		//Transform* grMushtr4 = greenMush4->GetComponent<Transform>();
-		//grMushtr4->SetMoveDir(enums::eMoveDir::Left);
-		//grMushtr4->SetPosition(math::Vector2(740.0f, 330.0f));
-		//greenMush4->Initialize();
+		// 3Ãþ
+		GreenMush* greenMush3 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		Transform* grMushtr3 = greenMush3->GetComponent<Transform>();
+		grMushtr3->SetMoveDir(enums::eMoveDir::Right);
+		grMushtr3->SetPosition(math::Vector2(440.0f, 330.0f));
+		greenMush3->Initialize();
+		// 3Ãþ
+		GreenMush* greenMush4 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		Transform* grMushtr4 = greenMush4->GetComponent<Transform>();
+		grMushtr4->SetMoveDir(enums::eMoveDir::Left);
+		grMushtr4->SetPosition(math::Vector2(740.0f, 330.0f));
+		greenMush4->Initialize();
 
 
-		//// ¸ó½ºÅÍ Ä¿ÇÃ ¹ö¼¸
-		//CoupleMush* coupleMush = object::Instantiate<CoupleMush>(enums::eLayerType::Monster);
-		//coupleMush->Initialize();
+		// ¸ó½ºÅÍ Ä¿ÇÃ ¹ö¼¸
+		CoupleMush* coupleMush = object::Instantiate<CoupleMush>(enums::eLayerType::Monster);
+		coupleMush->Initialize();
 
-		//Transform* cupleMushtr = coupleMush->GetComponent<Transform>();
-		//cupleMushtr->SetPosition(math::Vector2(800.0f, 360.0f));
+		Transform* cupleMushtr = coupleMush->GetComponent<Transform>();
+		cupleMushtr->SetPosition(math::Vector2(800.0f, 360.0f));
 
 
 		// 1Ãþ ¹Ù´Ú

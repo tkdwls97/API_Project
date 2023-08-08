@@ -138,7 +138,7 @@ namespace ex
 
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope)
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::JumpAttack)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
 		}
@@ -147,11 +147,11 @@ namespace ex
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		}
 
-		if (mState == eState::Jump)
+		if (mState == eState::Jump || mState == eState::Rope)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 		}
-		else if (mState == eState::Fall)
+		else
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		}
@@ -176,11 +176,12 @@ namespace ex
 		case Player::eState::Rope:
 			Rope();
 			break;
-		//case Player::eState::RopeDown:
-		//	RopeDown();
-		//	break;
+
 		case Player::eState::Attack:
 			Attack();
+			break;
+		case Player::eState::JumpAttack:
+			JumpAttack();
 			break;
 		case Player::eState::Skill:
 			Skill();
@@ -313,9 +314,6 @@ namespace ex
 			}
 			mState = eState::Hit;
 		}
-
-
-		//mRigidbody->SetVelocity(velocity);
 
 	}
 
@@ -631,12 +629,12 @@ namespace ex
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
-				mState = eState::Attack;
+				mState = eState::JumpAttack;
 			}
 			else
 			{
 				mAnimator->PlayAnimation(L"PlayerRightAttack", false);
-				mState = eState::Attack;
+				mState = eState::JumpAttack;
 			}
 		}
 
@@ -649,6 +647,16 @@ namespace ex
 
 
 		//mRigidbody->SetVelocity(velocity);
+	}
+
+	void Player::JumpAttack()
+	{
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+
+		if (bCheck)
+		{
+			mState = eState::Fall;
+		}
 	}
 
 	void Player::Hit()
@@ -794,6 +802,21 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"PlayerRightMove", true);
 			mState = eState::Move;
+		}
+
+		// 점프 + 공격
+		if (Input::GetKeyDown(eKeyCode::Ctrl) || Input::GetKeyPressed(eKeyCode::Ctrl))
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
+				mState = eState::JumpAttack;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightAttack", false);
+				mState = eState::JumpAttack;
+			}
 		}
 
 		if (bGround && mbInvincible)

@@ -56,6 +56,7 @@ namespace ex
 		void Skill();
 		void Fall();
 		void Jump();
+		void JumpAttack();
 		//void DoubleJump();
 		void Hit();
 		void Death();

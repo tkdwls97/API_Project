@@ -10,6 +10,7 @@ namespace ex
 		, mIdleDelay(0.0f)
 		, mMoveDelay(3.0f)
 		, mMoveTime(0.0f)
+		, mHitDelay(0.0f)
 	{
 		mRigidbody = AddComponent<Rigidbody>();
 		mCollider = AddComponent<Collider>();
