@@ -4,7 +4,7 @@
 #include "exTitleScene.h"
 #include "exSceneManager.h"
 #include "exCamera.h"
-#include  "exCollisionManager.h"
+#include "exCollisionManager.h"
 
 
 ex::Application::Application()

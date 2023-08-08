@@ -1,16 +1,20 @@
 #include "exInput.h"
+#include "exApplication.h"
+
+extern ex::Application application;
 
 namespace ex
 {
 	//static (전역으로 초기화)
 	std::vector<Input::Key> Input::mKeys = {};
-
+	math::Vector2 Input::mMousePos = {};
 	int ASCII[(int)eKeyCode::End] =
 	{
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I' ,'O', 'p',
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, VK_SPACE, VK_CONTROL,
+		VK_LBUTTON,
 	};
 
 	void Input::Initialize()
@@ -31,6 +35,16 @@ namespace ex
 	{
 		for (int i = 0; i < (int)eKeyCode::End; i++)
 		{
+			POINT MousePos = {};
+			// 현재 마우스 Pos 를 받아온다
+			GetCursorPos(&MousePos);
+			// 마우스 Pos 를 스크린 좌표에서 특정 클라이언트 좌표로 바꿔준다
+			ScreenToClient(application.GetHwnd(), &MousePos);
+
+			mMousePos.x = (float)MousePos.x;
+			mMousePos.y = (float)MousePos.y;
+
+
 			// 해당키가 눌려졌다 체크
 			if (GetAsyncKeyState(ASCII[i]) & 0x8000)
 			{

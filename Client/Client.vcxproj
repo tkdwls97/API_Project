@@ -144,6 +144,7 @@
     <ClCompile Include="exPlayerAttack.cpp" />
     <ClCompile Include="exPortal.cpp" />
     <ClCompile Include="exRigidbody.cpp" />
+    <ClCompile Include="exLogin.cpp" />
     <ClCompile Include="exRope.cpp" />
     <ClCompile Include="exStageScene3.cpp" />
     <ClCompile Include="exUI.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="exPlayerAttack.h" />
     <ClInclude Include="exPortal.h" />
     <ClInclude Include="exRigidbody.h" />
+    <ClInclude Include="exLogin.h" />
     <ClInclude Include="exRope.h" />
     <ClInclude Include="exStageScene3.h" />
     <ClInclude Include="exUI.h" />

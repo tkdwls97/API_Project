@@ -10,6 +10,8 @@
 #include "exCamera.h"
 #include "exAnimator.h"
 #include "exCollisionManager.h"
+#include "exFloor.h"
+#include "exLogin.h"
 
 namespace ex
 {
@@ -22,23 +24,7 @@ namespace ex
 	}
 
 	void TitleScene::Initialize()
-	{
-		// 템플릿이니까 Texture 타입으로 넣어주고 타이틀 백그라운드 이미지라고 이름을 
-		// 설정하고
-		// 경로를 두번째 인자로 주었다.
-		// 로드 함수를 이제 호출한다.
-		Texture* image = ResourceManager::Load<Texture>(L"TitleBackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
-
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.7f, 1.8f));
-		bgsr->SetAffectCamera(true) ;
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
-
-		
+	{	
 	}
 
 	void TitleScene::Update()
@@ -56,6 +42,20 @@ namespace ex
 	}
 	void TitleScene::SceneIN()
 	{
+		Texture* image = ResourceManager::Load<Texture>(L"TitleBackGroundImgae"
+			, L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
+
+		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetImage(image);
+		bgsr->SetScale(math::Vector2(1.7f, 1.8f));
+		bgsr->SetAffectCamera(true);
+		//bgsr->SetAlpha(0.2f);
+		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+
+		Login* login = object::Instantiate<Login>(enums::eLayerType::Floor);
+		login->Initialize();
+		
 		Camera::SetTarget(nullptr);
 	}
 	void TitleScene::SceneOut()

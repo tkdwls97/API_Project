@@ -9,6 +9,7 @@ namespace ex
 		A, S, D, F, G, H, J, K, L,
 		Z, X, C, V, B, N, M,
 		Up, Down, Left, Right, Jump, Ctrl,
+		LButton,
 		End,
 	};
 
@@ -90,11 +91,13 @@ namespace ex
 			return mKeys[(int)_keycode].autoCode == eAutoCode::RIGHT;
 		}
 
-		
+		static math::Vector2 GetMousePos() { return mMousePos; }
+
 
 	private:
 		//static (전역으로 초기화)
 		static std::vector<Key> mKeys;
+		static math::Vector2 mMousePos;
 	};
 
 }

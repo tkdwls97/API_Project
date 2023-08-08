@@ -139,6 +139,9 @@
     <Filter Include="Contents\Scene\04.StageScene3">
       <UniqueIdentifier>{76e88cc0-57ae-4836-aacf-a4baa64f3a42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\09.Login">
+      <UniqueIdentifier>{b6723186-40b6-493c-895d-d2cbfb7e084a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -269,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="exStageScene3.cpp">
       <Filter>Contents\Scene\04.StageScene3</Filter>
+    </ClCompile>
+    <ClCompile Include="exLogin.cpp">
+      <Filter>Contents\GameObject\09.Login</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -409,6 +415,9 @@
     </ClInclude>
     <ClInclude Include="exStageScene3.h">
       <Filter>Contents\Scene\04.StageScene3</Filter>
+    </ClInclude>
+    <ClInclude Include="exLogin.h">
+      <Filter>Contents\GameObject\09.Login</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
