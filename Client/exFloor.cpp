@@ -40,8 +40,8 @@ namespace ex
 			Transform* tr = player->GetComponent<Transform>();
 			Rigidbody* rb = player->GetComponent<Rigidbody>();
 
-			float len = fabs(_other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y) + 4.0f;
-			float scale = fabs(_other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f) - 4.0f;
+			float len = fabs(_other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y) - 2.0f;
+			float scale = fabs(_other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f) - 2.0f;
 
 			if (len < scale)
 			{
@@ -60,8 +60,8 @@ namespace ex
 			Transform* tr = monster->GetComponent<Transform>();
 			Rigidbody* rb = monster->GetComponent<Rigidbody>();
 
-			float len = fabs(_other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y) + 4.0f;
-			float scale = fabs(_other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f) - 4.0f;
+			float len = fabs(_other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y) - 2.0f;
+			float scale = fabs(_other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f) - 2.0f;
 
 			if (len < scale)
 			{
@@ -78,6 +78,13 @@ namespace ex
 
 	void Floor::OnCollisionStay(Collider* _other)
 	{
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+
+		if (player != nullptr)
+		{
+
+			
+		}
 	}
 	void Floor::OnCollisionExit(Collider* _other)
 	{

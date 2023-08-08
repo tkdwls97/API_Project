@@ -128,7 +128,7 @@ namespace ex
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 			mhitDelay += Time::GetDeltaTime();
-			if (mhitDelay >= 2.0f)
+			if (mhitDelay >= 1.5f)
 			{
 				CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 				mbInvincible = false;
@@ -142,9 +142,18 @@ namespace ex
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
 		}
-		else
+		else 
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		}
+
+		if (mState == eState::Jump)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
+		}
+		else if (mState == eState::Fall)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		}
 
 		switch (mState)
@@ -167,6 +176,9 @@ namespace ex
 		case Player::eState::Rope:
 			Rope();
 			break;
+		//case Player::eState::RopeDown:
+		//	RopeDown();
+		//	break;
 		case Player::eState::Attack:
 			Attack();
 			break;
@@ -244,6 +256,7 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 				pos.y += 200.0f * Time::GetDeltaTime();
+				//mState = eState::RopeDown;
 				mState = eState::Rope;
 			}
 
@@ -494,7 +507,7 @@ namespace ex
 		math::Vector2 pos = mTransform->GetPosition();
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
-
+		
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
@@ -503,30 +516,34 @@ namespace ex
 		else if (Input::GetKeyPressed(eKeyCode::Down) || Input::GetKeyDown(eKeyCode::Down))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+			//mState = eState::RopeDown;
+			mState = eState::Rope;
 			pos.y += 200.0f * Time::GetDeltaTime();
 		}
 
 
-		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
-		{
-			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
-			velocity.x = -300.0f;
-			velocity.y = -150.0f;
-			mRigidbody->SetGround(false);
-			mState = eState::Jump;
-		}
-		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
-		{
-			mAnimator->PlayAnimation(L"PlayerRightJump", true);
-			velocity.x = 300.0f;
-			velocity.y = -150.0f;
-			mState = eState::Jump;
-			mRigidbody->SetGround(false);
-		}
-		//mRigidbody->SetGravity(math::Vector2(0.0f, 0.0f));
+		//if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
+		//{
+		//	mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+		//	velocity.x = -500.0f;
+		//	velocity.y = -300.0f;
+		//	mRigidbody->SetGround(false);
+		//	mState = eState::Jump;
+		//	mRigidbody->SetVelocity(velocity);
+		//}
+		//if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
+		//{
+		//	mAnimator->PlayAnimation(L"PlayerRightJump", true);
+		//	velocity.x = 500.0f;
+		//	velocity.y = -300.0f;
+		//	mState = eState::Jump;
+		//	mRigidbody->SetGround(false);
+		//	mRigidbody->SetVelocity(velocity);
+		//}
 		mTransform->SetPosition(pos);
-		mRigidbody->SetVelocity(velocity);
+
 	}
+
 
 	void Player::Attack()
 	{
@@ -602,6 +619,12 @@ namespace ex
 
 		}
 
+		if (mbRopeState && Input::GetKeyPressed(eKeyCode::Up))
+		{
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+			mState = eState::Rope;
+		}
+
 		// 점프 + 공격
 		if (Input::GetKeyDown(eKeyCode::Ctrl) || Input::GetKeyPressed(eKeyCode::Ctrl))
 		{
@@ -617,13 +640,15 @@ namespace ex
 			}
 		}
 
+
 		// 포물선에서 내려오는 상태면 떨어지는상태로 변경해준다
-		if (velocity.y >= 0)
+		if (velocity.y >= 0 && mState != eState::Rope)
 		{
 			mState = eState::Fall;
 		}
 
-		mRigidbody->SetVelocity(velocity);
+
+		//mRigidbody->SetVelocity(velocity);
 	}
 
 	void Player::Hit()
@@ -752,6 +777,12 @@ namespace ex
 				mState = eState::Idle;
 			}
 			mRigidbody->SetFriction(1000.0f);
+		}
+
+		if (mbRopeState && Input::GetKeyPressed(eKeyCode::Up))
+		{
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+			mState = eState::Rope;
 		}
 
 		if (bGround && Input::GetKeyPressed(eKeyCode::Left))

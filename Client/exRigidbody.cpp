@@ -47,7 +47,7 @@ namespace ex
 			float dot = math::Dot(mVelocity, gravity);
 			mVelocity -= gravity * dot;
 		}
-		else
+		else if(player->GetState() != GameObject::eState::Rope || player->GetState() != GameObject::eState::RopeDown)
 		{
 			// 공중에 있을 때
 			mVelocity += mGravity * Time::GetDeltaTime();

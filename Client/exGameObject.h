@@ -8,24 +8,23 @@ namespace ex
 {
 	class Collider;
 
-	// 오브젝트의 상태
-	enum class eObjectState
-	{
-		// 활성화 상태, Update(OK), Render(OK)
-		Active,
-		// 멈춰있는 상태, Update(X), Render(X)
-		Pause,
-		// 이번 Render가 마무리되고 이 객체가 삭제되어야 하는 경우. Render가 끝나고 이 객체를 삭제하도록. ex) Bullet.
-		Dead,
-		End,
-	};
-
+	//// 오브젝트의 상태
+	//enum class eObjectState
+	//{
+	//	// 활성화 상태, Update(OK), Render(OK)
+	//	Active,
+	//	// 멈춰있는 상태, Update(X), Render(X)
+	//	Pause,
+	//	// 이번 Render가 마무리되고 이 객체가 삭제되어야 하는 경우. Render가 끝나고 이 객체를 삭제하도록. ex) Bullet.
+	//	Dead,
+	//	End,
+	//};
+	
 
 
 	class GameObject : public Entity
 	{
 	public:
-
 		enum class eState
 		{
 			Idle,
@@ -34,6 +33,7 @@ namespace ex
 			Down,
 			Fall,
 			Rope,
+			RopeDown,
 			Attack,
 			Skill,
 			Hit,
@@ -41,8 +41,6 @@ namespace ex
 			Death,
 			End,
 		};
-
-		//
 		enum class eObjectState
 		{
 			Active,

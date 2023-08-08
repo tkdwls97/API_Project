@@ -51,6 +51,7 @@ namespace ex
 		void Move();
 		void Down();
 		void Rope();
+		//void RopeDown();
 		void Attack();
 		void Skill();
 		void Fall();

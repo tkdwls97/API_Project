@@ -22,6 +22,9 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
+		void SetMoveDelay(float _delay) { mMoveDelay = _delay; }
+		float GetMoveDelay() { return mMoveDelay; }
+
 		void Idle();
 		void Move();
 		void Attack();
@@ -30,8 +33,6 @@ namespace ex
 		void Dead();
 
 	private:
-		float mIdleDelay;
-		float mMoveDelay;
 	};
 
 }

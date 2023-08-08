@@ -46,5 +46,9 @@ namespace ex
 		Rigidbody* mRigidbody;
 		Collider* mCollider;
 		eMonsterState mMonsterState;
+
+		float mIdleDelay;
+		float mMoveDelay;
+		float mMoveTime;
 	};
 }

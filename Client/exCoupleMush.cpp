@@ -31,7 +31,7 @@ namespace ex
 		mAnimator->CreateAnimation(L"CoupleMushLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f)
 			, math::Vector2(170.0f, 170.0f), 8);
 		mAnimator->CreateAnimation(L"CoupleMushLeftMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(170.0f, 170.0f), 14);
+			, math::Vector2(170.0f, 170.0f), 13);
 		mAnimator->CreateAnimation(L"CoupleMushLeftDead", image, math::Vector2(510.0f, 170.0f), math::Vector2(170.0f, 170.0f)
 			, math::Vector2(510.0f, 170.0f), 5);
 
@@ -41,7 +41,7 @@ namespace ex
 		mAnimator->CreateAnimation(L"CoupleMushRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f)
 			, math::Vector2(170.0f, 170.0f), 8);
 		mAnimator->CreateAnimation(L"CoupleMushRightMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(170.0f, 170.0f), 14);
+			, math::Vector2(170.0f, 170.0f), 13);
 		mAnimator->CreateAnimation(L"CoupleMushRightDead", image, math::Vector2(510.0f, 170.0f), math::Vector2(170.0f, 170.0f)
 			, math::Vector2(510.0f, 170.0f), 5);
 

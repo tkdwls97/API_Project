@@ -13,8 +13,6 @@
 namespace ex
 {
 	GreenMush::GreenMush()
-		: mIdleDelay(0.0f)
-		, mMoveDelay(0.0f)
 	{
 	}
 
@@ -51,6 +49,7 @@ namespace ex
 		mCollider->SetOffset(math::Vector2(5.0f, 4.0f));
 		mAnimator->SetAffectedCamera(true);
 		mDirection = mTransform->GetMoveDir();
+		mMoveTime = mMoveDelay;
 	}
 
 	void GreenMush::Update()
@@ -122,13 +121,13 @@ namespace ex
 
 	void GreenMush::Move()
 	{
-		mMoveDelay += Time::GetDeltaTime();
-
+		
+		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
-		if (mMoveDelay >= 4.0f)
+		if (mMoveTime <= 0.0f)
 		{
 			mMonsterState = eMonsterState::Idle;
-			mMoveDelay = 0.0f;
+			mMoveTime = mMoveDelay;
 		}
 		else
 		{

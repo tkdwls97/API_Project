@@ -41,8 +41,9 @@ namespace ex
 		//float mStaticFriction;
 		//// ¿îµ¿ ¸¶Âû·Â
 		//float mKineticFrction;
+	
 		// °è¼ö
-		float mCoefficentFrction;
+		//float mCoefficentFrction;
 
 		// Èû
 		math::Vector2 mForce;
