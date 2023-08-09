@@ -30,9 +30,6 @@ namespace ex
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
-
-		enums::eMoveDir mplayerDir;
-		
 	};
 
 }

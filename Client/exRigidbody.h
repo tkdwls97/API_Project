@@ -26,6 +26,7 @@ namespace ex
 		void SetVelocity(math::Vector2 _velocity) { mVelocity = _velocity; }
 
 		void SetVelocityY(float _velocity) { mVelocity.y = _velocity; }
+		void SetVelocityX(float _velocity) { mVelocity.x = _velocity; }
 
 		math::Vector2 GetGravity() { return mGravity; }
 		void SetGravity(math::Vector2 _gravity) { mGravity = _gravity; }

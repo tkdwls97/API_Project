@@ -150,13 +150,13 @@ namespace ex
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
-	 	} 
- 		else
- 		{
-	  		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true); 
- 		}
-  
-   	  	switch (mState)
+		}
+		else
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
+		}
+
+		switch (mState)
 		{
 		case Player::eState::Idle:
 			Idle();
@@ -368,7 +368,7 @@ namespace ex
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = 220.0f;
- 			velocity.y = -600.0f;
+			velocity.y = -600.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
@@ -635,7 +635,7 @@ namespace ex
 		}
 
 		// mbDoubleJump 가 false일때 점프를 누르면
-  		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
+		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
 		{
 			mRigidbody->SetLimitedVeloctyX(700.0f);
 			if (playerDir == enums::eMoveDir::Left)
@@ -652,6 +652,8 @@ namespace ex
 				velocity.y = -300.0f;
 				mState = eState::DoubleJump;
 			}
+			WarriorLeap* warriorLeap = new WarriorLeap(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
 			mRigidbody->SetVelocity(velocity);
 		}
 
@@ -679,9 +681,9 @@ namespace ex
 	void Player::DoubleJump()
 	{
 		math::Vector2 velocity = mRigidbody->GetVelocity();
-
-		WarriorLeap* warriorLeap = new WarriorLeap(this);
-		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
+		//WarriorLeap* warriorLeap = new WarriorLeap(this);
+		//object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
+		
 		// 더블 점프를 사용했기때문에 true로 변경
 		mbDoubleJump = true;
 
@@ -696,14 +698,15 @@ namespace ex
 			mState = eState::Rope;
 		}
 
-	
+
 	}
 
 	void Player::Hit()
 	{
 		math::Vector2 velocity = mRigidbody->GetVelocity();
-
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+
+		mbDoubleJump = false;
 
 		if (playerDir == enums::eMoveDir::Left)
 		{
@@ -815,6 +818,8 @@ namespace ex
 				velocity.y = -300.0f;
 				mState = eState::DoubleJump;
 			}
+			WarriorLeap* warriorLeap = new WarriorLeap(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
 			mRigidbody->SetVelocity(velocity);
 		}
 
@@ -823,6 +828,7 @@ namespace ex
 		if (bGround)
 		{
 			mRigidbody->SetLimitedVeloctyX(200.0f);
+			mRigidbody->SetVelocityX(0.0f);
 			// 땅에 닿으면 더블점프 초기화
 			mbDoubleJump = false;
 			if (playerDir == enums::eMoveDir::Left)
@@ -835,7 +841,6 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
 				mState = eState::Idle;
 			}
-			mRigidbody->SetFriction(1000.0f);
 		}
 
 		if (mbRopeState && Input::GetKeyPressed(eKeyCode::Up))
