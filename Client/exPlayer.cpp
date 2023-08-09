@@ -680,11 +680,8 @@ namespace ex
 	{
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 
-
 		WarriorLeap* warriorLeap = new WarriorLeap(this);
 		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
-
-		bool bCheack = mRigidbody->GetGround();
 		// 더블 점프를 사용했기때문에 true로 변경
 		mbDoubleJump = true;
 

@@ -21,22 +21,22 @@ namespace ex
 		mCollider = AddComponent<Collider>();
 
 
-		// png
-		Texture* image = ResourceManager::Load<Texture>(L"LeftWarriorLeap"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Left\\LeftWarriorLeap.png");
-
+		//// png
 		//Texture* image = ResourceManager::Load<Texture>(L"LeftWarriorLeap"
-		//		, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Left\\LeftWarriorLeap.bmp");
+		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Left\\LeftWarriorLeap.png");
+
+		Texture* image = ResourceManager::Load<Texture>(L"LeftWarriorLeap"
+				, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Left\\LeftWarriorLeap.bmp");
 
 		mAnimator->CreateAnimation(L"LeftWarriorLeap", image, math::Vector2(0.0f, 0.0f), math::Vector2(352.0f, 216.0f)
 			, math::Vector2(352.0f, 216.0f), 7, math::Vector2(0), 0.035f);
 
-		// png
-		image = ResourceManager::Load<Texture>(L"RightWarriorLeap"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Right\\RightWarriorLeap.png");
-		
+		//// png
 		//image = ResourceManager::Load<Texture>(L"RightWarriorLeap"
-		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Right\\RightWarriorLeap.bmp");
+		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Right\\RightWarriorLeap.png");
+		
+		image = ResourceManager::Load<Texture>(L"RightWarriorLeap"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\WarriorLeap\\Right\\RightWarriorLeap.bmp");
 
 		mAnimator->CreateAnimation(L"RightWarriorLeap", image, math::Vector2(2464.0f, 0.0f), math::Vector2(352.0f, 216.0f)
 			, math::Vector2(-352.0f, 0.0f), 7, math::Vector2(0), 0.035f);
