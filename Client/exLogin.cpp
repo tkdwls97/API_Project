@@ -7,6 +7,8 @@
 
 namespace ex
 {
+	bool Login::mbLogin = false;
+
 	Login::Login()
 	{
 		mTransform = GetComponent<Transform>();
@@ -16,7 +18,7 @@ namespace ex
 
 	Login::~Login()
 	{
-		
+
 	}
 
 	void Login::Initialize()
@@ -45,10 +47,15 @@ namespace ex
 			left.y <= mousePos.y && mousePos.y <= right.y)
 		{
 			mAnimator->PlayAnimation(L"Login", true);
+			if (Input::GetKeyDown(eKeyCode::LButton))
+			{
+				mbLogin = true;
+			}
 		}
 		else
 		{
 			mAnimator->PlayAnimation(L"LoginNomal", true);
+			mbLogin = false;
 		}
 
 		GameObject::Update();

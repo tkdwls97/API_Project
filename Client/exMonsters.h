@@ -11,6 +11,15 @@ namespace ex
 	class Monsters :public GameObject
 	{
 	public:
+		struct MonsterInfo
+		{
+			int mHp;
+			int mSpeed;
+			int mDamage;
+			int mDef;
+			int mLevel;
+
+		};
 		enum class eMonsterState
 		{
 			Idle,
@@ -46,6 +55,7 @@ namespace ex
 		Rigidbody* mRigidbody;
 		Collider* mCollider;
 		eMonsterState mMonsterState;
+		//MonsterInfo* mMonsterInfo;
 
 		float mIdleDelay;
 		float mMoveDelay;

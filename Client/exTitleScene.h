@@ -3,6 +3,7 @@
 
 namespace ex
 {
+	class Login;
 	class TitleScene : public Scene
 	{
 	public:

@@ -51,13 +51,12 @@ namespace ex
 		void Move();
 		void Down();
 		void Rope();
-		//void RopeDown();
 		void Attack();
 		void Skill();
 		void Fall();
 		void Jump();
 		void JumpAttack();
-		//void DoubleJump();
+		void DoubleJump();
 		void Hit();
 		void Death();
 
@@ -69,6 +68,7 @@ namespace ex
 		eState			mState;
 		PlayerInfo		mInfo;
 
+		bool			mbDoubleJump;
 		bool			mbPortalState;
 		bool			mbRopeState;
 		bool			mbInvincible;

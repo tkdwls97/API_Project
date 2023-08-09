@@ -30,7 +30,9 @@ namespace ex
 	void TitleScene::Update()
 	{
 		Scene::Update();
-		if (Input::GetKeyDown(eKeyCode::Q))
+		
+		bool bLogin = Login::IsLoginCheck();
+		if (bLogin)
 		{
 			SceneManager::LoadScene(L"StageScene");
 		}

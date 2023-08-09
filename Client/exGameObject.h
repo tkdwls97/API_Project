@@ -30,6 +30,7 @@ namespace ex
 			Idle,
 			Move,
 			Jump,
+			DoubleJump,
 			Down,
 			Fall,
 			Rope,

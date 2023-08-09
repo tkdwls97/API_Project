@@ -54,7 +54,7 @@ namespace ex
 
 	void GreenMush::Update()
 	{
-		
+
 		switch (mMonsterState)
 		{
 		case ex::Monsters::eMonsterState::Idle:
@@ -121,7 +121,7 @@ namespace ex
 
 	void GreenMush::Move()
 	{
-		
+
 		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
 		if (mMoveTime <= 0.0f)
@@ -161,23 +161,23 @@ namespace ex
 
 	void GreenMush::Dead()
 	{
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
-
-		if (playerDir == enums::eMoveDir::Left)
+		if (mDirection == enums::eMoveDir::Left)
 		{
-			mAnimator->PlayAnimation(L"GreenMushRightDead", false);
+			mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
-
+			mAnimator->PlayAnimation(L"GreenMushRightDead", false);
 		}
 
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
+
 		if (bCheck)
 		{
 			Destroy(this);
 		}
+
+
 	}
 	void GreenMush::OnCollisionEnter(Collider* _other)
 	{

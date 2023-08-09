@@ -10,7 +10,7 @@ namespace ex
 	Rigidbody::Rigidbody()
 		: Component(enums::eComponentType::Rigidbody)
 		, mMass(1.0f)
-		, mFriction(0.0f)
+		, mFriction(1200.0f)
 		, mbGround(false)
 		, mAccelation(500.0f)
 	{
@@ -47,7 +47,7 @@ namespace ex
 			float dot = math::Dot(mVelocity, gravity);
 			mVelocity -= gravity * dot;
 		}
-		else if(player->GetState() != GameObject::eState::Rope || player->GetState() != GameObject::eState::RopeDown)
+		else if(player->GetState() != GameObject::eState::Rope)
 		{
 			// 공중에 있을 때
 			mVelocity += mGravity * Time::GetDeltaTime();

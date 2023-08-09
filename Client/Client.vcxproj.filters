@@ -142,6 +142,9 @@
     <Filter Include="Contents\GameObject\09.Login">
       <UniqueIdentifier>{b6723186-40b6-493c-895d-d2cbfb7e084a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.WarriorLeap">
+      <UniqueIdentifier>{7090f792-926e-464c-b79e-8d75cf0deed4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -275,6 +278,9 @@
     </ClCompile>
     <ClCompile Include="exLogin.cpp">
       <Filter>Contents\GameObject\09.Login</Filter>
+    </ClCompile>
+    <ClCompile Include="exWarriorLeap.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.WarriorLeap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="exLogin.h">
       <Filter>Contents\GameObject\09.Login</Filter>
+    </ClInclude>
+    <ClInclude Include="exWarriorLeap.h">
+      <Filter>Contents\GameObject\03.Effect\01.WarriorLeap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

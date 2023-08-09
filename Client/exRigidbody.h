@@ -30,6 +30,7 @@ namespace ex
 		math::Vector2 GetGravity() { return mGravity; }
 		void SetGravity(math::Vector2 _gravity) { mGravity = _gravity; }
 
+		void SetLimitedVeloctyX(float _limited) { mLimitedVelocty.x = _limited; }
 		
 
 	private:

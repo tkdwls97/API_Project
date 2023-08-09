@@ -3,15 +3,15 @@
 
 namespace ex
 {
+	class Animator;
 	class Collider;
 	class Transform;
-	class Animator;
 
-	class PlayerAttack : public EffectManger
+	class WarriorLeap : public EffectManger
 	{
 	public:
-		PlayerAttack(GameObject* _owner);
-		virtual ~PlayerAttack();
+		WarriorLeap(GameObject* _owner);
+		virtual ~WarriorLeap();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -27,8 +27,12 @@ namespace ex
 		GameObject* mOwner;
 		std::set<GameObject*> mAttackList;
 
+		Animator* mAnimator;
+		Collider* mCollider;
+		Transform* mTransform;
 
-
+		enums::eMoveDir mplayerDir;
+		
 	};
 
 }

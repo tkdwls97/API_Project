@@ -10,6 +10,7 @@
 #include "exCollider.h"
 #include "exCollisionManager.h"
 #include "exPortal.h"
+#include "exWarriorLeap.h"
 
 
 namespace ex
@@ -24,6 +25,7 @@ namespace ex
 		, mbInvincible(false)
 		, mbPortalState(false)
 		, mbRopeState(false)
+		, mbDoubleJump(false)
 	{
 		mInfo.mHp = 50000;
 		mInfo.mMP = 30000;
@@ -122,8 +124,6 @@ namespace ex
 
 	void Player::Update()
 	{
-		GameObject::Update();
-
 		if (mState == eState::Hit || mhitDelay > 0.0f)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
@@ -138,25 +138,25 @@ namespace ex
 
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope || mState == eState::JumpAttack)
+		if (mState == eState::Jump || mState == eState::Rope)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
 		}
-		else 
+		else
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope)
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
-		}
-		else
-		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
-		}
-
-		switch (mState)
+	 	} 
+ 		else
+ 		{
+	  		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true); 
+ 		}
+  
+   	  	switch (mState)
 		{
 		case Player::eState::Idle:
 			Idle();
@@ -167,6 +167,9 @@ namespace ex
 		case Player::eState::Jump:
 			Jump();
 			break;
+		case Player::eState::DoubleJump:
+			DoubleJump();
+			break;
 		case Player::eState::Down:
 			Down();
 			break;
@@ -176,7 +179,6 @@ namespace ex
 		case Player::eState::Rope:
 			Rope();
 			break;
-
 		case Player::eState::Attack:
 			Attack();
 			break;
@@ -198,6 +200,7 @@ namespace ex
 			break;
 		}
 
+		GameObject::Update();
 	}
 
 	void Player::Render(HDC _hdc)
@@ -365,7 +368,7 @@ namespace ex
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = 220.0f;
-			velocity.y = -1100.0f;
+ 			velocity.y = -600.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 		}
@@ -374,7 +377,7 @@ namespace ex
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = -220.0f;
-			velocity.y = -700.0f;
+			velocity.y = -600.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 		}
@@ -431,6 +434,7 @@ namespace ex
 			mState = eState::Hit;
 			velocity.x = 0;
 		}
+
 		mRigidbody->SetVelocity(velocity);
 	}
 
@@ -505,7 +509,10 @@ namespace ex
 		math::Vector2 pos = mTransform->GetPosition();
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
-		
+		mRigidbody->SetGround(false);
+
+		// 로프 상태에 오면 더블점프 초기화
+		mbDoubleJump = false;
 		if (Input::GetKeyPressed(eKeyCode::Up) || Input::GetKeyDown(eKeyCode::Up))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
@@ -514,30 +521,28 @@ namespace ex
 		else if (Input::GetKeyPressed(eKeyCode::Down) || Input::GetKeyDown(eKeyCode::Down))
 		{
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-			//mState = eState::RopeDown;
-			mState = eState::Rope;
 			pos.y += 200.0f * Time::GetDeltaTime();
 		}
 
 
-		//if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
-		//{
-		//	mAnimator->PlayAnimation(L"PlayerLeftJump", true);
-		//	velocity.x = -500.0f;
-		//	velocity.y = -300.0f;
-		//	mRigidbody->SetGround(false);
-		//	mState = eState::Jump;
-		//	mRigidbody->SetVelocity(velocity);
-		//}
-		//if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
-		//{
-		//	mAnimator->PlayAnimation(L"PlayerRightJump", true);
-		//	velocity.x = 500.0f;
-		//	velocity.y = -300.0f;
-		//	mState = eState::Jump;
-		//	mRigidbody->SetGround(false);
-		//	mRigidbody->SetVelocity(velocity);
-		//}
+		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
+		{
+			mRigidbody->SetLimitedVeloctyX(700.0f);
+			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+			velocity.x = -300.0f;
+			velocity.y = -200.0f;
+			mState = eState::Jump;
+			mRigidbody->SetVelocity(velocity);
+		}
+		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
+		{
+			mRigidbody->SetLimitedVeloctyX(700.0f);
+			mAnimator->PlayAnimation(L"PlayerRightJump", true);
+			velocity.x = 300.0f;
+			velocity.y = -200.0f;
+			mState = eState::Jump;
+			mRigidbody->SetVelocity(velocity);
+		}
 		mTransform->SetPosition(pos);
 
 	}
@@ -593,15 +598,6 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 
-		// 방향에 따라 점프
-		if (playerDir == enums::eMoveDir::Left)
-		{
-			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
-		}
-		if (playerDir == enums::eMoveDir::Right)
-		{
-			mAnimator->PlayAnimation(L"PlayerRightJump", true);
-		}
 
 		// 점프중 좌우 움직이게 
 		if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
@@ -638,9 +634,30 @@ namespace ex
 			}
 		}
 
+		// mbDoubleJump 가 false일때 점프를 누르면
+  		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
+		{
+			mRigidbody->SetLimitedVeloctyX(700.0f);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+				velocity.x = -700.0f;
+				velocity.y = -300.0f;
+				mState = eState::DoubleJump;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightJump", true);
+				velocity.x = 700.0f;
+				velocity.y = -300.0f;
+				mState = eState::DoubleJump;
+			}
+			mRigidbody->SetVelocity(velocity);
+		}
+
 
 		// 포물선에서 내려오는 상태면 떨어지는상태로 변경해준다
-		if (velocity.y >= 0 && mState != eState::Rope)
+		if (velocity.y >= 0 && mState != eState::Rope && mState != eState::DoubleJump)
 		{
 			mState = eState::Fall;
 		}
@@ -657,6 +674,32 @@ namespace ex
 		{
 			mState = eState::Fall;
 		}
+	}
+
+	void Player::DoubleJump()
+	{
+		math::Vector2 velocity = mRigidbody->GetVelocity();
+
+
+		WarriorLeap* warriorLeap = new WarriorLeap(this);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
+
+		bool bCheack = mRigidbody->GetGround();
+		// 더블 점프를 사용했기때문에 true로 변경
+		mbDoubleJump = true;
+
+		if (velocity.y >= 0 && mState != eState::Rope)
+		{
+			mState = eState::Fall;
+		}
+
+		if (mbRopeState && Input::GetKeyPressed(eKeyCode::Up))
+		{
+			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+			mState = eState::Rope;
+		}
+
+	
 	}
 
 	void Player::Hit()
@@ -724,11 +767,8 @@ namespace ex
 			mState = eState::Down;
 		}
 
-
-
 		velocity.x = 0.0f;
 		mbInvincible = true;
-
 		mRigidbody->SetVelocity(velocity);
 	}
 
@@ -745,17 +785,6 @@ namespace ex
 	{
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
-		bool bGround = mRigidbody->GetGround();
-
-		if (playerDir == enums::eMoveDir::Left)
-		{
-			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
-		}
-		else if (playerDir == enums::eMoveDir::Right)
-		{
-			mAnimator->PlayAnimation(L"PlayerRightJump", true);
-		}
-
 
 		// fall상태 중 좌우 방향키 입력
 		if (Input::GetKeyDown(eKeyCode::Right))
@@ -771,9 +800,34 @@ namespace ex
 
 		}
 
+		// mbDoubleJump 가 false일때 점프를 누르면
+		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
+		{
+			mRigidbody->SetLimitedVeloctyX(500.0f);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+				velocity.x = -600.0f;
+				velocity.y = -300.0f;
+				mState = eState::DoubleJump;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightJump", true);
+				velocity.x = 600.0f;
+				velocity.y = -300.0f;
+				mState = eState::DoubleJump;
+			}
+			mRigidbody->SetVelocity(velocity);
+		}
+
 		// 땅에 닿은 상태
+		bool bGround = mRigidbody->GetGround();
 		if (bGround)
 		{
+			mRigidbody->SetLimitedVeloctyX(200.0f);
+			// 땅에 닿으면 더블점프 초기화
+			mbDoubleJump = false;
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);

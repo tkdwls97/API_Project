@@ -3,6 +3,9 @@
 
 namespace ex
 {
+	class Collider;
+	class Transform;
+	class Animator;
 
 	class EffectManger : public GameObject
 	{
@@ -22,8 +25,6 @@ namespace ex
 
 	private:
 		GameObject* mOwner;
-
-
 	};
 
 }
