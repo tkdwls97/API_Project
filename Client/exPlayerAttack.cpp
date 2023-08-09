@@ -57,15 +57,7 @@ namespace ex
 		}
 		Animator* at = SceneManager::GetPlayer()->GetComponent<Animator>();
 		eState playerState = SceneManager::GetPlayer()->GetState();
-		if (playerState == eState::Attack || playerState == eState::JumpAttack)
-		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
-		}
-		else
-		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, false);
-		}
-
+	
 		bool bCheck = at->IsActiveAnimationComplete();
 		if (playerState == eState::Attack || playerState == eState::JumpAttack)
 		{

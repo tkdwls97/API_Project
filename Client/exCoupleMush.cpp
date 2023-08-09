@@ -161,19 +161,27 @@ namespace ex
 
 	void CoupleMush::Hit()
 	{
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mDirection = enums::eMoveDir::Right;
+		}
+		else
+		{
+			mDirection = enums::eMoveDir::Left;
+		}
 		mMonsterState = eMonsterState::Dead;
 	}
 
 	void CoupleMush::Dead()
 	{
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
-		if (playerDir == enums::eMoveDir::Left)
+		if (mDirection == enums::eMoveDir::Left)
 		{
-			mAnimator->PlayAnimation(L"CoupleMushRightDead", false);
+			mAnimator->PlayAnimation(L"CoupleMushLeftDead", false);
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"CoupleMushLeftDead", false);
+			mAnimator->PlayAnimation(L"CoupleMushRightDead", false);
 
 		}
 

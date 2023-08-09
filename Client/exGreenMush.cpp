@@ -9,6 +9,7 @@
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
 #include "exSceneManager.h"
+#include "exRaisingblow.h"
 
 namespace ex
 {
@@ -156,6 +157,15 @@ namespace ex
 
 	void GreenMush::Hit()
 	{
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mDirection = enums::eMoveDir::Right;
+		}
+		else
+		{
+			mDirection = enums::eMoveDir::Left;
+		}
 		mMonsterState = eMonsterState::Dead;
 	}
 
@@ -164,6 +174,7 @@ namespace ex
 		if (mDirection == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
+
 		}
 		else
 		{
@@ -198,6 +209,19 @@ namespace ex
 
 			}
 		}
+		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
+		if (raisingblow != nullptr)
+		{
+			std::set<GameObject*>* attList = raisingblow->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+
 	}
 
 	void GreenMush::OnCollisionExit(Collider* _other)

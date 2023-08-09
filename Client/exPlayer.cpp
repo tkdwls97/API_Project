@@ -11,7 +11,7 @@
 #include "exCollisionManager.h"
 #include "exPortal.h"
 #include "exWarriorLeap.h"
-
+#include "exRaisingblow.h"
 
 namespace ex
 {
@@ -77,6 +77,12 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerLeftAttack", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 3, math::Vector2(-23.0f, 0.0f), 0.14f);
 
+		// 왼쪽 스킬 애니메이션
+		image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
+		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
+			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.1f);
+
 		// 오른쪽 애니메이션
 		image = ResourceManager::Load<Texture>(L"PlayerRightIdle"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Right\\Bmp\\Player_Right_Idle.bmp");
@@ -108,6 +114,12 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerRightAttack", image, math::Vector2(672.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(-224.0f, 0.0f), 3, math::Vector2(0.f, 0.f), 0.14f);
 
+		// 오른쪽 스킬 애니메이션
+		image = ResourceManager::Load<Texture>(L"PlayerRightRaisingBlow"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Right\\Player_Right_RaisingBlow.bmp");
+		mAnimator->CreateAnimation(L"PlayerRightRaisingBlow", image, math::Vector2(2464.0f, 0.0f), math::Vector2(224.0f, 156.0f)
+			, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.1f);
+
 
 		// 로프 애니메이션
 		image = ResourceManager::Load<Texture>(L"PlayerRopeMove"
@@ -128,17 +140,17 @@ namespace ex
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 			mhitDelay += Time::GetDeltaTime();
-			if (mhitDelay >= 1.5f)
+			if (mhitDelay >= 1.25f)
 			{
 				CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 				mbInvincible = false;
 				mhitDelay = 0.0f;
+				mState = eState::Idle;
 
 			}
-
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope)
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
 		}
@@ -154,6 +166,16 @@ namespace ex
 		else
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
+		}
+
+		// 어택을 안했을때는 충돌체크를 끄기위해 설정
+		if (mState == eState::Attack || mState == eState::JumpAttack || mState == eState::RaisingBlow)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
+		}
+		else
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, false);
 		}
 
 		switch (mState)
@@ -185,8 +207,8 @@ namespace ex
 		case Player::eState::JumpAttack:
 			JumpAttack();
 			break;
-		case Player::eState::Skill:
-			Skill();
+		case Player::eState::RaisingBlow:
+			RaisingBlow();
 			break;
 		case Player::eState::Hit:
 			Hit();
@@ -301,6 +323,24 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
 				mState = eState::Attack;
 			}
+	
+		}
+
+		// 레이징 블로우
+		if (Input::GetKeyDown(eKeyCode::A) || Input::GetKeyPressed(eKeyCode::A))
+		{
+			Raisingblow* raisingBlow = new Raisingblow(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlow);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftRaisingBlow", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightRaisingBlow", false);
+			}
+
+			mState = eState::RaisingBlow;
 		}
 
 		// Idle 중 피격
@@ -708,6 +748,7 @@ namespace ex
 
 		mbDoubleJump = false;
 
+	
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftHit", true);
@@ -777,8 +818,22 @@ namespace ex
 	}
 
 
-	void Player::Skill()
+	void Player::RaisingBlow()
 	{
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+			}
+			mState = eState::Idle;
+		}
 	}
 
 	void Player::Fall()

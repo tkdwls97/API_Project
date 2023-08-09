@@ -145,6 +145,9 @@
     <Filter Include="Contents\GameObject\03.Effect\01.WarriorLeap">
       <UniqueIdentifier>{7090f792-926e-464c-b79e-8d75cf0deed4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\02.Raisingblow">
+      <UniqueIdentifier>{d7e6e3e4-a8d1-4d02-a7f9-b80a5f9dad0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -281,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="exWarriorLeap.cpp">
       <Filter>Contents\GameObject\03.Effect\01.WarriorLeap</Filter>
+    </ClCompile>
+    <ClCompile Include="exRaisingblow.cpp">
+      <Filter>Contents\GameObject\03.Effect\02.Raisingblow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -427,6 +433,9 @@
     </ClInclude>
     <ClInclude Include="exWarriorLeap.h">
       <Filter>Contents\GameObject\03.Effect\01.WarriorLeap</Filter>
+    </ClInclude>
+    <ClInclude Include="exRaisingblow.h">
+      <Filter>Contents\GameObject\03.Effect\02.Raisingblow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

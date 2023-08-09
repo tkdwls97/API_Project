@@ -52,7 +52,7 @@ namespace ex
 		void Down();
 		void Rope();
 		void Attack();
-		void Skill();
+		void RaisingBlow();
 		void Fall();
 		void Jump();
 		void JumpAttack();

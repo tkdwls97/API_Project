@@ -37,7 +37,7 @@ namespace ex
 			RopeDown,
 			Attack,
 			JumpAttack,
-			Skill,
+			RaisingBlow,
 			Hit,
 			Invincible,
 			Death,

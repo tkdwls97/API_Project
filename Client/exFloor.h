@@ -22,9 +22,6 @@ namespace ex
 		virtual void OnCollisionExit(class Collider* _other) override;
 
 	private:
-		Transform* mTransform;
-		Collider* mCollider;
-
 	};
 
 }
