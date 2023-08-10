@@ -1,4 +1,4 @@
-#include "exGreenMush.h"
+#include "exMasterRobo.h"
 #include "exTransform.h"
 #include "exInput.h" 
 #include "exTime.h"
@@ -12,51 +12,56 @@
 #include "exSceneManager.h"
 #include "exRaisingblow.h"
 #include "exRaisingblowHit.h"
+
+
 namespace ex
 {
-	GreenMush::GreenMush()
+	MasterRobo::MasterRobo()
 	{
 	}
 
-	GreenMush::~GreenMush()
+	MasterRobo::~MasterRobo()
 	{
 	}
 
-	void GreenMush::Initialize()
+	void MasterRobo::Initialize()
 	{
-		Texture* image = ResourceManager::Load<Texture>(L"GreenMushLeft"
-			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\GreenMush_LEFT.bmp");
+		// left
+		mAnimator->CreateAnimationFolder(L"MasterRoboLeftIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Idle\\Left");
 
-		mAnimator->CreateAnimation(L"GreenMushLeftIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 1);
-		mAnimator->CreateAnimation(L"GreenMushLeftMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 4);
-		mAnimator->CreateAnimation(L"GreenMushLeftHit", image, math::Vector2(0.0f, 120.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 1);
-		mAnimator->CreateAnimation(L"GreenMushLeftDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 4);
+		mAnimator->CreateAnimationFolder(L"MasterRoboLeftMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Move\\Left");
 
-		image = ResourceManager::Load<Texture>(L"GreenMushRight"
-			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\GreenMush_RIGHT.bmp");
-		mAnimator->CreateAnimation(L"GreenMushRightIdle", image, math::Vector2(0.0f, 60.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 1);
-		mAnimator->CreateAnimation(L"GreenMushRightMove", image, math::Vector2(60.0f, 60.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 4);
-		mAnimator->CreateAnimation(L"GreenMushRightHit", image, math::Vector2(0.0f, 120.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 1);
-		mAnimator->CreateAnimation(L"GreenMushRightDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
-			, math::Vector2(60.0f, 60.0f), 4);
+		mAnimator->CreateAnimationFolder(L"MasterRoboLeftHit",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Hit\\Left");
 
-		mCollider->SetSize(math::Vector2(55.0f, 70.0f));
-		mCollider->SetOffset(math::Vector2(5.0f, 4.0f));
+		mAnimator->CreateAnimationFolder(L"MasterRoboLeftDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Die\\Left");
+
+
+		// Right
+		mAnimator->CreateAnimationFolder(L"MasterRoboRightIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Idle\\Right");
+
+		mAnimator->CreateAnimationFolder(L"MasterRoboRightMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Move\\Right");
+
+		mAnimator->CreateAnimationFolder(L"MasterRoboRightHit",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Hit\\Right");
+
+		mAnimator->CreateAnimationFolder(L"MasterRoboRightDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Die\\Right");;
+
+		mCollider->SetSize(math::Vector2(80.0f, 92.0f));
+		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
 		mAnimator->SetAffectedCamera(true);
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
 	}
 
-	void GreenMush::Update()
+	void MasterRobo::Update()
 	{
-
 		switch (mMonsterState)
 		{
 		case ex::Monsters::eMonsterState::Idle:
@@ -84,13 +89,13 @@ namespace ex
 		GameObject::Update();
 	}
 
-	void GreenMush::Render(HDC _hdc)
+	void MasterRobo::Render(HDC _hdc)
 	{
 
 		GameObject::Render(_hdc);
 	}
 
-	void GreenMush::Idle()
+	void MasterRobo::Idle()
 	{
 		mIdleDelay += Time::GetDeltaTime();
 
@@ -112,16 +117,16 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"GreenMushLeftIdle", true);
+				mAnimator->PlayAnimation(L"MasterRoboLeftIdle", true);
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"GreenMushRightIdle", true);
+				mAnimator->PlayAnimation(L"MasterRoboRightIdle", true);
 			}
 		}
 	}
 
-	void GreenMush::Move()
+	void MasterRobo::Move()
 	{
 		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
@@ -134,12 +139,12 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"GreenMushLeftMove", true);
+				mAnimator->PlayAnimation(L"MasterRoboLeftMove", true);
 				pos.x -= 50.0f * Time::GetDeltaTime();
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"GreenMushRightMove", true);
+				mAnimator->PlayAnimation(L"MasterRoboRightMove", true);
 				pos.x += 50.0f * Time::GetDeltaTime();
 			}
 		}
@@ -147,15 +152,15 @@ namespace ex
 		mTransform->SetPosition(pos);
 	}
 
-	void GreenMush::Attack()
+	void MasterRobo::Attack()
 	{
 	}
 
-	void GreenMush::Chase()
+	void MasterRobo::Chase()
 	{
 	}
 
-	void GreenMush::Hit()
+	void MasterRobo::Hit()
 	{
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 		if (playerDir == enums::eMoveDir::Left)
@@ -169,16 +174,16 @@ namespace ex
 		mMonsterState = eMonsterState::Dead;
 	}
 
-	void GreenMush::Dead()
+	void MasterRobo::Dead()
 	{
 		if (mDirection == enums::eMoveDir::Left)
 		{
-			mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
+			mAnimator->PlayAnimation(L"MasterRoboLeftDead", false);
 
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"GreenMushRightDead", false);
+			mAnimator->PlayAnimation(L"MasterRoboRightDead", false);
 		}
 
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
@@ -190,11 +195,11 @@ namespace ex
 
 
 	}
-	void GreenMush::OnCollisionEnter(Collider* _other)
+	void MasterRobo::OnCollisionEnter(Collider* _other)
 	{
 	}
 
-	void GreenMush::OnCollisionStay(Collider* _other)
+	void MasterRobo::OnCollisionStay(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
@@ -220,11 +225,12 @@ namespace ex
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+
 			}
 		}
 	}
 
-	void GreenMush::OnCollisionExit(Collider* _other)
+	void MasterRobo::OnCollisionExit(Collider* _other)
 	{
 	}
 }

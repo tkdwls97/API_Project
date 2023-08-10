@@ -157,6 +157,9 @@
     <Filter Include="Contents\GameObject\02.Monster\02.Robo">
       <UniqueIdentifier>{9079ea3d-67c8-48ba-bfcb-d26a650907a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\03.MasterRobo">
+      <UniqueIdentifier>{1381823c-fe21-4048-baa6-d57d1197157b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -302,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="exRobo.cpp">
       <Filter>Contents\GameObject\02.Monster\02.Robo</Filter>
+    </ClCompile>
+    <ClCompile Include="exMasterRobo.cpp">
+      <Filter>Contents\GameObject\02.Monster\03.MasterRobo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="exRobo.h">
       <Filter>Contents\GameObject\02.Monster\02.Robo</Filter>
+    </ClInclude>
+    <ClInclude Include="exMasterRobo.h">
+      <Filter>Contents\GameObject\02.Monster\03.MasterRobo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

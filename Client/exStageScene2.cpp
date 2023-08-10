@@ -14,6 +14,7 @@
 #include "exFloor.h"
 #include "exPortal.h"
 #include "exRobo.h"
+#include "exMasterRobo.h"
 #include "exRope.h"
 
 namespace ex
@@ -129,6 +130,56 @@ namespace ex
 		robo14->SetMoveDelay(2.7f);
 		robo14->Initialize();
 
+		// 몬스터 마스터로보
+		MasterRobo* masterRobo1 = object::Instantiate<MasterRobo>(enums::eLayerType::Monster);
+		Transform* masterRoboTr1 = masterRobo1->GetComponent<Transform>();
+		masterRoboTr1->SetMoveDir(enums::eMoveDir::Right);
+		masterRoboTr1->SetPosition(math::Vector2(489.0f, 500.0f));
+		masterRobo1->SetMoveDelay(3.07f);
+		masterRobo1->Initialize();
+
+		MasterRobo* masterRobo2 = object::Instantiate<MasterRobo>(enums::eLayerType::Monster);
+		Transform* masterRoboTr2 = masterRobo2->GetComponent<Transform>();
+		masterRoboTr2->SetMoveDir(enums::eMoveDir::Right);
+		masterRoboTr2->SetPosition(math::Vector2(489.0f, 340.0f));
+		masterRobo2->SetMoveDelay(3.23f);
+		masterRobo2->Initialize();
+
+		MasterRobo* masterRobo3 = object::Instantiate<MasterRobo>(enums::eLayerType::Monster);
+		Transform* masterRoboTr3 = masterRobo3->GetComponent<Transform>();
+		masterRoboTr3->SetMoveDir(enums::eMoveDir::Right);
+		masterRoboTr3->SetPosition(math::Vector2(395.0f, 340.0f));
+		masterRobo3->SetMoveDelay(3.11f);
+		masterRobo3->Initialize();
+
+		MasterRobo* masterRobo4 = object::Instantiate<MasterRobo>(enums::eLayerType::Monster);
+		Transform* masterRoboTr4 = masterRobo4->GetComponent<Transform>();
+		masterRoboTr4->SetMoveDir(enums::eMoveDir::Right);
+		masterRoboTr4->SetPosition(math::Vector2(777.0f, 500.0f));
+		masterRobo4->SetMoveDelay(3.66f);
+		masterRobo4->Initialize();
+
+		MasterRobo* masterRobo5 = object::Instantiate<MasterRobo>(enums::eLayerType::Monster);
+		Transform* masterRoboTr5 = masterRobo5->GetComponent<Transform>();
+		masterRoboTr5->SetMoveDir(enums::eMoveDir::Right);
+		masterRoboTr5->SetPosition(math::Vector2(1200.0f, 500.0f));
+		masterRobo5->SetMoveDelay(3.59f);
+		masterRobo5->Initialize();
+
+		MasterRobo* masterRobo6 = object::Instantiate<MasterRobo>(enums::eLayerType::Monster);
+		Transform* masterRoboTr6 = masterRobo6->GetComponent<Transform>();
+		masterRoboTr6->SetMoveDir(enums::eMoveDir::Left);
+		masterRoboTr6->SetPosition(math::Vector2(1250.0f, 200.0f));
+		masterRobo6->SetMoveDelay(3.17f);
+		masterRobo6->Initialize();
+
+		MasterRobo* masterRobo7 = object::Instantiate<MasterRobo>(enums::eLayerType::Monster);
+		Transform* masterRoboTr7 = masterRobo7->GetComponent<Transform>();
+		masterRoboTr7->SetMoveDir(enums::eMoveDir::Left);
+		masterRoboTr7->SetPosition(math::Vector2(530.0f, 160.0f));
+		masterRobo7->SetMoveDelay(3.32f);
+		masterRobo7->Initialize();
+
 		// 바닥 1층
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 
@@ -188,16 +239,16 @@ namespace ex
 		//col6->SetOffset(math::Vector2(10.0f, 0.0f));
 		tr6 = floor6->GetComponent<Transform>();
 		tr6->SetPosition(math::Vector2(500.0f, 168.0f));
- 
+
 		// 왼쪽 로프
 		Rope* rope1 = object::Instantiate<Rope>(enums::eLayerType::Rope);
 		rope1->Initialize();
 		Collider* RopeCol1 = rope1->GetComponent<Collider>();
 		RopeCol1->SetSize(math::Vector2(2.0f, 460.0f));
-		RopeCol1->SetOffset(math::Vector2(0.0f,-23.0f));
+		RopeCol1->SetOffset(math::Vector2(0.0f, -23.0f));
 		Transform* RopeTr1 = rope1->GetComponent<Transform>();
 		RopeTr1->SetPosition(math::Vector2(-73.0f, 250.0f));
-		
+
 		// 오른쪽 로프
 		Rope* rope2 = object::Instantiate<Rope>(enums::eLayerType::Rope);
 		rope2->Initialize();
@@ -264,7 +315,7 @@ namespace ex
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
-		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player , enums::eLayerType::Rope, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
