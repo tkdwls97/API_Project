@@ -78,10 +78,18 @@ namespace ex
 			, math::Vector2(224.0f, 156.0f), 3, math::Vector2(-23.0f, 0.0f), 0.14f);
 
 		// 왼쪽 스킬 애니메이션
+
+		// png 일때
+		/*image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
+		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
+			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.1f);*/
+
+		// bmp 일때
 		image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.1f);
+			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.02f);
 
 		// 오른쪽 애니메이션
 		image = ResourceManager::Load<Texture>(L"PlayerRightIdle"
@@ -125,7 +133,7 @@ namespace ex
 		image = ResourceManager::Load<Texture>(L"PlayerRightRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Right\\Player_Right_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightRaisingBlow", image, math::Vector2(2464.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.02f);
 
 
 		// 로프 애니메이션

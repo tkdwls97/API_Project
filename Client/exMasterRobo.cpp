@@ -197,10 +197,6 @@ namespace ex
 	}
 	void MasterRobo::OnCollisionEnter(Collider* _other)
 	{
-	}
-
-	void MasterRobo::OnCollisionStay(Collider* _other)
-	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 		if (playerAtt != nullptr)
@@ -228,6 +224,11 @@ namespace ex
 
 			}
 		}
+	}
+
+	void MasterRobo::OnCollisionStay(Collider* _other)
+	{
+		
 	}
 
 	void MasterRobo::OnCollisionExit(Collider* _other)

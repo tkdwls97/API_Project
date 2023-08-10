@@ -213,10 +213,6 @@ namespace ex
 	}
 	void Papulatus::OnCollisionEnter(Collider* _other)
 	{
-	}
-
-	void Papulatus::OnCollisionStay(Collider* _other)
-	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 		if (playerAtt != nullptr)
@@ -245,6 +241,10 @@ namespace ex
 
 			}
 		}
+	}
+
+	void Papulatus::OnCollisionStay(Collider* _other)
+	{
 	}
 
 	void Papulatus::OnCollisionExit(Collider* _other)

@@ -192,10 +192,6 @@ namespace ex
 	}
 	void OrangeMush::OnCollisionEnter(Collider* _other)
 	{
-	}
-
-	void OrangeMush::OnCollisionStay(Collider* _other)
-	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 		if (playerAtt != nullptr)
@@ -223,6 +219,11 @@ namespace ex
 
 			}
 		}
+	}
+
+	void OrangeMush::OnCollisionStay(Collider* _other)
+	{
+		
 	}
 
 	void OrangeMush::OnCollisionExit(Collider* _other)
