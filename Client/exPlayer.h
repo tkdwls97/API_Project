@@ -52,13 +52,13 @@ namespace ex
 		void Down();
 		void Rope();
 		void Attack();
-		void RaisingBlow();
 		void Fall();
 		void Jump();
 		void JumpAttack();
 		void DoubleJump();
 		void Hit();
 		void Death();
+		void RaisingBlow();
 
 	private:
 		Animator*		mAnimator;

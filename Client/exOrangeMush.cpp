@@ -1,61 +1,63 @@
-#include "exCoupleMush.h"
+#include "exOrangeMush.h"
 #include "exTransform.h"
 #include "exCollider.h"
 #include "exRigidbody.h"
 #include "exAnimator.h"
 #include "exInput.h" 
 #include "exTime.h"
+#include "exObject.h"
 #include "exResourceManager.h"
 #include "exTexture.h"
 #include "exSceneManager.h"
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
+#include "exRaisingblow.h"
+#include "exRaisingblowHit.h"
+
 
 namespace ex
 {
-	CoupleMush::CoupleMush()
-		 : mIdleDelay(0.0f)
-	     , mMoveDelay(0.0f)
+	OrangeMush::OrangeMush()
+		: mIdleDelay(0.0f)
+		, mMoveDelay(0.0f)
 	{
 	}
 
-	CoupleMush::~CoupleMush()
+	OrangeMush::~OrangeMush()
 	{
 	}
 
-	void CoupleMush::Initialize()
+	void OrangeMush::Initialize()
 	{
-		Texture* image = ResourceManager::Load<Texture>(L"CoupleMushLeft"
-			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\CoupleMush_LEFT.bmp");
 
-		mAnimator->CreateAnimation(L"CoupleMushLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(170.0f, 170.0f), 8);
-		mAnimator->CreateAnimation(L"CoupleMushLeftMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(170.0f, 170.0f), 13);
-		mAnimator->CreateAnimation(L"CoupleMushLeftDead", image, math::Vector2(510.0f, 170.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(510.0f, 170.0f), 5);
+		mAnimator->CreateAnimationFolder(L"LeftOrangeMushIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Idle\\Left",math::Vector2(0.0f,0.0f), 0.3f);
 
-		image = ResourceManager::Load<Texture>(L"CoupleMushRight"
-			, L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\CoupleMush_RIGHT.bmp");
+		mAnimator->CreateAnimationFolder(L"LeftOrangeMushMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Move\\Left", math::Vector2(0.0f, 0.0f), 0.3f);
 
-		mAnimator->CreateAnimation(L"CoupleMushRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(170.0f, 170.0f), 8);
-		mAnimator->CreateAnimation(L"CoupleMushRightMove", image, math::Vector2(170.0f, 170.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(170.0f, 170.0f), 13);
-		mAnimator->CreateAnimation(L"CoupleMushRightDead", image, math::Vector2(510.0f, 170.0f), math::Vector2(170.0f, 170.0f)
-			, math::Vector2(510.0f, 170.0f), 5);
+		mAnimator->CreateAnimationFolder(L"LeftOrangeMushDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Left", math::Vector2(0.0f, 0.0f), 0.3f);
+
+
+		mAnimator->CreateAnimationFolder(L"RightOrangeMushIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Idle\\Right", math::Vector2(0.0f, 0.0f), 0.3f);
+
+		mAnimator->CreateAnimationFolder(L"RightOrangeMushMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Move\\Right", math::Vector2(0.0f, 0.0f), 0.3f);
+
+		mAnimator->CreateAnimationFolder(L"RightOrangeMushDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Right", math::Vector2(0.0f, 0.0f), 0.3f);
 
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
-		mCollider->SetSize(math::Vector2(100.0f, 70.0f));
+		mCollider->SetSize(math::Vector2(63.0f, 63.0f));
 		mCollider->SetOffset(math::Vector2(4.0f, 4.0f));
 		mAnimator->SetAffectedCamera(true);
 
-		mAnimator->PlayAnimation(L"CoupleMushRightDead", true);
+		mAnimator->PlayAnimation(L"RightOrangeMushIdle", true);
 		mMonsterState = eMonsterState::Idle;
-
-
 	}
-	void CoupleMush::Update()
+	void OrangeMush::Update()
 	{
 
 		switch (mMonsterState)
@@ -87,13 +89,13 @@ namespace ex
 
 	}
 
-	void CoupleMush::Render(HDC _hdc)
+	void OrangeMush::Render(HDC _hdc)
 	{
 
 		GameObject::Render(_hdc);
 	}
 
-	void CoupleMush::Idle()
+	void OrangeMush::Idle()
 	{
 		mIdleDelay += Time::GetDeltaTime();
 
@@ -115,16 +117,16 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"CoupleMushLeftIdle", true);
+				mAnimator->PlayAnimation(L"LeftOrangeMushIdle", true);
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"CoupleMushRightIdle", true);
+				mAnimator->PlayAnimation(L"RightOrangeMushIdle", true);
 			}
 		}
 	}
 
-	void CoupleMush::Move()
+	void OrangeMush::Move()
 	{
 		mMoveDelay += Time::GetDeltaTime();
 
@@ -138,12 +140,12 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"CoupleMushLeftMove", true);
+				mAnimator->PlayAnimation(L"LeftOrangeMushMove", true);
 				pos.x -= 50.0f * Time::GetDeltaTime();
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"CoupleMushRightMove", true);
+				mAnimator->PlayAnimation(L"RightOrangeMushMove", true);
 				pos.x += 50.0f * Time::GetDeltaTime();
 			}
 		}
@@ -151,15 +153,15 @@ namespace ex
 		mTransform->SetPosition(pos);
 	}
 
-	void CoupleMush::Attack()
+	void OrangeMush::Attack()
 	{
 	}
 
-	void CoupleMush::Chase()
+	void OrangeMush::Chase()
 	{
 	}
 
-	void CoupleMush::Hit()
+	void OrangeMush::Hit()
 	{
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
 		if (playerDir == enums::eMoveDir::Left)
@@ -173,15 +175,15 @@ namespace ex
 		mMonsterState = eMonsterState::Dead;
 	}
 
-	void CoupleMush::Dead()
+	void OrangeMush::Dead()
 	{
 		if (mDirection == enums::eMoveDir::Left)
 		{
-			mAnimator->PlayAnimation(L"CoupleMushLeftDead", false);
+			mAnimator->PlayAnimation(L"LeftOrangeMushDead", false);
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"CoupleMushRightDead", false);
+			mAnimator->PlayAnimation(L"RightOrangeMushDead", false);
 
 		}
 
@@ -191,11 +193,11 @@ namespace ex
 			Destroy(this);
 		}
 	}
-	void CoupleMush::OnCollisionEnter(Collider* _other)
+	void OrangeMush::OnCollisionEnter(Collider* _other)
 	{
 	}
 
-	void CoupleMush::OnCollisionStay(Collider* _other)
+	void OrangeMush::OnCollisionStay(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
@@ -210,9 +212,23 @@ namespace ex
 
 			}
 		}
+		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
+		if (raisingblow != nullptr)
+		{
+			std::set<GameObject*>* attList = raisingblow->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
+				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
 	}
 
-	void CoupleMush::OnCollisionExit(Collider* _other)
+	void OrangeMush::OnCollisionExit(Collider* _other)
 	{
 	}
 

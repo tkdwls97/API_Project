@@ -11,6 +11,7 @@ namespace ex
 		, mMoveDelay(3.0f)
 		, mMoveTime(0.0f)
 		, mHitDelay(0.0f)
+		, mDirection(enums::eMoveDir::Left)
 	{
 		mRigidbody = AddComponent<Rigidbody>();
 		mCollider = AddComponent<Collider>();

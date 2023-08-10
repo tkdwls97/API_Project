@@ -6,6 +6,7 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Transform;
+	class Animation;
 
 	class Raisingblow : public EffectManger
 	{
@@ -23,6 +24,8 @@ namespace ex
 
 		std::set<GameObject*>* GetAttackList() { return &mAttackList; }
 
+		Animation* GetRaisingblowHit() { return mRaisingblowHit; }
+
 	private:
 		GameObject* mOwner;
 		std::set<GameObject*> mAttackList;
@@ -30,6 +33,7 @@ namespace ex
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
+		Animation* mRaisingblowHit;
 	};
 
 }

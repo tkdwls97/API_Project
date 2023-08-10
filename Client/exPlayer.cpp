@@ -296,7 +296,7 @@ namespace ex
 		{
 
 			mRigidbody->SetGround(false);
-			velocity.y = -800.0f;
+			velocity.y = -700.0f;
 			if (playerDir == enums::eMoveDir::Right)
 			{
 				mAnimator->PlayAnimation(L"PlayerRightJump", true);
@@ -323,7 +323,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
 				mState = eState::Attack;
 			}
-	
+
 		}
 
 		// 레이징 블로우
@@ -339,7 +339,6 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightRaisingBlow", false);
 			}
-
 			mState = eState::RaisingBlow;
 		}
 
@@ -367,16 +366,12 @@ namespace ex
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 
 		// 상하좌우 키 입력
-		if (Input::GetKeyPressed(eKeyCode::Up))
-		{
-		}
-		if (Input::GetKeyPressed(eKeyCode::Down))
-		{
-		}
+
 		if (Input::GetKeyPressed(eKeyCode::Left))
 		{
 			mRigidbody->AddForce(math::Vector2(-500.0f, 0.0f));
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
+
 		}
 		if (Input::GetKeyPressed(eKeyCode::Right))
 		{
@@ -390,7 +385,6 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerRightAttack", false);
 			//velocity.x = 0.0f;
 			mRigidbody->SetVelocity(0.0f);
-			mRigidbody->SetFriction(1000.0f);
 			mState = eState::Attack;
 		}
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
@@ -398,9 +392,25 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
 			//velocity.x = 0.0f;
 			mRigidbody->SetVelocity(0.0f);
-			mRigidbody->SetFriction(1000.0f);
 			mState = eState::Attack;
 		}
+
+		// 좌우 이동중 레이징블로우
+		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::A))
+		{
+			Raisingblow* raisingBlow = new Raisingblow(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlow);
+			mAnimator->PlayAnimation(L"PlayerLeftRaisingBlow", false);
+			mState = eState::RaisingBlow;
+		}
+		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::A))
+		{
+			Raisingblow* raisingBlow = new Raisingblow(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlow);
+			mAnimator->PlayAnimation(L"PlayerRightRaisingBlow", false);
+			mState = eState::RaisingBlow;
+		}
+
 
 		// 좌우 이동중 점프
 		if ((Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump)) ||
@@ -674,6 +684,7 @@ namespace ex
 			}
 		}
 
+
 		// mbDoubleJump 가 false일때 점프를 누르면
 		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
 		{
@@ -699,7 +710,7 @@ namespace ex
 
 
 		// 포물선에서 내려오는 상태면 떨어지는상태로 변경해준다
-		if (velocity.y >= 0 && mState != eState::Rope && mState != eState::DoubleJump)
+		if (velocity.y >= 0 && mState != eState::Rope)
 		{
 			mState = eState::Fall;
 		}
@@ -710,6 +721,8 @@ namespace ex
 
 	void Player::JumpAttack()
 	{
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 
 		if (bCheck)
@@ -723,7 +736,7 @@ namespace ex
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 		//WarriorLeap* warriorLeap = new WarriorLeap(this);
 		//object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
-		
+
 		// 더블 점프를 사용했기때문에 true로 변경
 		mbDoubleJump = true;
 
@@ -737,8 +750,6 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 			mState = eState::Rope;
 		}
-
-
 	}
 
 	void Player::Hit()
@@ -748,7 +759,6 @@ namespace ex
 
 		mbDoubleJump = false;
 
-	
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftHit", true);
@@ -763,7 +773,7 @@ namespace ex
 			mAnimator->PlayAnimation(L"PlayerLeftMove", true);
 			mState = eState::Move;
 		}
-		else if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
+		if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyPressed(eKeyCode::Right))
 		{
 			mAnimator->PlayAnimation(L"PlayerRightMove", true);
 			mState = eState::Move;
@@ -781,6 +791,23 @@ namespace ex
 			}
 			mState = eState::Attack;
 		}
+
+		// 레이징 블로우
+		if (Input::GetKeyDown(eKeyCode::A) || Input::GetKeyPressed(eKeyCode::A))
+		{
+			Raisingblow* raisingBlow = new Raisingblow(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlow);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftRaisingBlow", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightRaisingBlow", false);
+			}
+			mState = eState::RaisingBlow;
+		}
+
 
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
@@ -834,6 +861,12 @@ namespace ex
 			}
 			mState = eState::Idle;
 		}
+		bool bGround = mRigidbody->GetGround();
+		if (bGround)
+		{
+			mRigidbody->SetVelocityX(0.0f);
+		}
+
 	}
 
 	void Player::Fall()
@@ -927,6 +960,26 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightAttack", false);
 				mState = eState::JumpAttack;
+			}
+		}
+
+		// 레이징 블로우
+		if (bGround == false)
+		{
+
+			if (Input::GetKeyDown(eKeyCode::A) || Input::GetKeyPressed(eKeyCode::A))
+			{
+				Raisingblow* raisingBlow = new Raisingblow(this);
+				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlow);
+				if (playerDir == enums::eMoveDir::Left)
+				{
+					mAnimator->PlayAnimation(L"PlayerLeftRaisingBlow", false);
+				}
+				else
+				{
+					mAnimator->PlayAnimation(L"PlayerRightRaisingBlow", false);
+				}
+				mState = eState::RaisingBlow;
 			}
 		}
 

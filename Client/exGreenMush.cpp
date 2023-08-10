@@ -2,6 +2,7 @@
 #include "exTransform.h"
 #include "exInput.h" 
 #include "exTime.h"
+#include "exObject.h"
 #include "exResourceManager.h"
 #include "exAnimator.h"
 #include "exTexture.h"
@@ -10,7 +11,7 @@
 #include "exPlayer.h"
 #include "exSceneManager.h"
 #include "exRaisingblow.h"
-
+#include "exRaisingblowHit.h"
 namespace ex
 {
 	GreenMush::GreenMush()
@@ -216,6 +217,8 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
+				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 

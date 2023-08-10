@@ -14,7 +14,7 @@
 #include "exCollider.h"
 #include "exCollisionManager.h"
 #include "exGreenMush.h"
-#include "exCoupleMush.h"
+#include "exOrangeMush.h"
 #include "exFloor.h"
 #include "exPapulatus.h"
 #include "exPortal.h"
@@ -65,7 +65,7 @@ namespace ex
 
 
 		// 몬스터 커플 버섯
-		CoupleMush* coupleMush = object::Instantiate<CoupleMush>(enums::eLayerType::Monster);
+		OrangeMush* coupleMush = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
 		coupleMush->Initialize();
 
 		Transform* cupleMushtr = coupleMush->GetComponent<Transform>();
@@ -130,6 +130,14 @@ namespace ex
 		Transform* RopeTr2 = rope2->GetComponent<Transform>();
 		RopeTr2->SetPosition(math::Vector2(759.0f, 480.0f));
 
+		// 로프 3층 -> 4층
+		Rope* rope3 = object::Instantiate<Rope>(enums::eLayerType::Rope);
+		rope3->Initialize();
+		Collider* RopeCol3 = rope3->GetComponent<Collider>();
+		RopeCol3->SetSize(math::Vector2(2.0f, 163.0f));
+		Transform* RopeTr3 = rope3->GetComponent<Transform>();
+		RopeTr3->SetPosition(math::Vector2(545.0f, 243.0f));
+
 		// 포탈
 		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
 		portal->Initialize();
@@ -155,19 +163,19 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
 			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
 
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
-		bgsr->SetAffectCamera(true);
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		//bgsr->SetImage(image);
+		//bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		//bgsr->SetAffectCamera(true);
+		////bgsr->SetAlpha(0.2f);
+		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
-		//카메라가 백그라운드 밖으로 나가지못하게 설정
-		bg->SetAutoCameraLimit();
-		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);
+		////카메라가 백그라운드 밖으로 나가지못하게 설정
+		//bg->SetAutoCameraLimit();
+		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 
 
 		// 플레이어 static으로 SceneManager에서 한개만 생성

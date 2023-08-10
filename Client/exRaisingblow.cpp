@@ -9,6 +9,8 @@
 #include "exSceneManager.h"
 #include "exCollisionManager.h"
 #include "exObject.h"
+#include "exAnimation.h"
+#include "exMonsters.h"
 
 
 namespace ex
@@ -21,7 +23,6 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
 
-
 		//// png
 		Texture* image = ResourceManager::Load<Texture>(L"LeftRaisingblow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Left\\LeftRaisingblow.png");
@@ -32,23 +33,24 @@ namespace ex
 		mAnimator->CreateAnimation(L"LeftRaisingblow", image, math::Vector2(0.0f, 0.0f), math::Vector2(924.0f, 562.0f)
 			, math::Vector2(924.0f, 562.0f), 14, math::Vector2(0), 0.015f);
 
-		// png
+		//// png
 		image = ResourceManager::Load<Texture>(L"RightRaisingblow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.png");
 
-		//image = ResourceManager::Load<Texture>(L"RightWarriorLeap"
+		//image = ResourceManager::Load<Texture>(L"RightRaisingblow"
 		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.bmp");
 
 		mAnimator->CreateAnimation(L"RightRaisingblow", image, math::Vector2(12936.0f, 0.0f), math::Vector2(924.0f, 562.0f)
 			, math::Vector2(-924.0f, 0.0f), 14, math::Vector2(0), 0.015f);
 
+		mAnimator->CreateAnimationFolder(L"RaisingblowHit"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Hit");
+
 		mAnimator->SetScale(math::Vector2(0.85f, 0.70f));
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
 		
-		mCollider->SetSize(math::Vector2(260.0f,150.0f));
-		
-
+		mCollider->SetSize(math::Vector2(270.0f,150.0f));
 		mTransform->SetPosition(math::Vector2(playerPos));
 
 		if (playerDir == enums::eMoveDir::Left)
@@ -92,6 +94,7 @@ namespace ex
 
 	void Raisingblow::OnCollisionStay(Collider* _other)
 	{
+
 	}
 
 	void Raisingblow::OnCollisionExit(Collider* _other)

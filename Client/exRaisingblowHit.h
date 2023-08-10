@@ -1,14 +1,18 @@
 #pragma once
-#include "exMonsters.h"
+#include "exEffectManger.h"
 
 namespace ex
 {
+	class Animator;
+	class Collider;
+	class Transform;
+	class Animation;
 
-	class CoupleMush : public Monsters
+	class RaisingblowHit : public EffectManger
 	{
 	public:
-		CoupleMush();
-		virtual ~CoupleMush();
+		RaisingblowHit(GameObject* _owner);
+		virtual ~RaisingblowHit();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -18,15 +22,11 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
-		void Idle();
-		void Move();
-		void Attack();
-		void Chase();
-		void Hit();
-		void Dead();
+	private:
+		GameObject* mOwner;
 
-	private:	
-		float mIdleDelay;
-		float mMoveDelay;
+		Animator* mAnimator;
+		Transform* mTransform;
 	};
+
 }

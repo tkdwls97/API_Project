@@ -190,8 +190,6 @@ namespace ex
 
 	void Papulatus::Dead()
 	{
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
-
 		//if (playerDir == enums::eMoveDir::Left)
 		//{
 		//	mAnimator->PlayAnimation(L"GreenMushRightDead", false);
