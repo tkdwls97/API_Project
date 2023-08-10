@@ -199,7 +199,7 @@ namespace ex
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-		if (playerAtt != nullptr)
+		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
 
@@ -211,7 +211,7 @@ namespace ex
 			}
 		}
 		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
-		if (raisingblow != nullptr)
+		if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = raisingblow->GetAttackList();
 
@@ -228,7 +228,33 @@ namespace ex
 
 	void MasterRobo::OnCollisionStay(Collider* _other)
 	{
-		
+		//PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
+		//enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+		//if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
+		//{
+		//	std::set<GameObject*>* attList = playerAtt->GetAttackList();
+
+		//	if (attList->find(this) == attList->end())
+		//	{
+		//		mMonsterState = eMonsterState::Hit;
+		//		attList->insert(this);
+
+		//	}
+		//}
+		//Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
+		//if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
+		//{
+		//	std::set<GameObject*>* attList = raisingblow->GetAttackList();
+
+		//	if (attList->find(this) == attList->end())
+		//	{
+		//		RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
+		//		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
+		//		mMonsterState = eMonsterState::Hit;
+		//		attList->insert(this);
+
+		//	}
+		//}
 	}
 
 	void MasterRobo::OnCollisionExit(Collider* _other)

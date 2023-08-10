@@ -31,7 +31,7 @@ namespace ex
 	{
 
 		mAnimator->CreateAnimationFolder(L"LeftOrangeMushIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Idle\\Left",math::Vector2(0.0f,0.0f), 0.3f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Idle\\Left", math::Vector2(0.0f, 0.0f), 0.3f);
 
 		mAnimator->CreateAnimationFolder(L"LeftOrangeMushMove",
 			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Move\\Left", math::Vector2(0.0f, 0.0f), 0.3f);
@@ -194,7 +194,7 @@ namespace ex
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-		if (playerAtt != nullptr)
+		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
 
@@ -206,7 +206,7 @@ namespace ex
 			}
 		}
 		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
-		if (raisingblow != nullptr)
+		if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = raisingblow->GetAttackList();
 
@@ -223,7 +223,7 @@ namespace ex
 
 	void OrangeMush::OnCollisionStay(Collider* _other)
 	{
-		
+
 	}
 
 	void OrangeMush::OnCollisionExit(Collider* _other)

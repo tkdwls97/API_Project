@@ -33,7 +33,6 @@ namespace ex
 		void Dead();
 
 	private:
-		int Count = 0;
 	};
 
 }

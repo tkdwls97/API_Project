@@ -194,7 +194,7 @@ namespace ex
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-		if (playerAtt != nullptr)
+		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
 
@@ -206,7 +206,7 @@ namespace ex
 			}
 		}
 		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
-		if (raisingblow != nullptr)
+		if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = raisingblow->GetAttackList();
 
@@ -222,7 +222,6 @@ namespace ex
 
 	void GreenMush::OnCollisionStay(Collider* _other)
 	{
-		
 	}
 
 	void GreenMush::OnCollisionExit(Collider* _other)
