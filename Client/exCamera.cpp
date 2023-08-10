@@ -45,15 +45,12 @@ namespace ex
 			mLookPosition = math::Vector2(640.0f, 360.0f);
 		}
 
-
 		// 위에 if문이 성공했으면 GameObject의 m_LookPosition(현재좌표)에
 		// 윈도우 창 해상도 x,y의 절반값(카메라가 바라보는 곳의 초기값)을 뺀 값을
 		// m_Distance에 복사(카메라가 바라보는곳(해상도 중심)에서 GameObject가 있는 좌표에
 		// 카메라가 바라보는 곳을 옮긴다
 		// 즉 카메라가 바라보는 곳과 실제 윈도우 창에 그려지는 GameObject의 오차거리를 구해서 저장한다 
 		mDistance = mLookPosition - (mResolution / 2.0f);
-
-
 
 		// 이미지의 x의 왼쪽 최대 값 (이미지를 넘어서 윈도우 화면이 보이지않는 값)
 		// 보다 작아지지 않게(왼쪽으로가면 -= x) 리미트 값으로 고정함

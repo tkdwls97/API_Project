@@ -123,7 +123,6 @@ namespace ex
 
 	void GreenMush::Move()
 	{
-
 		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
 		if (mMoveTime <= 0.0f)
@@ -224,7 +223,6 @@ namespace ex
 
 			}
 		}
-
 	}
 
 	void GreenMush::OnCollisionExit(Collider* _other)

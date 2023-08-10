@@ -23,9 +23,6 @@ namespace ex
 		virtual void OnCollisionExit(Collider* _other) override;
 
 		std::set<GameObject*>* GetAttackList() { return &mAttackList; }
-
-		Animation* GetRaisingblowHit() { return mRaisingblowHit; }
-
 	private:
 		GameObject* mOwner;
 		std::set<GameObject*> mAttackList;
@@ -33,7 +30,6 @@ namespace ex
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
-		Animation* mRaisingblowHit;
 	};
 
 }

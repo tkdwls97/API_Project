@@ -17,7 +17,7 @@ namespace ex
 	void Rope::Initialize()
 	{
 		Collider* col = AddComponent<Collider>();
-		col->SetNomalCollor(RGB(0, 0, 255));
+		col->SetNomalCollor(RGB(255, 255, 0));
 	}
 
 	void Rope::Update()

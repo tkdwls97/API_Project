@@ -28,7 +28,6 @@ namespace ex
 
 		void SetAutoCameraLimit();
 
-
 	private:
 		float mCameraLimitLeft;
 		float mCameraLimitRight;

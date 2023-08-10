@@ -145,8 +145,13 @@ namespace ex
 				CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 				mbInvincible = false;
 				mhitDelay = 0.0f;
-				mState = eState::Idle;
 
+				bool bCheack = mRigidbody->GetGround();
+				if (bCheack && Input::GetKeyUp(eKeyCode::Left) && Input::GetKeyUp(eKeyCode::Right) &&
+					Input::GetKeyUp(eKeyCode::Down))
+				{
+					mState = eState::Idle;
+				}
 			}
 		}
 
@@ -184,7 +189,7 @@ namespace ex
 			Idle();
 			break;
 		case Player::eState::Move:
-			Move();
+ 			Move();
 			break;
 		case Player::eState::Jump:
 			Jump();
@@ -365,17 +370,17 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 
-		// 상하좌우 키 입력
-
 		if (Input::GetKeyPressed(eKeyCode::Left))
 		{
-			mRigidbody->AddForce(math::Vector2(-500.0f, 0.0f));
+			//mRigidbody->AddForce(math::Vector2(-500.0f, 0.0f));
+			velocity.x = -200.0f;
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
 
 		}
 		if (Input::GetKeyPressed(eKeyCode::Right))
 		{
-			mRigidbody->AddForce(math::Vector2(500.0f, 0.0f));
+			//mRigidbody->AddForce(math::Vector2(500.0f, 0.0f));
+			velocity.x = 200.0f;
 			mTransform->SetMoveDir(enums::eMoveDir::Right);
 		}
 
@@ -383,14 +388,12 @@ namespace ex
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
 			mAnimator->PlayAnimation(L"PlayerRightAttack", false);
-			//velocity.x = 0.0f;
 			mRigidbody->SetVelocity(0.0f);
 			mState = eState::Attack;
 		}
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
-			//velocity.x = 0.0f;
 			mRigidbody->SetVelocity(0.0f);
 			mState = eState::Attack;
 		}

@@ -10,6 +10,9 @@
 #include "exSceneManager.h"
 #include "exPlayer.h"
 #include "exPlayerAttack.h"
+#include "exRaisingblow.h"
+#include "exRaisingblowHit.h"
+#include "exObject.h"
 
 namespace ex
 {
@@ -37,7 +40,7 @@ namespace ex
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill1",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left");
-		
+
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftHit",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left");
 
@@ -57,6 +60,8 @@ namespace ex
 		mAnimator->SetAffectedCamera(true);
 		mCollider->SetSize(math::Vector2(250.0f, 250.0f));
 		mCollider->SetOffset(math::Vector2(0.0f, 0.0f));
+		mDirection = mTransform->GetMoveDir();
+		mMoveTime = mMoveDelay;
 	}
 
 	void Papulatus::Update()
@@ -126,13 +131,12 @@ namespace ex
 
 	void Papulatus::Move()
 	{
-		mMoveDelay += Time::GetDeltaTime();
-
+		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
-		if (mMoveDelay >= 4.0f)
+		if (mMoveTime <= 0.0f)
 		{
 			mMonsterState = eMonsterState::Idle;
-			mMoveDelay = 0.0f;
+			mMoveTime = mMoveDelay;
 		}
 		else
 		{
@@ -184,6 +188,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
 				mMonsterState = eMonsterState::Move;
 			}
+			mHitDelay = 0.0f;
 		}
 		//mMonsterState = eMonsterState::Dead;
 	}
@@ -221,6 +226,20 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
+		if (raisingblow != nullptr)
+		{
+			std::set<GameObject*>* attList = raisingblow->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
+				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 

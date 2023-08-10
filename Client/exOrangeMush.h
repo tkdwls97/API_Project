@@ -24,6 +24,8 @@ namespace ex
 		void Chase();
 		void Hit();
 		void Dead();
+		
+		void SetMoveDelay(float _delay) { mMoveDelay = _delay; }
 
 	private:	
 		float mIdleDelay;

@@ -100,9 +100,6 @@
     <Filter Include="Contents\GameObject\05.Floor">
       <UniqueIdentifier>{6580049a-c94d-47cf-a127-bec9a91fb9a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\02.Monster\02.Papulatus">
-      <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\03.Effect">
       <UniqueIdentifier>{a9360dca-e2cb-4c55-a80e-0e3af5946e95}</UniqueIdentifier>
     </Filter>
@@ -150,6 +147,15 @@
     </Filter>
     <Filter Include="Contents\GameObject\03.Effect\02.Raisingblow\RaisingblowHit">
       <UniqueIdentifier>{c080a309-853e-4f21-84b2-d03e7a75dd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\Boss">
+      <UniqueIdentifier>{eecdf66b-5af2-4548-ac6d-3868d7638ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\Boss\01.Papulatus">
+      <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\02.Robo">
+      <UniqueIdentifier>{9079ea3d-67c8-48ba-bfcb-d26a650907a2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -253,7 +259,7 @@
       <Filter>Contents\GameObject\05.Floor</Filter>
     </ClCompile>
     <ClCompile Include="exPapulatus.cpp">
-      <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
+      <Filter>Contents\GameObject\02.Monster\Boss\01.Papulatus</Filter>
     </ClCompile>
     <ClCompile Include="exBossScene.cpp">
       <Filter>Contents\Scene\05.BossScene</Filter>
@@ -293,6 +299,9 @@
     </ClCompile>
     <ClCompile Include="exRaisingblowHit.cpp">
       <Filter>Contents\GameObject\03.Effect\02.Raisingblow\RaisingblowHit</Filter>
+    </ClCompile>
+    <ClCompile Include="exRobo.cpp">
+      <Filter>Contents\GameObject\02.Monster\02.Robo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -405,7 +414,7 @@
       <Filter>Contents\GameObject\05.Floor</Filter>
     </ClInclude>
     <ClInclude Include="exPapulatus.h">
-      <Filter>Contents\GameObject\02.Monster\02.Papulatus</Filter>
+      <Filter>Contents\GameObject\02.Monster\Boss\01.Papulatus</Filter>
     </ClInclude>
     <ClInclude Include="exBossScene.h">
       <Filter>Contents\Scene\05.BossScene</Filter>
@@ -445,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="exRaisingblowHit.h">
       <Filter>Contents\GameObject\03.Effect\02.Raisingblow\RaisingblowHit</Filter>
+    </ClInclude>
+    <ClInclude Include="exRobo.h">
+      <Filter>Contents\GameObject\02.Monster\02.Robo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

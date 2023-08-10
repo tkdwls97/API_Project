@@ -22,7 +22,6 @@ namespace ex
 				{
 					LayerCollision(activeScene, (enums::eLayerType)row, (enums::eLayerType)col);
 				}
-
 			}
 		}
 	}

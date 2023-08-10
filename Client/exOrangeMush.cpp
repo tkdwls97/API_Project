@@ -49,13 +49,11 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"RightOrangeMushDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Right", math::Vector2(0.0f, 0.0f), 0.3f);
 
-		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(63.0f, 63.0f));
 		mCollider->SetOffset(math::Vector2(4.0f, 4.0f));
 		mAnimator->SetAffectedCamera(true);
-
-		mAnimator->PlayAnimation(L"RightOrangeMushIdle", true);
-		mMonsterState = eMonsterState::Idle;
+		mDirection = mTransform->GetMoveDir();
+		mMoveTime = mMoveDelay;
 	}
 	void OrangeMush::Update()
 	{
@@ -100,7 +98,7 @@ namespace ex
 		mIdleDelay += Time::GetDeltaTime();
 
 		math::Vector2 pos = mTransform->GetPosition();
-		if (mIdleDelay >= 1.8f)
+		if (mIdleDelay >= 2.3f)
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
@@ -128,13 +126,12 @@ namespace ex
 
 	void OrangeMush::Move()
 	{
-		mMoveDelay += Time::GetDeltaTime();
-
+		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
-		if (mMoveDelay >= 3.0f)
+		if (mMoveTime <= 0.0f)
 		{
 			mMonsterState = eMonsterState::Idle;
-			mMoveDelay = 0.0f;
+			mMoveTime = mMoveDelay;
 		}
 		else
 		{

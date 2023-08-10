@@ -34,17 +34,14 @@ namespace ex
 			, math::Vector2(924.0f, 562.0f), 14, math::Vector2(0), 0.015f);
 
 		//// png
-		image = ResourceManager::Load<Texture>(L"RightRaisingblow"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.png");
-
 		//image = ResourceManager::Load<Texture>(L"RightRaisingblow"
-		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.bmp");
+		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.png");
+
+		image = ResourceManager::Load<Texture>(L"RightRaisingblow"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.bmp");
 
 		mAnimator->CreateAnimation(L"RightRaisingblow", image, math::Vector2(12936.0f, 0.0f), math::Vector2(924.0f, 562.0f)
-			, math::Vector2(-924.0f, 0.0f), 14, math::Vector2(0), 0.015f);
-
-		mAnimator->CreateAnimationFolder(L"RaisingblowHit"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Hit");
+			, math::Vector2(-924.0f, 0.0f), 14, math::Vector2(0), 0.05f);
 
 		mAnimator->SetScale(math::Vector2(0.85f, 0.70f));
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
@@ -79,6 +76,18 @@ namespace ex
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);
+		}
+
+		eState playerState = SceneManager::GetPlayer()->GetState();
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (playerState == eState::RaisingBlow)
+		{
+			// 충돌 이벤트구현
+		}
+		else
+		{
+			// 어택이 끝나면 초기화해줌
+			mAttackList.clear();
 		}
 		GameObject::Update();
 	}
