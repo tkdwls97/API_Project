@@ -224,7 +224,6 @@ namespace ex
 			{
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
-
 			}
 		}
 		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
