@@ -31,7 +31,7 @@ namespace ex
 				, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Left\\LeftRaisingblow.bmp");
 
 		mAnimator->CreateAnimation(L"LeftRaisingblow", image, math::Vector2(0.0f, 0.0f), math::Vector2(924.0f, 562.0f)
-			, math::Vector2(924.0f, 562.0f), 14, math::Vector2(0), 0.015f);
+			, math::Vector2(924.0f, 562.0f), 14, math::Vector2(0), 0.05f);
 
 		//// png
 		//image = ResourceManager::Load<Texture>(L"RightRaisingblow"

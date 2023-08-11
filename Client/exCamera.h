@@ -26,7 +26,7 @@ namespace ex
 
 		static math::Vector2 GetWidthLimit() { return mWidthLimit; }
 		static math::Vector2 GetHeightLimit() { return mHeightLimit; }
-
+		static bool GetColliderCheck() { return mbColliderCheck; }
 
 		//static void SetLimitDistance(math::Vector2 CameraLimit)
 		//{
@@ -49,8 +49,10 @@ namespace ex
 
 		static math::Vector2 mWidthLimit;
 		static math::Vector2 mHeightLimit;
-
+		static bool mbColliderCheck;
 
 	};
+
+	
 
 }

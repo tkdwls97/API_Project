@@ -182,7 +182,6 @@ namespace ex
 
 		// ¹Ù´Ú 1Ãþ
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
-
 		Collider* col1 = floor1->GetComponent<Collider>();
 		Transform* tr1 = floor1->GetComponent<Transform>();
 		col1 = floor1->AddComponent<Collider>();

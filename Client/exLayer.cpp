@@ -16,23 +16,23 @@ namespace ex
 
 	void Layer::Update()
 	{
-		for (GameObject* obj : mGameObjects)
+		for (size_t i = 0; i < mGameObjects.size(); ++i)
 		{
-			if (obj->GetObjectState() == GameObject::eObjectState::Pause)
+			if (mGameObjects[i]->GetObjectState() == GameObject::eObjectState::Pause)
 				continue;
 
-			obj->Update();
+			mGameObjects[i]->Update();
 		}
 	}
 
 	void Layer::Render(HDC _hdc)
 	{
-		for (GameObject* obj : mGameObjects)
+		for (size_t i = 0; i < mGameObjects.size(); ++i)
 		{
-			if (obj->GetObjectState() == GameObject::eObjectState::Pause)
+			if (mGameObjects[i]->GetObjectState() == GameObject::eObjectState::Pause)
 				continue;
 
-			obj->Render(_hdc);
+			mGameObjects[i]->Render(_hdc);
 		}
 
 		for (std::vector<GameObject*>::iterator iter = mGameObjects.begin()

@@ -2,6 +2,8 @@
 #include "exTransform.h"
 #include "exGameObject.h"
 #include "exCamera.h"
+#include "exInput.h"
+
 namespace ex
 {
 	UINT Collider::mCollisionCount = 0;
@@ -47,28 +49,34 @@ namespace ex
 		HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, transparentBrush);
 
 		HPEN pen = NULL;
-		if (mbIsCollision)
+
+		bool bCheck = Camera::GetColliderCheck();
+
+		if (bCheck)
 		{
-			pen = CreatePen(PS_SOLID, 2, mCollisionCollor);
+			if (mbIsCollision)
+			{
+				pen = CreatePen(PS_SOLID, 2, mCollisionCollor);
+			}
+			else
+			{
+				pen = CreatePen(PS_SOLID, 2, mNomalCollor);
+			}
+
+			HPEN oldPen = (HPEN)SelectObject(_hdc, pen);
+
+			Rectangle(_hdc
+				, (int)pos.x
+				, (int)pos.y
+				, (int)(pos.x + mSize.x)
+				, (int)(pos.y + mSize.y));
+
+			SelectObject(_hdc, oldBrush);
+			DeleteObject(transparentBrush);
+
+			SelectObject(_hdc, oldPen);
+			DeleteObject(pen);
 		}
-		else
-		{
-			pen = CreatePen(PS_SOLID, 2, mNomalCollor);
-		}
-
-		HPEN oldPen = (HPEN)SelectObject(_hdc, pen);
-
-		Rectangle(_hdc
-			, (int)pos.x
-			, (int)pos.y
-			, (int)(pos.x + mSize.x)
-			, (int)(pos.y + mSize.y));
-
-		SelectObject(_hdc, oldBrush);
-		DeleteObject(transparentBrush);
-
-		SelectObject(_hdc, oldPen);
-		DeleteObject(pen);
 	}
 
 	void Collider::OnCollisionEnter(Collider* _other)

@@ -15,6 +15,8 @@ namespace ex
 	math::Vector2	Camera::mWidthLimit = math::Vector2::Zero;
 	math::Vector2	Camera::mHeightLimit = math::Vector2::Zero;
 
+	bool Camera::mbColliderCheck = false;
+
 	GameObject* Camera::mTargetObj = nullptr;
 	//math::Vector2 Camera::mCameraLimit = math::Vector2::Zero;
 
@@ -29,6 +31,20 @@ namespace ex
 
 	void Camera::Update()
 	{
+		if (Input::GetKeyDown(eKeyCode::Q))
+		{
+			if (mbColliderCheck)
+			{
+				mbColliderCheck = false;
+			}
+			else
+			{
+				mbColliderCheck = true;
+			}
+
+		}
+
+
 		// 만약 GameObject* 타입 타겟이 있으면
 		if (mTargetObj)
 		{

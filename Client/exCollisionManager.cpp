@@ -72,18 +72,18 @@ namespace ex
 		std::vector<GameObject*>& rights = rightLayer.GetGameObjects();
 
 		// finds right layer Objects
-		for (GameObject* left : lefts)
+		for (size_t i = 0; i < lefts.size(); ++i) // for each ÇÏ¸é ÅÍÁü
 		{
-			Collider* leftCol = left->GetComponent<Collider>();
+			Collider* leftCol = lefts[i]->GetComponent<Collider>();
 			if (leftCol == nullptr)
 				continue;
 
-			for (GameObject* right : rights)
+			for (size_t j = 0; j < rights.size(); ++j)
 			{
-				Collider* rightCol = right->GetComponent<Collider>();
+				Collider* rightCol = rights[j]->GetComponent<Collider>();
 				if (rightCol == nullptr)
 					continue;
-				if (left == right)
+				if (lefts[i] == rights[j])
 					continue;
 
 				ColliderCollision(leftCol, rightCol);

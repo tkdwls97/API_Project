@@ -13,6 +13,7 @@
 #include "exAnimator.h"
 #include "exCollider.h"
 #include "exCollisionManager.h"
+#include "exSceneManager.h"
 #include "exGreenMush.h"
 #include "exOrangeMush.h"
 #include "exFloor.h"
@@ -243,19 +244,19 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
 			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
 
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
-		bgsr->SetAffectCamera(true);
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		//bgsr->SetImage(image);
+		//bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		//bgsr->SetAffectCamera(true);
+		////bgsr->SetAlpha(0.2f);
+		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
 		//카메라가 백그라운드 밖으로 나가지못하게 설정
-		bg->SetAutoCameraLimit();
-		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);
+		//bg->SetAutoCameraLimit();
+		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 
 
 		// 플레이어 static으로 SceneManager에서 한개만 생성
