@@ -165,6 +165,19 @@ namespace ex
 	void Thanatos::Hit()
 	{
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"ThanatosRightHit", false);
+		}
+		else
+		{
+			mAnimator->PlayAnimation(L"ThanatosLeftHit", false);
+		}
+
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+	
+
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mDirection = enums::eMoveDir::Right;
@@ -173,7 +186,7 @@ namespace ex
 		{
 			mDirection = enums::eMoveDir::Left;
 		}
-		mMonsterState = eMonsterState::Dead;
+		//mMonsterState = eMonsterState::Dead;
 	}
 
 	void Thanatos::Dead()

@@ -164,15 +164,27 @@ namespace ex
 
 	void GateKeeper::Hit()
 	{
-		//enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-		//if (playerDir == enums::eMoveDir::Left)
-		//{
-		//	mDirection = enums::eMoveDir::Right;
-		//}
-		//else
-		//{
-		//	mDirection = enums::eMoveDir::Left;
-		//}
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"GateKeeperRightHit", false);
+		}
+		else
+		{
+			mAnimator->PlayAnimation(L"GateKeeperLeftHit", false);
+
+		}
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mDirection = enums::eMoveDir::Right;
+		}
+		else
+		{
+			mDirection = enums::eMoveDir::Left;
+		}
+
+
 		//mMonsterState = eMonsterState::Dead;
 	}
 
