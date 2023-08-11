@@ -79,9 +79,6 @@
     <Filter Include="Contents\Scene\00.TitleScene">
       <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\02.Monster\00.GreenMush">
-      <UniqueIdentifier>{b861b221-4316-4800-a3a9-226a52f89f2b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Component\03.Collider">
       <UniqueIdentifier>{c67beacd-c660-44be-99d3-5a73103a699a}</UniqueIdentifier>
     </Filter>
@@ -102,9 +99,6 @@
     </Filter>
     <Filter Include="Contents\GameObject\03.Effect">
       <UniqueIdentifier>{a9360dca-e2cb-4c55-a80e-0e3af5946e95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\GameObject\03.Effect\00.Attack">
-      <UniqueIdentifier>{3b1a4412-d469-42ba-9aa3-13a6ec09e140}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\GameObject\06.Potal">
       <UniqueIdentifier>{91054db1-1c17-4547-ab7f-d58bb657d45f}</UniqueIdentifier>
@@ -136,29 +130,56 @@
     <Filter Include="Contents\GameObject\09.Login">
       <UniqueIdentifier>{b6723186-40b6-493c-895d-d2cbfb7e084a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\03.Effect\01.WarriorLeap">
-      <UniqueIdentifier>{7090f792-926e-464c-b79e-8d75cf0deed4}</UniqueIdentifier>
+    <Filter Include="Contents\GameObject\02.Monster\00.Normal">
+      <UniqueIdentifier>{58ca547a-3d77-4028-b79c-99da0a33556f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\03.Effect\02.Raisingblow">
-      <UniqueIdentifier>{d7e6e3e4-a8d1-4d02-a7f9-b80a5f9dad0e}</UniqueIdentifier>
+    <Filter Include="Contents\GameObject\02.Monster\00.Normal\00.GreenMush">
+      <UniqueIdentifier>{b861b221-4316-4800-a3a9-226a52f89f2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\02.Monster\01.OrangeMush">
+    <Filter Include="Contents\GameObject\02.Monster\00.Normal\01.OrangeMush">
       <UniqueIdentifier>{fd43bfa0-b869-409f-ae74-9c59573f3902}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\03.Effect\02.Raisingblow\RaisingblowHit">
-      <UniqueIdentifier>{c080a309-853e-4f21-84b2-d03e7a75dd58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\GameObject\02.Monster\Boss">
-      <UniqueIdentifier>{eecdf66b-5af2-4548-ac6d-3868d7638ebb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\GameObject\02.Monster\Boss\01.Papulatus">
-      <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\GameObject\02.Monster\02.Robo">
+    <Filter Include="Contents\GameObject\02.Monster\00.Normal\02.Robo">
       <UniqueIdentifier>{9079ea3d-67c8-48ba-bfcb-d26a650907a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\02.Monster\03.MasterRobo">
+    <Filter Include="Contents\GameObject\02.Monster\00.Normal\03.MasterRobo">
       <UniqueIdentifier>{1381823c-fe21-4048-baa6-d57d1197157b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\01.Ability">
+      <UniqueIdentifier>{9aae47b6-485d-4e3a-8a5c-368b2dc1cb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\01.Ability\00.GateKeeper">
+      <UniqueIdentifier>{1bb441dc-3004-4c72-bda7-8f34742cb561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\01.Ability\01.Thanatos">
+      <UniqueIdentifier>{4a52d88d-c15d-43ae-84df-43776933ec8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\02.Boss">
+      <UniqueIdentifier>{eecdf66b-5af2-4548-ac6d-3868d7638ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\02.Boss\01.Papulatus">
+      <UniqueIdentifier>{27fb2bfd-483c-4887-bd12-84411a4fc41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\02.Boss\00.MushMom">
+      <UniqueIdentifier>{84bf3c2f-5f5d-4f69-b342-2afa6a1d3545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect">
+      <UniqueIdentifier>{18c351a3-bc3a-4590-8656-5b06121f3f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\00.Attack">
+      <UniqueIdentifier>{3b1a4412-d469-42ba-9aa3-13a6ec09e140}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\01.WarriorLeap">
+      <UniqueIdentifier>{7090f792-926e-464c-b79e-8d75cf0deed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\02.Raisingblow">
+      <UniqueIdentifier>{d7e6e3e4-a8d1-4d02-a7f9-b80a5f9dad0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\02.Raisingblow\RaisingblowHit">
+      <UniqueIdentifier>{c080a309-853e-4f21-84b2-d03e7a75dd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect">
+      <UniqueIdentifier>{9c5c1e05-bc2b-4980-809f-042de4ee1d81}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -238,13 +259,13 @@
       <Filter>Contents\Scene\01.StageScene</Filter>
     </ClCompile>
     <ClCompile Include="exGreenMush.cpp">
-      <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\00.GreenMush</Filter>
     </ClCompile>
     <ClCompile Include="exMonsters.cpp">
       <Filter>Contents\GameObject\02.Monster</Filter>
     </ClCompile>
     <ClCompile Include="exOrangeMush.cpp">
-      <Filter>Contents\GameObject\02.Monster\01.OrangeMush</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\01.OrangeMush</Filter>
     </ClCompile>
     <ClCompile Include="exCollider.cpp">
       <Filter>Engine\Component\03.Collider</Filter>
@@ -262,13 +283,13 @@
       <Filter>Contents\GameObject\05.Floor</Filter>
     </ClCompile>
     <ClCompile Include="exPapulatus.cpp">
-      <Filter>Contents\GameObject\02.Monster\Boss\01.Papulatus</Filter>
+      <Filter>Contents\GameObject\02.Monster\02.Boss\01.Papulatus</Filter>
     </ClCompile>
     <ClCompile Include="exBossScene.cpp">
       <Filter>Contents\Scene\05.BossScene</Filter>
     </ClCompile>
     <ClCompile Include="exPlayerAttack.cpp">
-      <Filter>Contents\GameObject\03.Effect\00.Attack</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\00.Attack</Filter>
     </ClCompile>
     <ClCompile Include="exEffectManger.cpp">
       <Filter>Contents\GameObject\03.Effect</Filter>
@@ -295,19 +316,28 @@
       <Filter>Contents\GameObject\09.Login</Filter>
     </ClCompile>
     <ClCompile Include="exWarriorLeap.cpp">
-      <Filter>Contents\GameObject\03.Effect\01.WarriorLeap</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\01.WarriorLeap</Filter>
     </ClCompile>
     <ClCompile Include="exRaisingblow.cpp">
-      <Filter>Contents\GameObject\03.Effect\02.Raisingblow</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\02.Raisingblow</Filter>
     </ClCompile>
     <ClCompile Include="exRaisingblowHit.cpp">
-      <Filter>Contents\GameObject\03.Effect\02.Raisingblow\RaisingblowHit</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\02.Raisingblow\RaisingblowHit</Filter>
     </ClCompile>
     <ClCompile Include="exRobo.cpp">
-      <Filter>Contents\GameObject\02.Monster\02.Robo</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\02.Robo</Filter>
     </ClCompile>
     <ClCompile Include="exMasterRobo.cpp">
-      <Filter>Contents\GameObject\02.Monster\03.MasterRobo</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\03.MasterRobo</Filter>
+    </ClCompile>
+    <ClCompile Include="exMushMom.cpp">
+      <Filter>Contents\GameObject\02.Monster\02.Boss\00.MushMom</Filter>
+    </ClCompile>
+    <ClCompile Include="exGatekeeper.cpp">
+      <Filter>Contents\GameObject\02.Monster\01.Ability\00.GateKeeper</Filter>
+    </ClCompile>
+    <ClCompile Include="exThanatos.cpp">
+      <Filter>Contents\GameObject\02.Monster\01.Ability\01.Thanatos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -396,13 +426,13 @@
       <Filter>Contents\Scene\01.StageScene</Filter>
     </ClInclude>
     <ClInclude Include="exGreenMush.h">
-      <Filter>Contents\GameObject\02.Monster\00.GreenMush</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\00.GreenMush</Filter>
     </ClInclude>
     <ClInclude Include="exMonsters.h">
       <Filter>Contents\GameObject\02.Monster</Filter>
     </ClInclude>
     <ClInclude Include="exOrangeMush.h">
-      <Filter>Contents\GameObject\02.Monster\01.OrangeMush</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\01.OrangeMush</Filter>
     </ClInclude>
     <ClInclude Include="exCollider.h">
       <Filter>Engine\Component\03.Collider</Filter>
@@ -420,13 +450,13 @@
       <Filter>Contents\GameObject\05.Floor</Filter>
     </ClInclude>
     <ClInclude Include="exPapulatus.h">
-      <Filter>Contents\GameObject\02.Monster\Boss\01.Papulatus</Filter>
+      <Filter>Contents\GameObject\02.Monster\02.Boss\01.Papulatus</Filter>
     </ClInclude>
     <ClInclude Include="exBossScene.h">
       <Filter>Contents\Scene\05.BossScene</Filter>
     </ClInclude>
     <ClInclude Include="exPlayerAttack.h">
-      <Filter>Contents\GameObject\03.Effect\00.Attack</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\00.Attack</Filter>
     </ClInclude>
     <ClInclude Include="exEffectManger.h">
       <Filter>Contents\GameObject\03.Effect</Filter>
@@ -453,19 +483,28 @@
       <Filter>Contents\GameObject\09.Login</Filter>
     </ClInclude>
     <ClInclude Include="exWarriorLeap.h">
-      <Filter>Contents\GameObject\03.Effect\01.WarriorLeap</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\01.WarriorLeap</Filter>
     </ClInclude>
     <ClInclude Include="exRaisingblow.h">
-      <Filter>Contents\GameObject\03.Effect\02.Raisingblow</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\02.Raisingblow</Filter>
     </ClInclude>
     <ClInclude Include="exRaisingblowHit.h">
-      <Filter>Contents\GameObject\03.Effect\02.Raisingblow\RaisingblowHit</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\02.Raisingblow\RaisingblowHit</Filter>
     </ClInclude>
     <ClInclude Include="exRobo.h">
-      <Filter>Contents\GameObject\02.Monster\02.Robo</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\02.Robo</Filter>
     </ClInclude>
     <ClInclude Include="exMasterRobo.h">
-      <Filter>Contents\GameObject\02.Monster\03.MasterRobo</Filter>
+      <Filter>Contents\GameObject\02.Monster\00.Normal\03.MasterRobo</Filter>
+    </ClInclude>
+    <ClInclude Include="exMushMom.h">
+      <Filter>Contents\GameObject\02.Monster\02.Boss\00.MushMom</Filter>
+    </ClInclude>
+    <ClInclude Include="exGatekeeper.h">
+      <Filter>Contents\GameObject\02.Monster\01.Ability\00.GateKeeper</Filter>
+    </ClInclude>
+    <ClInclude Include="exThanatos.h">
+      <Filter>Contents\GameObject\02.Monster\01.Ability\01.Thanatos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
