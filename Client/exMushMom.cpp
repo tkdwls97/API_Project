@@ -1,4 +1,4 @@
-#include "exPapulatus.h"
+#include "exMushMom.h"
 #include "exTransform.h"
 #include "exInput.h" 
 #include "exTime.h"
@@ -16,50 +16,45 @@
 
 namespace ex
 {
-	Papulatus::Papulatus()
+	MushMom::MushMom()
 	{
 	}
 
-	Papulatus::~Papulatus()
+	MushMom::~MushMom()
 	{
 	}
 
-	void Papulatus::Initialize()
+	void MushMom::Initialize()
 	{
 		// Left
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Left");
+		mAnimator->CreateAnimationFolder(L"MushMomLeftIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Left");
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Left");
+		mAnimator->CreateAnimationFolder(L"MushMomLeftMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Left", math::Vector2(0.0f, -140.0f));
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left");
-
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left");
+		mAnimator->CreateAnimationFolder(L"MushMomLeftHit",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Left");
 
 		// Right
-		mAnimator->CreateAnimationFolder(L"PapulatusRightIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Right");
+		mAnimator->CreateAnimationFolder(L"MushMomRightIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Right");
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Right");
+		mAnimator->CreateAnimationFolder(L"MushMomRightMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Right", math::Vector2(0.0f, -140.0f));
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Right");
-
-		mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
-		mTransform->SetMoveDir(enums::eMoveDir::Left);
+		mAnimator->CreateAnimationFolder(L"MushMomRightHit",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Right");
 
 		mAnimator->SetAffectedCamera(true);
-		mCollider->SetSize(math::Vector2(250.0f, 250.0f));
+		mAnimator->SetScale(math::Vector2(5.0f, 5.0f));
+		mCollider->SetSize(math::Vector2(150.0f, 150.0f));
 		mCollider->SetOffset(math::Vector2(0.0f, 0.0f));
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
 	}
 
-	void Papulatus::Update()
+	void MushMom::Update()
 	{
 		switch (mMonsterState)
 		{
@@ -88,12 +83,12 @@ namespace ex
 		GameObject::Update();
 	}
 
-	void Papulatus::Render(HDC _hdc)
+	void MushMom::Render(HDC _hdc)
 	{
 		GameObject::Render(_hdc);
 	}
 
-	void Papulatus::Idle()
+	void MushMom::Idle()
 	{
 		mIdleDelay += Time::GetDeltaTime();
 
@@ -115,16 +110,16 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"PapulatusLeftIdle", true);
+				mAnimator->PlayAnimation(L"MushMomLeftIdle", true);
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"PapulatusRightIdle", true);
+				mAnimator->PlayAnimation(L"MushMomRightIdle", true);
 			}
 		}
 	}
 
-	void Papulatus::Move()
+	void MushMom::Move()
 	{
 		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
@@ -137,12 +132,12 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
+				mAnimator->PlayAnimation(L"MushMomLeftMove", true);
 				pos.x -= 50.0f * Time::GetDeltaTime();
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
+				mAnimator->PlayAnimation(L"MushMomRightMove", true);
 				pos.x += 50.0f * Time::GetDeltaTime();
 			}
 		}
@@ -150,24 +145,24 @@ namespace ex
 		mTransform->SetPosition(pos);
 	}
 
-	void Papulatus::Attack()
+	void MushMom::Attack()
 	{
 	}
 
-	void Papulatus::Chase()
+	void MushMom::Chase()
 	{
 	}
 
-	void Papulatus::Hit()
+	void MushMom::Hit()
 	{
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
 		if (playerDir == enums::eMoveDir::Left)
 		{
-			mAnimator->PlayAnimation(L"PapulatusRightHit", false);
+			mAnimator->PlayAnimation(L"MushMomRightHit", false);
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"PapulatusLeftHit", false);
+			mAnimator->PlayAnimation(L"MushMomLeftHit", false);
 
 		}
 		mHitDelay += Time::GetDeltaTime();
@@ -175,12 +170,12 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
+				mAnimator->PlayAnimation(L"MushMomLeftMove", true);
 				mMonsterState = eMonsterState::Move;
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
+				mAnimator->PlayAnimation(L"MushMomRightMove", true);
 				mMonsterState = eMonsterState::Move;
 			}
 			mHitDelay = 0.0f;
@@ -188,7 +183,7 @@ namespace ex
 		//mMonsterState = eMonsterState::Dead;
 	}
 
-	void Papulatus::Dead()
+	void MushMom::Dead()
 	{
 		//if (playerDir == enums::eMoveDir::Left)
 		//{
@@ -206,7 +201,7 @@ namespace ex
 		//	Destroy(this);
 		//}
 	}
-	void Papulatus::OnCollisionEnter(Collider* _other)
+	void MushMom::OnCollisionEnter(Collider* _other)
 	{
 		//PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		//enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
@@ -237,7 +232,7 @@ namespace ex
 		//}
 	}
 
-	void Papulatus::OnCollisionStay(Collider* _other)
+	void MushMom::OnCollisionStay(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
@@ -268,7 +263,7 @@ namespace ex
 		}
 	}
 
-	void Papulatus::OnCollisionExit(Collider* _other)
+	void MushMom::OnCollisionExit(Collider* _other)
 	{
 	}
 

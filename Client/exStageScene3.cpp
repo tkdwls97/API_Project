@@ -13,6 +13,10 @@
 #include "exCollisionManager.h"
 #include "exFloor.h"
 #include "exPortal.h"
+#include "exGatekeeper.h"
+#include "exThanatos.h"
+
+
 namespace ex
 {
 	StageScene3::StageScene3()
@@ -25,29 +29,38 @@ namespace ex
 
 	void StageScene3::Initialize()
 	{
+
+		GateKeeper* gateKeeper1 = object::Instantiate<GateKeeper>(enums::eLayerType::Monster);
+		Transform* gateKeeperTr1 = gateKeeper1->GetComponent<Transform>();
+		gateKeeperTr1->SetMoveDir(enums::eMoveDir::Left);
+		gateKeeperTr1->SetPosition(math::Vector2(500.0f, 750.0f));
+		gateKeeper1->SetMoveDelay(3.0f);
+		gateKeeper1->Initialize();
+
+		Thanatos* thanatos1 = object::Instantiate<Thanatos>(enums::eLayerType::Monster);
+		Transform* thanatosTr1 = thanatos1->GetComponent<Transform>();
+		thanatosTr1->SetMoveDir(enums::eMoveDir::Left);
+		thanatosTr1->SetPosition(math::Vector2(180.0f, 750.0f));
+		thanatos1->SetMoveDelay(3.0f);
+		thanatos1->Initialize();
+
+
+
+
+
+
 		// ¹Ù´Ú 1Ãþ
-		Floor* stage3_floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
-
-		Collider* col = stage3_floor1->AddComponent<Collider>();
-		Transform* tr = stage3_floor1->GetComponent<Transform>();
-		col->SetSize(math::Vector2(3300.0f, 50.0f));
-		tr->SetPosition(math::Vector2(680.0f, 943.0f));
-
-
-		// ¹Ù´Ú 2Ãþ
-		//Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
-
-		//Collider* col = floor2->GetComponent<Collider>();
-		//Transform* tr = floor2->GetComponent<Transform>();
-		//col = floor2->AddComponent<Collider>();
-		//col->SetSize(math::Vector2(2000.0f, 50.0f));
-		//tr = floor2->GetComponent<Transform>();
-		//tr->SetPosition(math::Vector2(680.0f, 685.0f));
+		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col1 = floor1->AddComponent<Collider>();
+		Transform* tr1 = floor1->GetComponent<Transform>();
+		col1->SetSize(math::Vector2(3300.0f, 50.0f));
+		tr1->SetPosition(math::Vector2(680.0f, 943.0f));
 
 
+
+		// Æ÷Å»
 		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
 		portal->Initialize();
-
 		Transform* portalTr = portal->GetComponent<Transform>();
 		Animator* portalAt = portal->GetComponent<Animator>();
 		Collider* portalCol = portal->GetComponent<Collider>();
@@ -106,6 +119,7 @@ namespace ex
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
 	}
 	void StageScene3::SceneOut()
 	{

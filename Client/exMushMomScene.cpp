@@ -1,4 +1,5 @@
 #include "exMushMomScene.h"
+#include "exMushMom.h"
 #include "exPlayer.h"
 #include "exSpriteRenderer.h"
 #include "exObject.h"
@@ -27,6 +28,20 @@ namespace ex
 
 	void MushMomScene::Initialize()
 	{
+
+		// 680.0f, 763.0f
+		MushMom* mushMom = object::Instantiate<MushMom>(enums::eLayerType::Monster);
+		Transform* mushMomTr1 = mushMom->GetComponent<Transform>();
+		mushMomTr1->SetMoveDir(enums::eMoveDir::Left);
+		mushMomTr1->SetPosition(math::Vector2(680.0f, 763.0f));
+		mushMomTr1->SetPosition(math::Vector2(680.0f, 500.0f));
+		mushMom->SetMoveDelay(4.5f);
+		mushMom->Initialize();
+
+
+
+
+
 		//////////////////////////////////////////////////////////////////////
 		// ¹Ù´Ú
 		// 1Ãþ
@@ -166,7 +181,7 @@ namespace ex
 
 		Transform* portalTr = portal->GetComponent<Transform>();
 		//potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
-		portalTr->SetPosition(math::Vector2(640.0f, 690.0f));
+		portalTr->SetPosition(math::Vector2(659.0f, -10.0f));
 		
 	}
 
