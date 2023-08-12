@@ -109,13 +109,16 @@ namespace ex
 
 		std::filesystem::path fs(path);
 		std::vector<Texture*> images = {};
-
 		eTextureType tempType = eTextureType::None;
 
-		for (auto& p : std::filesystem::recursive_directory_iterator(path))
+		// for each문 터짐 
+		std::filesystem::recursive_directory_iterator it(fs);
+		std::filesystem::recursive_directory_iterator end;
+		//for (auto& p : std::filesystem::recursive_directory_iterator(path))
+		for (; it != end; ++it)
 		{
-			std::wstring fileName = p.path().filename();
-			std::wstring fullName = p.path();
+			std::wstring fileName = it->path().filename();
+			std::wstring fullName = it->path();
 
 			// 이미지 로드
 			Texture* image = ResourceManager::Load<Texture>(fileName, fullName);

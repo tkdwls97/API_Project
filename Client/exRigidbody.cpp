@@ -15,7 +15,7 @@ namespace ex
 		, mAccelation(500.0f)
 	{
 		mLimitedVelocty.x = 200.0f;
-		mLimitedVelocty.y = 1000.0f;
+		mLimitedVelocty.y = 2000.0f;
 		mGravity = math::Vector2(0.0f, 2000.0f);
 	}
 

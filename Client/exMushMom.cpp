@@ -31,25 +31,25 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Left");
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Left", math::Vector2(0.0f, -140.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Left", math::Vector2(0.0f, -50.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Left");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Left", math::Vector2(0.0f, -30.0f));
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"MushMomRightIdle",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Right");
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Right", math::Vector2(0.0f, -140.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Right", math::Vector2(0.0f, -50.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Right");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Right", math::Vector2(0.0f, -30.0f));
 
 		mAnimator->SetAffectedCamera(true);
-		mAnimator->SetScale(math::Vector2(5.0f, 5.0f));
-		mCollider->SetSize(math::Vector2(150.0f, 150.0f));
-		mCollider->SetOffset(math::Vector2(0.0f, 0.0f));
+		mAnimator->SetScale(math::Vector2(1.7f, 1.7f));
+		mCollider->SetSize(math::Vector2(170.0f, 185.0f));
+		mCollider->SetOffset(math::Vector2(0.0f, 10.0f));
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
 	}

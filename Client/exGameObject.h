@@ -36,11 +36,12 @@ namespace ex
 			Rope,
 			RopeDown,
 			Attack,
-			JumpAttack,
-			RaisingBlow,
 			Hit,
 			Invincible,
 			Death,
+			JumpAttack,
+			RaisingBlow,
+			UpperCharge,
 			End,
 		};
 		enum class eObjectState

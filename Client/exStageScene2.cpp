@@ -16,6 +16,7 @@
 #include "exRobo.h"
 #include "exMasterRobo.h"
 #include "exRope.h"
+#include "exPlayerFloor.h"
 
 namespace ex
 {
@@ -271,6 +272,7 @@ namespace ex
 	void StageScene2::Update()
 	{
 		math::Vector2 pos = SceneManager::GetPlayer()->GetComponent<Transform>()->GetPosition();
+
 		Scene::Update();
 	}
 
@@ -314,7 +316,7 @@ namespace ex
 
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
-		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);

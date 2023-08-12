@@ -10,6 +10,7 @@ namespace ex
 	class Collider;
 	class Rigidbody;
 	class Texture;
+	class PlayerFloor;
 
 	class Player : public GameObject
 	{
@@ -46,7 +47,6 @@ namespace ex
 		bool IsRopeState() { return mbRopeState ; }
 		void SetRopeState(bool _state) { mbRopeState = _state; }
 
-
 		void Idle();
 		void Move();
 		void Down();
@@ -59,12 +59,14 @@ namespace ex
 		void Hit();
 		void Death();
 		void RaisingBlow();
+		void Uppercharge();
 
 	private:
 		Animator*		mAnimator;
 		Transform*		mTransform;
 		Rigidbody*		mRigidbody;
 		Collider*		mCollider;
+		
 		eState			mState;
 		PlayerInfo		mInfo;
 

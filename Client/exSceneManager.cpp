@@ -9,6 +9,7 @@
 #include "exPlayer.h"
 #include "exObject.h"
 #include "exPlayerAttack.h"
+#include "exPlayerFloor.h"
 
 namespace ex
 {
@@ -16,6 +17,7 @@ namespace ex
 	Scene* SceneManager::mActiveScene = nullptr;
 	Player* SceneManager::mPlayer = new Player;
 	PlayerAttack* SceneManager::mPlayerAtt = new PlayerAttack(mPlayer);
+	PlayerFloor* SceneManager::mPlayerFloor = new PlayerFloor(mPlayer);
 
 	
 	void SceneManager::Initialize()
@@ -58,6 +60,7 @@ namespace ex
 		{
 			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);
 			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerAtt);
+			mActiveScene->AddGameObject(enums::eLayerType::PlayerFloor, mPlayerFloor);
 
 		}
 		mActiveScene->SceneIN();

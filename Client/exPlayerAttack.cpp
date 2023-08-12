@@ -16,14 +16,6 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
-	}
-
-	PlayerAttack::~PlayerAttack()
-	{
-	}
-
-	void PlayerAttack::Initialize()
-	{
 		Animator* animator = GetComponent<Animator>();
 		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
@@ -36,7 +28,14 @@ namespace ex
 
 		// 평타 Collider 색 세팅
 		collider->SetNomalCollor(RGB(255, 255, 0));
+	}
 
+	PlayerAttack::~PlayerAttack()
+	{
+	}
+
+	void PlayerAttack::Initialize()
+	{
 	}
 
 	void PlayerAttack::Update()

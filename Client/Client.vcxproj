@@ -170,6 +170,7 @@
     <ClCompile Include="exInput.cpp" />
     <ClCompile Include="exLayer.cpp" />
     <ClCompile Include="exPapulatus.cpp" />
+    <ClCompile Include="exUpperCharge.cpp" />
     <ClCompile Include="exWall.cpp" />
     <ClCompile Include="exWarriorLeap.cpp" />
     <ClCompile Include="main.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="exTime.cpp" />
     <ClCompile Include="exTitleScene.cpp" />
     <ClCompile Include="exTransform.cpp" />
+    <ClCompile Include="exPlayerFloor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
@@ -229,6 +231,7 @@
     <ClInclude Include="exComponent.h" />
     <ClInclude Include="exEntity.h" />
     <ClInclude Include="exPapulatus.h" />
+    <ClInclude Include="exUpperCharge.h" />
     <ClInclude Include="exWall.h" />
     <ClInclude Include="exWarriorLeap.h" />
     <ClInclude Include="framework.h" />
@@ -237,6 +240,7 @@
     <ClInclude Include="exLayer.h" />
     <ClInclude Include="exMath.h" />
     <ClInclude Include="exPlayer.h" />
+    <ClInclude Include="exPlayerFloor.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="exResourceManager.h" />
     <ClInclude Include="exScene.h" />

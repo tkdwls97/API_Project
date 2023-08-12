@@ -6,6 +6,7 @@ namespace ex
 {
 	class Player;
 	class PlayerAttack;
+	class PlayerFloor;
 
 	class SceneManager
 	{
@@ -31,12 +32,14 @@ namespace ex
 
 		static Player* GetPlayer() { return mPlayer; }
 		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
+		static PlayerFloor* GetPlayerFloor() { return mPlayerFloor; }
 						
 	private:
 		static std::map<std::wstring, Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Player* mPlayer;
 		static PlayerAttack* mPlayerAtt;
+		static PlayerFloor* mPlayerFloor;
 	};
 
 }

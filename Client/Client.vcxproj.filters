@@ -181,6 +181,12 @@
     <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect">
       <UniqueIdentifier>{9c5c1e05-bc2b-4980-809f-042de4ee1d81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\03.UpperCharge">
+      <UniqueIdentifier>{2221eeab-868d-47d2-b72d-0ef031ad119c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\01.Player\PlayerFloor">
+      <UniqueIdentifier>{7650b086-e1b3-4d35-8fd9-97ec6556dd0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -338,6 +344,12 @@
     </ClCompile>
     <ClCompile Include="exThanatos.cpp">
       <Filter>Contents\GameObject\02.Monster\01.Ability\01.Thanatos</Filter>
+    </ClCompile>
+    <ClCompile Include="exUpperCharge.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\03.UpperCharge</Filter>
+    </ClCompile>
+    <ClCompile Include="exPlayerFloor.cpp">
+      <Filter>Contents\GameObject\01.Player\PlayerFloor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -505,6 +517,12 @@
     </ClInclude>
     <ClInclude Include="exThanatos.h">
       <Filter>Contents\GameObject\02.Monster\01.Ability\01.Thanatos</Filter>
+    </ClInclude>
+    <ClInclude Include="exUpperCharge.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\03.UpperCharge</Filter>
+    </ClInclude>
+    <ClInclude Include="exPlayerFloor.h">
+      <Filter>Contents\GameObject\01.Player\PlayerFloor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
