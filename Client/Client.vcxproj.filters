@@ -190,6 +190,9 @@
     <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush">
       <UniqueIdentifier>{c20acdf6-0600-4d00-9cd9-f6142ac3d9b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault">
+      <UniqueIdentifier>{799a9fcb-84d1-42f2-aa80-3d7f784e8fe0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -356,6 +359,9 @@
     </ClCompile>
     <ClCompile Include="exRush.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush</Filter>
+    </ClCompile>
+    <ClCompile Include="exComboDeathFault.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -532,6 +538,9 @@
     </ClInclude>
     <ClInclude Include="exRush.h">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush</Filter>
+    </ClInclude>
+    <ClInclude Include="exComboDeathFault.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
