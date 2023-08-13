@@ -152,6 +152,7 @@
     <ClCompile Include="exLogin.cpp" />
     <ClCompile Include="exRobo.cpp" />
     <ClCompile Include="exRope.cpp" />
+    <ClCompile Include="exRush.cpp" />
     <ClCompile Include="exStageScene3.cpp" />
     <ClCompile Include="exThanatos.cpp" />
     <ClCompile Include="exUI.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="exLogin.h" />
     <ClInclude Include="exRobo.h" />
     <ClInclude Include="exRope.h" />
+    <ClInclude Include="exRush.h" />
     <ClInclude Include="exStageScene3.h" />
     <ClInclude Include="exThanatos.h" />
     <ClInclude Include="exUI.h" />

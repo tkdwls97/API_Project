@@ -60,6 +60,7 @@ namespace ex
 		void Death();
 		void RaisingBlow();
 		void Uppercharge();
+		void PlayerRush();
 
 	private:
 		Animator*		mAnimator;

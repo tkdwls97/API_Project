@@ -42,6 +42,7 @@ namespace ex
 			JumpAttack,
 			RaisingBlow,
 			UpperCharge,
+			Rush,
 			End,
 		};
 		enum class eObjectState

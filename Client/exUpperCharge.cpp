@@ -9,6 +9,9 @@
 #include "exSceneManager.h"
 #include "exCollisionManager.h"
 #include "exObject.h"
+#include "exAnimation.h"
+#include "exMonsters.h"
+
 
 
 namespace ex
@@ -37,10 +40,12 @@ namespace ex
 			, math::Vector2(-604.0f, 0.0f), 14, math::Vector2(0), 0.035f);
 
 		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
+		mCollider->SetSize(math::Vector2(130.0f, 150.0f));
+		mCollider->SetOffset(math::Vector2(0.0f,30.0f));
+
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
 
-		mCollider->SetSize(math::Vector2(150.0f, 150.0f));
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mTransform->SetPosition(math::Vector2(playerPos.x, playerPos.y - 90.0f));
@@ -67,6 +72,18 @@ namespace ex
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);
+		}
+
+		eState playerState = SceneManager::GetPlayer()->GetState();
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (playerState == eState::UpperCharge)
+		{
+			// 충돌 이벤트구현
+		}
+		else
+		{
+			// 어택이 끝나면 초기화해줌
+			mAttackList.clear();
 		}
 		GameObject::Update();
 	}

@@ -17,6 +17,7 @@
 #include "exWarriorLeap.h"
 #include "exRaisingblow.h"
 #include "exUpperCharge.h"
+#include "exRush.h"
 
 namespace ex
 {
@@ -99,7 +100,13 @@ namespace ex
 		image = ResourceManager::Load<Texture>(L"PlayerLeftUpperCharge"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\UpperCharge\\Left\\Player_Left_UpperCharge.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftUpperCharge", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 9, math::Vector2(0.0f, 0.0f), 0.015f);
+			, math::Vector2(224.0f, 156.0f), 9, math::Vector2(0.0f, 0.0f), 0.007f);
+
+		image = ResourceManager::Load<Texture>(L"PlayerLeftRush"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Left\\Player_Left_Rush.bmp");
+		mAnimator->CreateAnimation(L"PlayerLeftRush", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
+			, math::Vector2(224.0f, 156.0f), 7, math::Vector2(0.0f, 0.0f), 0.05f);
+
 
 		// 오른쪽 애니메이션
 		image = ResourceManager::Load<Texture>(L"PlayerRightIdle"
@@ -149,7 +156,12 @@ namespace ex
 		image = ResourceManager::Load<Texture>(L"PlayerRightUpperCharge"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\UpperCharge\\Right\\Player_Right_UpperCharge.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightUpperCharge", image, math::Vector2(2016.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.15f);
+			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.007f);
+
+		image = ResourceManager::Load<Texture>(L"PlayerRightRush"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Right\\Player_Right_Rush.bmp");
+		mAnimator->CreateAnimation(L"PlayerRightRush", image, math::Vector2(2016.0f, 0.0f), math::Vector2(224.0f, 156.0f)
+			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.05f);
 
 		// 로프
 		image = ResourceManager::Load<Texture>(L"PlayerRopeMove"
@@ -203,7 +215,8 @@ namespace ex
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump)
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge ||
+			mState == eState::Rush)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 		}
@@ -256,6 +269,9 @@ namespace ex
 			break;
 		case Player::eState::UpperCharge:
 			Uppercharge();
+			break;
+		case Player::eState::Rush:
+			PlayerRush();
 			break;
 		case Player::eState::Hit:
 			Hit();
@@ -391,6 +407,8 @@ namespace ex
 		// 어퍼 차지
 		if (Input::GetKeyDown(eKeyCode::S) || Input::GetKeyPressed(eKeyCode::S))
 		{
+			UpperCharge* upperCharge = new UpperCharge(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			mRigidbody->SetGround(false);
 			velocity.y = -1000.0f;
 			if (playerDir == enums::eMoveDir::Left)
@@ -401,9 +419,27 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightUpperCharge", false);
 			}
-			UpperCharge* upperCharge = new UpperCharge(this);
-			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			mState = eState::UpperCharge;
+			mRigidbody->SetVelocity(velocity);
+		}
+
+		// 돌진
+		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKeyPressed(eKeyCode::D))
+		{
+			mRigidbody->SetLimitedVeloctyX(1000.0f);
+			Rush* rush = new Rush(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, rush);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				velocity.x = -750.0f;
+				mAnimator->PlayAnimation(L"PlayerLeftRush", false);
+			}
+			else
+			{
+				velocity.x = 750.0f;
+				mAnimator->PlayAnimation(L"PlayerRightRush", false);
+			}
+			mState = eState::Rush;
 			mRigidbody->SetVelocity(velocity);
 		}
 
@@ -490,6 +526,26 @@ namespace ex
 			UpperCharge* upperCharge = new UpperCharge(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			mState = eState::UpperCharge;
+			mRigidbody->SetVelocity(velocity);
+		}
+
+		// 돌진
+		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKeyPressed(eKeyCode::D))
+		{
+			mRigidbody->SetLimitedVeloctyX(1000.0f);
+			Rush* rush = new Rush(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, rush);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				velocity.x = -750.0f;
+				mAnimator->PlayAnimation(L"PlayerLeftRush", false);
+			}
+			else
+			{
+				velocity.x = 750.0f;
+				mAnimator->PlayAnimation(L"PlayerRightRush", false);
+			}
+			mState = eState::Rush;
 			mRigidbody->SetVelocity(velocity);
 		}
 
@@ -840,7 +896,7 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 
 		mbDoubleJump = false;
-
+		velocity.x = 0.0f;
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftHit", true);
@@ -909,6 +965,26 @@ namespace ex
 			mRigidbody->SetVelocityY(velocity.y);
 		}
 
+		// 돌진
+		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKeyPressed(eKeyCode::D))
+		{
+			mRigidbody->SetLimitedVeloctyX(1000.0f);
+			Rush* rush = new Rush(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, rush);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				velocity.x = -750.0f;
+				mAnimator->PlayAnimation(L"PlayerLeftRush", false);
+			}
+			else
+			{
+				velocity.x = 750.0f;
+				mAnimator->PlayAnimation(L"PlayerRightRush", false);
+			}
+			mState = eState::Rush;
+			mRigidbody->SetVelocity(velocity);
+		}
+
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
 			if (playerDir == enums::eMoveDir::Left)
@@ -934,8 +1010,6 @@ namespace ex
 			}
 			mState = eState::Down;
 		}
-
-		velocity.x = 0.0f;
 		mbInvincible = true;
 		mRigidbody->SetVelocity(velocity);
 	}
@@ -1032,6 +1106,26 @@ namespace ex
 			mRigidbody->SetVelocity(velocity);
 		}
 
+	}
+
+	void Player::PlayerRush()
+	{
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		if (bCheck)
+		{
+			mRigidbody->SetVelocityX(0.0f);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
+				mState = eState::Idle;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+				mState = eState::Idle;
+			}
+		}
 	}
 
 	void Player::Fall()

@@ -7,11 +7,11 @@ namespace ex
 	class Collider;
 	class Transform;
 
-	class Raisingblow : public EffectManger
+	class Rush : public EffectManger
 	{
 	public:
-		Raisingblow(GameObject* _owner);
-		virtual ~Raisingblow();
+		Rush(GameObject* _owner);
+		virtual ~Rush();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

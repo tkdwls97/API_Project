@@ -187,6 +187,9 @@
     <Filter Include="Contents\GameObject\01.Player\PlayerFloor">
       <UniqueIdentifier>{7650b086-e1b3-4d35-8fd9-97ec6556dd0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush">
+      <UniqueIdentifier>{c20acdf6-0600-4d00-9cd9-f6142ac3d9b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -350,6 +353,9 @@
     </ClCompile>
     <ClCompile Include="exPlayerFloor.cpp">
       <Filter>Contents\GameObject\01.Player\PlayerFloor</Filter>
+    </ClCompile>
+    <ClCompile Include="exRush.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +529,9 @@
     </ClInclude>
     <ClInclude Include="exPlayerFloor.h">
       <Filter>Contents\GameObject\01.Player\PlayerFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="exRush.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

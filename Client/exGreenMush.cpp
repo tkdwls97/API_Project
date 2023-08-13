@@ -10,8 +10,13 @@
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
 #include "exSceneManager.h"
+
+// Player Skill
 #include "exRaisingblow.h"
 #include "exRaisingblowHit.h"
+#include "exUpperCharge.h"
+#include "exRush.h"
+
 namespace ex
 {
 	GreenMush::GreenMush()
@@ -193,7 +198,6 @@ namespace ex
 	void GreenMush::OnCollisionEnter(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
@@ -205,6 +209,7 @@ namespace ex
 
 			}
 		}
+
 		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
 		if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
 		{
@@ -218,7 +223,35 @@ namespace ex
 				attList->insert(this);
 			}
 		}
+
+		UpperCharge* upperCharge = dynamic_cast<UpperCharge*>(_other->GetOwner());
+		if (upperCharge != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = upperCharge->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+
+		Rush* rush = dynamic_cast<Rush*>(_other->GetOwner());
+		if (rush != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = rush->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
 	}
+
+
 
 	void GreenMush::OnCollisionStay(Collider* _other)
 	{

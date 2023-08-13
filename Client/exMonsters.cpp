@@ -3,6 +3,7 @@
 #include "exRigidbody.h"
 #include "exCollider.h"
 #include "exAnimator.h"
+
 namespace ex
 {
 	Monsters::Monsters()

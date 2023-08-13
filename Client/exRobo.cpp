@@ -12,7 +12,8 @@
 #include "exSceneManager.h"
 #include "exRaisingblow.h"
 #include "exRaisingblowHit.h"
-
+#include "exUpperCharge.h"
+#include "exRush.h"
 
 namespace ex
 {
@@ -219,6 +220,32 @@ namespace ex
 			{
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+
+		UpperCharge* upperCharge = dynamic_cast<UpperCharge*>(_other->GetOwner());
+		if (upperCharge != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = upperCharge->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+
+		Rush* rush = dynamic_cast<Rush*>(_other->GetOwner());
+		if (rush != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = rush->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
