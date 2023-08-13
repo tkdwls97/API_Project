@@ -33,26 +33,25 @@ namespace ex
 
 	void Floor::OnCollisionEnter(Collider* _other)
 	{
-		PlayerFloor* playerFloor = dynamic_cast<PlayerFloor*>(_other->GetOwner());
-		if (playerFloor != nullptr)
+		_other->GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
+
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+
+		if (player != nullptr)
 		{
-			Player* player = SceneManager::GetPlayer();
+			Transform* tr = player->GetComponent<Transform>();
+			Rigidbody* rb = player->GetComponent<Rigidbody>();
 
-			_other->GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
-			Transform* playerTr = player->GetComponent<Transform>();
-			Rigidbody* playerRb = player->GetComponent<Rigidbody>();
-			Rigidbody* rb = playerFloor->GetComponent<Rigidbody>();
-
-			float len = fabs(_other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y);
-			float scale = fabs(_other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f);
+			float len = fabs(_other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y) - 2.0f;
+			float scale = fabs(_other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f) - 2.0f;
 
 			if (len < scale)
 			{
-				math::Vector2 playerPos = player->GetPosition();
+				math::Vector2 playerPos = tr->GetPosition();
 				playerPos.y -= (scale - len) - 1.5f;
-				playerTr->SetPosition(playerPos);
+				tr->SetPosition(playerPos);
 			}
-			math::Vector2 velocityY = playerRb->GetVelocity();
+			math::Vector2 velocityY = rb->GetVelocity();
 			rb->SetGround(true);
 
 		}
@@ -85,16 +84,15 @@ namespace ex
 	}
 	void Floor::OnCollisionExit(Collider* _other)
 	{
-		PlayerFloor* playerFloor = dynamic_cast<PlayerFloor*>(_other->GetOwner());
-		Player* player = SceneManager::GetPlayer();
-		if (playerFloor != nullptr)
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+
+		if (player != nullptr)
 		{
-       		playerFloor->GetComponent<Rigidbody>()->SetGround(false);
+			_other->GetOwner()->GetComponent<Rigidbody>()->SetGround(false);
 			if (player->GetState() != eState::Rope)
 			{
 				player->SetState(eState::Fall);
 			}
-
 		}
 	}
 

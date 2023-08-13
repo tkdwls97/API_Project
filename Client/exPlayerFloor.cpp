@@ -36,14 +36,14 @@ namespace ex
 		Player* player = SceneManager::GetPlayer();
 
 		bool bCheack = mRigidbody->GetGround();
-		if (bCheack)
-		{
-			player->GetComponent<Rigidbody>()->SetGround(true);
-		}
-		else
-		{
-			player->GetComponent<Rigidbody>()->SetGround(false);
-		}
+		//if (bCheack)
+		//{
+		//	player->GetComponent<Rigidbody>()->SetGround(true);
+		//}
+		//else
+		//{
+		//	player->GetComponent<Rigidbody>()->SetGround(false);
+		//}
 
 		GameObject::Update();
 	}

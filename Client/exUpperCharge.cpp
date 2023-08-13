@@ -40,6 +40,7 @@ namespace ex
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
 
+		mCollider->SetSize(math::Vector2(150.0f, 150.0f));
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mTransform->SetPosition(math::Vector2(playerPos.x, playerPos.y - 90.0f));

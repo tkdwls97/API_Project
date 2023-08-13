@@ -90,7 +90,7 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.1f);*/
 
-		// bmp 일때
+			// bmp 일때
 		image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
@@ -178,21 +178,29 @@ namespace ex
 				mhitDelay = 0.0f;
 
 				bool bCheack = mRigidbody->GetGround();
-				if (bCheack)
+				if (bCheack && Input::GetKeyUp(eKeyCode::Left) && Input::GetKeyUp(eKeyCode::Right) && Input::GetKeyUp(eKeyCode::Down))
 				{
 					mState = eState::Idle;
 				}
 			}
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump ||
-			mState == eState::UpperCharge)
+		//if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
+		//{
+		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, false);
+		//}
+		//else
+		//{
+		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, true);
+		//}
+
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, false);
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
 		}
 		else
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, true);
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		}
 
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump)
@@ -813,23 +821,6 @@ namespace ex
 		// 더블 점프를 사용했기때문에 
 		// true로 변경
 		mbDoubleJump = true;
-		if (Input::GetKeyDown(eKeyCode::S) || Input::GetKeyPressed(eKeyCode::S))
-		{
-			mRigidbody->SetGround(false);
-			velocity.y = -1000.0f;
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftUpperCharge", false);
-			}
-			else
-			{
-				mAnimator->PlayAnimation(L"PlayerRightUpperCharge", false);
-			}
-			UpperCharge* upperCharge = new UpperCharge(this);
-			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
-			mState = eState::UpperCharge;
-			mRigidbody->SetVelocity(velocity);
-		}
 
 		if (velocity.y >= 0 && mState != eState::Rope)
 		{
@@ -1000,6 +991,11 @@ namespace ex
 				mState = eState::Idle;
 				mRigidbody->SetVelocityX(0.0f);
 			}
+			else if (mbRopeState && Input::GetKeyPressed(eKeyCode::Up))
+			{
+				mAnimator->PlayAnimation(L"PlayerRopeMove", true);
+				mState = eState::Rope;
+			}
 			else
 			{
 				if (playerDir == enums::eMoveDir::Left)
@@ -1012,16 +1008,28 @@ namespace ex
 				}
 				mState = eState::Jump;
 			}
-			if (mbRopeState && Input::GetKeyPressed(eKeyCode::Up))
-			{
-				mAnimator->PlayAnimation(L"PlayerRopeMove", true);
-				mState = eState::Rope;
-			}
 		}
 
-		if (velocity.y >= 0 && mState != eState::Rope)
+		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mState = eState::Fall;
+			mRigidbody->SetLimitedVeloctyX(700.0f);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+				velocity.x = -700.0f;
+				velocity.y = -300.0f;
+				mState = eState::DoubleJump;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightJump", true);
+				velocity.x = 700.0f;
+				velocity.y = -300.0f;
+				mState = eState::DoubleJump;
+			}
+			WarriorLeap* warriorLeap = new WarriorLeap(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, warriorLeap);
+			mRigidbody->SetVelocity(velocity);
 		}
 
 	}
@@ -1169,7 +1177,6 @@ namespace ex
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
-
 		enums::eLayerType Type = _other->GetOwner()->GetLayerType();
 		if (Type == enums::eLayerType::Potal)
 		{
