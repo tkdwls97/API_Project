@@ -189,7 +189,7 @@ namespace ex
 				mbInvincible = false;
 				mhitDelay = 0.0f;
 
-				bool bCheack = mRigidbody->GetGround();
+				bool bCheack = SceneManager::GetPlayerFloor()->GetRigidbody()->GetGround();
 				if (bCheack && Input::GetKeyUp(eKeyCode::Left) && Input::GetKeyUp(eKeyCode::Right) && Input::GetKeyUp(eKeyCode::Down))
 				{
 					mState = eState::Idle;
@@ -197,26 +197,27 @@ namespace ex
 			}
 		}
 
-		//if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
-		//{
-		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, false);
-		//}
-		//else
-		//{
-		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, true);
-		//}
-
-		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump ||
+			mState == eState::UpperCharge)
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, false);
 		}
 		else
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, true);
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge ||
-			mState == eState::Rush)
+		//if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
+		//{
+		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
+		//}
+		//else
+		//{
+		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		//}
+
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump ||
+			mState == eState::UpperCharge || mState == eState::Rush)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 		}
@@ -226,7 +227,8 @@ namespace ex
 		}
 
 		// 어택을 안했을때는 충돌체크를 끄기위해 설정
-		if (mState == eState::Attack || mState == eState::JumpAttack || mState == eState::RaisingBlow)
+		if (mState == eState::Attack || mState == eState::JumpAttack || mState == eState::RaisingBlow ||
+			mState == eState::UpperCharge || mState == eState::Rush)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		}
@@ -357,6 +359,7 @@ namespace ex
 		// Idle상태일때 점프키 입력
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
+			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			mRigidbody->SetGround(false);
 			velocity.y = -700.0f;
 			if (playerDir == enums::eMoveDir::Right)
@@ -410,6 +413,7 @@ namespace ex
 			UpperCharge* upperCharge = new UpperCharge(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			mRigidbody->SetGround(false);
+			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			velocity.y = -1000.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
@@ -514,6 +518,7 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::S) || Input::GetKeyPressed(eKeyCode::S))
 		{
 			mRigidbody->SetGround(false);
+			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false); mRigidbody->SetGround(false);
 			velocity.y = -1000.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
@@ -533,6 +538,7 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKeyPressed(eKeyCode::D))
 		{
 			mRigidbody->SetLimitedVeloctyX(1000.0f);
+			mRigidbody->SetVelocityX(0.0f);
 			Rush* rush = new Rush(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, rush);
 			if (playerDir == enums::eMoveDir::Left)
@@ -554,6 +560,7 @@ namespace ex
 		if ((Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump)) ||
 			(Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
+			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			mRigidbody->SetGround(false);
 			velocity.x = 220.0f;
 			velocity.y = -600.0f;
@@ -563,6 +570,7 @@ namespace ex
 		else if ((Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump)) ||
 			(Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
+			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			mRigidbody->SetGround(false);
 			velocity.x = -220.0f;
 			velocity.y = -600.0f;
@@ -657,6 +665,7 @@ namespace ex
 
 		if (Input::GetKeyPressed(eKeyCode::Down) && Input::GetKeyDown(eKeyCode::Jump))
 		{
+			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			mRigidbody->SetGround(false);
 
 			if (playerDir == enums::eMoveDir::Left)
@@ -1050,8 +1059,8 @@ namespace ex
 		// 애니메이션 재생이 끝낫으면
 		if (bCheck)
 		{
-			bool bGround = mRigidbody->GetGround();
-
+			bool bGround = SceneManager::GetPlayerFloor()->GetRigidbody()->GetGround();
+			
 			if (bGround)
 			{
 				if (playerDir == enums::eMoveDir::Left)
@@ -1172,7 +1181,7 @@ namespace ex
 
 
 		// 땅에 닿은 상태
-		bool bGround = mRigidbody->GetGround();
+		bool bGround = SceneManager::GetPlayerFloor()->GetRigidbody()->GetGround();
 		if (bGround)
 		{
 			mRigidbody->SetLimitedVeloctyX(200.0f);
@@ -1243,20 +1252,20 @@ namespace ex
 			}
 		}
 
-		if (bGround && mbInvincible)
-		{
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-			}
-			else
-			{
-				mAnimator->PlayAnimation(L"PlayerRightHit", true);
+		//if (bGround && mbInvincible)
+		//{
+		//	if (playerDir == enums::eMoveDir::Left)
+		//	{
+		//		mAnimator->PlayAnimation(L"PlayerLeftHit", true);
+		//	}
+		//	else
+		//	{
+		//		mAnimator->PlayAnimation(L"PlayerRightHit", true);
 
-			}
-			mState = eState::Hit;
-			mRigidbody->SetFriction(1000.0f);
-		}
+		//	}
+		//	mState = eState::Hit;
+		//	mRigidbody->SetFriction(1000.0f);
+		//}
 	}
 
 	void Player::OnCollisionEnter(Collider* _other)

@@ -46,6 +46,7 @@ namespace ex
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
 
+
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mTransform->SetPosition(math::Vector2(playerPos.x, playerPos.y - 90.0f));
@@ -95,6 +96,7 @@ namespace ex
 
 	void UpperCharge::OnCollisionEnter(Collider* _other)
 	{
+		int a = 0;
 	}
 
 	void UpperCharge::OnCollisionStay(Collider* _other)

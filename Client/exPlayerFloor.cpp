@@ -36,14 +36,14 @@ namespace ex
 		Player* player = SceneManager::GetPlayer();
 
 		bool bCheack = mRigidbody->GetGround();
-		//if (bCheack)
-		//{
-		//	player->GetComponent<Rigidbody>()->SetGround(true);
-		//}
-		//else
-		//{
-		//	player->GetComponent<Rigidbody>()->SetGround(false);
-		//}
+		if (bCheack)
+		{
+			player->GetComponent<Rigidbody>()->SetGround(true);
+		}
+		else
+		{
+			player->GetComponent<Rigidbody>()->SetGround(false);
+		}
 
 		GameObject::Update();
 	}
@@ -55,10 +55,12 @@ namespace ex
 
 	void PlayerFloor::OnCollisionEnter(Collider* _other)
 	{
+		int a = 0;
 	}
 
 	void PlayerFloor::OnCollisionStay(Collider* _other)
 	{
+		int a = 0;
 	}
 
 	void PlayerFloor::OnCollisionExit(Collider* _other)
