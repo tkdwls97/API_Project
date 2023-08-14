@@ -15,7 +15,6 @@
 #include "exFloor.h"
 #include "exPortal.h"
 #include "exRope.h"
-#include "exPlayerFloor.h"
 
 namespace ex
 {
@@ -212,15 +211,15 @@ namespace ex
 		Camera::SetLimitDistance(widthLimit, heightLimit);
 
 		Player* player = SceneManager::GetPlayer();
-		PlayerFloor* playerFloor = SceneManager::GetPlayerFloor();
-		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
+		// 게임오브젝트 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
 		//playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
+
+		// 플레이어 위치지정
 		playerTF->SetPosition(math::Vector2(659.0f, -20.0f));
 
 		// 플레이어가 중력을 받기위해 
-		//player->GetComponent<Rigidbody>()->SetGround(false);
-		playerFloor->GetComponent<Rigidbody>()->SetGround(false);
+		player->GetComponent<Rigidbody>()->SetGround(false);
 		player->SetState(Player::eState::Idle);
 
 		Animator* playerAt = player->GetComponent<Animator>();
@@ -236,8 +235,7 @@ namespace ex
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
-		CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, true);
-		//CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 
 	}
 

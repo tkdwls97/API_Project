@@ -6,7 +6,6 @@ namespace ex
 {
 	class Player;
 	class PlayerAttack;
-	class PlayerFloor;
 	class StatusBar;
 
 	class SceneManager
@@ -34,7 +33,6 @@ namespace ex
 
 		static Player* GetPlayer() { return mPlayer; }
 		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
-		static PlayerFloor* GetPlayerFloor() { return mPlayerFloor; }
 		static StatusBar* GetStatusBar() { return mStatusBar; }
 						
 	private:
@@ -42,7 +40,6 @@ namespace ex
 		static Scene* mActiveScene;
 		static Player* mPlayer;
 		static PlayerAttack* mPlayerAtt;
-		static PlayerFloor* mPlayerFloor;
 		static StatusBar*	mStatusBar;
 	};
 

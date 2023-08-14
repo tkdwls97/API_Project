@@ -10,7 +10,6 @@ namespace ex
 	class Collider;
 	class Rigidbody;
 	class Texture;
-	class PlayerFloor;
 
 	class Player : public GameObject
 	{

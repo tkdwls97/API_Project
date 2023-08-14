@@ -186,7 +186,6 @@
     <ClCompile Include="exTime.cpp" />
     <ClCompile Include="exTitleScene.cpp" />
     <ClCompile Include="exTransform.cpp" />
-    <ClCompile Include="exPlayerFloor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
@@ -246,7 +245,6 @@
     <ClInclude Include="exLayer.h" />
     <ClInclude Include="exMath.h" />
     <ClInclude Include="exPlayer.h" />
-    <ClInclude Include="exPlayerFloor.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="exResourceManager.h" />
     <ClInclude Include="exScene.h" />

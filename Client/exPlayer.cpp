@@ -6,7 +6,6 @@
 #include "exObject.h"
 #include "exCollisionManager.h"
 #include "exPortal.h"
-#include "exPlayerFloor.h"
 #include "exSceneManager.h"
 // Component
 #include "exTransform.h"
@@ -189,32 +188,23 @@ namespace ex
 				mbInvincible = false;
 				mhitDelay = 0.0f;
 
-				bool bCheack = SceneManager::GetPlayerFloor()->GetRigidbody()->GetGround();
-				if (bCheack && Input::GetKeyUp(eKeyCode::Left) && Input::GetKeyUp(eKeyCode::Right) && Input::GetKeyUp(eKeyCode::Down))
+				bool bCheack = mRigidbody->GetGround();
+				if (bCheack)
 				{
 					mState = eState::Idle;
 				}
 			}
 		}
 
-		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump ||
-			mState == eState::UpperCharge)
+
+		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, false);
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
 		}
 		else
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::PlayerFloor, enums::eLayerType::Floor, true);
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		}
-
-		//if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
-		//{
-		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
-		//}
-		//else
-		//{
-		//	CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
-		//}
 
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump ||
 			mState == eState::UpperCharge || mState == eState::Rush)
@@ -347,7 +337,6 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRopeMove", true);
 				pos.y += 200.0f * Time::GetDeltaTime();
-				//mState = eState::RopeDown;
 				mState = eState::Rope;
 			}
 
@@ -359,7 +348,6 @@ namespace ex
 		// Idle상태일때 점프키 입력
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
-			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			mRigidbody->SetGround(false);
 			velocity.y = -700.0f;
 			if (playerDir == enums::eMoveDir::Right)
@@ -413,8 +401,7 @@ namespace ex
 			UpperCharge* upperCharge = new UpperCharge(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			mRigidbody->SetGround(false);
-			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
-			velocity.y = -1000.0f;
+			velocity.y = -1330.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftUpperCharge", false);
@@ -518,8 +505,8 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::S) || Input::GetKeyPressed(eKeyCode::S))
 		{
 			mRigidbody->SetGround(false);
-			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false); mRigidbody->SetGround(false);
-			velocity.y = -1000.0f;
+			velocity.x = 0.0f;
+			velocity.y = -1330.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftUpperCharge", false);
@@ -560,7 +547,6 @@ namespace ex
 		if ((Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump)) ||
 			(Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
-			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			mRigidbody->SetGround(false);
 			velocity.x = 220.0f;
 			velocity.y = -600.0f;
@@ -570,7 +556,6 @@ namespace ex
 		else if ((Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump)) ||
 			(Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
-			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
 			mRigidbody->SetGround(false);
 			velocity.x = -220.0f;
 			velocity.y = -600.0f;
@@ -665,7 +650,7 @@ namespace ex
 
 		if (Input::GetKeyPressed(eKeyCode::Down) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			SceneManager::GetPlayerFloor()->GetRigidbody()->SetGround(false);
+
 			mRigidbody->SetGround(false);
 
 			if (playerDir == enums::eMoveDir::Left)
@@ -959,6 +944,7 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::S) || Input::GetKeyPressed(eKeyCode::S))
 		{
 			mRigidbody->SetGround(false);
+			mState = eState::UpperCharge;
 			UpperCharge* upperCharge = new UpperCharge(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			if (playerDir == enums::eMoveDir::Left)
@@ -969,8 +955,7 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightUpperCharge", false);
 			}
-			velocity.y = -1000.0f;
-			mState = eState::UpperCharge;
+			velocity.y = -1330.0f;
 			mRigidbody->SetVelocityY(velocity.y);
 		}
 
@@ -1059,7 +1044,7 @@ namespace ex
 		// 애니메이션 재생이 끝낫으면
 		if (bCheck)
 		{
-			bool bGround = SceneManager::GetPlayerFloor()->GetRigidbody()->GetGround();
+			bool bGround = mRigidbody->GetGround();
 			
 			if (bGround)
 			{
@@ -1181,7 +1166,7 @@ namespace ex
 
 
 		// 땅에 닿은 상태
-		bool bGround = SceneManager::GetPlayerFloor()->GetRigidbody()->GetGround();
+		bool bGround = mRigidbody->GetGround();
 		if (bGround)
 		{
 			mRigidbody->SetLimitedVeloctyX(200.0f);

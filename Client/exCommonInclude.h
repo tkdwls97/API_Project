@@ -25,7 +25,6 @@ namespace ex::enums
 		Rope,
 		Potal,
 		Monster,
-		PlayerFloor,
 		Player,
 		Effect,
 		UI,
