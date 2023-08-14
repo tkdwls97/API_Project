@@ -21,6 +21,7 @@
 #include "exPortal.h"
 #include "exWall.h"
 #include "exRope.h"
+#include "exStatusBar.h"
 
 namespace ex
 {
@@ -257,7 +258,6 @@ namespace ex
 		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
 		//Camera::SetLimitDistance(widthLimit, heightLimit);
-
 
 		// 플레이어 static으로 SceneManager에서 한개만 생성
 		Player* player = SceneManager::GetPlayer();

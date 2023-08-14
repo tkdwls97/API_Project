@@ -27,13 +27,15 @@ namespace ex
 
 			return scene;
 		}
-		
+
 		static Scene* LoadScene(const std::wstring& _name);
 		static Scene* GetActiveScene() { return mActiveScene; }
+
 
 		static Player* GetPlayer() { return mPlayer; }
 		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
 		static PlayerFloor* GetPlayerFloor() { return mPlayerFloor; }
+		static StatusBar* GetStatusBar() { return mStatusBar; }
 						
 	private:
 		static std::map<std::wstring, Scene*> mScenes;
