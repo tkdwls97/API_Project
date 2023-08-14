@@ -193,6 +193,9 @@
     <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault">
       <UniqueIdentifier>{799a9fcb-84d1-42f2-aa80-3d7f784e8fe0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar">
+      <UniqueIdentifier>{7930f6c2-8ff9-4534-b683-33e0a80607e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -362,6 +365,9 @@
     </ClCompile>
     <ClCompile Include="exComboDeathFault.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault</Filter>
+    </ClCompile>
+    <ClCompile Include="exStatusBar.cpp">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -541,6 +547,9 @@
     </ClInclude>
     <ClInclude Include="exComboDeathFault.h">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault</Filter>
+    </ClInclude>
+    <ClInclude Include="exStatusBar.h">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

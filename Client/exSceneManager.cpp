@@ -10,7 +10,7 @@
 #include "exObject.h"
 #include "exPlayerAttack.h"
 #include "exPlayerFloor.h"
-
+#include "exStatusBar.h"
 namespace ex
 {
 	std::map<std::wstring, Scene*> SceneManager::mScenes = {};
@@ -18,8 +18,9 @@ namespace ex
 	Player* SceneManager::mPlayer = new Player;
 	PlayerAttack* SceneManager::mPlayerAtt = new PlayerAttack(mPlayer);
 	PlayerFloor* SceneManager::mPlayerFloor = new PlayerFloor(mPlayer);
-
+	StatusBar* SceneManager::mStatusBar = new StatusBar();
 	
+
 	void SceneManager::Initialize()
 	{
 		CreateScene<TitleScene>(L"TitleScene");
@@ -61,7 +62,7 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);
 			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerAtt);
 			mActiveScene->AddGameObject(enums::eLayerType::PlayerFloor, mPlayerFloor);
-
+			mActiveScene->AddGameObject(enums::eLayerType::UI, mStatusBar);
 		}
 		mActiveScene->SceneIN();
 

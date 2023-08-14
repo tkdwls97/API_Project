@@ -1,16 +1,16 @@
 #pragma once
-#include "exGameObject.h"
+#include "exUI.h"
 
 namespace ex
 {
 	class Transform;
 	class Collider;
 
-	class UI : public GameObject
+	class StatusBar : public UI
 	{
 	public:
-		UI();
-		virtual ~UI();
+		StatusBar();
+		virtual ~StatusBar();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -21,12 +21,6 @@ namespace ex
 		virtual void OnCollisionExit(Collider* _other) override;
 
 	protected:
-		Transform* mTransform;
-		Collider* mCollider;
-
-
-
-
 
 	};
 
