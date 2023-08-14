@@ -18,6 +18,7 @@ namespace ex
 	{
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
+		mAnimator = AddComponent<Animator>();
 	}
 
 	UI::~UI()

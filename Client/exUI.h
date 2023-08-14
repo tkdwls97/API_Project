@@ -5,6 +5,7 @@ namespace ex
 {
 	class Transform;
 	class Collider;
+	class Animator;
 
 	class UI : public GameObject
 	{
@@ -23,7 +24,7 @@ namespace ex
 	protected:
 		Transform* mTransform;
 		Collider* mCollider;
-
+		Animator* mAnimator;
 
 
 

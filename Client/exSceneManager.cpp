@@ -16,7 +16,7 @@ namespace ex
 	Scene* SceneManager::mActiveScene = nullptr;
 	Player* SceneManager::mPlayer = new Player;
 	PlayerAttack* SceneManager::mPlayerAtt = new PlayerAttack(mPlayer);
-	StatusBar* SceneManager::mStatusBar = new StatusBar();
+	StatusBar* SceneManager::mStatusBar = new StatusBar;
 	
 
 	void SceneManager::Initialize()
