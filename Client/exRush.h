@@ -29,6 +29,8 @@ namespace ex
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
+
+		EffectInfo mRushInfo;
 	};
 
 }

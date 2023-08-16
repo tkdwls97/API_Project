@@ -17,6 +17,7 @@
 namespace ex
 {
 	MpBar::MpBar()
+		: mReductionMp(0.0f)
 	{
 		mMiddleMpBar = ResourceManager::Load<Texture>(L"PlayerMiddleMpBar", L"..\\Resources\\Maple\\Image\\UI\\PlayerMiddleMpBar.bmp");
 		mMpBar = ResourceManager::Load<Texture>(L"PlayerMpBar", L"..\\Resources\\Maple\\Image\\UI\\PlayerMpBar.bmp");

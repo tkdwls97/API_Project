@@ -10,6 +10,7 @@
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
 #include "exSceneManager.h"
+#include "exDamageSkin.h"
 
 // Player Skill
 #include "exRaisingblow.h"
@@ -202,12 +203,18 @@ namespace ex
 	void GreenMush::OnCollisionEnter(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
+		Player* player = SceneManager::GetPlayer();
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
 
 			if (attList->find(this) == attList->end())
 			{
+				DamageSkin* damageSkin = new DamageSkin();
+				damageSkin->SetPosition(math::Vector2(mTransform->GetPositionX(), mTransform->GetPositionY() - 50.0f));
+				object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
+				damageSkin->Initialize();
+
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 

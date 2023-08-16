@@ -19,6 +19,11 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
+
+		mRushInfo.AttackCount = 1;
+		mRushInfo.DamagePercentage = 305;
+		SetEffectInfo(mRushInfo);
+
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();

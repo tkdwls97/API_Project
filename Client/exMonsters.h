@@ -49,6 +49,9 @@ namespace ex
 		void SetMonsterState(eMonsterState _state) { mMonsterState = _state; }
 		void SetMonsterDir(enums::eMoveDir _dir) { mDirection = _dir; }
 
+		Transform* GetTransform() { return mTransform; }
+
+
 		MonstersInfo GetMonstersInfo() { return mMonstersInfo; }
 		void SetMonstersInfo(MonstersInfo _monsters) { mMonstersInfo = _monsters; }
 

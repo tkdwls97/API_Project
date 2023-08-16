@@ -8,6 +8,7 @@
 #include "exPortal.h"
 #include "exSceneManager.h"
 #include "exMonsters.h"
+
 // Component
 #include "exTransform.h"
 #include "exRigidbody.h"
@@ -33,14 +34,16 @@ namespace ex
 		, mbRopeState(false)
 		, mbDoubleJump(false)
 	{
+		srand(static_cast<unsigned int>(time(nullptr)));
+
 		mInfo = new PlayerInfo();
 		mInfo->mHp = 50000;
 		mInfo->mMaxHp = 50000;
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
-		mInfo->mDamage = 170000;
-		mInfo->mMaxDamage = 200000;
+		mInfo->mMinDamage = 100000;
+		mInfo->mMaxDamage = 150000;
 	}
 
 	Player::~Player()
@@ -409,7 +412,7 @@ namespace ex
 			UpperCharge* upperCharge = new UpperCharge(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			mRigidbody->SetGround(false);
-			velocity.y = -1330.0f;
+			velocity.y = -1210.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftUpperCharge", false);
@@ -514,7 +517,7 @@ namespace ex
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = 0.0f;
-			velocity.y = -1330.0f;
+			velocity.y = -1210.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftUpperCharge", false);
@@ -963,7 +966,7 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightUpperCharge", false);
 			}
-			velocity.y = -1330.0f;
+			velocity.y = -1210.0f;
 			mRigidbody->SetVelocityY(velocity.y);
 		}
 

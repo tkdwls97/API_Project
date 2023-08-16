@@ -20,6 +20,10 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
+		mUpperChargeInfo.AttackCount = 1;
+		mUpperChargeInfo.DamagePercentage = 304;
+		SetEffectInfo(mUpperChargeInfo);
+
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();

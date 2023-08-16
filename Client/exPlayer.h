@@ -20,7 +20,7 @@ namespace ex
 			int mMaxHp;
 			int mMp;
 			int mMaxMp;
-			int mDamage;
+			int mMinDamage;
 			int mMaxDamage;
 			int mLevel;
 

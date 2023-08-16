@@ -16,6 +16,10 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
+		mAttackInfo.AttackCount = 1;
+		mAttackInfo.DamagePercentage = 100;
+		SetEffectInfo(mAttackInfo);
+
 		Animator* animator = GetComponent<Animator>();
 		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();

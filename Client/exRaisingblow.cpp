@@ -19,6 +19,10 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
+		mRaisingblowInfo.AttackCount = 4;
+		mRaisingblowInfo.DamagePercentage = 344;
+		SetEffectInfo(mRaisingblowInfo);
+
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();

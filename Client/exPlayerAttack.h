@@ -7,6 +7,7 @@ namespace ex
 	class Transform;
 	class Animator;
 
+
 	class PlayerAttack : public EffectManger
 	{
 	public:
@@ -26,6 +27,8 @@ namespace ex
 	private:
 		GameObject* mOwner;
 		std::set<GameObject*> mAttackList;
+
+		EffectInfo mAttackInfo;
 
 
 

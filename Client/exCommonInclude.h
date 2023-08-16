@@ -9,6 +9,8 @@
 #include <assert.h>
 #include <filesystem>
 #include <bitset>
+#include <cstdio>
+
 
 #include "framework.h"
 #include "exMath.h"

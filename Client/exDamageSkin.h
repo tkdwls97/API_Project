@@ -1,11 +1,10 @@
 #pragma once
 #include "exUI.h"
+#include "exTexture.h"
 
 namespace ex
 {
 	class Transform;
-	class Collider;
-	class Texture;
 
 	class DamageSkin : public UI
 	{
@@ -21,7 +20,12 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
+		Texture* GetDamageArr() { return *mDamageArr; }
+		int GetPlayerDamage() { return mPlayerDamage; }
+
 	private:
+		Texture* mDamageArr[10];
+		int		 mPlayerDamage;
 	};
 
 }
