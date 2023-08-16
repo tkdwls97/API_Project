@@ -7,6 +7,9 @@ namespace ex
 	class Player;
 	class PlayerAttack;
 	class StatusBar;
+	class ExpBar;
+	class HpBar;
+	class MpBar;
 
 	class SceneManager
 	{
@@ -41,6 +44,9 @@ namespace ex
 		static Player* mPlayer;
 		static PlayerAttack* mPlayerAtt;
 		static StatusBar*	mStatusBar;
+		static ExpBar* mExpBar;
+		static HpBar* mHpBar;
+		static MpBar* mMpBar;
 	};
 
 }

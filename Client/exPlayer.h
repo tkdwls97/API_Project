@@ -17,7 +17,9 @@ namespace ex
 		struct PlayerInfo
 		{
 			int mHp;
-			int mMP;
+			int mMaxHp;
+			int mMp;
+			int mMaxMp;
 			int mSpeed;
 			int mDamage;
 			int mDef;
@@ -39,6 +41,8 @@ namespace ex
 
 		eState GetState() { return mState; }
 		void SetState(eState _state) { mState = _state; }
+
+		PlayerInfo GetInfo() { return mInfo; }
 
 		bool IsPotalState() { return mbPortalState; }
 		void SetPotalState(bool _state) { mbPortalState = _state; }

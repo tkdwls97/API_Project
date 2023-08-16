@@ -33,7 +33,11 @@ namespace ex
 		, mbDoubleJump(false)
 	{
 		mInfo.mHp = 50000;
-		mInfo.mMP = 30000;
+		mInfo.mMaxHp = 50000;
+
+		mInfo.mMp = 20000;
+		mInfo.mMaxMp = 20000;
+
 		mInfo.mLevel = 200;
 		mInfo.mSpeed = 300;
 		mInfo.mDamage = 10000;
@@ -299,6 +303,11 @@ namespace ex
 		else if (playerDir == enums::eMoveDir::Right)
 		{
 			mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::H))
+		{
+			mInfo.mHp += -5000;
 		}
 
 		// Rope, Down, Right, Left 키 입력 이동 상태

@@ -146,7 +146,8 @@
     <ClCompile Include="exGreenMush.cpp" />
     <ClCompile Include="exMonsters.cpp" />
     <ClCompile Include="exPlayerAttack.cpp" />
-    <ClCompile Include="exPlayerHpBar.cpp" />
+    <ClCompile Include="exHpBar.cpp" />
+    <ClCompile Include="exMpBar.cpp" />
     <ClCompile Include="exStatusBar.cpp" />
     <ClCompile Include="exPortal.cpp" />
     <ClCompile Include="exRaisingblow.cpp" />
@@ -187,6 +188,7 @@
     <ClCompile Include="exTime.cpp" />
     <ClCompile Include="exTitleScene.cpp" />
     <ClCompile Include="exTransform.cpp" />
+    <ClCompile Include="exExpBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
@@ -208,7 +210,8 @@
     <ClInclude Include="exGreenMush.h" />
     <ClInclude Include="exMonsters.h" />
     <ClInclude Include="exPlayerAttack.h" />
-    <ClInclude Include="exPlayerHpBar.h" />
+    <ClInclude Include="exHpBar.h" />
+    <ClInclude Include="exMpBar.h" />
     <ClInclude Include="exStatusBar.h" />
     <ClInclude Include="exPortal.h" />
     <ClInclude Include="exRaisingblow.h" />
@@ -247,6 +250,7 @@
     <ClInclude Include="exLayer.h" />
     <ClInclude Include="exMath.h" />
     <ClInclude Include="exPlayer.h" />
+    <ClInclude Include="exExpBar.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="exResourceManager.h" />
     <ClInclude Include="exScene.h" />

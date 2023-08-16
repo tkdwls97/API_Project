@@ -6,11 +6,12 @@ namespace ex
 	class Transform;
 	class Collider;
 	class Texture;
-	class StatusBar : public UI
+
+	class ExpBar : public UI
 	{
 	public:
-		StatusBar();
-		virtual ~StatusBar();
+		ExpBar();
+		virtual ~ExpBar();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -21,7 +22,7 @@ namespace ex
 		virtual void OnCollisionExit(Collider* _other) override;
 
 	private:
-		Texture* mStatusBar;
+		Texture* mExpBar;
 	};
 
 }
