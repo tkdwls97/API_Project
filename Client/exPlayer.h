@@ -20,9 +20,8 @@ namespace ex
 			int mMaxHp;
 			int mMp;
 			int mMaxMp;
-			int mSpeed;
 			int mDamage;
-			int mDef;
+			int mMaxDamage;
 			int mLevel;
 
 		};
@@ -42,7 +41,7 @@ namespace ex
 		eState GetState() { return mState; }
 		void SetState(eState _state) { mState = _state; }
 
-		PlayerInfo GetInfo() { return mInfo; }
+		PlayerInfo* GetInfo() { return mInfo; }
 
 		bool IsPotalState() { return mbPortalState; }
 		void SetPotalState(bool _state) { mbPortalState = _state; }
@@ -72,7 +71,7 @@ namespace ex
 		Collider*		mCollider;
 		
 		eState			mState;
-		PlayerInfo		mInfo;
+		PlayerInfo* 	mInfo;
 
 		bool			mbDoubleJump;
 		bool			mbPortalState;

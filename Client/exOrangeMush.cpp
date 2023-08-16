@@ -25,6 +25,10 @@ namespace ex
 		: mIdleDelay(0.0f)
 		, mMoveDelay(0.0f)
 	{
+		mMonstersInfo.mMaxHp = 1000;
+		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
+		mMonstersInfo.mLevel = 10;
+		mMonstersInfo.mDamage = 5000;
 	}
 
 	OrangeMush::~OrangeMush()
@@ -33,7 +37,6 @@ namespace ex
 
 	void OrangeMush::Initialize()
 	{
-
 		mAnimator->CreateAnimationFolder(L"LeftOrangeMushIdle",
 			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Idle\\Left", math::Vector2(0.0f, 0.0f), 0.3f);
 

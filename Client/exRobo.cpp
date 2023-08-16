@@ -19,6 +19,10 @@ namespace ex
 {
 	Robo::Robo()
 	{
+		mMonstersInfo.mMaxHp = 50000;
+		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
+		mMonstersInfo.mLevel = 10;
+		mMonstersInfo.mDamage = 6000;
 	}
 
 	Robo::~Robo()

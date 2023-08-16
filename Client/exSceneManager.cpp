@@ -13,6 +13,7 @@
 #include "exExpBar.h"
 #include "exHpBar.h"
 #include "exMpBar.h"
+#include "exDamageSkin.h"
 
 namespace ex
 {
@@ -24,6 +25,7 @@ namespace ex
 	ExpBar* SceneManager::mExpBar = new ExpBar;
 	HpBar* SceneManager::mHpBar = new HpBar;
 	MpBar* SceneManager::mMpBar = new MpBar;
+	DamageSkin* SceneManager::mDamageSkin = new DamageSkin;
 	
 
 	void SceneManager::Initialize()
@@ -70,6 +72,7 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mExpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mHpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mMpBar);
+			mActiveScene->AddGameObject(enums::eLayerType::UI, mDamageSkin);
 		}
 		mActiveScene->SceneIN();
 

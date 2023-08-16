@@ -33,13 +33,13 @@ namespace ex
 
 	void MpBar::Update()
 	{
-		if ((int)mReductionMp >= SceneManager::GetPlayer()->GetInfo().mMp)
+		if ((int)mReductionMp >= SceneManager::GetPlayer()->GetInfo()->mMp)
 		{
 			mReductionMp -= (float)Time::GetDeltaTime() * 1000.f;
 		}
 		else
 		{
-			mReductionMp = (float)SceneManager::GetPlayer()->GetInfo().mMp;
+			mReductionMp = (float)SceneManager::GetPlayer()->GetInfo()->mMp;
 		}
 		GameObject::Update();
 	}
@@ -48,14 +48,14 @@ namespace ex
 	{
 
 		Player* player = SceneManager::GetPlayer();
-		int Mp = player->GetInfo().mMp;
-		float fhp = (float)Mp / player->GetInfo().mMaxMp;
+		int Mp = player->GetInfo()->mMp;
+		float fhp = (float)Mp / player->GetInfo()->mMaxMp;
 
-		::TransparentBlt(_hdc, 563, 680, (int)(mMiddleMpBar->GetWidth() * (mReductionMp / player->GetInfo().mMaxMp)), mMiddleMpBar->GetHeight(), mMiddleMpBar->GetHdc()
-			, 0, 0, (int)(mMiddleMpBar->GetWidth() * (mReductionMp / player->GetInfo().mMaxMp)), mMiddleMpBar->GetHeight(), RGB(255, 0, 255));
+		::TransparentBlt(_hdc, 563, 680, (int)(mMiddleMpBar->GetWidth() * (mReductionMp / player->GetInfo()->mMaxMp)), mMiddleMpBar->GetHeight(), mMiddleMpBar->GetHdc()
+			, 0, 0, (int)(mMiddleMpBar->GetWidth() * (mReductionMp / player->GetInfo()->mMaxMp)), mMiddleMpBar->GetHeight(), RGB(255, 0, 255));
 
-		::TransparentBlt(_hdc, 563, 680, (int)(mMpBar->GetWidth() * (mReductionMp / player->GetInfo().mMaxMp)), mMpBar->GetHeight(), mMpBar->GetHdc()
-			, 0, 0, (int)(mMpBar->GetWidth() * (mReductionMp / player->GetInfo().mMaxMp)), mMpBar->GetHeight(), RGB(255, 0, 255));
+		::TransparentBlt(_hdc, 563, 680, (int)(mMpBar->GetWidth() * (mReductionMp / player->GetInfo()->mMaxMp)), mMpBar->GetHeight(), mMpBar->GetHdc()
+			, 0, 0, (int)(mMpBar->GetWidth() * (mReductionMp / player->GetInfo()->mMaxMp)), mMpBar->GetHeight(), RGB(255, 0, 255));
 
 		GameObject::Render(_hdc);
 	}

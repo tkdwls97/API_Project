@@ -10,6 +10,7 @@ namespace ex
 	class ExpBar;
 	class HpBar;
 	class MpBar;
+	class DamageSkin;
 
 	class SceneManager
 	{
@@ -47,6 +48,7 @@ namespace ex
 		static ExpBar* mExpBar;
 		static HpBar* mHpBar;
 		static MpBar* mMpBar;
+		static DamageSkin* mDamageSkin;
 	};
 
 }

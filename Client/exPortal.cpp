@@ -50,6 +50,13 @@ namespace ex
 
 	void Portal::OnCollisionEnter(Collider* _other)
 	{
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+
+		if (player != nullptr)
+		{
+			player->SetPotalState(true);
+		}
+
 	}
 	void Portal::OnCollisionStay(Collider* _other)
 	{
@@ -77,6 +84,12 @@ namespace ex
 	}
 	void Portal::OnCollisionExit(Collider* _other)
 	{
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+
+		if (player != nullptr)
+		{
+			player->SetPotalState(false);
+		}
 		std::wstring ActiveSceneName = SceneManager::GetActiveScene()->GetName();
 		ActiveSceneName.clear();
 	}

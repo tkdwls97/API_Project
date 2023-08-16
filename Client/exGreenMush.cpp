@@ -21,6 +21,10 @@ namespace ex
 {
 	GreenMush::GreenMush()
 	{
+		mMonstersInfo.mMaxHp = 1000;
+		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
+		mMonstersInfo.mLevel = 10;
+		mMonstersInfo.mDamage = 5000;
 	}
 
 	GreenMush::~GreenMush()

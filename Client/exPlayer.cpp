@@ -7,6 +7,7 @@
 #include "exCollisionManager.h"
 #include "exPortal.h"
 #include "exSceneManager.h"
+#include "exMonsters.h"
 // Component
 #include "exTransform.h"
 #include "exRigidbody.h"
@@ -32,16 +33,14 @@ namespace ex
 		, mbRopeState(false)
 		, mbDoubleJump(false)
 	{
-		mInfo.mHp = 50000;
-		mInfo.mMaxHp = 50000;
-
-		mInfo.mMp = 20000;
-		mInfo.mMaxMp = 20000;
-
-		mInfo.mLevel = 200;
-		mInfo.mSpeed = 300;
-		mInfo.mDamage = 10000;
-		mInfo.mDef = 1000;
+		mInfo = new PlayerInfo();
+		mInfo->mHp = 50000;
+		mInfo->mMaxHp = 50000;
+		mInfo->mMp = 20000;
+		mInfo->mMaxMp = 20000;
+		mInfo->mLevel = 200;
+		mInfo->mDamage = 170000;
+		mInfo->mMaxDamage = 200000;
 	}
 
 	Player::~Player()
@@ -307,7 +306,7 @@ namespace ex
 
 		if (Input::GetKeyDown(eKeyCode::H))
 		{
-			mInfo.mHp += -5000;
+			mInfo->mHp += -5000;
 		}
 
 		// Rope, Down, Right, Left 키 입력 이동 상태
@@ -1265,30 +1264,32 @@ namespace ex
 	void Player::OnCollisionEnter(Collider* _other)
 	{
 		enums::eLayerType Type = _other->GetOwner()->GetLayerType();
+		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
 		if (Type == enums::eLayerType::Monster && mbInvincible == false)
 		{
 			mCollider->SetCollisionType(true);
+			mInfo->mHp -= monsters->GetMonstersInfo().mDamage;
 			mState = eState::Hit;
 		}
 
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
-		enums::eLayerType Type = _other->GetOwner()->GetLayerType();
-		if (Type == enums::eLayerType::Potal)
-		{
-			mbPortalState = true;
-		}
+		//enums::eLayerType Type = _other->GetOwner()->GetLayerType();
+		//if (Type == enums::eLayerType::Potal)
+		//{
+		//	mbPortalState = true;
+		//}
 	}
 	void Player::OnCollisionExit(Collider* _other)
 	{
 		mCollider->SetCollisionType(false);
 
-		Portal* potal = dynamic_cast<Portal*>(_other->GetOwner());
-		if (potal != nullptr)
-		{
-			mbPortalState = false;
-		}
+		//Portal* potal = dynamic_cast<Portal*>(_other->GetOwner());
+		//if (potal != nullptr)
+		//{
+		//	mbPortalState = false;
+		//}
 	}
 
 }

@@ -11,15 +11,16 @@ namespace ex
 	class Monsters :public GameObject
 	{
 	public:
-		struct MonsterInfo
+		struct MonstersInfo
 		{
 			int mHp;
+			int mMaxHp;
 			int mSpeed;
 			int mDamage;
-			int mDef;
 			int mLevel;
 
 		};
+
 		enum class eMonsterState
 		{
 			Idle,
@@ -48,6 +49,9 @@ namespace ex
 		void SetMonsterState(eMonsterState _state) { mMonsterState = _state; }
 		void SetMonsterDir(enums::eMoveDir _dir) { mDirection = _dir; }
 
+		MonstersInfo GetMonstersInfo() { return mMonstersInfo; }
+		void SetMonstersInfo(MonstersInfo _monsters) { mMonstersInfo = _monsters; }
+
 	protected:
 		enums::eMoveDir mDirection;
 		Animator* mAnimator;
@@ -55,7 +59,7 @@ namespace ex
 		Rigidbody* mRigidbody;
 		Collider* mCollider;
 		eMonsterState mMonsterState;
-		//MonsterInfo* mMonsterInfo;
+		MonstersInfo mMonstersInfo;
 
 		float mIdleDelay;
 		float mMoveDelay;
