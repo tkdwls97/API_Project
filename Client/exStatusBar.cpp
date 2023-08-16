@@ -22,7 +22,7 @@ namespace ex
 
 		mAnimator->CreateAnimation(L"PlayerStatusBar", image, math::Vector2(0.0f, 0.0f), math::Vector2(204.0f, 70.0f)
 			, math::Vector2(204.0f, 70.0f), 1);
-		mTransform->SetPosition(math::Vector2(640.0f, 860.0f));
+		mTransform->SetPosition(math::Vector2(640.0f, 680.0f));
 		mAnimator->SetAffectedCamera(false);
 		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
 

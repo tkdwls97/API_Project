@@ -36,6 +36,7 @@ namespace ex
 		, math::Vector2 size
 		, math::Vector2 leftTop
 		, math::Vector2 rightBottom
+		, bool _affectCamera
 		, math::Vector2 scale
 		, float alpha
 		, float rotate)
@@ -45,7 +46,7 @@ namespace ex
 			return;
 		}
 		
-		if (mbAffectCamera)
+		if (_affectCamera)
 		{
 			pos = Camera::CalculatePosition(pos);
 		}

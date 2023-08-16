@@ -122,6 +122,7 @@ namespace ex
 			, sprite.size
 			, sprite.leftTop
 			, sprite.size
+			, mAnimator->GetAffectedCamera()
 			, mAnimator->GetScale()
 			, mAnimator->GetAlpha());
 	}

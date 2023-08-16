@@ -56,6 +56,7 @@ namespace ex
 			, textureSize
 			, math::Vector2::Zero
 			, textureSize
+			, mbAffectCamere
 			, mScale
 			, mAlpha);
 	}

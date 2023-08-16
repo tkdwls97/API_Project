@@ -23,6 +23,7 @@ namespace ex
 			, math::Vector2 _size
 			, math::Vector2 _leftTop
 			, math::Vector2 _rightBottom
+			, bool _affectCamera
 			, math::Vector2 _scale = math::Vector2::One
 			, float _alpha = 1.0f
 			, float _rotate = 0.0f);
