@@ -9,10 +9,16 @@
 #include "exRigidbody.h"
 #include "exSceneManager.h"
 #include "exPlayer.h"
+#include "exObject.h"
+#include "exDamageManager.h"
+
+// PlayerSkill
 #include "exPlayerAttack.h"
 #include "exRaisingblow.h"
 #include "exRaisingblowHit.h"
-#include "exObject.h"
+#include "exRush.h"
+#include "exUpperCharge.h"
+
 
 namespace ex
 {
@@ -203,52 +209,21 @@ namespace ex
 	}
 	void MushMom::OnCollisionEnter(Collider* _other)
 	{
-		//PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
-		//enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-		//if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
-		//{
-		//	// playerAttack이 들고있는 mAttList를 받아서 넣어줌 자신을(파풀라투스)
-		//	std::set<GameObject*>* attList = playerAtt->GetAttackList();
-
-		//	if (attList->find(this) == attList->end())
-		//	{
-		//		mMonsterState = eMonsterState::Hit;
-		//		attList->insert(this);
-		//	}
-		//}
-		//Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
-		//if (raisingblow != nullptr)
-		//{
-		//	std::set<GameObject*>* attList = raisingblow->GetAttackList();
-
-		//	if (attList->find(this) == attList->end())
-		//	{
-		//		RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
-		//		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
-		//		mMonsterState = eMonsterState::Hit;
-		//		attList->insert(this);
-
-		//	}
-		//}
-	}
-
-	void MushMom::OnCollisionStay(Collider* _other)
-	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
-			// playerAttack이 들고있는 mAttList를 받아서 넣어줌 자신을(파풀라투스)
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
 
 			if (attList->find(this) == attList->end())
 			{
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+
 			}
 		}
+
 		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
-		if (raisingblow != nullptr)
+		if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = raisingblow->GetAttackList();
 
@@ -258,9 +233,47 @@ namespace ex
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+			}
+		}
+
+		UpperCharge* upperCharge = dynamic_cast<UpperCharge*>(_other->GetOwner());
+		if (upperCharge != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = upperCharge->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
 
 			}
 		}
+
+		Rush* rush = dynamic_cast<Rush*>(_other->GetOwner());
+		if (rush != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = rush->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		if (player != nullptr)
+		{
+			DamageManager* damage = new DamageManager();
+			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+
+		}
+	}
+
+	void MushMom::OnCollisionStay(Collider* _other)
+	{
 	}
 
 	void MushMom::OnCollisionExit(Collider* _other)

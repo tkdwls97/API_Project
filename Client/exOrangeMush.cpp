@@ -11,6 +11,7 @@
 #include "exSceneManager.h"
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
+#include "exDamageManager.h"
 
 // Player Skill
 #include "exRaisingblow.h"
@@ -28,7 +29,7 @@ namespace ex
 		mMonstersInfo.mMaxHp = 1000;
 		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
 		mMonstersInfo.mLevel = 10;
-		mMonstersInfo.mDamage = 200;
+		mMonstersInfo.mDamage = 176;
 	}
 
 	OrangeMush::~OrangeMush()
@@ -250,6 +251,15 @@ namespace ex
 				attList->insert(this);
 
 			}
+		}
+
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		if (player != nullptr)
+		{
+			DamageManager* damage = new DamageManager();
+			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+
 		}
 	}
 

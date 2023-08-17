@@ -10,6 +10,7 @@
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
 #include "exSceneManager.h"
+#include "exDamageManager.h"
 
 // Player Skill
 #include "exRaisingblow.h"
@@ -24,7 +25,7 @@ namespace ex
 		mMonstersInfo.mMaxHp = 1000;
 		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
 		mMonstersInfo.mLevel = 10;
-		mMonstersInfo.mDamage = 300;
+		mMonstersInfo.mDamage = 261;
 	}
 
 	GreenMush::~GreenMush()
@@ -202,7 +203,6 @@ namespace ex
 	void GreenMush::OnCollisionEnter(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
-		Player* player = SceneManager::GetPlayer();
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
@@ -253,6 +253,15 @@ namespace ex
 				attList->insert(this);
 
 			}
+		}
+
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		if (player != nullptr)
+		{
+			DamageManager* damage = new DamageManager();
+			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+
 		}
 	}
 

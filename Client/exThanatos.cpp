@@ -1,18 +1,22 @@
 #include "exThanatos.h"
-#include "exTransform.h"
 #include "exInput.h" 
 #include "exTime.h"
 #include "exObject.h"
 #include "exResourceManager.h"
+#include "exTransform.h"
 #include "exAnimator.h"
-#include "exTexture.h"
 #include "exCollider.h"
-#include "exPlayerAttack.h"
+#include "exTexture.h"
 #include "exPlayer.h"
 #include "exSceneManager.h"
+#include "exDamageManager.h"
+
+// PlayerSkill
+#include "exPlayerAttack.h"
 #include "exRaisingblow.h"
 #include "exRaisingblowHit.h"
-
+#include "exRush.h"
+#include "exUpperCharge.h"
 namespace ex
 {
 	Thanatos::Thanatos()
@@ -186,7 +190,7 @@ namespace ex
 		{
 			mDirection = enums::eMoveDir::Left;
 		}
-		//mMonsterState = eMonsterState::Dead;
+		mMonsterState = eMonsterState::Dead;
 	}
 
 	void Thanatos::Dead()
@@ -213,7 +217,6 @@ namespace ex
 	void Thanatos::OnCollisionEnter(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
@@ -225,6 +228,7 @@ namespace ex
 
 			}
 		}
+
 		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
 		if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
 		{
@@ -237,6 +241,41 @@ namespace ex
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 			}
+		}
+
+		UpperCharge* upperCharge = dynamic_cast<UpperCharge*>(_other->GetOwner());
+		if (upperCharge != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = upperCharge->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+
+		Rush* rush = dynamic_cast<Rush*>(_other->GetOwner());
+		if (rush != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = rush->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
+
+			}
+		}
+
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		if (player != nullptr)
+		{
+			DamageManager* damage = new DamageManager();
+			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+
 		}
 	}
 

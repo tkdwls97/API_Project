@@ -20,19 +20,21 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
-		void PlayDamageAnimation(int _skillDamage, float _delay = 0);
+		void PlayPlayerDamageAnimation(int _skillDamage, float _delay = 0);
+		void PlayMonsterDamageAnimation(int _monsterDamage, int _skillDamage = 1);
 
 		Texture* GetDamageArr() { return *mDamageArr; }
+
 		int GetPlayerDamage() { return mPlayerDamage; }
-
+		int GetMonsterDamage() { return mMonsterDamage; }
 		int GetDamageSize() { return mDamageSize; }
-
 		int GetDamageIndex() { return mDamageIndex; }
-
 	private:
 		Texture* mDamageArr[10];
 		std::vector<int> mDamageIndexArr;
+
 		int		 mPlayerDamage;
+		int		 mMonsterDamage;
 		int		 mDamageSize;
 		int		 mDamageIndex;
 	};

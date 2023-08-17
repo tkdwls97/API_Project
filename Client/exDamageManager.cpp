@@ -9,6 +9,7 @@
 #include "exSpriteRenderer.h"
 #include "exPlayer.h"
 #include "exDamageSkin.h"
+#include "exMonsterDamageSkin.h"
 // Component
 #include "exTransform.h"
 #include "exAnimator.h"
@@ -41,16 +42,13 @@ namespace ex
 	{
 	}
 
-	void DamageManager::PlayDamageAnimation(int _skillDamage, float _delay)
+	void DamageManager::PlayPlayerDamageAnimation(int _skillDamage, float _delay)
 	{
 		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
 		int resultDamage = mPlayerDamage * _skillDamage;
 
-		// 데미지값 변환을 방지하기 위한 데미지값 복사
-		int temp = resultDamage;
-
 		// 데미지의 Size를 구하기
-		std::string numStr = std::to_string(temp);
+		std::string numStr = std::to_string(resultDamage);
 		mDamageSize = numStr.length();
 
 		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
@@ -69,10 +67,38 @@ namespace ex
 			DamageSkin* damageSkin = new DamageSkin(mDamageIndexArr[j]);
 			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
 			damageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
-			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (38.0f * j) - (mDamageSize * 38.0f / 2.0f));
+			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (40.0f * j) - (mDamageSize * 40.0f / 2.0f));
 			damageSkin->SetDamageDelay(_delay);
 		}
+	}
 
+	void DamageManager::PlayMonsterDamageAnimation(int _monsterDamage, int _skillDamage)
+	{
+		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
+		int resultDamage = _monsterDamage * _skillDamage;
+
+		// 데미지의 Size를 구하기
+		std::string numStr = std::to_string(resultDamage);
+		mDamageSize = numStr.length();
+
+		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
+		for (size_t i = 0; i < mDamageSize; ++i)
+		{
+			int remainder = resultDamage % 10;
+			mDamageIndexArr.push_back(remainder);
+			resultDamage /= 10;
+		}
+
+		// 배열 다시 뒤집어서 정렬
+		reverse(mDamageIndexArr.begin(), mDamageIndexArr.end());
+
+		for (size_t i = 0; i < mDamageSize; i++)
+		{
+			MonsterDamageSkin* monsterDamageSkin = new MonsterDamageSkin(mDamageIndexArr[i]);
+			object::ActiveSceneAddGameObject(enums::eLayerType::UI, monsterDamageSkin);
+			monsterDamageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
+			monsterDamageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (27.0f * i) - (mDamageSize * 31.0f / 2.0f));
+		}
 	}
 
 

@@ -208,8 +208,11 @@
     <Filter Include="Contents\GameObject\04.UI\01.DamageManager">
       <UniqueIdentifier>{11bb8385-cb34-4b95-bf5c-5869be848c89}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\04.UI\01.DamageManager\00.DamageSkin">
+    <Filter Include="Contents\GameObject\04.UI\01.DamageManager\00.PlayerDamageSkin">
       <UniqueIdentifier>{cf8cdaaa-6fc5-4a07-a2e8-ee29b3004aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin">
+      <UniqueIdentifier>{69575056-3218-4a19-9aa6-851715426779}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -391,10 +394,13 @@
       <Filter>Contents\GameObject\04.UI\00.StatusBar\02.ExpBar</Filter>
     </ClCompile>
     <ClCompile Include="exDamageSkin.cpp">
-      <Filter>Contents\GameObject\04.UI\01.DamageManager\00.DamageSkin</Filter>
+      <Filter>Contents\GameObject\04.UI\01.DamageManager\00.PlayerDamageSkin</Filter>
     </ClCompile>
     <ClCompile Include="exDamageManager.cpp">
       <Filter>Contents\GameObject\04.UI\01.DamageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="exMonsterDamageSkin.cpp">
+      <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -585,10 +591,13 @@
       <Filter>Contents\GameObject\04.UI\00.StatusBar\02.ExpBar</Filter>
     </ClInclude>
     <ClInclude Include="exDamageSkin.h">
-      <Filter>Contents\GameObject\04.UI\01.DamageManager\00.DamageSkin</Filter>
+      <Filter>Contents\GameObject\04.UI\01.DamageManager\00.PlayerDamageSkin</Filter>
     </ClInclude>
     <ClInclude Include="exDamageManager.h">
       <Filter>Contents\GameObject\04.UI\01.DamageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="exMonsterDamageSkin.h">
+      <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

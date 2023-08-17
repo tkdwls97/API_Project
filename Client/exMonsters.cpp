@@ -3,6 +3,9 @@
 #include "exRigidbody.h"
 #include "exCollider.h"
 #include "exAnimator.h"
+#include "exSceneManager.h"
+#include "exPlayer.h"
+#include "exDamageManager.h"
 
 namespace ex
 {
