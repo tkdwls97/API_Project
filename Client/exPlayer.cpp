@@ -42,7 +42,7 @@ namespace ex
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
-		mInfo->mMinDamage = 5000;
+		mInfo->mMinDamage = 4000;
 		mInfo->mMaxDamage = 9000;
 	}
 

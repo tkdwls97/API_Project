@@ -21,7 +21,8 @@
 namespace ex
 {
 	DamageManager::DamageManager()
-		: mDamageSize(0)
+		: mDamageArr{}
+		, mDamageSize(0)
 		, mPlayerDamage(0)
 		, mDamageIndex(0)
 		, mDamageIndexArr{}
@@ -42,7 +43,7 @@ namespace ex
 
 	void DamageManager::PlayDamageAnimation(int _skillDamage)
 	{
-		//mDamageSize = 0;
+		mDamageSize = 0;
 		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
 		int resultDamage = mPlayerDamage * _skillDamage;
 
