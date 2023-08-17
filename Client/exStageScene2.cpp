@@ -215,7 +215,6 @@ namespace ex
 		Transform* tr4 = floor4->GetComponent<Transform>();
 		col4 = floor4->AddComponent<Collider>();
 		col4->SetSize(math::Vector2(530.0f, 1.0f));
-		//col4->SetOffset(math::Vector2(10.0f, 0.0f));
 		tr4 = floor4->GetComponent<Transform>();
 		tr4->SetPosition(math::Vector2(1350.0f, 275.0f));
 
@@ -225,7 +224,6 @@ namespace ex
 		Transform* tr5 = floor5->GetComponent<Transform>();
 		col5 = floor5->AddComponent<Collider>();
 		col5->SetSize(math::Vector2(188.0f, 1.0f));
-		//col5->SetOffset(math::Vector2(10.0f, 0.0f));
 		tr5 = floor5->GetComponent<Transform>();
 		tr5->SetPosition(math::Vector2(920.0f, 207.0f));
 
@@ -235,7 +233,6 @@ namespace ex
 		Transform* tr6 = floor6->GetComponent<Transform>();
 		col6 = floor6->AddComponent<Collider>();
 		col6->SetSize(math::Vector2(355.0f, 1.0f));
-		//col6->SetOffset(math::Vector2(10.0f, 0.0f));
 		tr6 = floor6->GetComponent<Transform>();
 		tr6->SetPosition(math::Vector2(500.0f, 168.0f));
 
@@ -253,7 +250,6 @@ namespace ex
 		rope2->Initialize();
 		Collider* RopeCol2 = rope2->GetComponent<Collider>();
 		RopeCol2->SetSize(math::Vector2(2.0f, 180.0f));
-		//RopeCol2->SetOffset(math::Vector2(0.0f, -23.0f));
 		Transform* RopeTr2 = rope2->GetComponent<Transform>();
 		RopeTr2->SetPosition(math::Vector2(1092.0f, 363.0f));
 
@@ -262,9 +258,8 @@ namespace ex
 		portal->Initialize();
 
 		Transform* portalTr = portal->GetComponent<Transform>();
-		//potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
-		//portalTr->SetPosition(math::Vector2(640.0f, 500.0f));
-		portalTr->SetPosition(math::Vector2(-200.0f, 250.0f));
+		portalTr->SetPosition(math::Vector2(1450.0f, 500.0f));
+		//portalTr->SetPosition(math::Vector2(-200.0f, 250.0f));
 
 	}
 

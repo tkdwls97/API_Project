@@ -19,6 +19,7 @@ namespace ex
 	Raisingblow::Raisingblow(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mDamageDelay(0.0f)
 	{
 		mRaisingblowInfo.AttackCount = 4;
 		mRaisingblowInfo.DamagePercentage = 344;

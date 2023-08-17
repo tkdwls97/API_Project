@@ -31,6 +31,7 @@ namespace ex
 		Transform* mTransform;
 
 		EffectInfo mRaisingblowInfo;
+		float mDamageDelay;
 	};
 
 }
