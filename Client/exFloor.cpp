@@ -52,7 +52,7 @@ namespace ex
 			// 두 물체가 겹쳐있는 경우
 			if (fabs(gap) < mazino)
 			{
-				objPos.y -= (mazino - fabs(gap)) - 1.8f;
+				objPos.y -= (mazino - fabs(gap)) - 2.5f;
 				tr->SetPosition(objPos);
 			}
 

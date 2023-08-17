@@ -41,9 +41,8 @@ namespace ex
 	{
 	}
 
-	void DamageManager::PlayDamageAnimation(int _skillDamage)
+	void DamageManager::PlayDamageAnimation(int _skillDamage, float _delay)
 	{
-		mDamageSize = 0;
 		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
 		int resultDamage = mPlayerDamage * _skillDamage;
 
@@ -51,37 +50,29 @@ namespace ex
 		int temp = resultDamage;
 
 		// 데미지의 총 길이를 구하기위한 While문
-		while (temp != 0)
-		{
-			temp /= 10;
-			++mDamageSize;
-		}
+
+		std::string numStr = std::to_string(temp);
+		mDamageSize = numStr.length();
 
 		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
-		int tempArr[10] = {};
 
 		// tempArr에 저장
 		for (size_t i = 0; i < mDamageSize; ++i)
 		{
 			int remainder = resultDamage % 10;
-			tempArr[i] = remainder;
+			mDamageIndexArr.push_back(remainder);
 			resultDamage /= 10;
 		}
 
- 		int index = mDamageSize - 1;
-		// 멤버 배열에 다시 정렬
-		for (size_t i = 0; i < mDamageSize; i++)
-		{
-			mDamageIndexArr[i] = tempArr[index];
-			--index;
-		}
+		reverse(mDamageIndexArr.begin(), mDamageIndexArr.end());
 
 		for (size_t j = 0; j < mDamageSize; j++)
 		{
 			DamageSkin* damageSkin = new DamageSkin(mDamageIndexArr[j]);
 			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
 			damageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
-			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (50.0f * j) - (mDamageSize * 50.0f / 2.0f));
+			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (38.0f * j) - (mDamageSize * 50.0f / 2.0f));
+			damageSkin->SetDamageDelay(_delay);
 		}
 
 	}

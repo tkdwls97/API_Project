@@ -24,11 +24,17 @@ namespace ex
 
 		int GetDamageSize() { return mDamageSize; }
 
+		float GetDamageDelay() { return mDamageDelay; }
+		void SetDamageDelay(float _delay) { mDamageDelay = _delay; }
+
 
 	private:
 		Texture* mDamageArr[10];
 		int		 mDamageIndex;
 		int		 mDamageSize;
+
+		float	 mDamageDelay;
+		float	 mDelay;
 	};
 
 }
