@@ -110,7 +110,7 @@ namespace ex
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				DamageManager* damage = new DamageManager();
-				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 50.0f * i));
+				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
 				damage->PlayDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
 			}
 		}

@@ -42,7 +42,7 @@ namespace ex
 		{
 			mReductionMp = (float)SceneManager::GetPlayer()->GetInfo()->mMp;
 		}
-		GameObject::Update();
+		UI::Update();
 	}
 
 	void MpBar::Render(HDC _hdc)
@@ -58,7 +58,7 @@ namespace ex
 		::TransparentBlt(_hdc, 563, 680, (int)(mMpBar->GetWidth() * (mReductionMp / player->GetInfo()->mMaxMp)), mMpBar->GetHeight(), mMpBar->GetHdc()
 			, 0, 0, (int)(mMpBar->GetWidth() * (mReductionMp / player->GetInfo()->mMaxMp)), mMpBar->GetHeight(), RGB(255, 0, 255));
 
-		GameObject::Render(_hdc);
+		UI::Render(_hdc);
 	}
 
 	void MpBar::OnCollisionEnter(Collider* _other)

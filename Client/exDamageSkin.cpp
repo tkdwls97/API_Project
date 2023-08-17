@@ -46,7 +46,7 @@ namespace ex
 
 		mDamageArr[4] = ResourceManager::Load<Texture>(L"PlayerDamage_4"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_4.bmp");
-		mAnimator->CreateAnimation(L"PlayerDamage_4", mDamageArr[0], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
+		mAnimator->CreateAnimation(L"PlayerDamage_4", mDamageArr[4], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
 			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[5] = ResourceManager::Load<Texture>(L"PlayerDamage_5"
@@ -136,15 +136,13 @@ namespace ex
 			}
 
 		}
-		
-
 	
-		GameObject::Update();
+		UI::Update();
 	}
 
 	void DamageSkin::Render(HDC _hdc)
 	{
-		GameObject::Render(_hdc);
+		UI::Render(_hdc);
 	}
 
 	void DamageSkin::OnCollisionEnter(Collider* _other)

@@ -38,12 +38,12 @@ namespace ex
 
 	void StatusBar::Update()
 	{
-		GameObject::Update();
+		UI::Update();
 	}
 
 	void StatusBar::Render(HDC _hdc)
 	{
-		GameObject::Render(_hdc);
+		UI::Render(_hdc);
 	}
 
 	void StatusBar::OnCollisionEnter(Collider* _other)

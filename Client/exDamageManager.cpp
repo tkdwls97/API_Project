@@ -49,14 +49,11 @@ namespace ex
 		// 데미지값 변환을 방지하기 위한 데미지값 복사
 		int temp = resultDamage;
 
-		// 데미지의 총 길이를 구하기위한 While문
-
+		// 데미지의 Size를 구하기
 		std::string numStr = std::to_string(temp);
 		mDamageSize = numStr.length();
 
 		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
-
-		// tempArr에 저장
 		for (size_t i = 0; i < mDamageSize; ++i)
 		{
 			int remainder = resultDamage % 10;
@@ -64,6 +61,7 @@ namespace ex
 			resultDamage /= 10;
 		}
 
+		// 배열 다시 뒤집어서 정렬
 		reverse(mDamageIndexArr.begin(), mDamageIndexArr.end());
 
 		for (size_t j = 0; j < mDamageSize; j++)
@@ -71,7 +69,7 @@ namespace ex
 			DamageSkin* damageSkin = new DamageSkin(mDamageIndexArr[j]);
 			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
 			damageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
-			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (38.0f * j) - (mDamageSize * 50.0f / 2.0f));
+			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (38.0f * j) - (mDamageSize * 38.0f / 2.0f));
 			damageSkin->SetDamageDelay(_delay);
 		}
 
@@ -80,12 +78,12 @@ namespace ex
 
 	void DamageManager::Update()
 	{
-		GameObject::Update();
+		UI::Update();
 	}
 
 	void DamageManager::Render(HDC _hdc)
 	{
-		GameObject::Render(_hdc);
+		UI::Render(_hdc);
 	}
 
 	void DamageManager::OnCollisionEnter(Collider* _other)

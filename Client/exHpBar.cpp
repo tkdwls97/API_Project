@@ -42,7 +42,7 @@ namespace ex
 		{
 			mReductionHp = (float)SceneManager::GetPlayer()->GetInfo()->mHp;
 		}
-		GameObject::Update();
+		UI::Update();
 	}
 
 	void HpBar::Render(HDC _hdc)
@@ -59,7 +59,7 @@ namespace ex
 
 
 		
-		GameObject::Render(_hdc);
+		UI::Render(_hdc);
 	}
 
 	void HpBar::OnCollisionEnter(Collider* _other)
