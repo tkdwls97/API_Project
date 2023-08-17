@@ -89,9 +89,12 @@ namespace ex
 		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
 		if (monsters != nullptr)
 		{
-			DamageManager* damage = new DamageManager();
-			damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 50.0f));
-			damage->PlayDamageAnimation(this->GetEffectInfo().DamagePercentage, this->GetEffectInfo().AttackCount);
+			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
+			{
+				DamageManager* damage = new DamageManager();
+				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 50.0f * i));
+				damage->PlayDamageAnimation(this->GetEffectInfo().DamagePercentage);
+			}
 		}
 	}
 

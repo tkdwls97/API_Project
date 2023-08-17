@@ -20,7 +20,7 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
-		void PlayDamageAnimation(int _skillDamage, int _attackCount);
+		void PlayDamageAnimation(int _skillDamage);
 
 		Texture* GetDamageArr() { return *mDamageArr; }
 		int GetPlayerDamage() { return mPlayerDamage; }

@@ -11,6 +11,7 @@
 #include "exObject.h"
 #include "exAnimation.h"
 #include "exMonsters.h"
+#include "exDamageManager.h"
 
 
 namespace ex
@@ -103,6 +104,16 @@ namespace ex
 
 	void Raisingblow::OnCollisionEnter(Collider* _other)
 	{
+		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
+		if (monsters != nullptr)
+		{
+			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
+			{
+				DamageManager* damage = new DamageManager();
+				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 50.0f * i));
+				damage->PlayDamageAnimation(this->GetEffectInfo().DamagePercentage);
+			}
+		}
 	}
 
 	void Raisingblow::OnCollisionStay(Collider* _other)

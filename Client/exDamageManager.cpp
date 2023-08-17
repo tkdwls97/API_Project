@@ -36,7 +36,7 @@ namespace ex
 	{
 	}
 
-	void DamageManager::PlayDamageAnimation(int _skillDamage, int _attackCount)
+	void DamageManager::PlayDamageAnimation(int _skillDamage)
 	{
 		//mDamageSize = 0;
 		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
