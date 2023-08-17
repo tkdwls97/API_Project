@@ -30,7 +30,9 @@ namespace ex
 
 		EffectInfo mAttackInfo;
 
-
+		Animator* mAnimator;
+		Collider* mCollider;
+		Transform* mTransform;
 
 	};
 

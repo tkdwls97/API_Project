@@ -21,6 +21,10 @@
 namespace ex
 {
 	DamageManager::DamageManager()
+		: mDamageSize(0)
+		, mPlayerDamage(0)
+		, mDamageIndex(0)
+		, mDamageIndexArr{}
 	{
 		Player* player = SceneManager::GetPlayer();
 		int minDamage = player->GetInfo()->mMinDamage;
@@ -63,7 +67,7 @@ namespace ex
 			resultDamage /= 10;
 		}
 
-		int index = mDamageSize - 1;
+ 		int index = mDamageSize - 1;
 		// 멤버 배열에 다시 정렬
 		for (size_t i = 0; i < mDamageSize; i++)
 		{

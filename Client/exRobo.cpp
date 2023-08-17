@@ -22,7 +22,7 @@ namespace ex
 		mMonstersInfo.mMaxHp = 50000;
 		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
 		mMonstersInfo.mLevel = 10;
-		mMonstersInfo.mDamage = 6000;
+		mMonstersInfo.mDamage = 1000;
 	}
 
 	Robo::~Robo()

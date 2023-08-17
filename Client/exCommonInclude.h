@@ -28,6 +28,7 @@ namespace ex::enums
 		Potal,
 		Monster,
 		Player,
+		PlayerAttack,
 		Effect,
 		UI,
 		End,

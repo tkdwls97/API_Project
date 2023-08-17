@@ -42,8 +42,8 @@ namespace ex
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
-		mInfo->mMinDamage = 10000;
-		mInfo->mMaxDamage = 15000;
+		mInfo->mMinDamage = 5000;
+		mInfo->mMaxDamage = 9000;
 	}
 
 	Player::~Player()
