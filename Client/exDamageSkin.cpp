@@ -8,6 +8,7 @@
 #include "exSceneManager.h"
 #include "exSpriteRenderer.h"
 #include "exPlayer.h"
+#include "exDamageManager.h"
 // Component
 #include "exTransform.h"
 #include "exAnimator.h"
@@ -20,63 +21,94 @@
 
 namespace ex
 {
-	DamageSkin::DamageSkin()
+	DamageSkin::DamageSkin(int _index)
+		: mDamageIndex(_index)
 	{
 		mDamageArr[0] = ResourceManager::Load<Texture>(L"PlayerDamage_0"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_0.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_0", mDamageArr[0], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[1] = ResourceManager::Load<Texture>(L"PlayerDamage_1"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_1.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_1", mDamageArr[1], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[2] = ResourceManager::Load<Texture>(L"PlayerDamage_2"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_2.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_2", mDamageArr[2], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[3] = ResourceManager::Load<Texture>(L"PlayerDamage_3"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_3.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_3", mDamageArr[3], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[4] = ResourceManager::Load<Texture>(L"PlayerDamage_4"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_4.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_4", mDamageArr[0], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[5] = ResourceManager::Load<Texture>(L"PlayerDamage_5"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_5.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_5", mDamageArr[5], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[6] = ResourceManager::Load<Texture>(L"PlayerDamage_6"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_6.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_6", mDamageArr[6], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[7] = ResourceManager::Load<Texture>(L"PlayerDamage_7"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_7.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_7", mDamageArr[7], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[8] = ResourceManager::Load<Texture>(L"PlayerDamage_8"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_8.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_8", mDamageArr[8], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
 		mDamageArr[9] = ResourceManager::Load<Texture>(L"PlayerDamage_9"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_9.bmp");
 		mAnimator->CreateAnimation(L"PlayerDamage_9", mDamageArr[9], math::Vector2(0.0f, 0.0f), math::Vector2(50.0f, 50.0f)
-			, math::Vector2(50.0f, 50.0f), 1);
+			, math::Vector2(50.0f, 50.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
-		
-		Player* player = SceneManager::GetPlayer();
-		int minDamage = player->GetInfo()->mMinDamage;
-		int maxDamage = player->GetInfo()->mMaxDamage;
-		mPlayerDamage = minDamage + std::rand() % (maxDamage - minDamage + 1);
+		switch (mDamageIndex)
+		{
+		case 0:
+			mAnimator->PlayAnimation(L"PlayerDamage_0", false);
+			break;
+		case 1:
+			mAnimator->PlayAnimation(L"PlayerDamage_1", false);
+			break;
+		case 2:
+			mAnimator->PlayAnimation(L"PlayerDamage_2", false);
+			break;
+		case 3:
+			mAnimator->PlayAnimation(L"PlayerDamage_3", false);
+			break;
+		case 4:
+			mAnimator->PlayAnimation(L"PlayerDamage_4", false);
+			break;
+		case 5:
+			mAnimator->PlayAnimation(L"PlayerDamage_5", false);
+			break;
+		case 6:
+			mAnimator->PlayAnimation(L"PlayerDamage_6", false);
+			break;
+		case 7:
+			mAnimator->PlayAnimation(L"PlayerDamage_7", false);
+			break;
+		case 8:
+			mAnimator->PlayAnimation(L"PlayerDamage_8", false);
+			break;
+		case 9:
+			mAnimator->PlayAnimation(L"PlayerDamage_9", false);
+			break;
+		default:
+			break;
+		}
 	}
 
 	DamageSkin::~DamageSkin()
@@ -85,11 +117,16 @@ namespace ex
 
 	void DamageSkin::Initialize()
 	{
-		mAnimator->PlayAnimation(L"PlayerDamage_9", false);
 	}
+
+
 
 	void DamageSkin::Update()
 	{
+		if (mAnimator->IsActiveAnimationComplete())
+		{
+			Destroy(this);
+		}
 		GameObject::Update();
 	}
 
@@ -109,4 +146,5 @@ namespace ex
 	void DamageSkin::OnCollisionExit(Collider* _other)
 	{
 	}
+
 }

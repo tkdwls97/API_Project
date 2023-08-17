@@ -9,6 +9,8 @@
 #include "exSceneManager.h"
 #include "exCollisionManager.h"
 #include "exObject.h"
+#include "exDamageManager.h"
+#include "exMonsters.h"
 
 namespace ex
 {
@@ -17,7 +19,7 @@ namespace ex
 		, mOwner(_owner)
 	{
 		mAttackInfo.AttackCount = 1;
-		mAttackInfo.DamagePercentage = 100;
+		mAttackInfo.DamagePercentage = 9;
 		SetEffectInfo(mAttackInfo);
 
 		Animator* animator = GetComponent<Animator>();
@@ -58,7 +60,7 @@ namespace ex
 			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
 		}
 		Animator* at = SceneManager::GetPlayer()->GetComponent<Animator>();
-		
+
 		eState playerState = SceneManager::GetPlayer()->GetState();
 		bool bCheck = at->IsActiveAnimationComplete();
 		if (playerState == eState::Attack || playerState == eState::JumpAttack)
@@ -84,6 +86,13 @@ namespace ex
 
 	void PlayerAttack::OnCollisionEnter(Collider* _other)
 	{
+		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
+		if (monsters != nullptr)
+		{
+			DamageManager* damage = new DamageManager();
+			damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 50.0f));
+			damage->PlayDamageAnimation(this->GetEffectInfo().DamagePercentage, this->GetEffectInfo().AttackCount);
+		}
 	}
 
 	void PlayerAttack::OnCollisionStay(Collider* _other)

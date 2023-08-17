@@ -6,11 +6,11 @@ namespace ex
 {
 	class Transform;
 
-	class DamageSkin : public UI
+	class DamageManager : public UI
 	{
 	public:
-		DamageSkin(int _index);
-		virtual ~DamageSkin();
+		DamageManager();
+		virtual ~DamageManager();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -20,15 +20,22 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
+		void PlayDamageAnimation(int _skillDamage, int _attackCount);
+
 		Texture* GetDamageArr() { return *mDamageArr; }
+		int GetPlayerDamage() { return mPlayerDamage; }
 
 		int GetDamageSize() { return mDamageSize; }
+
+		int GetDamageIndex() { return mDamageIndex; }
 
 
 	private:
 		Texture* mDamageArr[10];
-		int		 mDamageIndex;
+		int		 mDamageIndexArr[10];
+		int		 mPlayerDamage;
 		int		 mDamageSize;
+		int		 mDamageIndex;
 	};
 
 }

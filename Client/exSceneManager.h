@@ -10,7 +10,7 @@ namespace ex
 	class ExpBar;
 	class HpBar;
 	class MpBar;
-	class DamageSkin;
+	class DamageManager;
 
 	class SceneManager
 	{
@@ -38,6 +38,8 @@ namespace ex
 		static Player* GetPlayer() { return mPlayer; }
 		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
 		static StatusBar* GetStatusBar() { return mStatusBar; }
+		static DamageManager* GetDamageManager() { return mDamageManager; }
+
 						
 	private:
 		static std::map<std::wstring, Scene*> mScenes;
@@ -48,7 +50,7 @@ namespace ex
 		static ExpBar* mExpBar;
 		static HpBar* mHpBar;
 		static MpBar* mMpBar;
-		static DamageSkin* mDamageSkin;
+		static DamageManager* mDamageManager;
 	};
 
 }

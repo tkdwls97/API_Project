@@ -10,7 +10,6 @@
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
 #include "exSceneManager.h"
-#include "exDamageSkin.h"
 
 // Player Skill
 #include "exRaisingblow.h"
@@ -210,11 +209,6 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
-				DamageSkin* damageSkin = new DamageSkin();
-				damageSkin->SetPosition(math::Vector2(mTransform->GetPositionX(), mTransform->GetPositionY() - 50.0f));
-				object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
-				damageSkin->Initialize();
-
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
