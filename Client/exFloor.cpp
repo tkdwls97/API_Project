@@ -32,7 +32,6 @@ namespace ex
 
 	void Floor::OnCollisionEnter(Collider* _other)
 	{
-		
 		GameObject* obj = _other->GetOwner();
 		Transform* tr = obj->GetComponent<Transform>();
 		Rigidbody* rb = obj->GetComponent<Rigidbody>();
@@ -55,15 +54,14 @@ namespace ex
 				objPos.y -= (mazino - fabs(gap)) - 2.5f;
 				tr->SetPosition(objPos);
 			}
-
 			rb->SetGround(true);	// Floor 객체와 충돌한 객체가 땅에 붙어있는 상태로 만들어준다.
 		}
-
 	}
 
 	void Floor::OnCollisionStay(Collider* _other)
 	{
 	}
+	
 	void Floor::OnCollisionExit(Collider* _other)
 	{
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());

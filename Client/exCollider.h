@@ -64,7 +64,7 @@ namespace ex
 		bool mbRopeCollision;
 
 		bool mbIsneedtoCollisonCheck;
-
+		bool mbAffectedCamera;
 		COLORREF mNomalCollor;
 		COLORREF mCollisionCollor;
 	};

@@ -18,7 +18,8 @@ namespace ex
 		, mbRopeCollision(false)
 		, mbIsneedtoCollisonCheck(false)
 		, mNomalCollor(RGB(50, 255, 50))
-	    , mCollisionCollor(RGB(255, 50, 50))
+		, mCollisionCollor(RGB(255, 50, 50))
+		, mbAffectedCamera(true)
 	{
 		mCollisionNumber = mCollisionCount;
 		++mCollisionCount;
@@ -43,7 +44,10 @@ namespace ex
 		pos.x += mOffset.x;
 		pos.y += mOffset.y;
 
-		pos = Camera::CalculatePosition(pos);
+		if (mbAffectedCamera)
+		{
+			pos = Camera::CalculatePosition(pos);
+		}
 
 		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 		HBRUSH oldBrush = (HBRUSH)SelectObject(_hdc, transparentBrush);

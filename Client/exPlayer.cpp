@@ -37,13 +37,13 @@ namespace ex
 		srand(static_cast<unsigned int>(time(nullptr)));
 
 		mInfo = new PlayerInfo();
-		mInfo->mHp = 50000;
-		mInfo->mMaxHp = 50000;
+		mInfo->mHp = 70000;
+		mInfo->mMaxHp = 70000;
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
-		mInfo->mMinDamage = 4000;
-		mInfo->mMaxDamage = 9000;
+		mInfo->mMinDamage = 7300;
+		mInfo->mMaxDamage = 15212;
 	}
 
 	Player::~Player()
@@ -412,7 +412,7 @@ namespace ex
 			UpperCharge* upperCharge = new UpperCharge(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, upperCharge);
 			mRigidbody->SetGround(false);
-			velocity.y = -1210.0f;
+			velocity.y = -1310.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftUpperCharge", false);
@@ -517,7 +517,7 @@ namespace ex
 		{
 			mRigidbody->SetGround(false);
 			velocity.x = 0.0f;
-			velocity.y = -1210.0f;
+			velocity.y = -1310.0f;
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftUpperCharge", false);
@@ -966,7 +966,7 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightUpperCharge", false);
 			}
-			velocity.y = -1210.0f;
+			velocity.y = -1310.0f;
 			mRigidbody->SetVelocityY(velocity.y);
 		}
 

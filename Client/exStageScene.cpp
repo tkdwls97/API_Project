@@ -159,8 +159,8 @@ namespace ex
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		Transform* floorTr = floor1->GetComponent<Transform>();
 		Collider* floorCol = floor1->AddComponent<Collider>();
-		floorCol->SetSize(math::Vector2(2000.0f, 50.0f));
-		floorTr->SetPosition(math::Vector2(680.0f, 910.0f));
+		floorCol->SetSize(math::Vector2(2000.0f, 1000.0f));
+		floorTr->SetPosition(math::Vector2(680.0f, 1380.0f));
 
 		// 2층
 		Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
@@ -190,12 +190,19 @@ namespace ex
 		floorCol5->SetSize(math::Vector2(760.0f, 1.0f));
 		floorTr5->SetPosition(math::Vector2(680.0f, -75.0f));
 
-		//	// 왼쪽 벽
-		//	Wall* wall = object::Instantiate<Wall>(enums::eLayerType::Wall);
-		//	col = wall->AddComponent<Collider>();
-		//	col->SetSize(math::Vector2(10.0f, 1500.0f));
-		//	tr = wall->GetComponent<Transform>();
-		//	tr->SetPosition(math::Vector2(-237.0f, 360.0f));
+		// 왼쪽 벽
+		Wall* leftWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* leftwallCol = leftWall->AddComponent<Collider>();
+		leftwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* leftwalltr = leftWall->GetComponent<Transform>();
+		leftwalltr->SetPosition(math::Vector2(-745.0f, 360.0f));
+
+		// 오른쪽 벽
+		Wall* RightWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* RightwallCol = RightWall->AddComponent<Collider>();
+		RightwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
+		Rightwalltr->SetPosition(math::Vector2(2025.0f, 360.0f));
 
 		// 로프 1층 -> 2층
 		Rope* rope1 = object::Instantiate<Rope>(enums::eLayerType::Rope);
@@ -242,22 +249,22 @@ namespace ex
 	void StageScene::SceneIN()
 	{
 		// 백그라운드
-		//Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
-		//	, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
+		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
+			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
 
-		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		//bgsr->SetImage(image);
-		//bgsr->SetScale(math::Vector2(1.0f, 1.0f));
-		//bgsr->SetAffectCamera(true);
-		////bgsr->SetAlpha(0.2f);
-		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetImage(image);
+		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		bgsr->SetAffectCamera(true);
+		//bgsr->SetAlpha(0.2f);
+		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
-		////카메라가 백그라운드 밖으로 나가지못하게 설정
-		//bg->SetAutoCameraLimit();
-		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		//Camera::SetLimitDistance(widthLimit, heightLimit);
+		//카메라가 백그라운드 밖으로 나가지못하게 설정
+		bg->SetAutoCameraLimit();
+		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		Camera::SetLimitDistance(widthLimit, heightLimit);
 
 		// 
 		Camera::FadeIn(1.0f, RGB(0, 0, 0));
@@ -283,6 +290,8 @@ namespace ex
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Wall, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Wall, true);
 	}
 
 	void StageScene::SceneOut()
