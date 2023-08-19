@@ -39,9 +39,6 @@ namespace ex
 		mushMom->SetMoveDelay(4.5f);
 		mushMom->Initialize();
 
-		MushMomHpBar* mushMomHpBar = new MushMomHpBar(mushMom);
-		object::ActiveSceneAddGameObject(enums::eLayerType::UI, mushMomHpBar);
-
 
 		//////////////////////////////////////////////////////////////////////
 		// ¹Ù´Ú

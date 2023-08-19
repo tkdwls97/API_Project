@@ -196,15 +196,6 @@
     <Filter Include="Contents\GameObject\04.UI\00.StatusBar">
       <UniqueIdentifier>{7930f6c2-8ff9-4534-b683-33e0a80607e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\00.HpBar">
-      <UniqueIdentifier>{9a5dbcd5-a761-43c9-a2d4-06d72f733f2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MpBar">
-      <UniqueIdentifier>{5b70f215-27a8-4827-9e5d-6b633871826e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\02.ExpBar">
-      <UniqueIdentifier>{92373a2d-4484-4254-9d91-1177eaa10db0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\04.UI\01.DamageManager">
       <UniqueIdentifier>{11bb8385-cb34-4b95-bf5c-5869be848c89}</UniqueIdentifier>
     </Filter>
@@ -213,6 +204,30 @@
     </Filter>
     <Filter Include="Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin">
       <UniqueIdentifier>{69575056-3218-4a19-9aa6-851715426779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\00.MushMomSkill">
+      <UniqueIdentifier>{1293c9e0-6d2c-438d-8704-50a790f15bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar">
+      <UniqueIdentifier>{7b929f36-6df2-4338-8055-1dc000e3343b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\02.ExpBar">
+      <UniqueIdentifier>{92373a2d-4484-4254-9d91-1177eaa10db0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\00.HpBar">
+      <UniqueIdentifier>{9a5dbcd5-a761-43c9-a2d4-06d72f733f2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\01.MpBar">
+      <UniqueIdentifier>{5b70f215-27a8-4827-9e5d-6b633871826e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar">
+      <UniqueIdentifier>{86213db6-4f35-4bc4-8f5a-cab8cf3dce91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.MushMomBar">
+      <UniqueIdentifier>{e5b7f68e-cdff-4404-9ce2-7ff1f6cfa0b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MonstersBar">
+      <UniqueIdentifier>{57208271-f3e6-4097-bf2e-634257b30ab2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -385,13 +400,13 @@
       <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
     </ClCompile>
     <ClCompile Include="exHpBar.cpp">
-      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.HpBar</Filter>
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\00.HpBar</Filter>
     </ClCompile>
     <ClCompile Include="exMpBar.cpp">
-      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MpBar</Filter>
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\01.MpBar</Filter>
     </ClCompile>
     <ClCompile Include="exExpBar.cpp">
-      <Filter>Contents\GameObject\04.UI\00.StatusBar\02.ExpBar</Filter>
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\02.ExpBar</Filter>
     </ClCompile>
     <ClCompile Include="exDamageSkin.cpp">
       <Filter>Contents\GameObject\04.UI\01.DamageManager\00.PlayerDamageSkin</Filter>
@@ -401,6 +416,15 @@
     </ClCompile>
     <ClCompile Include="exMonsterDamageSkin.cpp">
       <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="exMushMomSkill.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\00.MushMomSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="exMushMomHpBar.cpp">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.MushMomBar</Filter>
+    </ClCompile>
+    <ClCompile Include="exMonstersBar.cpp">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MonstersBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -582,13 +606,13 @@
       <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
     </ClInclude>
     <ClInclude Include="exHpBar.h">
-      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.HpBar</Filter>
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\00.HpBar</Filter>
     </ClInclude>
     <ClInclude Include="exMpBar.h">
-      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MpBar</Filter>
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\01.MpBar</Filter>
     </ClInclude>
     <ClInclude Include="exExpBar.h">
-      <Filter>Contents\GameObject\04.UI\00.StatusBar\02.ExpBar</Filter>
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\02.ExpBar</Filter>
     </ClInclude>
     <ClInclude Include="exDamageSkin.h">
       <Filter>Contents\GameObject\04.UI\01.DamageManager\00.PlayerDamageSkin</Filter>
@@ -598,6 +622,15 @@
     </ClInclude>
     <ClInclude Include="exMonsterDamageSkin.h">
       <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="exMushMomSkill.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\00.MushMomSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="exMushMomHpBar.h">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.MushMomBar</Filter>
+    </ClInclude>
+    <ClInclude Include="exMonstersBar.h">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MonstersBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

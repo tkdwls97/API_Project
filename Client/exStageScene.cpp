@@ -22,6 +22,7 @@
 #include "exWall.h"
 #include "exRope.h"
 #include "exStatusBar.h"
+#include "exMonstersBar.h"
 
 namespace ex
 {
@@ -154,6 +155,9 @@ namespace ex
 		orangeMushTr8->SetPosition(math::Vector2(490.0f, 330.0f));
 		orangeMush8->SetMoveDelay(3.0f);
 		orangeMush8->Initialize();
+
+		MonstersBar* greenMush1HpBar = new MonstersBar(greenMush1);
+		object::ActiveSceneAddGameObject(enums::eLayerType::UI, greenMush1HpBar);
 
 		// 1Ãþ ¹Ù´Ú
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
