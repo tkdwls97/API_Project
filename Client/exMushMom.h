@@ -21,6 +21,11 @@ namespace ex
 		void SetMoveDelay(float _delay) { mMoveDelay = _delay; }
 		float GetMoveDelay() { return mMoveDelay; }
 
+		void SetMushMomInfo(MonstersInfo _info) { mMonstersInfo = _info; }
+		MonstersInfo GetMushMomInfo() { return mMonstersInfo; }
+
+		int GetSkillDamage() { return mSkillDamage; }
+
 		void Idle();
 		void Move();
 		void Attack();
@@ -29,6 +34,8 @@ namespace ex
 		void Dead();
 
 	private:
+		int		mSkillDamage;
+		float	mAttackDelay;
 	};
 
 }

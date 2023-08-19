@@ -112,6 +112,8 @@ namespace ex
 				DamageManager* damage = new DamageManager();
 				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
 				damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
+
+				monsters->ReductiongHp(damage->GetPlayerResultDamage());
 			}
 		}
 	}

@@ -45,6 +45,17 @@ namespace ex
 			Rush,
 			End,
 		};
+
+		enum class eMonsterState
+		{
+			Idle,
+			Move,
+			Attack,
+			Chase,
+			Hit,
+			Dead,
+		};
+
 		enum class eObjectState
 		{
 			Active,

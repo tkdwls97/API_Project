@@ -18,17 +18,6 @@ namespace ex
 			int mSpeed;
 			int mDamage;
 			int mLevel;
-
-		};
-
-		enum class eMonsterState
-		{
-			Idle,
-			Move,
-			Attack,
-			Chase,
-			Hit,
-			Dead,
 		};
 
 		Monsters();
@@ -52,15 +41,20 @@ namespace ex
 		Transform* GetTransform() { return mTransform; }
 
 
+		eMonsterState GetMonstersState() { return mMonsterState; }
+		void SetMonstersState(eMonsterState _state) { mMonsterState = _state; }
+
 		MonstersInfo GetMonstersInfo() { return mMonstersInfo; }
 		void SetMonstersInfo(MonstersInfo _monsters) { mMonstersInfo = _monsters; }
 
+		void ReductiongHp(int _damage) { mMonstersInfo.mHp -= _damage;}
 	protected:
 		enums::eMoveDir mDirection;
 		Animator* mAnimator;
 		Transform* mTransform;
 		Rigidbody* mRigidbody;
 		Collider* mCollider;
+
 		eMonsterState mMonsterState;
 		MonstersInfo mMonstersInfo;
 

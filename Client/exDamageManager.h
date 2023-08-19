@@ -29,6 +29,10 @@ namespace ex
 		int GetMonsterDamage() { return mMonsterDamage; }
 		int GetDamageSize() { return mDamageSize; }
 		int GetDamageIndex() { return mDamageIndex; }
+		int GetPlayerResultDamage() { return mPlayerResultDamage; }
+		int GetMonsterResultDamage() { return mMonsterResultDamage; }
+
+
 	private:
 		Texture* mDamageArr[10];
 		std::vector<int> mDamageIndexArr;
@@ -37,6 +41,8 @@ namespace ex
 		int		 mMonsterDamage;
 		int		 mDamageSize;
 		int		 mDamageIndex;
+		int		 mPlayerResultDamage;
+		int		 mMonsterResultDamage;
 	};
 
 }

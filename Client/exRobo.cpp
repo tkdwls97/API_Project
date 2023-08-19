@@ -265,6 +265,7 @@ namespace ex
 			DamageManager* damage = new DamageManager();
 			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
 			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+			player->GetInfo()->mHp -= damage->GetMonsterResultDamage();
 
 		}
 	}

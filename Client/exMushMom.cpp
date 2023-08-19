@@ -19,11 +19,21 @@
 #include "exRush.h"
 #include "exUpperCharge.h"
 
+// MonsterSkill
+#include "exMushMomSkill.h"
+
 
 namespace ex
 {
 	MushMom::MushMom()
+		: mSkillDamage(0)
+		, mAttackDelay(0.0f)
 	{
+		mMonstersInfo.mMaxHp = 500000000;
+		mMonstersInfo.mHp = 500000000;
+		mMonstersInfo.mLevel = 150;
+		mMonstersInfo.mDamage = 700;
+		mSkillDamage = 537;
 	}
 
 	MushMom::~MushMom()
@@ -34,28 +44,42 @@ namespace ex
 	{
 		// Left
 		mAnimator->CreateAnimationFolder(L"MushMomLeftIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Left");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Left", math::Vector2(0.0f, -40.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Left", math::Vector2(0.0f, -50.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Left", math::Vector2(0.0f, -123.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Left", math::Vector2(0.0f, -30.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Left", math::Vector2(0.0f, -60.0f));
+
+		mAnimator->CreateAnimationFolder(L"MushMomLeftDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Left", math::Vector2(0.0f, -70.0f), 0.2f);
+
+		mAnimator->CreateAnimationFolder(L"MushMomLeftAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Left", math::Vector2(0.0f, -110.0f), 0.3f);
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"MushMomRightIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Right");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Right", math::Vector2(0.0f, -40.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Right", math::Vector2(0.0f, -50.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Right", math::Vector2(0.0f, -123.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Right", math::Vector2(0.0f, -30.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Right", math::Vector2(0.0f, -60.0f));
+
+		mAnimator->CreateAnimationFolder(L"MushMomRightDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Right", math::Vector2(0.0f, -70.0f), 0.2f);
+
+		mAnimator->CreateAnimationFolder(L"MushMomRightAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Right", math::Vector2(0.0f, -110.0f), 0.3f);
 
 		mAnimator->SetAffectedCamera(true);
-		mAnimator->SetScale(math::Vector2(1.7f, 1.7f));
-		mCollider->SetSize(math::Vector2(170.0f, 185.0f));
+		mAnimator->SetScale(math::Vector2(2.2f, 2.2f));
+		mCollider->SetSize(math::Vector2(300.0f, 200.0f));
 		mCollider->SetOffset(math::Vector2(0.0f, 10.0f));
+
+
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
 	}
@@ -123,6 +147,26 @@ namespace ex
 				mAnimator->PlayAnimation(L"MushMomRightIdle", true);
 			}
 		}
+
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
+		float distanceX = fabs(playerPos.x - this->GetPositionX());
+		float distanceY = fabs(playerPos.y - this->GetPositionY());
+
+		if (distanceX < 550.0f && distanceY < 80.0f)
+		{
+			MushMomSkill* mushMomSkill = new MushMomSkill(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mushMomSkill);
+
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+			}
+			mMonsterState = eMonsterState::Attack;
+		}
 	}
 
 	void MushMom::Move()
@@ -148,11 +192,41 @@ namespace ex
 			}
 		}
 
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
+		float distanceX = fabs(playerPos.x - this->GetPositionX());
+		float distanceY = fabs(playerPos.y - this->GetPositionY());
+		if (distanceX < 550.0f && distanceY < 80.0f)
+		{
+			MushMomSkill* mushMomSkill = new MushMomSkill(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mushMomSkill);
+
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+			}
+			mMonsterState = eMonsterState::Attack;
+		}
+
 		mTransform->SetPosition(pos);
 	}
 
 	void MushMom::Attack()
 	{
+		mAttackDelay += Time::GetDeltaTime();
+
+		if (mAttackDelay >= 1.5f)
+		{
+			bool bCheck = mAnimator->IsActiveAnimationComplete();
+			if (bCheck)
+			{
+				mMonsterState = eMonsterState::Move;
+			}
+			mAttackDelay = 0.0f;
+		}
 	}
 
 	void MushMom::Chase()
@@ -165,10 +239,12 @@ namespace ex
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"MushMomRightHit", false);
+			mDirection = enums::eMoveDir::Right;
 		}
 		else
 		{
 			mAnimator->PlayAnimation(L"MushMomLeftHit", false);
+			mDirection = enums::eMoveDir::Left;
 
 		}
 		mHitDelay += Time::GetDeltaTime();
@@ -186,26 +262,31 @@ namespace ex
 			}
 			mHitDelay = 0.0f;
 		}
-		//mMonsterState = eMonsterState::Dead;
+
+		if (mMonstersInfo.mHp <= 0)
+		{
+			int a = mMonstersInfo.mHp;
+			mMonsterState = eMonsterState::Dead;
+		}
 	}
 
 	void MushMom::Dead()
 	{
-		//if (playerDir == enums::eMoveDir::Left)
-		//{
-		//	mAnimator->PlayAnimation(L"GreenMushRightDead", false);
-		//}
-		//else
-		//{
-		//	mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
+		if (mDirection == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"MushMomLeftDead", false);
+		}
+		else
+		{
+			mAnimator->PlayAnimation(L"MushMomRightDead", false);
 
-		//}
+		}
 
-		//bool bCheck = mAnimator->IsActiveAnimationComplete();
-		//if (bCheck)
-		//{
-		//	Destroy(this);
-		//}
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			Destroy(this);
+		}
 	}
 	void MushMom::OnCollisionEnter(Collider* _other)
 	{

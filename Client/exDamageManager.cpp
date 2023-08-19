@@ -27,6 +27,8 @@ namespace ex
 		, mPlayerDamage(0)
 		, mDamageIndex(0)
 		, mDamageIndexArr{}
+		, mPlayerResultDamage(0)
+		, mMonsterResultDamage(0)
 	{
 		Player* player = SceneManager::GetPlayer();
 		int minDamage = player->GetInfo()->mMinDamage;
@@ -45,18 +47,20 @@ namespace ex
 	void DamageManager::PlayPlayerDamageAnimation(int _skillDamage, float _delay)
 	{
 		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
-		int resultDamage = mPlayerDamage * _skillDamage;
+		mPlayerResultDamage = mPlayerDamage * _skillDamage;
 
+
+		int temp = mPlayerResultDamage;
 		// 데미지의 Size를 구하기
-		std::string numStr = std::to_string(resultDamage);
+		std::string numStr = std::to_string(temp);
 		mDamageSize = static_cast<int>(numStr.length());
 
 		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
 		for (size_t i = 0; i < mDamageSize; ++i)
 		{
-			int remainder = resultDamage % 10;
+			int remainder = temp % 10;
 			mDamageIndexArr.push_back(remainder);
-			resultDamage /= 10;
+			temp /= 10;
 		}
 
 		// 배열 다시 뒤집어서 정렬
@@ -75,18 +79,19 @@ namespace ex
 	void DamageManager::PlayMonsterDamageAnimation(int _monsterDamage, int _skillDamage)
 	{
 		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
-		int resultDamage = _monsterDamage * _skillDamage;
+		mMonsterResultDamage = _monsterDamage * _skillDamage;
 
+		int temp = mMonsterResultDamage;
 		// 데미지의 Size를 구하기
-		std::string numStr = std::to_string(resultDamage);
+		std::string numStr = std::to_string(temp);
 		mDamageSize = static_cast<int>(numStr.length());
 
 		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
 		for (size_t i = 0; i < mDamageSize; ++i)
 		{
-			int remainder = resultDamage % 10;
+			int remainder = temp % 10;
 			mDamageIndexArr.push_back(remainder);
-			resultDamage /= 10;
+			temp /= 10;
 		}
 
 		// 배열 다시 뒤집어서 정렬
@@ -99,6 +104,9 @@ namespace ex
 			monsterDamageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
 			monsterDamageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (27.0f * i) - (mDamageSize * 31.0f / 2.0f));
 		}
+		Player* player = SceneManager::GetPlayer();
+		player->GetInfo()->mHp -= mMonsterResultDamage;
+
 	}
 
 

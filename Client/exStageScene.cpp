@@ -260,7 +260,7 @@ namespace ex
 		//Camera::SetLimitDistance(widthLimit, heightLimit);
 
 		// 
-		Camera::FadeIn(1.f, RGB(0, 0, 0));
+		Camera::FadeIn(1.0f, RGB(0, 0, 0));
 		// 플레이어 static으로 SceneManager에서 한개만 생성
 		Player* player = SceneManager::GetPlayer();
 

@@ -33,7 +33,8 @@ namespace ex
 		MushMom* mushMom = object::Instantiate<MushMom>(enums::eLayerType::Monster);
 		Transform* mushMomTr1 = mushMom->GetComponent<Transform>();
 		mushMomTr1->SetMoveDir(enums::eMoveDir::Left);
-		mushMomTr1->SetPosition(math::Vector2(680.0f, 720.0f));
+		//mushMomTr1->SetPosition(math::Vector2(680.0f, 720.0f));
+		mushMomTr1->SetPosition(math::Vector2(680.0f, 400.0f));
 		mushMom->SetMoveDelay(4.5f);
 		mushMom->Initialize();
 
@@ -197,18 +198,18 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"BossStage1"
 			, L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
 
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.1f, 1.1f));
-		bgsr->SetAffectCamera(true);
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		//bgsr->SetImage(image);
+		//bgsr->SetScale(math::Vector2(1.1f, 1.1f));
+		//bgsr->SetAffectCamera(true);
+		////bgsr->SetAlpha(0.2f);
+		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
-		bg->SetAutoCameraLimit();
-		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);
+		//bg->SetAutoCameraLimit();
+		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 		Camera::FadeIn(1.f, RGB(0, 0, 0));
 
 		Player* player = SceneManager::GetPlayer();
@@ -233,6 +234,7 @@ namespace ex
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Player, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
