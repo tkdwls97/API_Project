@@ -291,6 +291,7 @@ namespace ex
 		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
 		Camera::SetLimitDistance(widthLimit, heightLimit);
+		Camera::FadeIn(1.f, RGB(0, 0, 0));
 
 		Player* player = SceneManager::GetPlayer();
 

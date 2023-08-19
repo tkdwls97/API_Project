@@ -1,24 +1,36 @@
 #include "exCamera.h"
+#include "exTexture.h"
 #include "exApplication.h"
 #include "exTransform.h"
 #include "exInput.h"
 #include "exTime.h"
 
-
 extern ex::Application application;
+
 namespace ex
 {
 	// static 변수 전역초기화
-	math::Vector2	Camera::mResolution = math::Vector2::Zero;
-	math::Vector2	Camera::mLookPosition = math::Vector2::Zero;
-	math::Vector2	Camera::mDistance = math::Vector2::Zero;
-	math::Vector2	Camera::mWidthLimit = math::Vector2::Zero;
-	math::Vector2	Camera::mHeightLimit = math::Vector2::Zero;
+	math::Vector2			Camera::mResolution = math::Vector2::Zero;
+	math::Vector2			Camera::mLookPosition = math::Vector2::Zero;
+	math::Vector2			Camera::mDistance = math::Vector2::Zero;
+	math::Vector2			Camera::mWidthLimit = math::Vector2::Zero;
+	math::Vector2			Camera::mHeightLimit = math::Vector2::Zero;
+	std::list<CameraEffect> Camera::mlistCamEffect = {};
+	Texture*				Camera::mWhiteText = nullptr;
+	Texture*				Camera::mBlackText = nullptr;
 
 	bool Camera::mbColliderCheck = false;
 
 	GameObject* Camera::mTargetObj = nullptr;
 	//math::Vector2 Camera::mCameraLimit = math::Vector2::Zero;
+
+	Camera::Camera()
+	{
+	}
+
+	Camera::~Camera()
+	{
+	}
 
 	void Camera::Initialize()
 	{
@@ -27,6 +39,10 @@ namespace ex
 		// LookPositon(카메라가 바라보는 위치)에 해상도x,y의 절반값(화면의 중심) 복사
 		// math.h에서 operator/을 만들어서 가능
 		mLookPosition = mResolution / 2.0f;
+
+		mWhiteText = Texture::Create(L"WhiteTex", (UINT)mResolution.x, (UINT)mResolution.y, RGB(255, 255, 255));
+		mBlackText = Texture::Create(L"BlackTex", (UINT)mResolution.x, (UINT)mResolution.y, RGB(0, 0, 0));
+
 	}
 
 	void Camera::Update()
@@ -87,28 +103,117 @@ namespace ex
 		{
 			mDistance.y = mHeightLimit.y;
 		}
-
-		//// 카메라 이동제한
-		//if (mDistance.x < 0)
-		//{
-		//	mDistance.x = 0;
-		//}
-
-		//if (mDistance.y < 0)
-		//{
-		//	mDistance.y = 0;
-		//}
-
-		//if (mDistance.x > mCameraLimit.x - mResolution.x)
-		//{
-		//	mDistance.x = mCameraLimit.x - mResolution.x;
-		//}
-
-		//if (mDistance.y > mCameraLimit.y - mResolution.y)
-		//{
-		//	mDistance.y = mCameraLimit.y - mResolution.y;
-		//}
-
 	}
 
+	void Camera::Render(HDC _hdc)
+	{
+		// 이벤트 없으면 리턴
+		if (mlistCamEffect.empty())
+		{
+			return;
+		}
+
+		CameraEffect& effect = mlistCamEffect.front();
+
+		effect.curTime += Time::GetDeltaTime();
+
+		float ratio = effect.curTime / effect.duration;
+
+		if (ratio < 0.f)
+		{
+			ratio = 0.f;
+		}
+		if (ratio > 1.f)
+		{
+			ratio = 1.f;
+		}
+
+		int alpha = 0;
+
+		// 이벤트에 따라서 알파값을 설정
+		if (effect.eEffect == CAMERA_EFFECT::FADE_OUT)
+		{
+			alpha = (int)(255.f * ratio);
+		}
+		else if (effect.eEffect == CAMERA_EFFECT::FADE_IN)
+		{
+			alpha = (int)(255.f * (1.f - ratio));
+		}
+		else if (effect.eEffect == CAMERA_EFFECT::Pause)
+		{
+			alpha = (int)255.f;
+		}
+
+		// AlphaBlend 셋팅값 설정
+		BLENDFUNCTION bf = {};
+		bf.BlendOp = AC_SRC_OVER; // 원본과 대상 이미지를 합친다는 의미
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = 0;
+		bf.SourceConstantAlpha = alpha; // 고정 알파값 설정
+
+		if (effect.textColor == RGB(255, 255, 255))
+		{
+			::AlphaBlend(_hdc,
+				0, 0
+				, (int)mWhiteText->GetWidth()
+				, (int)mWhiteText->GetHeight()
+				, mWhiteText->GetHdc()
+				, 0, 0
+				, (int)mWhiteText->GetWidth()
+				, (int)mWhiteText->GetHeight()
+				, bf);
+		}
+		else if (effect.textColor == RGB(0, 0, 0))
+		{
+			::AlphaBlend(_hdc,
+				0, 0
+				, (int)mBlackText->GetWidth()
+				, (int)mBlackText->GetHeight()
+				, mBlackText->GetHdc()
+				, 0, 0
+				, (int)mBlackText->GetWidth()
+				, (int)mBlackText->GetHeight()
+				, bf);
+		}
+
+
+		if (effect.curTime > effect.duration)
+		{
+			effect.eEffect = CAMERA_EFFECT::NONE;
+			mlistCamEffect.pop_front();
+		}
+	}
+
+	void Camera::FadeIn(float _duration, COLORREF _color)
+	{
+		CameraEffect ef = {};
+		ef.eEffect = CAMERA_EFFECT::FADE_IN;
+		ef.duration = _duration;
+		ef.curTime = 0.f;
+		ef.textColor = _color;
+
+		mlistCamEffect.push_back(ef);
+	}
+
+	void Camera::FadeOut(float _duration, COLORREF _color)
+	{
+		CameraEffect ef = {};
+		ef.eEffect = CAMERA_EFFECT::FADE_OUT;
+		ef.duration = _duration;
+		ef.curTime = 0.f;
+		ef.textColor = _color;
+
+		mlistCamEffect.push_back(ef);
+	}
+
+	void Camera::Pause(float _duration, COLORREF _color)
+	{
+		CameraEffect ef = {};
+		ef.eEffect = CAMERA_EFFECT::Pause;
+		ef.duration = _duration;
+		ef.curTime = 0.f;
+		ef.textColor = _color;
+
+		mlistCamEffect.push_back(ef);
+	}
 }

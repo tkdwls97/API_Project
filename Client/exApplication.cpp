@@ -88,6 +88,7 @@ void ex::Application::Render()
 
 	CollisionManager::Render(mBackHdc);
 	SceneManager::Render(mBackHdc);
+	Camera::Render(mBackHdc);
 	Time::Render(mBackHdc);
 
 	::BitBlt(mHdc, 0, 0, mWidth, mHeight,

@@ -226,8 +226,8 @@ namespace ex
 		portal->Initialize();
 
 		Transform* portalTr = portal->GetComponent<Transform>();
-		//portalTr->SetPosition(math::Vector2(900.0f, 600.0f));
-		portalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
+		portalTr->SetPosition(math::Vector2(900.0f, 600.0f));
+		//portalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
 	}
 
 	void StageScene::Update()
@@ -242,30 +242,32 @@ namespace ex
 	void StageScene::SceneIN()
 	{
 		// 백그라운드
-		Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
+		//Texture* image = ResourceManager::Load<Texture>(L"Stage1BackGroundImgae"
+		//	, L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
 
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.0f, 1.0f));
-		bgsr->SetAffectCamera(true);
-		//bgsr->SetAlpha(0.2f);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+		//BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		//bgsr->SetImage(image);
+		//bgsr->SetScale(math::Vector2(1.0f, 1.0f));
+		//bgsr->SetAffectCamera(true);
+		////bgsr->SetAlpha(0.2f);
+		//bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
 		////카메라가 백그라운드 밖으로 나가지못하게 설정
-		bg->SetAutoCameraLimit();
-		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
-		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
-		Camera::SetLimitDistance(widthLimit, heightLimit);
+		//bg->SetAutoCameraLimit();
+		//math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
+		//math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
+		//Camera::SetLimitDistance(widthLimit, heightLimit);
 
+		// 
+		Camera::FadeIn(1.f, RGB(0, 0, 0));
 		// 플레이어 static으로 SceneManager에서 한개만 생성
 		Player* player = SceneManager::GetPlayer();
 
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
-		playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
-		//playerTF->SetPosition(math::Vector2(640.0f, 500.0f));
+		//playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
+		playerTF->SetPosition(math::Vector2(640.0f, 500.0f));
 		Animator* playerAt = player->GetComponent<Animator>();
 
 		// 카메라의 영향을 true || false

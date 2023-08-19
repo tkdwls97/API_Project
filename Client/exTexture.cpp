@@ -218,7 +218,7 @@ namespace ex
 		return rgb;
 	}
 
-	Texture* Texture::Create(const std::wstring& _name, UINT _width, UINT _height)
+	Texture* Texture::Create(const std::wstring& _name, UINT _width, UINT _height, COLORREF rgb)
 	{
 		Texture* image = ResourceManager::Find<Texture>(_name);
 		if (image != nullptr)
@@ -239,6 +239,13 @@ namespace ex
 
 		image->SetName(_name);
 		ResourceManager::Insert<Texture>(_name, image);
+
+		// 인자로 들어온 색으로 채움
+		HBRUSH brush = CreateSolidBrush(rgb);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(image->GetHdc(), brush);
+		Rectangle(image->GetHdc(), -1, -1, image->mWidth + 1, image->mHeight + 1);
+		SelectObject(image->GetHdc(), oldBrush);
+		DeleteObject(oldBrush);
 
 		return image;
 	}

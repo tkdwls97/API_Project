@@ -135,9 +135,7 @@ namespace ex
 			fileCout++;
 		}
 
-
 		Texture* spriteSheet = Texture::Create(name, width * fileCout, height);
-
 
 		// Video 기본 타입 Bmp로 설정
 		spriteSheet->SetTextType(tempType);

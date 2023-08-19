@@ -47,19 +47,18 @@ namespace ex
 		// 사용중인 HDC반환(멤버가 private이기 때문에 Get함수사용)
 		HDC GetHdc() { return mHdc; }
 
-		
+
 		// 이미지의 타입(bmp,png) 반환
 		eTextureType GetTextType() { return mTexType; }
 		void SetTextType(eTextureType _type) { mTexType = _type; }
 
 		Gdiplus::Image* GetImage() { return mImage; }
-
 		
 		HBITMAP GetBitmap() { return mBitmap; }
 		void SetHBitmap(HBITMAP _bitmap) { mBitmap = _bitmap; }
 		void SetHdc(HDC _hdc) { mHdc = _hdc; }
 
-		static Texture* Create(const std::wstring& _name, UINT _width, UINT _height);
+		static Texture* Create(const std::wstring& _name, UINT _width, UINT _height, COLORREF rgb = RGB(255, 255, 255));
 
 
 	private:

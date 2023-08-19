@@ -49,7 +49,7 @@ namespace ex
 
 		// 데미지의 Size를 구하기
 		std::string numStr = std::to_string(resultDamage);
-		mDamageSize = numStr.length();
+		mDamageSize = static_cast<int>(numStr.length());
 
 		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
 		for (size_t i = 0; i < mDamageSize; ++i)
@@ -79,7 +79,7 @@ namespace ex
 
 		// 데미지의 Size를 구하기
 		std::string numStr = std::to_string(resultDamage);
-		mDamageSize = numStr.length();
+		mDamageSize = static_cast<int>(numStr.length());
 
 		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
 		for (size_t i = 0; i < mDamageSize; ++i)

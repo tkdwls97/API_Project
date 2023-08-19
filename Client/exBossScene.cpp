@@ -83,6 +83,7 @@ namespace ex
 
 		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
 		Camera::SetTarget(player);
+		Camera::FadeIn(1.f, RGB(0, 0, 0));
 
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
