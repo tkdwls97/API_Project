@@ -46,9 +46,9 @@ namespace ex
 		Collider* col1 = floor1->GetComponent<Collider>();
 		Transform* tr1 = floor1->GetComponent<Transform>();
 		col1 = floor1->AddComponent<Collider>();
-		col1->SetSize(math::Vector2(2300.0f, 50.0f));
+		col1->SetSize(math::Vector2(2300.0f, 1000.0f));
 		tr1 = floor1->GetComponent<Transform>();
-		tr1->SetPosition(math::Vector2(680.0f, 763.0f));
+		tr1->SetPosition(math::Vector2(680.0f, 1238.0f));
 
 		// 2Ãþ
 		Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
@@ -239,6 +239,8 @@ namespace ex
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Rope, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Wall, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Wall, true);
 
 	}
 

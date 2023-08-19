@@ -56,7 +56,7 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Left", math::Vector2(0.0f, -70.0f), 0.2f);
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftAttack",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Left", math::Vector2(0.0f, -110.0f), 0.3f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Left", math::Vector2(0.0f, -110.0f), 0.2f);
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"MushMomRightIdle",
@@ -72,7 +72,7 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Right", math::Vector2(0.0f, -70.0f), 0.2f);
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightAttack",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Right", math::Vector2(0.0f, -110.0f), 0.3f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Right", math::Vector2(0.0f, -110.0f), 0.2f);
 
 		mAnimator->SetAffectedCamera(true);
 		mAnimator->SetScale(math::Vector2(2.2f, 2.2f));
