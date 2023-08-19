@@ -1,4 +1,5 @@
 #include "exMushMom.h"
+#include "exMushMomHpBar.h"
 #include "exTransform.h"
 #include "exInput.h" 
 #include "exTime.h"
@@ -44,10 +45,10 @@ namespace ex
 	{
 		// Left
 		mAnimator->CreateAnimationFolder(L"MushMomLeftIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Left", math::Vector2(0.0f, -40.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Left", math::Vector2(0.0f, -20.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Left", math::Vector2(0.0f, -123.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Left", math::Vector2(0.0f, -103.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftHit",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Left", math::Vector2(0.0f, -60.0f));
@@ -60,10 +61,10 @@ namespace ex
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"MushMomRightIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Right", math::Vector2(0.0f, -40.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Idle\\Right", math::Vector2(0.0f, -20.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Right", math::Vector2(0.0f, -123.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Move\\Right", math::Vector2(0.0f, -103.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightHit",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Right", math::Vector2(0.0f, -60.0f));

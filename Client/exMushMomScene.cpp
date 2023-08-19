@@ -1,5 +1,6 @@
 #include "exMushMomScene.h"
 #include "exMushMom.h"
+#include "exMushMomHpBar.h"
 #include "exPlayer.h"
 #include "exSpriteRenderer.h"
 #include "exObject.h"
@@ -15,6 +16,7 @@
 #include "exFloor.h"
 #include "exPortal.h"
 #include "exRope.h"
+#include "exWall.h"
 
 namespace ex
 {
@@ -28,15 +30,17 @@ namespace ex
 
 	void MushMomScene::Initialize()
 	{
-
 		// 680.0f, 763.0f
 		MushMom* mushMom = object::Instantiate<MushMom>(enums::eLayerType::Monster);
 		Transform* mushMomTr1 = mushMom->GetComponent<Transform>();
 		mushMomTr1->SetMoveDir(enums::eMoveDir::Left);
-		//mushMomTr1->SetPosition(math::Vector2(680.0f, 720.0f));
-		mushMomTr1->SetPosition(math::Vector2(680.0f, 400.0f));
+		mushMomTr1->SetPosition(math::Vector2(680.0f, 720.0f));
+		//mushMomTr1->SetPosition(math::Vector2(680.0f, 400.0f));
 		mushMom->SetMoveDelay(4.5f);
 		mushMom->Initialize();
+
+		MushMomHpBar* mushMomHpBar = new MushMomHpBar(mushMom);
+		object::ActiveSceneAddGameObject(enums::eLayerType::UI, mushMomHpBar);
 
 
 		//////////////////////////////////////////////////////////////////////
@@ -119,6 +123,20 @@ namespace ex
 		tr9->SetPosition(math::Vector2(100.0f, 105.0f));
 
 
+		// ¿ÞÂÊ º®
+		Wall* leftWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* leftwallCol = leftWall->AddComponent<Collider>();
+		leftwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* leftwalltr = leftWall->GetComponent<Transform>();
+		leftwalltr->SetPosition(math::Vector2(-803.0f, 360.0f));
+
+		// ¿À¸¥ÂÊ º®
+		Wall* RightWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* RightwallCol = RightWall->AddComponent<Collider>();
+		RightwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
+		Rightwalltr->SetPosition(math::Vector2(2085.0f, 360.0f));
+
 		//////////////////////////////////////////////////////////////////////
 		// ·ÎÇÁ
 		//1Ãþ->2Ãþ Áß¾Ó ¿ÞÂÊ 
@@ -184,7 +202,6 @@ namespace ex
 
 	void MushMomScene::Update()
 	{
-		math::Vector2 pos = SceneManager::GetPlayer()->GetComponent<Transform>()->GetPosition();
 		Scene::Update();
 	}
 

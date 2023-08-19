@@ -16,6 +16,7 @@
 #include "exRobo.h"
 #include "exMasterRobo.h"
 #include "exRope.h"
+#include "exWall.h"
 
 namespace ex
 {
@@ -185,9 +186,9 @@ namespace ex
 		Collider* col1 = floor1->GetComponent<Collider>();
 		Transform* tr1 = floor1->GetComponent<Transform>();
 		col1 = floor1->AddComponent<Collider>();
-		col1->SetSize(math::Vector2(3000.0f, 50.0f));
+		col1->SetSize(math::Vector2(3000.0f, 1000.0f));
 		tr1 = floor1->GetComponent<Transform>();
-		tr1->SetPosition(math::Vector2(680.0f, 566.0f));
+		tr1->SetPosition(math::Vector2(680.0f, 1038.0f));
 
 		// ¿ÞÂÊ ¹Ù´Ú 2Ãþ
 		Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
@@ -252,6 +253,22 @@ namespace ex
 		RopeCol2->SetSize(math::Vector2(2.0f, 180.0f));
 		Transform* RopeTr2 = rope2->GetComponent<Transform>();
 		RopeTr2->SetPosition(math::Vector2(1092.0f, 363.0f));
+
+
+		// ¿ÞÂÊ º®
+		Wall* leftWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* leftwallCol = leftWall->AddComponent<Collider>();
+		leftwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* leftwalltr = leftWall->GetComponent<Transform>();
+		leftwalltr->SetPosition(math::Vector2(-840.0f, 360.0f));
+
+		// ¿À¸¥ÂÊ º®
+		Wall* RightWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* RightwallCol = RightWall->AddComponent<Collider>();
+		RightwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
+		Rightwalltr->SetPosition(math::Vector2(2125.0f, 360.0f));
+
 
 		// Æ÷Å»
 		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);

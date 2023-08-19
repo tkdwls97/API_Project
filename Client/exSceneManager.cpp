@@ -14,6 +14,7 @@
 #include "exHpBar.h"
 #include "exMpBar.h"
 #include "exDamageManager.h"
+#include "exMushMomHpBar.h"
 
 namespace ex
 {
@@ -73,6 +74,7 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mHpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mMpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mDamageManager);
+
 		}
 		mActiveScene->SceneIN();
 

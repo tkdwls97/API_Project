@@ -25,7 +25,7 @@ namespace ex
 		mMonstersInfo.mMaxHp = 1000;
 		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
 		mMonstersInfo.mLevel = 10;
-		mMonstersInfo.mDamage = 1412;
+		mMonstersInfo.mDamage = 1212;
 	}
 
 	MasterRobo::~MasterRobo()

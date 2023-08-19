@@ -41,9 +41,8 @@ namespace ex
 		enums::eMoveDir MushmomDir = _owner->GetTransform()->GetMoveDir();
 
 		mCollider->SetSize(math::Vector2(800.0f, 50.0f));
-		mCollider->SetOffsetY(50.0f);
 		math::Vector2 MushmomPos = _owner->GetPosition();
-		mTransform->SetPosition(math::Vector2(MushmomPos));
+		mTransform->SetPosition(math::Vector2(MushmomPos.x, MushmomPos.y + 75.0f));
 
 		if (MushmomDir == enums::eMoveDir::Left)
 		{

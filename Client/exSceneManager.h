@@ -11,6 +11,7 @@ namespace ex
 	class HpBar;
 	class MpBar;
 	class DamageManager;
+	class MushMomHpBar;
 
 	class SceneManager
 	{
@@ -30,17 +31,13 @@ namespace ex
 
 			return scene;
 		}
-
 		static Scene* LoadScene(const std::wstring& _name);
 		static Scene* GetActiveScene() { return mActiveScene; }
-
 
 		static Player* GetPlayer() { return mPlayer; }
 		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
 		static StatusBar* GetStatusBar() { return mStatusBar; }
-		static DamageManager* GetDamageManager() { return mDamageManager; }
-
-						
+		static DamageManager* GetDamageManager() { return mDamageManager; }		
 	private:
 		static std::map<std::wstring, Scene*> mScenes;
 		static Scene* mActiveScene;
