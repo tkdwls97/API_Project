@@ -13,6 +13,8 @@
 #include "exPapulatus.h"
 #include "exCollisionManager.h"
 #include "exFloor.h"
+#include "exWall.h"
+
 namespace ex
 {
 
@@ -28,17 +30,90 @@ namespace ex
 	{
 		// ¹Ù´Ú 1Ãþ
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
-
 		Collider* col = floor1->GetComponent<Collider>();
-		Transform* tr = floor1->GetComponent<Transform>();
+		Transform* tr1 = floor1->GetComponent<Transform>();
 		col = floor1->AddComponent<Collider>();
 		col->SetSize(math::Vector2(3000.0f, 1000.0f));
-		tr = floor1->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 1000.0f));
+		tr1 = floor1->GetComponent<Transform>();
+		tr1->SetPosition(math::Vector2(680.0f, 1020.0f));
+
+		Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col2 = floor2->GetComponent<Collider>();
+		Transform* tr2 = floor2->GetComponent<Transform>();
+		col2 = floor2->AddComponent<Collider>();
+		col2->SetSize(math::Vector2(200.0f, 2.0f));
+		tr2 = floor2->GetComponent<Transform>();
+		tr2->SetPosition(math::Vector2(-70.0f, 305.0f));
+
+		Floor* floor3 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col3 = floor3->GetComponent<Collider>();
+		Transform* tr3 = floor3->GetComponent<Transform>();
+		col3 = floor3->AddComponent<Collider>();
+		col3->SetSize(math::Vector2(202.0f, 2.0f));
+		tr3 = floor3->GetComponent<Transform>();
+		tr3->SetPosition(math::Vector2(186.0f, 275.0f));
+
+		Floor* floor4 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col4 = floor4->GetComponent<Collider>();
+		Transform* tr4 = floor4->GetComponent<Transform>();
+		col4 = floor4->AddComponent<Collider>();
+		col4->SetSize(math::Vector2(202.0f, 2.0f));
+		tr4 = floor4->GetComponent<Transform>();
+		tr4->SetPosition(math::Vector2(410.0f, 345.0f));
+
+
+		Floor* floor5 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col5 = floor5->GetComponent<Collider>();
+		Transform* tr5 = floor5->GetComponent<Transform>();
+		col5 = floor5->AddComponent<Collider>();
+		col5->SetSize(math::Vector2(202.0f, 2.0f));
+		tr5 = floor5->GetComponent<Transform>();
+		tr5->SetPosition(math::Vector2(898.0f, 276.0f));
+
+		Floor* floor6 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col6 = floor6->GetComponent<Collider>();
+		Transform* tr6 = floor6->GetComponent<Transform>();
+		col6 = floor6->AddComponent<Collider>();
+		col6->SetSize(math::Vector2(190.0f, 2.0f));
+		tr6 = floor6->GetComponent<Transform>();
+		tr6->SetPosition(math::Vector2(1125.0f, 315.0f));
+
+		Floor* floor7 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col7 = floor7->GetComponent<Collider>();
+		Transform* tr7 = floor7->GetComponent<Transform>();
+		col7 = floor7->AddComponent<Collider>();
+		col7->SetSize(math::Vector2(190.0f, 2.0f));
+		tr7 = floor7->GetComponent<Transform>();
+		tr7->SetPosition(math::Vector2(1375.0f, 368.0f));
+
+		Floor* floor8 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col8 = floor8->GetComponent<Collider>();
+		Transform* tr8 = floor8->GetComponent<Transform>();
+		col8 = floor8->AddComponent<Collider>();
+		col8->SetSize(math::Vector2(150.0f, 2.0f));
+		tr8 = floor8->GetComponent<Transform>();
+		tr8->SetPosition(math::Vector2(1585.0f, 315.0f));
+
+		// ¿ÞÂÊ º®
+		Wall* leftWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* leftwallCol = leftWall->AddComponent<Collider>();
+		leftwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* leftwalltr = leftWall->GetComponent<Transform>();
+		leftwalltr->SetPosition(math::Vector2(-913.0f, 360.0f));
+
+		// ¿À¸¥ÂÊ º®
+		Wall* RightWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
+		Collider* RightwallCol = RightWall->AddComponent<Collider>();
+		RightwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
+		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
+		Rightwalltr->SetPosition(math::Vector2(2190.0f, 360.0f));
+
+
 	}
 
 	void BossScene::Update()
 	{
+		math::Vector2 pos = SceneManager::GetPlayer()->GetPosition();
 		Scene::Update();
 	}
 
