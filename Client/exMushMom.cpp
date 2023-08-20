@@ -30,11 +30,11 @@ namespace ex
 		: mSkillDamage(0)
 		, mAttackDelay(0.0f)
 	{
-		mMonstersInfo.mMaxHp = 500000000;
-		mMonstersInfo.mHp = 500000000;
+		mMonstersInfo.mMaxHp = 300000000;
+		mMonstersInfo.mHp = 1;
 		mMonstersInfo.mLevel = 150;
 		mMonstersInfo.mDamage = 700;
-		mSkillDamage = 537;
+		mSkillDamage = 337;
 	}
 
 	MushMom::~MushMom()
@@ -286,6 +286,7 @@ namespace ex
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
+			SceneManager::SetPortalCheck(true);
 			Destroy(this);
 		}
 	}

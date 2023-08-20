@@ -59,7 +59,7 @@ namespace ex
 		mTransform->SetMoveDir(enums::eMoveDir::Left);
 
 		mAnimator->SetAffectedCamera(true);
-		mCollider->SetSize(math::Vector2(250.0f, 250.0f));
+		mCollider->SetSize(math::Vector2(250.0f, 235.0f));
 		mCollider->SetOffset(math::Vector2(0.0f, 0.0f));
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;

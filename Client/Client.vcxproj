@@ -143,7 +143,6 @@
     <ClCompile Include="exGatekeeper.cpp" />
     <ClCompile Include="exMasterRobo.cpp" />
     <ClCompile Include="exMonsterDamageSkin.cpp" />
-    <ClCompile Include="exMonstersBar.cpp" />
     <ClCompile Include="exMushMom.cpp" />
     <ClCompile Include="exMushMomHpBar.cpp" />
     <ClCompile Include="exMushMomSkill.cpp" />
@@ -213,7 +212,6 @@
     <ClInclude Include="exGatekeeper.h" />
     <ClInclude Include="exMasterRobo.h" />
     <ClInclude Include="exMonsterDamageSkin.h" />
-    <ClInclude Include="exMonstersBar.h" />
     <ClInclude Include="exMushMom.h" />
     <ClInclude Include="exMushMomHpBar.h" />
     <ClInclude Include="exMushMomSkill.h" />

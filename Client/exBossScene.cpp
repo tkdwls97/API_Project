@@ -32,9 +32,9 @@ namespace ex
 		Collider* col = floor1->GetComponent<Collider>();
 		Transform* tr = floor1->GetComponent<Transform>();
 		col = floor1->AddComponent<Collider>();
-		col->SetSize(math::Vector2(1500.0f, 50.0f));
+		col->SetSize(math::Vector2(1500.0f, 1000.0f));
 		tr = floor1->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 603.0f));
+		tr->SetPosition(math::Vector2(680.0f, 1063.0f));
 
 
 	}

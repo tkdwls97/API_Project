@@ -275,8 +275,8 @@ namespace ex
 		portal->Initialize();
 
 		Transform* portalTr = portal->GetComponent<Transform>();
-		portalTr->SetPosition(math::Vector2(1450.0f, 500.0f));
-		//portalTr->SetPosition(math::Vector2(-200.0f, 250.0f));
+		//portalTr->SetPosition(math::Vector2(1450.0f, 500.0f));
+		portalTr->SetPosition(math::Vector2(-200.0f, 250.0f));
 
 	}
 

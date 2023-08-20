@@ -27,7 +27,7 @@ namespace ex
 	HpBar* SceneManager::mHpBar = new HpBar;
 	MpBar* SceneManager::mMpBar = new MpBar;
 	DamageManager* SceneManager::mDamageManager = new DamageManager;
-	
+	bool			SceneManager::mbPortalCheck = false;
 
 	void SceneManager::Initialize()
 	{

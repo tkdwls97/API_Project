@@ -37,17 +37,21 @@ namespace ex
 		static Player* GetPlayer() { return mPlayer; }
 		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
 		static StatusBar* GetStatusBar() { return mStatusBar; }
-		static DamageManager* GetDamageManager() { return mDamageManager; }		
+		static DamageManager* GetDamageManager() { return mDamageManager; }
+
+		static bool GetPortalCheck() { return mbPortalCheck; }
+		static void SetPortalCheck(bool _data) { mbPortalCheck = _data; }
 	private:
 		static std::map<std::wstring, Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Player* mPlayer;
 		static PlayerAttack* mPlayerAtt;
-		static StatusBar*	mStatusBar;
+		static StatusBar* mStatusBar;
 		static ExpBar* mExpBar;
 		static HpBar* mHpBar;
 		static MpBar* mMpBar;
 		static DamageManager* mDamageManager;
+		static bool mbPortalCheck;
 	};
 
 }

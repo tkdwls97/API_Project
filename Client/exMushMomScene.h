@@ -4,6 +4,7 @@
 
 namespace ex
 {
+	class Portal;
 	class MushMomScene : public Scene
 	{
 	public:
@@ -18,6 +19,7 @@ namespace ex
 		virtual void SceneOut() override;
 
 	private:
+		Portal* mPortal;
 	};
 }
 

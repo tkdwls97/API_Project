@@ -39,6 +39,9 @@ namespace ex
 		mushMom->SetMoveDelay(4.5f);
 		mushMom->Initialize();
 
+		MushMomHpBar* mushMomHpBar = new MushMomHpBar(mushMom);
+		object::ActiveSceneAddGameObject(enums::eLayerType::UI, mushMomHpBar);
+
 
 		//////////////////////////////////////////////////////////////////////
 		// ¹Ù´Ú
@@ -184,21 +187,21 @@ namespace ex
 		Transform* RopeTr6 = rope6->GetComponent<Transform>();
 		RopeTr6->SetPosition(math::Vector2(551.0f, 92.0f));
 
-
-
 		//////////////////////////////////////////////////////////////////////
 		// Æ÷Å»
-		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
-		portal->Initialize();
+		mPortal = object::Instantiate<Portal>(enums::eLayerType::Potal);
+		mPortal->Initialize();
 
-		Transform* portalTr = portal->GetComponent<Transform>();
-		//potalTr->SetPosition(math::Vector2(1370.0f, 830.0f));
-		portalTr->SetPosition(math::Vector2(659.0f, -10.0f));
-		
 	}
 
 	void MushMomScene::Update()
 	{
+		bool bCheck = SceneManager::GetPortalCheck();
+		if (bCheck)
+		{
+			Transform* portalTr = mPortal->GetComponent<Transform>();
+			portalTr->SetPosition(math::Vector2(1070.0f, 695.0f));
+		}
 		Scene::Update();
 	}
 
