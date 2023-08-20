@@ -35,8 +35,6 @@ namespace ex
 		col->SetSize(math::Vector2(3000.0f, 1000.0f));
 		tr = floor1->GetComponent<Transform>();
 		tr->SetPosition(math::Vector2(680.0f, 1000.0f));
-
-
 	}
 
 	void BossScene::Update()

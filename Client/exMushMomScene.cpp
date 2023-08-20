@@ -191,7 +191,8 @@ namespace ex
 		// Æ÷Å»
 		mPortal = object::Instantiate<Portal>(enums::eLayerType::Potal);
 		mPortal->Initialize();
-
+		Transform* portalTr = mPortal->GetComponent<Transform>();
+		portalTr->SetPosition(math::Vector2(-1000.0f, -1000.0f));
 	}
 
 	void MushMomScene::Update()
