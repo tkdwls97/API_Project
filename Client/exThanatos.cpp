@@ -21,6 +21,10 @@ namespace ex
 {
 	Thanatos::Thanatos()
 	{
+		mMonstersInfo.mMaxHp = 30000000;
+		mMonstersInfo.mHp = 30000000;
+		mMonstersInfo.mLevel = 180;
+		mMonstersInfo.mDamage = 1212;
 	}
 
 	Thanatos::~Thanatos()
@@ -56,7 +60,7 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"ThanatosRightDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Die\\Right");;
 
-		mCollider->SetSize(math::Vector2(120.0f, 120.0f));
+		mCollider->SetSize(math::Vector2(140.0f, 180.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
 		mAnimator->SetAffectedCamera(true);
 		mDirection = mTransform->GetMoveDir();
@@ -103,38 +107,38 @@ namespace ex
 
 	void Thanatos::Idle()
 	{
-		//mIdleDelay += Time::GetDeltaTime();
+		mIdleDelay += Time::GetDeltaTime();
 
-		//math::Vector2 pos = mTransform->GetPosition();
-		//if (mIdleDelay >= 2.3f)
-		//{
-		//	if (mDirection == enums::eMoveDir::Left)
-		//	{
-		//		mDirection = enums::eMoveDir::Right;
-		//	}
-		//	else
-		//	{
-		//		mDirection = enums::eMoveDir::Left;
-		//	}
-		//	mMonsterState = eMonsterState::Move;
-		//	mIdleDelay = 0.0f;
-		//}
-		//else
-		//{
-		//	if (mDirection == enums::eMoveDir::Left)
-		//	{
-		//		mAnimator->PlayAnimation(L"ThanatosLeftIdle", true);
-		//	}
-		//	else
-		//	{
-		//		mAnimator->PlayAnimation(L"ThanatosRightIdle", true);
-		//	}
-		//}
+		math::Vector2 pos = mTransform->GetPosition();
+		if (mIdleDelay >= 2.3f)
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mDirection = enums::eMoveDir::Right;
+			}
+			else
+			{
+				mDirection = enums::eMoveDir::Left;
+			}
+			mMonsterState = eMonsterState::Move;
+			mIdleDelay = 0.0f;
+		}
+		else
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"ThanatosLeftIdle", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"ThanatosRightIdle", true);
+			}
+		}
 	}
 
 	void Thanatos::Move()
 	{
-		/*mMoveTime -= Time::GetDeltaTime();
+		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
 		if (mMoveTime <= 0.0f)
 		{
@@ -155,7 +159,7 @@ namespace ex
 			}
 		}
 
-		mTransform->SetPosition(pos);*/
+		mTransform->SetPosition(pos);
 	}
 
 	void Thanatos::Attack()
@@ -190,7 +194,10 @@ namespace ex
 		{
 			mDirection = enums::eMoveDir::Left;
 		}
-		mMonsterState = eMonsterState::Dead;
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMonsterState = eMonsterState::Dead;
+		}
 	}
 
 	void Thanatos::Dead()

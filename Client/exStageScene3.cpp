@@ -16,6 +16,7 @@
 #include "exGatekeeper.h"
 #include "exThanatos.h"
 #include "exWall.h"
+#include "exRope.h"
 
 namespace ex
 {
@@ -51,15 +52,23 @@ namespace ex
 		Collider* leftwallCol = leftWall->AddComponent<Collider>();
 		leftwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
 		Transform* leftwalltr = leftWall->GetComponent<Transform>();
-		leftwalltr->SetPosition(math::Vector2(-803.0f, 360.0f));
+		leftwalltr->SetPosition(math::Vector2(-1353.0f, 360.0f));
 
 		// ¿À¸¥ÂÊ º®
 		Wall* RightWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
 		Collider* RightwallCol = RightWall->AddComponent<Collider>();
 		RightwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
 		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
-		Rightwalltr->SetPosition(math::Vector2(2085.0f, 360.0f));
+		Rightwalltr->SetPosition(math::Vector2(2630.0f, 360.0f));
 
+		// ·ÎÇÁ
+		Rope* rope1 = object::Instantiate<Rope>(enums::eLayerType::Rope);
+		rope1->Initialize();
+		Collider* RopeCol1 = rope1->GetComponent<Collider>();
+		RopeCol1->SetSize(math::Vector2(2.0f, 780.0f));
+		RopeCol1->SetOffset(math::Vector2(0.0f, -23.0f));
+		Transform* RopeTr1 = rope1->GetComponent<Transform>();
+		RopeTr1->SetPosition(math::Vector2(1673.0f, 482.0f));
 
 
 
@@ -69,6 +78,13 @@ namespace ex
 		Transform* tr1 = floor1->GetComponent<Transform>();
 		col1->SetSize(math::Vector2(3300.0f, 1000.0f));
 		tr1->SetPosition(math::Vector2(680.0f, 1410.0f));
+
+		// ¹Ù´Ú 2Ãþ
+		Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
+		Collider* col2 = floor2->AddComponent<Collider>();
+		Transform* tr2 = floor2->GetComponent<Transform>();
+		col2->SetSize(math::Vector2(2150.0f, 130.0f));
+		tr2->SetPosition(math::Vector2(635.0f, 138.0f));
 
 
 

@@ -22,6 +22,10 @@ namespace ex
 {
 	GateKeeper::GateKeeper()
 	{
+		mMonstersInfo.mMaxHp = 30000000;
+		mMonstersInfo.mHp = 30000000;
+		mMonstersInfo.mLevel = 180;
+		mMonstersInfo.mDamage = 1212;
 	}
 
 	GateKeeper::~GateKeeper()
@@ -57,7 +61,7 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"GateKeeperRightDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Die\\Right");;
 
-		mCollider->SetSize(math::Vector2(120.0f, 120.0f));
+		mCollider->SetSize(math::Vector2(200.0f, 130.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
 		mAnimator->SetAffectedCamera(true);
 		mDirection = mTransform->GetMoveDir();
@@ -104,33 +108,33 @@ namespace ex
 
 	void GateKeeper::Idle()
 	{
-		//mIdleDelay += Time::GetDeltaTime();
+		mIdleDelay += Time::GetDeltaTime();
 
-		//math::Vector2 pos = mTransform->GetPosition();
-		//if (mIdleDelay >= 2.3f)
-		//{
-		//	if (mDirection == enums::eMoveDir::Left)
-		//	{
-		//		mDirection = enums::eMoveDir::Right;
-		//	}
-		//	else
-		//	{
-		//		mDirection = enums::eMoveDir::Left;
-		//	}
-		//	mMonsterState = eMonsterState::Move;
-		//	mIdleDelay = 0.0f;
-		//}
-		//else
-		//{
-		//	if (mDirection == enums::eMoveDir::Left)
-		//	{
-		//		mAnimator->PlayAnimation(L"GateKeeperLeftIdle", true);
-		//	}
-		//	else
-		//	{
-		//		mAnimator->PlayAnimation(L"GateKeeperRightIdle", true);
-		//	}
-		//}
+		math::Vector2 pos = mTransform->GetPosition();
+		if (mIdleDelay >= 2.3f)
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mDirection = enums::eMoveDir::Right;
+			}
+			else
+			{
+				mDirection = enums::eMoveDir::Left;
+			}
+			mMonsterState = eMonsterState::Move;
+			mIdleDelay = 0.0f;
+		}
+		else
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"GateKeeperLeftIdle", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"GateKeeperRightIdle", true);
+			}
+		}
 	}
 
 	void GateKeeper::Move()
@@ -189,8 +193,10 @@ namespace ex
 			mDirection = enums::eMoveDir::Left;
 		}
 
-
-		mMonsterState = eMonsterState::Dead;
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMonsterState = eMonsterState::Dead;
+		}
 	}
 
 	void GateKeeper::Dead()

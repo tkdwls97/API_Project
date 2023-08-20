@@ -249,6 +249,16 @@ namespace ex
 
 		}
 		mHitDelay += Time::GetDeltaTime();
+
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mDirection = enums::eMoveDir::Right;
+		}
+		else
+		{
+			mDirection = enums::eMoveDir::Left;
+		}
+
 		if (mHitDelay >= 1.3f)
 		{
 			if (mDirection == enums::eMoveDir::Left)
@@ -266,7 +276,6 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
-			int a = mMonstersInfo.mHp;
 			mMonsterState = eMonsterState::Dead;
 		}
 	}

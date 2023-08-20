@@ -193,6 +193,7 @@ namespace ex
 		mPortal->Initialize();
 		Transform* portalTr = mPortal->GetComponent<Transform>();
 		portalTr->SetPosition(math::Vector2(-1000.0f, -1000.0f));
+		portalTr->SetPosition(math::Vector2(659.0f, -20.0f));
 	}
 
 	void MushMomScene::Update()
@@ -201,7 +202,7 @@ namespace ex
 		if (bCheck)
 		{
 			Transform* portalTr = mPortal->GetComponent<Transform>();
-			portalTr->SetPosition(math::Vector2(1070.0f, 695.0f));
+			//portalTr->SetPosition(math::Vector2(1070.0f, 695.0f));
 		}
 		Scene::Update();
 	}

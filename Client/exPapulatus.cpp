@@ -45,6 +45,9 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftHit",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left");
 
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Left");
+
 		// Right
 		mAnimator->CreateAnimationFolder(L"PapulatusRightIdle",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Right");
@@ -54,6 +57,9 @@ namespace ex
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightHit",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Right");
+
+		mAnimator->CreateAnimationFolder(L"PapulatusRightDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Right");
 
 		mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
 		mTransform->SetMoveDir(enums::eMoveDir::Left);
@@ -191,26 +197,29 @@ namespace ex
 			}
 			mHitDelay = 0.0f;
 		}
-		//mMonsterState = eMonsterState::Dead;
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMonsterState = eMonsterState::Dead;
+		}
 	}
 
 	void Papulatus::Dead()
 	{
-		//if (playerDir == enums::eMoveDir::Left)
-		//{
-		//	mAnimator->PlayAnimation(L"GreenMushRightDead", false);
-		//}
-		//else
-		//{
-		//	mAnimator->PlayAnimation(L"GreenMushLeftDead", false);
+		if (mDirection == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"PapulatusLeftDead", false);
+		}
+		else
+		{
+			mAnimator->PlayAnimation(L"PapulatusRightDead", false);
 
-		//}
+		}
 
-		//bool bCheck = mAnimator->IsActiveAnimationComplete();
-		//if (bCheck)
-		//{
-		//	Destroy(this);
-		//}
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			Destroy(this);
+		}
 	}
 	void Papulatus::OnCollisionEnter(Collider* _other)
 	{

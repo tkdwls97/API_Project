@@ -22,8 +22,8 @@ namespace ex
 {
 	Robo::Robo()
 	{
-		mMonstersInfo.mMaxHp = 50000;
-		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
+		mMonstersInfo.mMaxHp = 3000000;
+		mMonstersInfo.mHp = 3000000;
 		mMonstersInfo.mLevel = 10;
 		mMonstersInfo.mDamage = 1033;
 	}
@@ -179,7 +179,11 @@ namespace ex
 		{
 			mDirection = enums::eMoveDir::Left;
 		}
-		mMonsterState = eMonsterState::Dead;
+
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMonsterState = eMonsterState::Dead;
+		}
 	}
 
 	void Robo::Dead()

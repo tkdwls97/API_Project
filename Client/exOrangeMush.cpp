@@ -26,8 +26,8 @@ namespace ex
 		: mIdleDelay(0.0f)
 		, mMoveDelay(0.0f)
 	{
-		mMonstersInfo.mMaxHp = 1000;
-		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
+		mMonstersInfo.mMaxHp = 5000;
+		mMonstersInfo.mHp = 5000;
 		mMonstersInfo.mLevel = 10;
 		mMonstersInfo.mDamage = 176;
 	}
@@ -177,7 +177,11 @@ namespace ex
 		{
 			mDirection = enums::eMoveDir::Left;
 		}
-		mMonsterState = eMonsterState::Dead;
+
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMonsterState = eMonsterState::Dead;
+		}
 	}
 
 	void OrangeMush::Dead()

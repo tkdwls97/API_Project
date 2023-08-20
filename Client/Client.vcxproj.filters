@@ -202,9 +202,6 @@
     <Filter Include="Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin">
       <UniqueIdentifier>{69575056-3218-4a19-9aa6-851715426779}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\00.MushMomSkill">
-      <UniqueIdentifier>{1293c9e0-6d2c-438d-8704-50a790f15bbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar">
       <UniqueIdentifier>{7b929f36-6df2-4338-8055-1dc000e3343b}</UniqueIdentifier>
     </Filter>
@@ -225,6 +222,15 @@
     </Filter>
     <Filter Include="Contents\Scene\05.BossScene">
       <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\02.MushMomSkill">
+      <UniqueIdentifier>{1293c9e0-6d2c-438d-8704-50a790f15bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\00.GateKeeperAttack">
+      <UniqueIdentifier>{5ebf8c6e-1af7-4b02-a865-6ef4bf5a0685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\01.ThanatosAttack">
+      <UniqueIdentifier>{6565bdd5-ef22-46f5-81d2-60a29b63cd0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -393,9 +399,6 @@
     <ClCompile Include="exComboDeathFault.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault</Filter>
     </ClCompile>
-    <ClCompile Include="exStatusBar.cpp">
-      <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
-    </ClCompile>
     <ClCompile Include="exHpBar.cpp">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\00.HpBar</Filter>
     </ClCompile>
@@ -415,10 +418,13 @@
       <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
     </ClCompile>
     <ClCompile Include="exMushMomSkill.cpp">
-      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\00.MushMomSkill</Filter>
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\02.MushMomSkill</Filter>
     </ClCompile>
     <ClCompile Include="exMushMomHpBar.cpp">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar</Filter>
+    </ClCompile>
+    <ClCompile Include="exStatusBar.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\01.ThanatosAttack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -618,7 +624,7 @@
       <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
     </ClInclude>
     <ClInclude Include="exMushMomSkill.h">
-      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\00.MushMomSkill</Filter>
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\02.MushMomSkill</Filter>
     </ClInclude>
     <ClInclude Include="exMushMomHpBar.h">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar</Filter>

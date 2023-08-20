@@ -22,8 +22,8 @@ namespace ex
 {
 	MasterRobo::MasterRobo()
 	{
-		mMonstersInfo.mMaxHp = 1000;
-		mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
+		mMonstersInfo.mMaxHp = 3500000;
+		mMonstersInfo.mHp = 3500000;
 		mMonstersInfo.mLevel = 10;
 		mMonstersInfo.mDamage = 1212;
 	}
@@ -179,7 +179,11 @@ namespace ex
 		{
 			mDirection = enums::eMoveDir::Left;
 		}
-		mMonsterState = eMonsterState::Dead;
+
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMonsterState = eMonsterState::Dead;
+		}
 	}
 
 	void MasterRobo::Dead()
