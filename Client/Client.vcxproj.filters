@@ -223,7 +223,7 @@
     <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar">
       <UniqueIdentifier>{e5b7f68e-cdff-4404-9ce2-7ff1f6cfa0b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\04.StageScene3\05.BossScene">
+    <Filter Include="Contents\Scene\05.BossScene">
       <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -331,7 +331,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Boss\01.Papulatus</Filter>
     </ClCompile>
     <ClCompile Include="exBossScene.cpp">
-      <Filter>Contents\Scene\04.StageScene3\05.BossScene</Filter>
+      <Filter>Contents\Scene\05.BossScene</Filter>
     </ClCompile>
     <ClCompile Include="exPlayerAttack.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\00.Attack</Filter>
@@ -534,7 +534,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Boss\01.Papulatus</Filter>
     </ClInclude>
     <ClInclude Include="exBossScene.h">
-      <Filter>Contents\Scene\04.StageScene3\05.BossScene</Filter>
+      <Filter>Contents\Scene\05.BossScene</Filter>
     </ClInclude>
     <ClInclude Include="exPlayerAttack.h">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\00.Attack</Filter>

@@ -32,9 +32,9 @@ namespace ex
 		Collider* col = floor1->GetComponent<Collider>();
 		Transform* tr = floor1->GetComponent<Transform>();
 		col = floor1->AddComponent<Collider>();
-		col->SetSize(math::Vector2(1500.0f, 1000.0f));
+		col->SetSize(math::Vector2(3000.0f, 1000.0f));
 		tr = floor1->GetComponent<Transform>();
-		tr->SetPosition(math::Vector2(680.0f, 1063.0f));
+		tr->SetPosition(math::Vector2(680.0f, 1000.0f));
 
 
 	}
@@ -56,7 +56,7 @@ namespace ex
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.1f, 1.39f));
+		bgsr->SetScale(math::Vector2(1.0f, 1.25f));
 		bgsr->SetAffectCamera(true);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.f));
 
@@ -68,7 +68,7 @@ namespace ex
 		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
 		papulatus->Initialize();
 		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		papulatusTr->SetPosition(math::Vector2(640.0f, 360.0f));
+		papulatusTr->SetPosition(math::Vector2(700.0f, 360.0f));
 
 		Player* player = SceneManager::GetPlayer();
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
