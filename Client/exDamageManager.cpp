@@ -71,7 +71,7 @@ namespace ex
 			DamageSkin* damageSkin = new DamageSkin(mDamageIndexArr[j]);
 			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
 			damageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
-			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (40.0f * j) - (mDamageSize * 40.0f / 2.0f));
+			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (38.0f * j) - (mDamageSize * 38.0f / 2.0f));
 			damageSkin->SetDamageDelay(_delay);
 		}
 	}

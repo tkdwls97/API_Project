@@ -93,22 +93,15 @@ namespace ex
 
 		// 왼쪽 스킬 애니메이션
 
-		// png 일때
-		/*image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
-		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.1f);*/
-
-			// bmp 일때
 		image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.02f);
+			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.05f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerLeftUpperCharge"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\UpperCharge\\Left\\Player_Left_UpperCharge.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftUpperCharge", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 9, math::Vector2(0.0f, 0.0f), 0.007f);
+			, math::Vector2(224.0f, 156.0f), 9, math::Vector2(0.0f, 0.0f), 0.05f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerLeftRush"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Left\\Player_Left_Rush.bmp");
@@ -148,23 +141,16 @@ namespace ex
 			, math::Vector2(-224.0f, 0.0f), 3, math::Vector2(0.f, 0.f), 0.14f);
 
 		// 오른쪽 스킬 애니메이션
-		// png일때 
-		//image = ResourceManager::Load<Texture>(L"PlayerRightRaisingBlow"
-		//	, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Right\\Player_Right_RaisingBlow.bmp");
-		//mAnimator->CreateAnimation(L"PlayerRightRaisingBlow", image, math::Vector2(2464.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-		//	, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.1f);
 
-
-		//// bmp일때 
 		image = ResourceManager::Load<Texture>(L"PlayerRightRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Right\\Player_Right_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightRaisingBlow", image, math::Vector2(2464.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.02f);
+			, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.05f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerRightUpperCharge"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\UpperCharge\\Right\\Player_Right_UpperCharge.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightUpperCharge", image, math::Vector2(2016.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.007f);
+			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.05f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerRightRush"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Right\\Player_Right_Rush.bmp");

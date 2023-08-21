@@ -23,7 +23,7 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 	
 		mAnimator->CreateAnimationFolder(L"RaisingblowHit"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Hit\\Bmp");
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Hit");
 
 		math::Vector2 pos = _owner->GetPosition();
 

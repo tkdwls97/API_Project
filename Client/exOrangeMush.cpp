@@ -45,7 +45,7 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Move\\Left", math::Vector2(0.0f, 0.0f), 0.3f);
 
 		mAnimator->CreateAnimationFolder(L"LeftOrangeMushDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Left", math::Vector2(0.0f, 0.0f), 0.3f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Left", math::Vector2(0.0f, 0.0f), 0.1f);
 
 
 		mAnimator->CreateAnimationFolder(L"RightOrangeMushIdle",
@@ -55,7 +55,7 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Move\\Right", math::Vector2(0.0f, 0.0f), 0.3f);
 
 		mAnimator->CreateAnimationFolder(L"RightOrangeMushDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Right", math::Vector2(0.0f, 0.0f), 0.3f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Right", math::Vector2(0.0f, 0.0f), 0.1f);
 
 		mCollider->SetSize(math::Vector2(63.0f, 63.0f));
 		mCollider->SetOffset(math::Vector2(4.0f, 4.0f));

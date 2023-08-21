@@ -31,7 +31,7 @@ namespace ex
 		, mAttackDelay(0.0f)
 	{
 		mMonstersInfo.mMaxHp = 300000000;
-		mMonstersInfo.mHp = 1;
+		mMonstersInfo.mHp = 300000000;
 		mMonstersInfo.mLevel = 150;
 		mMonstersInfo.mDamage = 700;
 		mSkillDamage = 337;
@@ -54,10 +54,10 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Left", math::Vector2(0.0f, -60.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Left", math::Vector2(0.0f, -70.0f), 0.2f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Left", math::Vector2(0.0f, -50.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftAttack",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Left", math::Vector2(0.0f, -110.0f), 0.2f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Left", math::Vector2(0.0f, -110.0f), 0.3f);
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"MushMomRightIdle",
@@ -70,10 +70,10 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Hit\\Right", math::Vector2(0.0f, -60.0f));
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Right", math::Vector2(0.0f, -70.0f), 0.2f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Die\\Right", math::Vector2(0.0f, -50.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightAttack",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Right", math::Vector2(0.0f, -110.0f), 0.2f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Right", math::Vector2(0.0f, -110.0f), 0.3f);
 
 		mAnimator->SetAffectedCamera(true);
 		mAnimator->SetScale(math::Vector2(2.2f, 2.2f));

@@ -32,12 +32,12 @@ namespace ex
 		mCollider = AddComponent<Collider>();
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftAttackEffect",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Left", math::Vector2(5.0f, -65.0f), 0.01f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Left", math::Vector2(5.0f, -85.0f), 0.03f);
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightAttackEffect",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Right",math::Vector2(5.0f,-65.0f), 0.01f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Right",math::Vector2(5.0f,-85.0f), 0.03f);
 
-		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
+		mAnimator->SetScale(math::Vector2(1.3f, 1.3f));
 		enums::eMoveDir MushmomDir = _owner->GetTransform()->GetMoveDir();
 
 		mCollider->SetSize(math::Vector2(800.0f, 50.0f));
