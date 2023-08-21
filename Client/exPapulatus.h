@@ -18,6 +18,12 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
+		bool IsPapulatusHit() { return mbPapulatusHit; }
+		void SetPapulatusHit(bool _data) { mbPapulatusHit = _data; }
+
+		void SetPapulatusInfo(MonstersInfo _info) { mMonstersInfo = _info; }
+		MonstersInfo GetPapulatusInfo() { return mMonstersInfo; }
+
 		void Idle();
 		void Move();
 		void Attack();
@@ -26,6 +32,12 @@ namespace ex
 		void Dead();
 
 	private:
+		bool	mbPapulatusHit;
+		float	mAttackDelay;
+
+		int		mSkill1Damage;
+		int		mSkill2Damage;
+		int		mSkill3Damage;
 	};
 
 }

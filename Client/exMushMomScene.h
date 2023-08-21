@@ -5,6 +5,7 @@
 namespace ex
 {
 	class Portal;
+	class MushMom;
 	class MushMomScene : public Scene
 	{
 	public:
@@ -18,8 +19,12 @@ namespace ex
 		virtual void SceneIN() override;
 		virtual void SceneOut() override;
 
+		void SetMushMomHit(bool _data) { mbMushMomHit = _data; }
+
 	private:
 		Portal* mPortal;
+		MushMom* mMushMom;
+		bool	mbMushMomHit;
 	};
 }
 

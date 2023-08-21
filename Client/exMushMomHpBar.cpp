@@ -51,11 +51,18 @@ namespace ex
 
 	void MushMomHpBar::Render(HDC _hdc)
 	{
+
 		int hp = mMushMomHp;
 		float fhp = (float)hp / mMushMomMaxHp;
 
-		::TransparentBlt(_hdc, 75, 5, (int)(mMushMomHpBar->GetWidth() * fhp), mMushMomHpBar->GetHeight(), mMushMomHpBar->GetHdc()
-			, 0, 0, (int)(mMushMomHpBar->GetWidth() * fhp), mMushMomHpBar->GetHeight(), RGB(255, 0, 255));
+		if (mMushMom->IsMushMomHit())
+		{
+			::TransparentBlt(_hdc, 75, 5, (int)(mMushMomHpBar->GetWidth() * fhp), mMushMomHpBar->GetHeight(), mMushMomHpBar->GetHdc()
+				, 0, 0, (int)(mMushMomHpBar->GetWidth() * fhp), mMushMomHpBar->GetHeight(), RGB(255, 0, 255));
+		}
+
+
+
 
 		UI::Render(_hdc);
 	}

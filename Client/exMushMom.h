@@ -26,6 +26,9 @@ namespace ex
 
 		int GetSkillDamage() { return mSkillDamage; }
 
+		bool IsMushMomHit() { return mbMushMomHit; }
+		void SetMushMomHit(bool _data) { mbMushMomHit = _data; }
+	
 		void Idle();
 		void Move();
 		void Attack();
@@ -36,6 +39,7 @@ namespace ex
 	private:
 		int		mSkillDamage;
 		float	mAttackDelay;
+		bool	mbMushMomHit;
 	};
 
 }

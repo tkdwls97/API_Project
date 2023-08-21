@@ -29,6 +29,7 @@ namespace ex
 	MushMom::MushMom()
 		: mSkillDamage(0)
 		, mAttackDelay(0.0f)
+		, mbMushMomHit(false)
 	{
 		mMonstersInfo.mMaxHp = 300000000;
 		mMonstersInfo.mHp = 300000000;
@@ -237,6 +238,7 @@ namespace ex
 
 	void MushMom::Hit()
 	{
+		mbMushMomHit = true;
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
 		if (playerDir == enums::eMoveDir::Left)
 		{

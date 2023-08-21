@@ -21,6 +21,8 @@
 namespace ex
 {
 	MushMomScene::MushMomScene()
+		: mPortal(nullptr)
+		, mbMushMomHit(false)
 	{
 	}
 
@@ -30,17 +32,19 @@ namespace ex
 
 	void MushMomScene::Initialize()
 	{
-		// 680.0f, 763.0f
-		MushMom* mushMom = object::Instantiate<MushMom>(enums::eLayerType::Monster);
-		Transform* mushMomTr1 = mushMom->GetComponent<Transform>();
+		// ¸Ó½¬¸¾
+		mMushMom = object::Instantiate<MushMom>(enums::eLayerType::Monster);
+		Transform* mushMomTr1 = mMushMom->GetComponent<Transform>();
 		mushMomTr1->SetMoveDir(enums::eMoveDir::Left);
 		mushMomTr1->SetPosition(math::Vector2(680.0f, 720.0f));
 		//mushMomTr1->SetPosition(math::Vector2(680.0f, 400.0f));
-		mushMom->SetMoveDelay(4.5f);
-		mushMom->Initialize();
+		mMushMom->SetMoveDelay(4.5f);
+		mMushMom->Initialize();
 
-		MushMomHpBar* mushMomHpBar = new MushMomHpBar(mushMom);
+		// ¸Ó½¬¸¾ Ã¼·Â¹Ù
+		MushMomHpBar* mushMomHpBar = new MushMomHpBar(mMushMom);
 		object::ActiveSceneAddGameObject(enums::eLayerType::UI, mushMomHpBar);
+
 
 
 		//////////////////////////////////////////////////////////////////////
@@ -193,16 +197,19 @@ namespace ex
 		mPortal->Initialize();
 		Transform* portalTr = mPortal->GetComponent<Transform>();
 		portalTr->SetPosition(math::Vector2(-1000.0f, -1000.0f));
+
+		// test
 		portalTr->SetPosition(math::Vector2(659.0f, -20.0f));
 	}
 
 	void MushMomScene::Update()
 	{
+
 		bool bCheck = SceneManager::GetPortalCheck();
 		if (bCheck)
 		{
 			Transform* portalTr = mPortal->GetComponent<Transform>();
-			//portalTr->SetPosition(math::Vector2(1070.0f, 695.0f));
+			portalTr->SetPosition(math::Vector2(1070.0f, 695.0f));
 		}
 		Scene::Update();
 	}

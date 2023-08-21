@@ -23,7 +23,19 @@
 namespace ex
 {
 	Papulatus::Papulatus()
+		: mbPapulatusHit(false)
+		, mAttackDelay(0.0f)
+		, mSkill1Damage(0)
+		, mSkill2Damage(0)
+		, mSkill3Damage(0)
 	{
+		mMonstersInfo.mMaxHp = 700000000;
+		mMonstersInfo.mHp = 700000000;
+		mMonstersInfo.mLevel = 190;
+		mMonstersInfo.mDamage = 750;
+		mSkill1Damage = 411;
+		mSkill2Damage = 403;
+		mSkill3Damage = 380;
 	}
 
 	Papulatus::~Papulatus()
@@ -172,6 +184,7 @@ namespace ex
 
 	void Papulatus::Hit()
 	{
+		mbPapulatusHit = true;
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
 		if (playerDir == enums::eMoveDir::Left)
 		{

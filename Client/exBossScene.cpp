@@ -14,6 +14,7 @@
 #include "exCollisionManager.h"
 #include "exFloor.h"
 #include "exWall.h"
+#include "exPapulatusHpBar.h"
 
 namespace ex
 {
@@ -28,6 +29,14 @@ namespace ex
 
 	void BossScene::Initialize()
 	{
+		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
+		papulatus->Initialize();
+		Transform* papulatusTr = papulatus->GetComponent<Transform>();
+		papulatusTr->SetPosition(math::Vector2(900.0f, 345.0f));
+
+		PapulatusHpBar* papulatusHpBar = new PapulatusHpBar(papulatus);
+		object::ActiveSceneAddGameObject(enums::eLayerType::UI, papulatusHpBar);
+
 		// 바닥 1층
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		Collider* col = floor1->GetComponent<Collider>();
@@ -138,10 +147,6 @@ namespace ex
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
 		Camera::SetLimitDistance(widthLimit, heightLimit);
 
-		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
-		papulatus->Initialize();
-		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		papulatusTr->SetPosition(math::Vector2(900.0f, 300.0f));
 
 		Player* player = SceneManager::GetPlayer();
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함

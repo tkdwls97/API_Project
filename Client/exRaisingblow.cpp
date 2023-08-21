@@ -32,27 +32,21 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"LeftRaisingblow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Left\\LeftRaisingblow.png");
 
-		//Texture* image = ResourceManager::Load<Texture>(L"LeftRaisingblow"
-		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Left\\LeftRaisingblow.bmp");
-
 		mAnimator->CreateAnimation(L"LeftRaisingblow", image, math::Vector2(0.0f, 0.0f), math::Vector2(924.0f, 562.0f)
-			, math::Vector2(924.0f, 562.0f), 14, math::Vector2(0), 0.03f);
+			, math::Vector2(924.0f, 562.0f), 14, math::Vector2(10.0f, 0.0f), 0.03f);
 
 		//png
 		image = ResourceManager::Load<Texture>(L"RightRaisingblow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.png");
 
-		//image = ResourceManager::Load<Texture>(L"RightRaisingblow"
-		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.bmp");
-
 		mAnimator->CreateAnimation(L"RightRaisingblow", image, math::Vector2(12936.0f, 0.0f), math::Vector2(924.0f, 562.0f)
-			, math::Vector2(-924.0f, 0.0f), 14, math::Vector2(0), 0.03f);
+			, math::Vector2(-924.0f, 0.0f), 14, math::Vector2(-10.0f, 0.0f), 0.03f);
 
-		mAnimator->SetScale(math::Vector2(0.85f, 0.70f));
+		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
 
-		mCollider->SetSize(math::Vector2(300.0f, 220.0f));
+		mCollider->SetSize(math::Vector2(300.0f, 260.0f));
 		mTransform->SetPosition(math::Vector2(playerPos));
 
 		if (playerDir == enums::eMoveDir::Left)
