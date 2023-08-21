@@ -34,22 +34,23 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
 
 		mAnimator->CreateAnimation(L"ComboDeathFaultLeftScreen", image, math::Vector2(0.0f, 0.0f), math::Vector2(1370.0f, 768.0f)
-			, math::Vector2(1370.f, 768.f), 48, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(1370.f, 768.f), 48, math::Vector2(0.0f, 0.0f), 0.02f);
 
 		//// png
 		image = ResourceManager::Load<Texture>(L"ComboDeathFaultRightScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Right\\Right_ComboDeathFault_Screen.png");
 
 		mAnimator->CreateAnimation(L"ComboDeathFaultRightScreen", image, math::Vector2(64390.f, 0.0f), math::Vector2(1370.0f, 768.0f)
-			, math::Vector2(-1370.0f, 0.0f), 48, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(-1370.0f, 0.0f), 48, math::Vector2(0.0f, 0.0f), 0.02f);
 
-		mAnimator->SetScale(math::Vector2(1.0f, 1.2f));
+		mAnimator->SetScale(math::Vector2(1.0f, 1.3f));
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
 
 		mTransform->SetPosition(math::Vector2(playerPos));
 		mAnimator->SetAffectedCamera(true);
 		mCollider->SetSize(1280.0f, 720.0f);
+
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"ComboDeathFaultLeftScreen", false);
@@ -74,6 +75,18 @@ namespace ex
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);
+		}
+
+		eState playerState = SceneManager::GetPlayer()->GetState();
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (playerState == eState::ComboDeathFault)
+		{
+			// 충돌 이벤트구현
+		}
+		else
+		{
+			// 어택이 끝나면 초기화해줌
+			mAttackList.clear();
 		}
 		GameObject::Update();
 	}
@@ -103,7 +116,6 @@ namespace ex
 
 	void ComboDeathFaultScreen::OnCollisionStay(Collider* _other)
 	{
-
 	}
 
 	void ComboDeathFaultScreen::OnCollisionExit(Collider* _other)

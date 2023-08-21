@@ -67,10 +67,10 @@ namespace ex
 	{
 		if (mAnimator->IsActiveAnimationComplete())
 		{
-			Destroy(this);
 			Player* player = SceneManager::GetPlayer();
 			ComboDeathFaultScreen* comboDeathFaultScreen = new ComboDeathFaultScreen(player);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeathFaultScreen);
+			Destroy(this);
 		}
 		GameObject::Update();
 	}
