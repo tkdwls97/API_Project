@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="exComboDeathFaultHit.cpp" />
     <ClCompile Include="exComboDeathFaultPlayer.cpp" />
     <ClCompile Include="exComboDeathFaultScreen.cpp" />
     <ClCompile Include="exDamageManager.cpp" />
@@ -207,6 +208,7 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="exComboDeathFaultHit.h" />
     <ClInclude Include="exComboDeathFaultPlayer.h" />
     <ClInclude Include="exComboDeathFaultScreen.h" />
     <ClInclude Include="exDamageManager.h" />

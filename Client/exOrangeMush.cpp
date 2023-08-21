@@ -18,7 +18,7 @@
 #include "exRaisingblowHit.h"
 #include "exUpperCharge.h"
 #include "exRush.h"
-
+#include "exComboDeathFaultScreen.h"
 
 namespace ex
 {
@@ -254,6 +254,18 @@ namespace ex
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
+			}
+		}
+
+		ComboDeathFaultScreen* ComboDeathFault = dynamic_cast<ComboDeathFaultScreen*>(_other->GetOwner());
+		if (ComboDeathFault != nullptr && mMonsterState != eMonsterState::Dead)
+		{
+			std::set<GameObject*>* attList = ComboDeathFault->GetAttackList();
+
+			if (attList->find(this) == attList->end())
+			{
+				mMonsterState = eMonsterState::Hit;
+				attList->insert(this);
 			}
 		}
 

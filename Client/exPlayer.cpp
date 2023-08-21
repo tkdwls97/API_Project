@@ -20,6 +20,7 @@
 #include "exUpperCharge.h"
 #include "exRush.h"
 #include "exComboDeathFaultPlayer.h"
+#include "exComboDeathFaultScreen.h"
 
 
 namespace ex
@@ -92,7 +93,6 @@ namespace ex
 			, math::Vector2(224.0f, 156.0f), 3, math::Vector2(-23.0f, 0.0f), 0.14f);
 
 		// 왼쪽 스킬 애니메이션
-
 		image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
@@ -107,6 +107,11 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Left\\Player_Left_Rush.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftRush", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 7, math::Vector2(0.0f, 0.0f), 0.05f);
+
+		image = ResourceManager::Load<Texture>(L"PlayerLeftComboDeathFault"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\ComboDeathFault\\Left\\Player_Left_ComboDeathFault.bmp");
+		mAnimator->CreateAnimation(L"PlayerLeftComboDeathFault", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
+			, math::Vector2(224.0f, 156.0f), 21, math::Vector2(0.0f, 0.0f), 0.05f);
 
 
 		// 오른쪽 애니메이션
@@ -141,7 +146,6 @@ namespace ex
 			, math::Vector2(-224.0f, 0.0f), 3, math::Vector2(0.f, 0.f), 0.14f);
 
 		// 오른쪽 스킬 애니메이션
-
 		image = ResourceManager::Load<Texture>(L"PlayerRightRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Right\\Player_Right_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightRaisingBlow", image, math::Vector2(2464.0f, 0.0f), math::Vector2(224.0f, 156.0f)
@@ -156,6 +160,11 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Right\\Player_Right_Rush.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightRush", image, math::Vector2(2016.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.05f);
+
+		image = ResourceManager::Load<Texture>(L"PlayerRightComboDeathFault"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\ComboDeathFault\\Right\\Player_Right_ComboDeathFault.bmp");
+		mAnimator->CreateAnimation(L"PlayerRightComboDeathFault", image, math::Vector2(4704.0f, 0.0f), math::Vector2(224.0f, 156.0f)
+			, math::Vector2(-224.0f, 0.0f), 21, math::Vector2(0.0f, 0.0f), 0.05f);
 
 		// 로프
 		image = ResourceManager::Load<Texture>(L"PlayerRopeMove"
@@ -249,6 +258,9 @@ namespace ex
 			break;
 		case Player::eState::Rush:
 			PlayerRush();
+			break;
+		case Player::eState::ComboDeathFault:
+			ComboDeathFault();
 			break;
 		case Player::eState::Hit:
 			Hit();
@@ -424,6 +436,24 @@ namespace ex
 			mRigidbody->SetVelocity(velocity);
 		}
 
+		// 콤보 데스폴트
+		if (Input::GetKeyDown(eKeyCode::F) || Input::GetKeyPressed(eKeyCode::F))
+		{
+			mbInvincible = true;
+			ComboDeathFaultPlayer* comboDeath = new ComboDeathFaultPlayer(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeath);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftComboDeathFault", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightComboDeathFault", false);
+			}
+			mState = eState::ComboDeathFault;
+			mRigidbody->SetVelocity(velocity);
+		}
+
 		// Idle 중 피격
 		bool bCheck = mCollider->GetCollisionType();
 		if (bCheck && !mbInvincible)
@@ -532,6 +562,23 @@ namespace ex
 			mRigidbody->SetVelocity(velocity);
 		}
 
+		// 콤보 데스폴트
+		if (Input::GetKeyDown(eKeyCode::F) || Input::GetKeyPressed(eKeyCode::F))
+		{
+			mbInvincible = true;
+			ComboDeathFaultPlayer* comboDeath = new ComboDeathFaultPlayer(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeath);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftComboDeathFault", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightComboDeathFault", false);
+			}
+			mState = eState::ComboDeathFault;
+			mRigidbody->SetVelocity(velocity);
+		}
 
 		// 좌우 이동중 점프
 		if ((Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump)) ||
@@ -970,6 +1017,24 @@ namespace ex
 			mRigidbody->SetVelocity(velocity);
 		}
 
+		// 콤보 데스폴트
+		if (Input::GetKeyDown(eKeyCode::F) || Input::GetKeyPressed(eKeyCode::F))
+		{
+			mbInvincible = true;
+			ComboDeathFaultPlayer* comboDeath = new ComboDeathFaultPlayer(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeath);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftComboDeathFault", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightComboDeathFault", false);
+			}
+			mState = eState::ComboDeathFault;
+			mRigidbody->SetVelocity(velocity);
+		}
+
 		if (Input::GetKeyDown(eKeyCode::Jump) || Input::GetKeyPressed(eKeyCode::Jump))
 		{
 			if (playerDir == enums::eMoveDir::Left)
@@ -1109,6 +1174,29 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
 				mState = eState::Idle;
 			}
+		}
+	}
+
+	void Player::ComboDeathFault()
+	{
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+			}
+			mState = eState::Idle;
+		}
+		bool bGround = mRigidbody->GetGround();
+		if (bGround)
+		{
+			mRigidbody->SetVelocityX(0.0f);
 		}
 	}
 

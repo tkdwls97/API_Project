@@ -43,6 +43,7 @@ namespace ex
 			RaisingBlow,
 			UpperCharge,
 			Rush,
+			ComboDeathFault,
 			End,
 		};
 

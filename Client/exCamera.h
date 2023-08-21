@@ -48,6 +48,7 @@ namespace ex
 
 		static math::Vector2 GetWidthLimit() { return mWidthLimit; }
 		static math::Vector2 GetHeightLimit() { return mHeightLimit; }
+		static math::Vector2 GetLookPosition() { return mLookPosition; }
 		static bool GetColliderCheck() { return mbColliderCheck; }
 
 		//static void SetLimitDistance(math::Vector2 CameraLimit)
@@ -58,6 +59,7 @@ namespace ex
 		static void FadeIn(float _duration, COLORREF _color);
 		static void FadeOut(float _duration, COLORREF _color);
 		static void Pause(float _duration, COLORREF _color);
+
 
 	private:
 		// 화면 해상도

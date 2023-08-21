@@ -4,14 +4,15 @@
 namespace ex
 {
 	class Animator;
-	class Transform;
 	class Collider;
+	class Transform;
+	class Animation;
 
-	class ComboDeathFaultScreen : public EffectManger
+	class ComboDeathFaultHit : public EffectManger
 	{
 	public:
-		ComboDeathFaultScreen(GameObject* _owner);
-		virtual ~ComboDeathFaultScreen();
+		ComboDeathFaultHit(GameObject* _owner);
+		virtual ~ComboDeathFaultHit();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -21,16 +22,11 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
-		std::set<GameObject*>* GetAttackList() { return &mAttackList; }
 	private:
 		GameObject* mOwner;
-		std::set<GameObject*> mAttackList;
 
 		Animator* mAnimator;
 		Transform* mTransform;
-		Collider* mCollider;
-
-		EffectInfo mComboDeathFaultInfo;
 	};
 
 }
