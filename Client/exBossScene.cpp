@@ -141,7 +141,7 @@ namespace ex
 		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
 		papulatus->Initialize();
 		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		papulatusTr->SetPosition(math::Vector2(700.0f, 360.0f));
+		papulatusTr->SetPosition(math::Vector2(900.0f, 300.0f));
 
 		Player* player = SceneManager::GetPlayer();
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함

@@ -10,6 +10,7 @@
 #include "exPlayer.h"
 #include "exSceneManager.h"
 #include "exDamageManager.h"
+#include "exThanatosAttack.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -17,14 +18,16 @@
 #include "exRaisingblowHit.h"
 #include "exRush.h"
 #include "exUpperCharge.h"
+
 namespace ex
 {
 	Thanatos::Thanatos()
 	{
-		mMonstersInfo.mMaxHp = 30000000;
-		mMonstersInfo.mHp = 30000000;
+		mMonstersInfo.mMaxHp = 27000000;
+		mMonstersInfo.mHp = 27000000;
 		mMonstersInfo.mLevel = 180;
 		mMonstersInfo.mDamage = 1212;
+		mSkillDamage = 280;
 	}
 
 	Thanatos::~Thanatos()
@@ -46,6 +49,9 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"ThanatosLeftDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Die\\Left");
 
+		mAnimator->CreateAnimationFolder(L"ThanatosLeftAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Attack\\Left", math::Vector2(0.0f, 0.0f), 0.1f);
+
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"ThanatosRightIdle",
@@ -58,15 +64,18 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Hit\\Right");
 
 		mAnimator->CreateAnimationFolder(L"ThanatosRightDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Die\\Right");;
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Die\\Right");
 
-		mCollider->SetSize(math::Vector2(140.0f, 180.0f));
+		mAnimator->CreateAnimationFolder(L"ThanatosRightAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Attack\\Right", math::Vector2(0.0f, 0.0f), 0.1f);
+
+		mCollider->SetSize(math::Vector2(200.0f, 170.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
 		mAnimator->SetAffectedCamera(true);
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
 
-		mAnimator->PlayAnimation(L"ThanatosRightIdle", true);
+		mAnimator->PlayAnimation(L"ThanatosLeftIdle", true);
 	}
 
 	void Thanatos::Update()
@@ -134,6 +143,30 @@ namespace ex
 				mAnimator->PlayAnimation(L"ThanatosRightIdle", true);
 			}
 		}
+
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
+		float distanceX = fabs(playerPos.x - this->GetPositionX());
+		float distanceY = fabs(playerPos.y - this->GetPositionY());
+
+		if (distanceX < 300.0f && distanceY < 70.0f)
+		{
+			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+			float ThanatosPosX = mTransform->GetPositionX();
+
+			if (playerPosX <= ThanatosPosX)
+			{
+				mAnimator->PlayAnimation(L"ThanatosLeftAttack", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"ThanatosRightAttack", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+			ThanatosAttack* thanatosAttack = new ThanatosAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, thanatosAttack);
+			mMonsterState = eMonsterState::Attack;
+		}
 	}
 
 	void Thanatos::Move()
@@ -159,11 +192,39 @@ namespace ex
 			}
 		}
 
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
+		float distanceX = fabs(playerPos.x - this->GetPositionX());
+		float distanceY = fabs(playerPos.y - this->GetPositionY());
+		if (distanceX < 300.0f && distanceY < 70.0f)
+		{
+			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+			float ThanatosPosX = mTransform->GetPositionX();
+			if (playerPosX <= ThanatosPosX)
+			{
+				mAnimator->PlayAnimation(L"ThanatosLeftAttack", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"ThanatosRightAttack", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+			mTransform->SetMoveDir(mDirection);
+			ThanatosAttack* thanatosAttack = new ThanatosAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, thanatosAttack);
+			mMonsterState = eMonsterState::Attack;
+		}
+
 		mTransform->SetPosition(pos);
 	}
 
 	void Thanatos::Attack()
 	{
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			mMonsterState = eMonsterState::Move;
+		}
 	}
 
 	void Thanatos::Chase()
@@ -172,28 +233,37 @@ namespace ex
 
 	void Thanatos::Hit()
 	{
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-
-		if (playerDir == enums::eMoveDir::Left)
-		{
-			mAnimator->PlayAnimation(L"ThanatosRightHit", false);
-		}
-		else
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float ThanatosPosX = mTransform->GetPositionX();
+		if (playerPosX <= ThanatosPosX)
 		{
 			mAnimator->PlayAnimation(L"ThanatosLeftHit", false);
-		}
-
-		bool bCheck = mAnimator->IsActiveAnimationComplete();
-	
-
-		if (playerDir == enums::eMoveDir::Left)
-		{
-			mDirection = enums::eMoveDir::Right;
+			mDirection = enums::eMoveDir::Left;
 		}
 		else
 		{
-			mDirection = enums::eMoveDir::Left;
+			mAnimator->PlayAnimation(L"ThanatosRightHit", false);
+			mDirection = enums::eMoveDir::Right;
 		}
+		mHitDelay += Time::GetDeltaTime();
+
+
+
+		if (mHitDelay >= 1.3f)
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"ThanatosLeftMove", true);
+				mMonsterState = eMonsterState::Move;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"ThanatosRightHit", true);
+				mMonsterState = eMonsterState::Move;
+			}
+			mHitDelay = 0.0f;
+		}
+
 		if (mMonstersInfo.mHp <= 0)
 		{
 			mMonsterState = eMonsterState::Dead;
@@ -277,17 +347,23 @@ namespace ex
 		}
 
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr)
+		if (player != nullptr && player->IsInvincible() == false)
 		{
 			DamageManager* damage = new DamageManager();
 			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
 			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
-
 		}
 	}
 
 	void Thanatos::OnCollisionStay(Collider* _other)
 	{
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		if (player != nullptr && player->IsInvincible() == false)
+		{
+			DamageManager* damage = new DamageManager();
+			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+		}
 	}
 
 	void Thanatos::OnCollisionExit(Collider* _other)

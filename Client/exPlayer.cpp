@@ -20,15 +20,17 @@
 #include "exUpperCharge.h"
 #include "exRush.h"
 
+
 namespace ex
 {
+	float Player::mhitDelay = 0.0f;
+
 	Player::Player()
 		: mAnimator(nullptr)
 		, mTransform(nullptr)
 		, mRigidbody(nullptr)
 		, mCollider(nullptr)
 		, mState(eState::End)
-		, mhitDelay(0.0f)
 		, mbInvincible(false)
 		, mbPortalState(false)
 		, mbRopeState(false)
@@ -184,25 +186,15 @@ namespace ex
 	void Player::Update()
 	{
 
-		if (mState == eState::Hit || mhitDelay > 0.0f)
+		if (mbInvincible)
 		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 			mhitDelay += Time::GetDeltaTime();
-			if (mhitDelay >= 1.0f)
+			if (mhitDelay >= 1.5f)
 			{
-				CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 				mbInvincible = false;
 				mhitDelay = 0.0f;
-
-				bool bCheack = mRigidbody->GetGround();
-				if (bCheack)
-				{
-					mState = eState::Idle;
-				}
 			}
 		}
-
-
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, false);
@@ -611,21 +603,21 @@ namespace ex
 			mRigidbody->SetFriction(0.0f);
 		}
 
-		// Move 중 피격 상태
-		bool bCheck = mCollider->GetCollisionType();
-		if (bCheck && !mbInvincible)
-		{
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-			}
-			else if (playerDir == enums::eMoveDir::Right)
-			{
-				mAnimator->PlayAnimation(L"PlayerRightHit", true);
-			}
-			mState = eState::Hit;
-			velocity.x = 0;
-		}
+		//// Move 중 피격 상태
+		//bool bCheck = mCollider->GetCollisionType();
+		//if (bCheck && !mbInvincible)
+		//{
+		//	if (playerDir == enums::eMoveDir::Left)
+		//	{
+		//		mAnimator->PlayAnimation(L"PlayerLeftHit", true);
+		//	}
+		//	else if (playerDir == enums::eMoveDir::Right)
+		//	{
+		//		mAnimator->PlayAnimation(L"PlayerRightHit", true);
+		//	}
+		//	mState = eState::Hit;
+		//	velocity.x = 0;
+		//}
 
 		mRigidbody->SetVelocity(velocity);
 	}
@@ -902,6 +894,7 @@ namespace ex
 
 		mbDoubleJump = false;
 		velocity.x = 0.0f;
+
 		if (playerDir == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PlayerLeftHit", true);
@@ -1056,7 +1049,7 @@ namespace ex
 		if (bCheck)
 		{
 			bool bGround = mRigidbody->GetGround();
-			
+
 			if (bGround)
 			{
 				if (playerDir == enums::eMoveDir::Left)
@@ -1266,23 +1259,19 @@ namespace ex
 
 	void Player::OnCollisionEnter(Collider* _other)
 	{
-		enums::eLayerType Type = _other->GetOwner()->GetLayerType();
 		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
-		if (Type == enums::eLayerType::Monster && mbInvincible == false)
+		if (nullptr != monsters && mbInvincible == false)
 		{
 			mCollider->SetCollisionType(true);
-			mInfo->mHp -= monsters->GetMonstersInfo().mDamage;
-			mState = eState::Hit;
 		}
-
 	}
 	void Player::OnCollisionStay(Collider* _other)
 	{
-		//enums::eLayerType Type = _other->GetOwner()->GetLayerType();
-		//if (Type == enums::eLayerType::Potal)
-		//{
-		//	mbPortalState = true;
-		//}
+		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
+		if (nullptr != monsters && mbInvincible == false)
+		{
+			mCollider->SetCollisionType(true);
+		}
 	}
 	void Player::OnCollisionExit(Collider* _other)
 	{

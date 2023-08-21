@@ -106,7 +106,8 @@ namespace ex
 		}
 		Player* player = SceneManager::GetPlayer();
 		player->GetInfo()->mHp -= mMonsterResultDamage;
-
+		player->SetState(eState::Hit);
+		player->SetInvincible(true);
 	}
 
 

@@ -24,6 +24,7 @@ namespace ex
 
 		void SetMoveDelay(float _delay) { mMoveDelay = _delay; }
 		float GetMoveDelay() { return mMoveDelay; }
+		int GetSkillDamage() { return mSkillDamage; }
 
 		void Idle();
 		void Move();
@@ -33,6 +34,9 @@ namespace ex
 		void Dead();
 
 	private:
+		int		mSkillDamage;
+		float	mAttackDelay;
+
 	};
 
 }

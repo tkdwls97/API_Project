@@ -277,7 +277,7 @@ namespace ex
 		}
 
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr)
+		if (player != nullptr && player->IsInvincible() == false)
 		{
 			DamageManager* damage = new DamageManager();
 			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));

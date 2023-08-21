@@ -30,20 +30,85 @@ namespace ex
 
 	void StageScene3::Initialize()
 	{
-
+		// 게이트키퍼
 		GateKeeper* gateKeeper1 = object::Instantiate<GateKeeper>(enums::eLayerType::Monster);
 		Transform* gateKeeperTr1 = gateKeeper1->GetComponent<Transform>();
 		gateKeeperTr1->SetMoveDir(enums::eMoveDir::Left);
 		gateKeeperTr1->SetPosition(math::Vector2(500.0f, 750.0f));
-		gateKeeper1->SetMoveDelay(3.0f);
+		gateKeeper1->SetMoveDelay(5.1f);
 		gateKeeper1->Initialize();
 
+		GateKeeper* gateKeeper2 = object::Instantiate<GateKeeper>(enums::eLayerType::Monster);
+		Transform* gateKeeperTr2 = gateKeeper2->GetComponent<Transform>();
+		gateKeeperTr2->SetMoveDir(enums::eMoveDir::Right);
+		gateKeeperTr2->SetPosition(math::Vector2(770.0f, 750.0f));
+		gateKeeper2->SetMoveDelay(6.4f);
+		gateKeeper2->Initialize();
+
+		GateKeeper* gateKeeper3 = object::Instantiate<GateKeeper>(enums::eLayerType::Monster);
+		Transform* gateKeeperTr3 = gateKeeper3->GetComponent<Transform>();
+		gateKeeperTr3->SetMoveDir(enums::eMoveDir::Left);
+		gateKeeperTr3->SetPosition(math::Vector2(1100.0f, 750.0f));
+		gateKeeper3->SetMoveDelay(3.6f);
+		gateKeeper3->Initialize();
+
+		GateKeeper* gateKeeper4 = object::Instantiate<GateKeeper>(enums::eLayerType::Monster);
+		Transform* gateKeeperTr4 = gateKeeper4->GetComponent<Transform>();
+		gateKeeperTr4->SetMoveDir(enums::eMoveDir::Right);
+		gateKeeperTr4->SetPosition(math::Vector2(1400.0f, 750.0f));
+		gateKeeper4->SetMoveDelay(4.1f);
+		gateKeeper4->Initialize();
+
+		GateKeeper* gateKeeper5 = object::Instantiate<GateKeeper>(enums::eLayerType::Monster);
+		Transform* gateKeeperTr5 = gateKeeper5->GetComponent<Transform>();
+		gateKeeperTr5->SetMoveDir(enums::eMoveDir::Left);
+		gateKeeperTr5->SetPosition(math::Vector2(1700.0f, 750.0f));
+		gateKeeper5->SetMoveDelay(3.7f);
+		gateKeeper5->Initialize();
+
+		GateKeeper* gateKeeper6 = object::Instantiate<GateKeeper>(enums::eLayerType::Monster);
+		Transform* gateKeeperTr6 = gateKeeper6->GetComponent<Transform>();
+		gateKeeperTr6->SetMoveDir(enums::eMoveDir::Left);
+		gateKeeperTr6->SetPosition(math::Vector2(1300.0f, 750.0f));
+		gateKeeper6->SetMoveDelay(4.32f);
+		gateKeeper6->Initialize();
+
+
+		// 타나토스
 		Thanatos* thanatos1 = object::Instantiate<Thanatos>(enums::eLayerType::Monster);
 		Transform* thanatosTr1 = thanatos1->GetComponent<Transform>();
 		thanatosTr1->SetMoveDir(enums::eMoveDir::Left);
 		thanatosTr1->SetPosition(math::Vector2(180.0f, 750.0f));
-		thanatos1->SetMoveDelay(3.0f);
+		thanatos1->SetMoveDelay(5.71f);
 		thanatos1->Initialize();
+
+		Thanatos* thanatos2 = object::Instantiate<Thanatos>(enums::eLayerType::Monster);
+		Transform* thanatosTr2 = thanatos2->GetComponent<Transform>();
+		thanatosTr2->SetMoveDir(enums::eMoveDir::Right);
+		thanatosTr2->SetPosition(math::Vector2(-30.0f, 750.0f));
+		thanatos2->SetMoveDelay(4.22f);
+		thanatos2->Initialize();
+
+		Thanatos* thanatos3 = object::Instantiate<Thanatos>(enums::eLayerType::Monster);
+		Transform* thanatosTr3 = thanatos3->GetComponent<Transform>();
+		thanatosTr3->SetMoveDir(enums::eMoveDir::Left);
+		thanatosTr3->SetPosition(math::Vector2(-200.0f, 750.0f));
+		thanatos3->SetMoveDelay(4.774f);
+		thanatos3->Initialize();
+
+		Thanatos* thanatos4 = object::Instantiate<Thanatos>(enums::eLayerType::Monster);
+		Transform* thanatosTr4 = thanatos4->GetComponent<Transform>();
+		thanatosTr4->SetMoveDir(enums::eMoveDir::Right);
+		thanatosTr4->SetPosition(math::Vector2(-310.0f, 750.0f));
+		thanatos4->SetMoveDelay(3.447f);
+		thanatos4->Initialize();
+
+		Thanatos* thanatos5 = object::Instantiate<Thanatos>(enums::eLayerType::Monster);
+		Transform* thanatosTr5 = thanatos5->GetComponent<Transform>();
+		thanatosTr5->SetMoveDir(enums::eMoveDir::Left);
+		thanatosTr5->SetPosition(math::Vector2(-480.0f, 750.0f));
+		thanatos5->SetMoveDelay(2.7f);
+		thanatos5->Initialize();
 
 
 

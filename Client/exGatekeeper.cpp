@@ -10,6 +10,7 @@
 #include "exPlayer.h"
 #include "exSceneManager.h"
 #include "exDamageManager.h"
+#include "exGateKeeperAttack.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -21,11 +22,13 @@
 namespace ex
 {
 	GateKeeper::GateKeeper()
+		: mAttackDelay(0)
 	{
 		mMonstersInfo.mMaxHp = 30000000;
 		mMonstersInfo.mHp = 30000000;
 		mMonstersInfo.mLevel = 180;
 		mMonstersInfo.mDamage = 1212;
+		mSkillDamage = 257;
 	}
 
 	GateKeeper::~GateKeeper()
@@ -47,6 +50,9 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"GateKeeperLeftDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Die\\Left");
 
+		mAnimator->CreateAnimationFolder(L"GateKeeperLeftAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Attack\\Left", math::Vector2(-100.0f, -100.0f), 0.15f);
+
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"GateKeeperRightIdle",
@@ -59,7 +65,10 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Hit\\Right");
 
 		mAnimator->CreateAnimationFolder(L"GateKeeperRightDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Die\\Right");;
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Die\\Right");
+
+		mAnimator->CreateAnimationFolder(L"GateKeeperRightAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Attack\\Right", math::Vector2(100.0f, -100.0f), 0.15f);
 
 		mCollider->SetSize(math::Vector2(200.0f, 130.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
@@ -135,6 +144,30 @@ namespace ex
 				mAnimator->PlayAnimation(L"GateKeeperRightIdle", true);
 			}
 		}
+
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
+		float distanceX = fabs(playerPos.x - this->GetPositionX());
+		float distanceY = fabs(playerPos.y - this->GetPositionY());
+
+		if (distanceX < 300.0f && distanceY < 50.0f)
+		{
+			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+			float GateKeeperPosX = mTransform->GetPositionX();
+
+			if (playerPosX <= GateKeeperPosX)
+			{
+				mAnimator->PlayAnimation(L"GateKeeperLeftAttack", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"GateKeeperRightAttack", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+			GateKeeperAttack* gateKeeperAttack = new GateKeeperAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, gateKeeperAttack);
+			mMonsterState = eMonsterState::Attack;
+		}
 	}
 
 	void GateKeeper::Move()
@@ -160,11 +193,41 @@ namespace ex
 			}
 		}
 
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
+		float distanceX = fabs(playerPos.x - this->GetPositionX());
+		float distanceY = fabs(playerPos.y - this->GetPositionY());
+		if (distanceX < 300.0f && distanceY < 50.0f)
+		{
+			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+			float GateKeeperPosX = mTransform->GetPositionX();
+			if (playerPosX <= GateKeeperPosX)
+			{
+				mAnimator->PlayAnimation(L"GateKeeperLeftAttack", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"GateKeeperRightAttack", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+			mTransform->SetMoveDir(mDirection);
+			GateKeeperAttack* gateKeeperAttack = new GateKeeperAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, gateKeeperAttack);
+			mMonsterState = eMonsterState::Attack;
+		}
+
 		mTransform->SetPosition(pos);
 	}
 
 	void GateKeeper::Attack()
 	{
+		mAttackDelay += Time::GetDeltaTime();
+
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			mMonsterState = eMonsterState::Move;
+		}
 	}
 
 	void GateKeeper::Chase()
@@ -173,24 +236,35 @@ namespace ex
 
 	void GateKeeper::Hit()
 	{
-		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-
-		if (playerDir == enums::eMoveDir::Left)
-		{
-			mAnimator->PlayAnimation(L"GateKeeperRightHit", false);
-		}
-		else
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float GateKeeperPosX = mTransform->GetPositionX();
+		if (playerPosX <= GateKeeperPosX)
 		{
 			mAnimator->PlayAnimation(L"GateKeeperLeftHit", false);
-
-		}
-		if (playerDir == enums::eMoveDir::Left)
-		{
-			mDirection = enums::eMoveDir::Right;
+			mDirection = enums::eMoveDir::Left;
 		}
 		else
 		{
-			mDirection = enums::eMoveDir::Left;
+			mAnimator->PlayAnimation(L"GateKeeperRightHit", false);
+			mDirection = enums::eMoveDir::Right;
+		}
+		mHitDelay += Time::GetDeltaTime();
+
+
+
+		if (mHitDelay >= 1.3f)
+		{
+			if (mDirection == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"GateKeeperLeftMove", true);
+				mMonsterState = eMonsterState::Move;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"GateKeeperRightHit", true);
+				mMonsterState = eMonsterState::Move;
+			}
+			mHitDelay = 0.0f;
 		}
 
 		if (mMonstersInfo.mHp <= 0)
@@ -276,17 +350,23 @@ namespace ex
 		}
 
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr)
+		if (player != nullptr && player->IsInvincible() == false)
 		{
 			DamageManager* damage = new DamageManager();
 			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
 			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
-
 		}
 	}
 
 	void GateKeeper::OnCollisionStay(Collider* _other)
 	{
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		if (player != nullptr && player->IsInvincible() == false)
+		{
+			DamageManager* damage = new DamageManager();
+			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+		}
 	}
 
 	void GateKeeper::OnCollisionExit(Collider* _other)

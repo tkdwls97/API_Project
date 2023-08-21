@@ -94,7 +94,7 @@ namespace ex
 	void MushMomSkill::OnCollisionEnter(Collider* _other)
 	{
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr)
+		if (player != nullptr && player->IsInvincible() == false)
 		{
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{

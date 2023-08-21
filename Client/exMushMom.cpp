@@ -157,14 +157,14 @@ namespace ex
 		{
 			MushMomSkill* mushMomSkill = new MushMomSkill(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mushMomSkill);
-
-			if (mDirection == enums::eMoveDir::Left)
+			enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+			if (playerDir == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
 			}
 			mMonsterState = eMonsterState::Attack;
 		}
@@ -200,14 +200,15 @@ namespace ex
 		{
 			MushMomSkill* mushMomSkill = new MushMomSkill(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mushMomSkill);
+			enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 
-			if (mDirection == enums::eMoveDir::Left)
+			if (playerDir == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
 			}
 			mMonsterState = eMonsterState::Attack;
 		}
@@ -355,12 +356,12 @@ namespace ex
 		}
 
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr)
+		
+		if (player != nullptr && player->IsInvincible() == false)
 		{
 			DamageManager* damage = new DamageManager();
 			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
 			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
-
 		}
 	}
 

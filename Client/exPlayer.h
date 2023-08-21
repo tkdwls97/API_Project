@@ -49,6 +49,10 @@ namespace ex
 		bool IsRopeState() { return mbRopeState ; }
 		void SetRopeState(bool _state) { mbRopeState = _state; }
 
+		bool IsInvincible() { return mbInvincible; }
+		void SetInvincible(bool _data) { mbInvincible = _data; }
+
+
 		void Idle();
 		void Move();
 		void Down();
@@ -77,6 +81,6 @@ namespace ex
 		bool			mbPortalState;
 		bool			mbRopeState;
 		bool			mbInvincible;
-		float			mhitDelay;
+		static float	mhitDelay;
 	};
 }
