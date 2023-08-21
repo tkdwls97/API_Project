@@ -67,6 +67,7 @@ namespace ex
 		void RaisingBlow();
 		void Uppercharge();
 		void PlayerRush();
+		void Combo();
 
 	private:
 		Animator*		mAnimator;

@@ -19,6 +19,7 @@
 #include "exRaisingblow.h"
 #include "exUpperCharge.h"
 #include "exRush.h"
+#include "exComboDeathFaultPlayer.h"
 
 
 namespace ex
@@ -1008,7 +1009,6 @@ namespace ex
 			}
 			mState = eState::Down;
 		}
-		mbInvincible = true;
 		mRigidbody->SetVelocity(velocity);
 	}
 

@@ -64,6 +64,7 @@ namespace ex
 	private:
 		eTextureType mTexType;
 		Gdiplus::Image* mImage;
+		Gdiplus::Bitmap* mGdiBitMap;
 
 		HBITMAP mBitmap;
 		HDC mHdc;

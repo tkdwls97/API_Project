@@ -99,36 +99,26 @@ namespace ex
 		}
 
 		// png 파일
+		 // png 파일
 		else if (mTexType == eTextureType::Png)
 		{
-			//// 내가 원하는 픽셀을 투명화 시킬떄
-			Gdiplus::ImageAttributes imageAtt = {};
-			//// 투명화 시킬 픽셀 색 범위
-			imageAtt.SetColorKey(Gdiplus::Color(100,100,100)
-				, Gdiplus::Color(255, 255, 255));
+			BLENDFUNCTION func = {};
+			func.BlendOp = AC_SRC_OVER;
+			func.BlendFlags = 0;
+			func.AlphaFormat = AC_SRC_ALPHA;
+			func.SourceConstantAlpha = 255;
 
-			Gdiplus::Graphics graphics(hdc);
-			graphics.DrawImage(mImage
-				, Gdiplus::Rect
-				(
-					(int)(pos.x - (size.x * scale.x / 2.0f))
-					, (int)(pos.y - (size.y * scale.y / 2.0f))
-					, (int)(size.x * scale.x)
-					, (int)(size.y * scale.y)
-				)
+			GdiAlphaBlend(hdc
+				, (int)pos.x - (int)(size.x * scale.x / 2.0f)
+				, (int)pos.y - (int)(size.y * scale.y / 2.0f)
+				, (int)(size.x * scale.x)
+				, (int)(size.y * scale.y)
+				, mHdc
 				, (int)leftTop.x
 				, (int)leftTop.y
 				, (int)rightBottom.x
 				, (int)rightBottom.y
-				, Gdiplus::UnitPixel
-				, nullptr);
-
-			//Gdiplus::Graphics graphics(hdc);
-			//graphics.DrawImage(m_Texture->GetImage()
-			//	, (int)(pos.x - (m_Texture->GetWidth() * m_Scale.x / 2.0f))
-			//	, (int)(pos.y - (m_Texture->GetWidth() * m_Scale.y / 2.0f))
-			//	, (int)(m_Texture->GetWidth() * m_Scale.x)
-			//	, (int)(m_Texture->GetHeight() * m_Scale.y));
+				, func);
 		}
 	}
 
@@ -196,9 +186,28 @@ namespace ex
 		else if (ext == L"png")
 		{
 			mTexType = eTextureType::Png;
-			
+
+			ULONG_PTR ptrGdi;                        //Gdi+사용을 위한 포인터객체
+			Gdiplus::GdiplusStartupInput inputGdi;         //gdi+입력값객체
+			Gdiplus::GdiplusStartup(&ptrGdi, &inputGdi, 0);   //시작
+
+
 			// image.png 파일을 이용하여 Texture 객체를 생성합니다.
 			mImage = Gdiplus::Image::FromFile(_path.c_str());
+
+			//파일로부터 비트맵받기
+			mGdiBitMap = Gdiplus::Bitmap::FromFile(_path.c_str());
+
+			//비트맵정보를 HBITMAP m_hBit에 복사
+			mGdiBitMap->GetHBITMAP(Gdiplus::Color(0, 0, 0, 0), &mBitmap);
+
+			HDC mainDC = application.GetHdc();
+
+			mHdc = ::CreateCompatibleDC(mainDC);
+
+			// 비트맵과 DC 연결
+			HBITMAP hPrevBit = (HBITMAP)SelectObject(mHdc, mBitmap);
+			DeleteObject(hPrevBit);
 
 			assert(mImage);
 
