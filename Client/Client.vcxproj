@@ -157,6 +157,8 @@
     <ClCompile Include="exPlayerAttack.cpp" />
     <ClCompile Include="exHpBar.cpp" />
     <ClCompile Include="exMpBar.cpp" />
+    <ClCompile Include="exSound.cpp" />
+    <ClCompile Include="exSoundManager.cpp" />
     <ClCompile Include="exStatusBar.cpp" />
     <ClCompile Include="exPortal.cpp" />
     <ClCompile Include="exRaisingblow.cpp" />
@@ -231,6 +233,8 @@
     <ClInclude Include="exPlayerAttack.h" />
     <ClInclude Include="exHpBar.h" />
     <ClInclude Include="exMpBar.h" />
+    <ClInclude Include="exSound.h" />
+    <ClInclude Include="exSoundManager.h" />
     <ClInclude Include="exStatusBar.h" />
     <ClInclude Include="exPortal.h" />
     <ClInclude Include="exRaisingblow.h" />

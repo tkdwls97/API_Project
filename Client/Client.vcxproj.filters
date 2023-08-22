@@ -244,6 +244,12 @@
     <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.PapulatusHpBar">
       <UniqueIdentifier>{804b21df-7d98-4b0b-a814-974e75e55d4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Sound">
+      <UniqueIdentifier>{ace8a06c-9140-4ef5-bf71-3ae798e38043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Sound\00.SoundManager">
+      <UniqueIdentifier>{67eb0531-24a7-4f05-a332-27c5a8df6f23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -452,6 +458,12 @@
     </ClCompile>
     <ClCompile Include="exStatusBar.cpp">
       <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
+    </ClCompile>
+    <ClCompile Include="exSound.cpp">
+      <Filter>Engine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="exSoundManager.cpp">
+      <Filter>Engine\Sound\00.SoundManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -670,6 +682,12 @@
     </ClInclude>
     <ClInclude Include="exPapulatusHpBar.h">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.PapulatusHpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="exSound.h">
+      <Filter>Engine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="exSoundManager.h">
+      <Filter>Engine\Sound\00.SoundManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

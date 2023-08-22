@@ -5,6 +5,7 @@
 #include "exInput.h"
 #include "exTexture.h"
 #include "exResourceManager.h"
+#include "exSound.h"
 #include "exBackGround.h"
 #include "exTransform.h"
 #include "exCamera.h"
@@ -54,6 +55,9 @@ namespace ex
 		bgsr->SetAffectCamera(true);
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
+
+		//Sound* titleSound = ResourceManager::Load<Sound>(L"TitleSound", L"..\\Resources\\Maple\\Sound\\Stage\\Title.wav");
+		//titleSound->Play(true);
 
 		Login* login = object::Instantiate<Login>(enums::eLayerType::Floor);
 		login->Initialize();

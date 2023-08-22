@@ -212,7 +212,7 @@ namespace ex
 
 		// 어택을 안했을때는 충돌체크를 끄기위해 설정
 		if (mState == eState::Attack || mState == eState::JumpAttack || mState == eState::RaisingBlow ||
-			mState == eState::UpperCharge || mState == eState::Rush)
+			mState == eState::UpperCharge || mState == eState::Rush || mState == eState::ComboDeathFault)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
 		}
@@ -1350,12 +1350,6 @@ namespace ex
 	void Player::OnCollisionExit(Collider* _other)
 	{
 		mCollider->SetCollisionType(false);
-
-		//Portal* potal = dynamic_cast<Portal*>(_other->GetOwner());
-		//if (potal != nullptr)
-		//{
-		//	mbPortalState = false;
-		//}
 	}
 
 }

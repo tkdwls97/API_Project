@@ -46,6 +46,8 @@ namespace ex
 		mAnimator->SetScale(math::Vector2(1.0f, 1.3f));
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
+		playerPos.x += Camera::GetExceedX();
+		playerPos.y += Camera::GetExceedY();
 
 		mTransform->SetPosition(math::Vector2(playerPos));
 		mAnimator->SetAffectedCamera(true);
@@ -103,6 +105,7 @@ namespace ex
 		{
 			ComboDeathFaultHit* comboDeathFaultHit = new ComboDeathFaultHit(_other->GetOwner());
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeathFaultHit);
+
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				DamageManager* damage = new DamageManager();

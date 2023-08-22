@@ -5,6 +5,7 @@
 #include "exSceneManager.h"
 #include "exCamera.h"
 #include "exCollisionManager.h"
+#include "exSoundManager.h"
 
 
 ex::Application::Application()
@@ -58,6 +59,7 @@ void ex::Application::Initialize(HWND Hwnd)
 	Input::Initialize();
 	Camera::Initialize();
 	CollisionManager::Initialize();
+	SoundManager::Initialize();
 	SceneManager::Initialize();
 }
 

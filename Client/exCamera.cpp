@@ -18,6 +18,8 @@ namespace ex
 	std::list<CameraEffect> Camera::mlistCamEffect = {};
 	Texture*				Camera::mWhiteText = nullptr;
 	Texture*				Camera::mBlackText = nullptr;
+	float					Camera::mExceedX = 0.0f;
+	float					Camera::mExceedY = 0.0f;
 
 	bool Camera::mbColliderCheck = false;
 
@@ -86,20 +88,32 @@ namespace ex
 		// 보다 작아지지 않게(왼쪽으로가면 -= x) 리미트 값으로 고정함
 		if (mDistance.x <= mWidthLimit.x)
 		{
+			mExceedX = mWidthLimit.x - mDistance.x;
 			mDistance.x = mWidthLimit.x;
 		}
-		if (mDistance.x >= mWidthLimit.y)
+		else if (mDistance.x >= mWidthLimit.y)
 		{
+			mExceedX = mWidthLimit.y - mDistance.x;
 			mDistance.x = mWidthLimit.y;
+		}
+		else
+		{
+			mExceedX = 0.0f;
 		}
 
 		if (mDistance.y <= mHeightLimit.x)
 		{
+			mExceedY = mHeightLimit.x - mDistance.y;
 			mDistance.y = mHeightLimit.x;
 		}
-		if (mDistance.y >= mHeightLimit.y)
+		else if (mDistance.y >= mHeightLimit.y)
 		{
+			mExceedY = mHeightLimit.y - mDistance.y;
 			mDistance.y = mHeightLimit.y;
+		}
+		else
+		{
+			mExceedY = 0.0f;
 		}
 	}
 

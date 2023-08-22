@@ -241,16 +241,17 @@ namespace ex
 	{
 		mbMushMomHit = true;
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
-		if (playerDir == enums::eMoveDir::Left)
-		{
-			mAnimator->PlayAnimation(L"MushMomRightHit", false);
-			mDirection = enums::eMoveDir::Right;
-		}
-		else
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float GateKeeperPosX = mTransform->GetPositionX();
+		if (playerPosX <= GateKeeperPosX)
 		{
 			mAnimator->PlayAnimation(L"MushMomLeftHit", false);
 			mDirection = enums::eMoveDir::Left;
-
+		}
+		else
+		{
+			mAnimator->PlayAnimation(L"GateKeeperRightHit", false);
+			mDirection = enums::eMoveDir::Right;
 		}
 		mHitDelay += Time::GetDeltaTime();
 

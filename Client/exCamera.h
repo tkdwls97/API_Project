@@ -51,6 +51,9 @@ namespace ex
 		static math::Vector2 GetLookPosition() { return mLookPosition; }
 		static bool GetColliderCheck() { return mbColliderCheck; }
 
+		static float GetExceedX() { return mExceedX; }
+		static float GetExceedY() { return mExceedY; }
+
 		//static void SetLimitDistance(math::Vector2 CameraLimit)
 		//{
 		//	mCameraLimit = CameraLimit;
@@ -76,6 +79,10 @@ namespace ex
 
 		static math::Vector2 mWidthLimit;
 		static math::Vector2 mHeightLimit;
+
+		static float mExceedX;
+		static float mExceedY;
+
 		static bool mbColliderCheck;
 
 		static std::list<CameraEffect>  mlistCamEffect;	// 카메라 효과 이벤트 리스트
