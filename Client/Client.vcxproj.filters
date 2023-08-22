@@ -232,6 +232,18 @@
     <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\01.ThanatosAttack">
       <UniqueIdentifier>{6565bdd5-ef22-46f5-81d2-60a29b63cd0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\00.ComboDeathFaultPlayer">
+      <UniqueIdentifier>{8dd627ff-47c1-4daa-bff6-70592d894cc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\01.ComboDeathFaultScreen">
+      <UniqueIdentifier>{5a207123-d89f-48e3-8829-3d484d2f5086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\02.ComboDeathFaultHit">
+      <UniqueIdentifier>{e8faf784-7236-463c-a4a5-74f37676e99c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.PapulatusHpBar">
+      <UniqueIdentifier>{804b21df-7d98-4b0b-a814-974e75e55d4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -396,9 +408,6 @@
     <ClCompile Include="exRush.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush</Filter>
     </ClCompile>
-    <ClCompile Include="exComboDeathFault.cpp">
-      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault</Filter>
-    </ClCompile>
     <ClCompile Include="exHpBar.cpp">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\00.PlayerBar\00.HpBar</Filter>
     </ClCompile>
@@ -423,8 +432,26 @@
     <ClCompile Include="exMushMomHpBar.cpp">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar</Filter>
     </ClCompile>
-    <ClCompile Include="exStatusBar.cpp">
+    <ClCompile Include="exComboDeathFaultPlayer.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\00.ComboDeathFaultPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="exComboDeathFaultScreen.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\01.ComboDeathFaultScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="exComboDeathFaultHit.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\02.ComboDeathFaultHit</Filter>
+    </ClCompile>
+    <ClCompile Include="exGateKeeperAttack.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\00.GateKeeperAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="exThanatosAttack.cpp">
       <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\01.ThanatosAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusHpBar.cpp">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.PapulatusHpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="exStatusBar.cpp">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -599,9 +626,6 @@
     <ClInclude Include="exRush.h">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\04.Rush</Filter>
     </ClInclude>
-    <ClInclude Include="exComboDeathFault.h">
-      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault</Filter>
-    </ClInclude>
     <ClInclude Include="exStatusBar.h">
       <Filter>Contents\GameObject\04.UI\00.StatusBar</Filter>
     </ClInclude>
@@ -628,6 +652,24 @@
     </ClInclude>
     <ClInclude Include="exMushMomHpBar.h">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar</Filter>
+    </ClInclude>
+    <ClInclude Include="exComboDeathFaultPlayer.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\00.ComboDeathFaultPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="exComboDeathFaultScreen.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\01.ComboDeathFaultScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="exComboDeathFaultHit.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\05.ComboDeathFault\02.ComboDeathFaultHit</Filter>
+    </ClInclude>
+    <ClInclude Include="exGateKeeperAttack.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\00.GateKeeperAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="exThanatosAttack.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\01.ThanatosAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusHpBar.h">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\01.PapulatusHpBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

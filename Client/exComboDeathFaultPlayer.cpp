@@ -52,7 +52,6 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"RightRaisingblow", false);
 		}
-
 	}
 
 	ComboDeathFaultPlayer::~ComboDeathFaultPlayer()
