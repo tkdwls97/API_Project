@@ -15,11 +15,12 @@
 #include "exFloor.h"
 #include "exWall.h"
 #include "exPapulatusHpBar.h"
+#include "exSound.h"
 
 namespace ex
 {
-
 	BossScene::BossScene()
+		: mBossSceneSound(nullptr)
 	{
 	}
 
@@ -32,7 +33,7 @@ namespace ex
 		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
 		papulatus->Initialize();
 		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		papulatusTr->SetPosition(math::Vector2(900.0f, 345.0f));
+		papulatusTr->SetPosition(math::Vector2(900.0f, 320.0f));
 
 		PapulatusHpBar* papulatusHpBar = new PapulatusHpBar(papulatus);
 		object::ActiveSceneAddGameObject(enums::eLayerType::UI, papulatusHpBar);
@@ -161,12 +162,16 @@ namespace ex
 
 		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
 		Camera::SetTarget(player);
-		Camera::FadeIn(1.f, RGB(0, 0, 0));
+		Camera::FadeIn(1.0f, RGB(0, 0, 0));
+
+		mBossSceneSound = ResourceManager::Load<Sound>(L"BossSceneSound", L"..\\Resources\\Maple\\Sound\\Stage\\PapulatusRoom.wav");
+		mBossSceneSound->Play(true);
 
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
+		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Player, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Effect, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Potal, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Monster, enums::eLayerType::Floor, true);
@@ -175,6 +180,7 @@ namespace ex
 	}
 	void BossScene::SceneOut()
 	{
+		//mBossSceneSound->Stop(true);
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();
 	}

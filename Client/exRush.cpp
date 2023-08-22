@@ -12,12 +12,14 @@
 #include "exAnimation.h"
 #include "exMonsters.h"
 #include "exDamageManager.h"
+#include "exSound.h"
 
 namespace ex
 {
 	Rush::Rush(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mRushSound(nullptr)
 	{
 
 		mRushInfo.AttackCount = 1;
@@ -66,6 +68,8 @@ namespace ex
 			mAnimator->PlayAnimation(L"RightRush", false);
 		}
 
+		mRushSound = ResourceManager::Load<Sound>(L"RushSound", L"..\\Resources\\Maple\\Sound\\Skill\\Rush.wav");
+		mRushSound->Play(false);
 	}
 
 	Rush::~Rush()

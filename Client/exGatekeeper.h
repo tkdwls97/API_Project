@@ -7,6 +7,7 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Rigidbody;
+	class Sound;
 
 	class GateKeeper : public Monsters
 	{
@@ -36,6 +37,9 @@ namespace ex
 	private:
 		int		mSkillDamage;
 		float	mAttackDelay;
+
+		Sound* mGateKeeperHitSound;
+		Sound* mGateKeeperDeadSound;
 	};
 
 }

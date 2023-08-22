@@ -3,6 +3,7 @@
 
 namespace ex
 {
+	class Sound;
 
 	class MushMom : public Monsters
 	{
@@ -40,6 +41,9 @@ namespace ex
 		int		mSkillDamage;
 		float	mAttackDelay;
 		bool	mbMushMomHit;
+
+		Sound* mMushMomHitSound;
+		Sound* mMushMomDeadSound;
 	};
 
 }

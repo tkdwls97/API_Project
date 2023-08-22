@@ -6,6 +6,8 @@ namespace ex
 {
 	class Portal;
 	class MushMom;
+	class Sound;
+
 	class MushMomScene : public Scene
 	{
 	public:
@@ -25,6 +27,8 @@ namespace ex
 		Portal* mPortal;
 		MushMom* mMushMom;
 		bool	mbMushMomHit;
+
+		Sound* mMushMomSceneSound;
 	};
 }
 

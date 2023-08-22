@@ -12,13 +12,14 @@
 #include "exAnimation.h"
 #include "exMonsters.h"
 #include "exDamageManager.h"
-
+#include "exSound.h"
 
 namespace ex
 {
 	UpperCharge::UpperCharge(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mUpperChargeSound(nullptr)
 	{
 		mUpperChargeInfo.AttackCount = 1;
 		mUpperChargeInfo.DamagePercentage = 304;
@@ -61,6 +62,9 @@ namespace ex
 			mTransform->SetPosition(math::Vector2(playerPos.x, playerPos.y - 90.0f));
 			mAnimator->PlayAnimation(L"RightUpperCharge", false);
 		}
+
+		mUpperChargeSound = ResourceManager::Load<Sound>(L"UpperChargeSound", L"..\\Resources\\Maple\\Sound\\Skill\\UpperCharge.wav");
+		mUpperChargeSound->Play(false);
 
 	}
 

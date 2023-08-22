@@ -13,6 +13,7 @@
 #include "exMonsters.h"
 #include "exDamageManager.h"
 #include "exMushMom.h"
+#include "exSound.h"
 
 
 namespace ex
@@ -21,6 +22,7 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 		, mMonsterSkillDamege(0)
+		, mMushMomSkillSound(nullptr)
 	{
 		mMushMomSkillInfo.AttackCount = 1;
 		mMushMomSkillInfo.DamagePercentage = 9;
@@ -37,10 +39,14 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"MushMomRightAttackEffect",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Right",math::Vector2(5.0f,-85.0f), 0.03f);
 
+		mMushMomSkillSound = ResourceManager::Load<Sound>(L"MushMomSkillSound", L"..\\Resources\\Maple\\Sound\\Monster\\MushMom\\MushMom_Attack.wav");
+		mMushMomSkillSound->SetVolume(100.0f);
+		mMushMomSkillSound->Play(false);
+
 		mAnimator->SetScale(math::Vector2(1.3f, 1.3f));
 		enums::eMoveDir MushmomDir = _owner->GetTransform()->GetMoveDir();
 
-		mCollider->SetSize(math::Vector2(800.0f, 50.0f));
+		mCollider->SetSize(math::Vector2(950.0f, 50.0f));
 		math::Vector2 MushmomPos = _owner->GetPosition();
 		mTransform->SetPosition(math::Vector2(MushmomPos.x, MushmomPos.y + 75.0f));
 

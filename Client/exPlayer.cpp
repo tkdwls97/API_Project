@@ -8,6 +8,7 @@
 #include "exPortal.h"
 #include "exSceneManager.h"
 #include "exMonsters.h"
+#include "exSound.h"
 
 // Component
 #include "exTransform.h"
@@ -15,6 +16,7 @@
 #include "exAnimator.h"
 #include "exCollider.h"
 // Skill
+#include "exPlayerAttack.h"
 #include "exWarriorLeap.h"
 #include "exRaisingblow.h"
 #include "exUpperCharge.h"
@@ -37,6 +39,7 @@ namespace ex
 		, mbPortalState(false)
 		, mbRopeState(false)
 		, mbDoubleJump(false)
+		, mJumpSound(nullptr)
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
@@ -172,6 +175,11 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerRopeMove", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 2, math::Vector2(-23.0f, 0.0f));
 
+
+		// Player Sound
+		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
+
+
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(45.0f, 70.0f));
 		mCollider->SetOffset(math::Vector2(-12.0f, 10.0f));
@@ -201,24 +209,13 @@ namespace ex
 		}
 
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump ||
-			mState == eState::UpperCharge || mState == eState::Rush)
+			mState == eState::UpperCharge || mState == eState::Rush || mState == eState::ComboDeathFault)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 		}
 		else
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
-		}
-
-		// 어택을 안했을때는 충돌체크를 끄기위해 설정
-		if (mState == eState::Attack || mState == eState::JumpAttack || mState == eState::RaisingBlow ||
-			mState == eState::UpperCharge || mState == eState::Rush || mState == eState::ComboDeathFault)
-		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
-		}
-		else
-		{
-			CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, false);
 		}
 
 		switch (mState)
@@ -362,6 +359,8 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 				mState = eState::Jump;
 			}
+
+			mJumpSound->Play(false);
 			mRigidbody->SetVelocity(velocity);
 		}
 
@@ -378,7 +377,8 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
 				mState = eState::Attack;
 			}
-
+			PlayerAttack* playerAttack = new PlayerAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerAttack);
 		}
 
 		// 레이징 블로우
@@ -494,12 +494,16 @@ namespace ex
 		// 이동중 공격 상태
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
+			PlayerAttack* playerAttack = new PlayerAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerAttack);
 			mAnimator->PlayAnimation(L"PlayerRightAttack", false);
 			mRigidbody->SetVelocity(0.0f);
 			mState = eState::Attack;
 		}
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Ctrl))
 		{
+			PlayerAttack* playerAttack = new PlayerAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerAttack);
 			mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
 			mRigidbody->SetVelocity(0.0f);
 			mState = eState::Attack;
@@ -589,6 +593,7 @@ namespace ex
 			velocity.y = -600.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
+			mJumpSound->Play(false);
 		}
 		else if ((Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump)) ||
 			(Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyPressed(eKeyCode::Jump)))
@@ -598,6 +603,7 @@ namespace ex
 			velocity.y = -600.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+			mJumpSound->Play(false);
 		}
 
 		// 좌우 키 입력 중 반대 방향 키 입력 시 Idle상태로 전환
@@ -637,21 +643,6 @@ namespace ex
 			mRigidbody->SetFriction(0.0f);
 		}
 
-		//// Move 중 피격 상태
-		//bool bCheck = mCollider->GetCollisionType();
-		//if (bCheck && !mbInvincible)
-		//{
-		//	if (playerDir == enums::eMoveDir::Left)
-		//	{
-		//		mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-		//	}
-		//	else if (playerDir == enums::eMoveDir::Right)
-		//	{
-		//		mAnimator->PlayAnimation(L"PlayerRightHit", true);
-		//	}
-		//	mState = eState::Hit;
-		//	velocity.x = 0;
-		//}
 
 		mRigidbody->SetVelocity(velocity);
 	}
@@ -687,9 +678,7 @@ namespace ex
 
 		if (Input::GetKeyPressed(eKeyCode::Down) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-
 			mRigidbody->SetGround(false);
-
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
@@ -700,7 +689,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerRightJump", true);
 				mState = eState::Fall;
 			}
-
+			mJumpSound->Play(false);
 		}
 
 
@@ -752,6 +741,7 @@ namespace ex
 			velocity.y = -200.0f;
 			mState = eState::Jump;
 			mRigidbody->SetVelocity(velocity);
+			mJumpSound->Play(false);
 		}
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
 		{
@@ -761,6 +751,7 @@ namespace ex
 			velocity.y = -200.0f;
 			mState = eState::Jump;
 			mRigidbody->SetVelocity(velocity);
+			mJumpSound->Play(false);
 		}
 		mTransform->SetPosition(pos);
 
@@ -792,7 +783,7 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightAttack", false);
 			}
-
+			mJumpSound->Play(false);
 		}
 
 		bool IsComplete = mAnimator->IsActiveAnimationComplete();
@@ -844,11 +835,15 @@ namespace ex
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftAttack", false);
+				PlayerAttack* playerAttack = new PlayerAttack(this);
+				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerAttack);
 				mState = eState::JumpAttack;
 			}
 			else
 			{
 				mAnimator->PlayAnimation(L"PlayerRightAttack", false);
+				PlayerAttack* playerAttack = new PlayerAttack(this);
+				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerAttack);
 				mState = eState::JumpAttack;
 			}
 		}
@@ -959,6 +954,8 @@ namespace ex
 			{
 				mAnimator->PlayAnimation(L"PlayerRightAttack", false);
 			}
+			PlayerAttack* playerAttack = new PlayerAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerAttack);
 			mState = eState::Attack;
 		}
 

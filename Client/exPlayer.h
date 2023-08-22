@@ -10,6 +10,7 @@ namespace ex
 	class Collider;
 	class Rigidbody;
 	class Texture;
+	class Sound;
 
 	class Player : public GameObject
 	{
@@ -77,11 +78,13 @@ namespace ex
 		
 		eState			mState;
 		PlayerInfo* 	mInfo;
+		Sound*			mJumpSound;
 
 		bool			mbDoubleJump;
 		bool			mbPortalState;
 		bool			mbRopeState;
 		bool			mbInvincible;
 		static float	mhitDelay;
+
 	};
 }

@@ -11,6 +11,7 @@
 #include "exSceneManager.h"
 #include "exDamageManager.h"
 #include "exThanatosAttack.h"
+#include "exSound.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -23,6 +24,8 @@
 namespace ex
 {
 	Thanatos::Thanatos()
+		: mThanatosHitSound(nullptr)
+		, mThanatosDeadSound(nullptr)
 	{
 		mMonstersInfo.mMaxHp = 27000000;
 		mMonstersInfo.mHp = 27000000;
@@ -69,6 +72,11 @@ namespace ex
 
 		mAnimator->CreateAnimationFolder(L"ThanatosRightAttack",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Attack\\Right", math::Vector2(0.0f, 0.0f), 0.1f);
+
+
+		mThanatosHitSound = ResourceManager::Load<Sound>(L"ThanatosHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\Thanatos\\Thanatos_Hit.wav");
+		mThanatosDeadSound = ResourceManager::Load<Sound>(L"ThanatosDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\Thanatos\\Thanatos_Die.wav");
+
 
 		mCollider->SetSize(math::Vector2(200.0f, 170.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
@@ -267,6 +275,7 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
+			mThanatosDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 	}
@@ -301,6 +310,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mThanatosHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -314,6 +324,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mThanatosHitSound->Play(false);
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
@@ -328,6 +339,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mThanatosHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -341,6 +353,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mThanatosHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -354,6 +367,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mThanatosHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 			}

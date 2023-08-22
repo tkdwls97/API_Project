@@ -11,6 +11,7 @@
 #include "exPlayer.h"
 #include "exSceneManager.h"
 #include "exDamageManager.h"
+#include "exSound.h"
 
 // PlayerSkill
 #include "exRaisingblow.h"
@@ -22,6 +23,7 @@
 namespace ex
 {
 	MasterRobo::MasterRobo()
+		: mMasterRoboDeadSound(nullptr)
 	{
 		mMonstersInfo.mMaxHp = 3500000;
 		mMonstersInfo.mHp = 3500000;
@@ -62,6 +64,8 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"MasterRoboRightDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\MasterRobo\\Die\\Right");;
 
+
+		mMasterRoboDeadSound = ResourceManager::Load<Sound>(L"MasterRoboDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\Robo\\Robo_Die.wav");
 		mCollider->SetSize(math::Vector2(80.0f, 92.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
 		mAnimator->SetAffectedCamera(true);
@@ -78,9 +82,6 @@ namespace ex
 			break;
 		case ex::Monsters::eMonsterState::Move:
 			Move();
-			break;
-		case ex::Monsters::eMonsterState::Attack:
-			Attack();
 			break;
 		case ex::Monsters::eMonsterState::Chase:
 			Chase();
@@ -161,10 +162,6 @@ namespace ex
 		mTransform->SetPosition(pos);
 	}
 
-	void MasterRobo::Attack()
-	{
-	}
-
 	void MasterRobo::Chase()
 	{
 	}
@@ -183,6 +180,7 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
+			mMasterRoboDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 	}

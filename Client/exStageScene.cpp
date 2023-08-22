@@ -22,11 +22,13 @@
 #include "exWall.h"
 #include "exRope.h"
 #include "exStatusBar.h"
+#include "exSound.h"
 
 namespace ex
 {
 
 	StageScene::StageScene()
+		: mStage1_Sound(nullptr)
 	{
 	}
 
@@ -283,6 +285,9 @@ namespace ex
 		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
 		Camera::SetTarget(player);
 
+		mStage1_Sound = ResourceManager::Load<Sound>(L"Stage1Sound", L"..\\Resources\\Maple\\Sound\\Stage\\Stage1.wav");
+		mStage1_Sound->Play(true);
+
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
@@ -296,6 +301,7 @@ namespace ex
 
 	void StageScene::SceneOut()
 	{
+		mStage1_Sound->Stop(true);
 		// 씬에서 나올때 카메라 타겟 초기화
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();

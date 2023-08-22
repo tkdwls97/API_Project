@@ -6,6 +6,7 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Transform;
+	class Sound;
 
 	class Rush : public EffectManger
 	{
@@ -29,6 +30,7 @@ namespace ex
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
+		Sound* mRushSound;
 
 		EffectInfo mRushInfo;
 	};

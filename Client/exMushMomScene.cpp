@@ -17,12 +17,14 @@
 #include "exPortal.h"
 #include "exRope.h"
 #include "exWall.h"
+#include "exSound.h"
 
 namespace ex
 {
 	MushMomScene::MushMomScene()
 		: mPortal(nullptr)
 		, mbMushMomHit(false)
+		, mMushMomSceneSound(nullptr)
 	{
 	}
 
@@ -257,6 +259,9 @@ namespace ex
 		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
 		Camera::SetTarget(player);
 
+		mMushMomSceneSound = ResourceManager::Load<Sound>(L"MushMomSceneSound", L"..\\Resources\\Maple\\Sound\\Stage\\MushMomRoom.wav");
+		mMushMomSceneSound->Play(true);
+
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Effect, enums::eLayerType::Monster, true);
@@ -272,6 +277,7 @@ namespace ex
 
 	void MushMomScene::SceneOut()
 	{
+		mMushMomSceneSound->Stop(true);
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();
 	}

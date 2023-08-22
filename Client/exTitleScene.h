@@ -4,6 +4,7 @@
 namespace ex
 {
 	class Login;
+	class Sound;
 	class TitleScene : public Scene
 	{
 	public:
@@ -18,5 +19,6 @@ namespace ex
 		virtual void SceneOut() override;
 
 	private:
+		Sound* mTitleSound;
 	};
 }

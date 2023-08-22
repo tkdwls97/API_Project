@@ -7,6 +7,7 @@ namespace ex
 	class Collider;
 	class Transform;
 	class GateKeeper;
+	class Sound;
 
 	class GateKeeperAttack : public EffectManger
 	{
@@ -33,7 +34,7 @@ namespace ex
 
 		EffectInfo mGateKeeperAttackInfo;
 		int	   mGateKeeperAttackDamege;
-
+		Sound* mGateKeeperAttackSound;
 	};
 
 }

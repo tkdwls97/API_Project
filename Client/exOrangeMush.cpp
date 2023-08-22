@@ -12,6 +12,7 @@
 #include "exPlayerAttack.h"
 #include "exPlayer.h"
 #include "exDamageManager.h"
+#include "exSound.h"
 
 // Player Skill
 #include "exRaisingblow.h"
@@ -25,6 +26,7 @@ namespace ex
 	OrangeMush::OrangeMush()
 		: mIdleDelay(0.0f)
 		, mMoveDelay(0.0f)
+		, mOrangeMushDeadSound(nullptr)
 	{
 		mMonstersInfo.mMaxHp = 5000;
 		mMonstersInfo.mHp = 5000;
@@ -57,6 +59,9 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"RightOrangeMushDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Nomal\\OrangeMush\\Die\\Right", math::Vector2(0.0f, 0.0f), 0.1f);
 
+		mOrangeMushDeadSound = ResourceManager::Load<Sound>(L"OrangeMushDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\Mush\\Mush_Die.wav");
+
+
 		mCollider->SetSize(math::Vector2(63.0f, 63.0f));
 		mCollider->SetOffset(math::Vector2(4.0f, 4.0f));
 		mAnimator->SetAffectedCamera(true);
@@ -73,9 +78,6 @@ namespace ex
 			break;
 		case ex::Monsters::eMonsterState::Move:
 			Move();
-			break;
-		case ex::Monsters::eMonsterState::Attack:
-			Attack();
 			break;
 		case ex::Monsters::eMonsterState::Chase:
 			Chase();
@@ -158,10 +160,6 @@ namespace ex
 		mTransform->SetPosition(pos);
 	}
 
-	void OrangeMush::Attack()
-	{
-	}
-
 	void OrangeMush::Chase()
 	{
 	}
@@ -180,6 +178,7 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
+			mOrangeMushDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 	}

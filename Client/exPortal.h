@@ -7,6 +7,7 @@ namespace ex
 	class Transform;
 	class Collider;
 	class Animator;
+	class Sound;
 
 	class Portal : public GameObject
 	{
@@ -26,6 +27,8 @@ namespace ex
 		Animator* mAnimator;
 		Transform* mTransform;
 		Collider* mCollider;
+		Sound*	  mPortalSound;
+		
 	};
 
 }

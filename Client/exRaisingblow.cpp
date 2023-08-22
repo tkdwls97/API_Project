@@ -12,13 +12,14 @@
 #include "exAnimation.h"
 #include "exMonsters.h"
 #include "exDamageManager.h"
-
+#include "exSound.h"
 
 namespace ex
 {
 	Raisingblow::Raisingblow(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mRaisingblowSound(nullptr)
 	{
 		mRaisingblowInfo.AttackCount = 4;
 		mRaisingblowInfo.DamagePercentage = 344;
@@ -60,6 +61,8 @@ namespace ex
 			mAnimator->PlayAnimation(L"RightRaisingblow", false);
 		}
 
+		mRaisingblowSound = ResourceManager::Load<Sound>(L"Ragingblow", L"..\\Resources\\Maple\\Sound\\Skill\\Ragingblow.wav");
+		mRaisingblowSound->Play(false);
 	}
 
 	Raisingblow::~Raisingblow()

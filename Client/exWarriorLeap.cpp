@@ -9,13 +9,14 @@
 #include "exSceneManager.h"
 #include "exCollisionManager.h"
 #include "exObject.h"
-
+#include "exSound.h"
 
 namespace ex
 {
 	WarriorLeap::WarriorLeap(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mWarriorLeap(nullptr)
 	{
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
@@ -57,6 +58,8 @@ namespace ex
 			mAnimator->PlayAnimation(L"RightWarriorLeap", false);
 		}
 
+		mWarriorLeap = ResourceManager::Load<Sound>(L"WarriorLeap", L"..\\Resources\\Maple\\Sound\\Skill\\WarriorLeap.wav");
+		mWarriorLeap->Play(false);
 	}
 
 	WarriorLeap::~WarriorLeap()

@@ -11,28 +11,43 @@
 #include "exObject.h"
 #include "exDamageManager.h"
 #include "exMonsters.h"
+#include "exSound.h"
 
 namespace ex
 {
 	PlayerAttack::PlayerAttack(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mAttackSound(nullptr)
 	{
 		mAttackInfo.AttackCount = 1;
 		mAttackInfo.DamagePercentage = 9;
 		SetEffectInfo(mAttackInfo);
+		mAnimator = GetComponent<Animator>();
+		mTransform = GetComponent<Transform>();
+		mCollider = AddComponent<Collider>();
 
-		Animator* animator = GetComponent<Animator>();
-		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
-		tr->SetPosition(pos);
-		Collider* collider = AddComponent<Collider>();
+		mTransform->SetPosition(pos);
 
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
-		collider->SetSize(math::Vector2(65.0f, 80.0f));
+
+		mCollider->SetSize(math::Vector2(65.0f, 80.0f));
+
+		if (dir == enums::eMoveDir::Left)
+		{
+			mCollider->SetOffset(math::Vector2(-68.0f, 10.0f));
+		}
+		else
+		{
+			mCollider->SetOffset(math::Vector2(42.0f, 10.0f));
+		}
 
 		// 평타 Collider 색 세팅
-		collider->SetNomalCollor(RGB(255, 255, 0));
+		mCollider->SetNomalCollor(RGB(255, 255, 0));
+
+		mAttackSound = ResourceManager::Load<Sound>(L"playerAttack", L"..\\Resources\\Maple\\Sound\\Player\\player_Attack.wav");
+		mAttackSound->Play(false);
 	}
 
 	PlayerAttack::~PlayerAttack()
@@ -45,23 +60,11 @@ namespace ex
 
 	void PlayerAttack::Update()
 	{
-		Transform* tr = GetComponent<Transform>();
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
-		Collider* collider = GetComponent<Collider>();
-
-		if (dir == enums::eMoveDir::Right)
-		{
-			collider->SetOffset(math::Vector2(42.0f, 10.0f));
-		}
-		else
-		{
-			collider->SetOffset(math::Vector2(-68.0f, 10.0f));
-		}
-		Animator* at = SceneManager::GetPlayer()->GetComponent<Animator>();
+		Player* player = SceneManager::GetPlayer();
 
 		eState playerState = SceneManager::GetPlayer()->GetState();
-		bool bCheck = at->IsActiveAnimationComplete();
 		if (playerState == eState::Attack || playerState == eState::JumpAttack)
 		{
 			// 충돌 이벤트구현
@@ -72,7 +75,12 @@ namespace ex
 			mAttackList.clear();
 		}
 
-		tr->SetPosition(pos);
+		bool bCheck = player->GetComponent<Animator>()->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			Destroy(this);
+		}
+		mTransform->SetPosition(pos);
 		GameObject::Update();
 
 	}

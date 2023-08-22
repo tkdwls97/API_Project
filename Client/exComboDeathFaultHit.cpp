@@ -11,13 +11,14 @@
 #include "exObject.h"
 #include "exAnimation.h"
 #include "exMonsters.h"
-
+#include "exSound.h"
 
 namespace ex
 {
 	ComboDeathFaultHit::ComboDeathFaultHit(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mComboDeathFaultHitSound(nullptr)
 	{
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
@@ -30,6 +31,10 @@ namespace ex
 		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
 		mTransform->SetPosition(math::Vector2(pos));
 		mAnimator->PlayAnimation(L"ComboDeathFaultHit", false);
+
+		mComboDeathFaultHitSound = ResourceManager::Load<Sound>(L"ComboDeathFaultHit", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault_Hit.wav");
+		mComboDeathFaultHitSound->SetVolume(20.0f);
+		mComboDeathFaultHitSound->Play(false);
 	}
 
 	ComboDeathFaultHit::~ComboDeathFaultHit()

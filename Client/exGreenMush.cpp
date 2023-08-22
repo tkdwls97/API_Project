@@ -11,6 +11,7 @@
 #include "exPlayer.h"
 #include "exSceneManager.h"
 #include "exDamageManager.h"
+#include "exSound.h"
 
 // Player Skill
 #include "exRaisingblow.h"
@@ -22,6 +23,7 @@
 namespace ex
 {
 	GreenMush::GreenMush()
+		: mGreenMushDeadSound(nullptr)
 	{
 		mMonstersInfo.mMaxHp = 3000;
 		mMonstersInfo.mHp = 3000;
@@ -58,6 +60,8 @@ namespace ex
 		mAnimator->CreateAnimation(L"GreenMushRightDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(60.0f, 60.0f)
 			, math::Vector2(60.0f, 60.0f), 4);
 
+		mGreenMushDeadSound = ResourceManager::Load<Sound>(L"GreenMushDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\Mush\\Mush_Die.wav");
+
 		mCollider->SetSize(math::Vector2(55.0f, 70.0f));
 		mCollider->SetOffset(math::Vector2(5.0f, 4.0f));
 		mAnimator->SetAffectedCamera(true);
@@ -75,9 +79,6 @@ namespace ex
 			break;
 		case ex::Monsters::eMonsterState::Move:
 			Move();
-			break;
-		case ex::Monsters::eMonsterState::Attack:
-			Attack();
 			break;
 		case ex::Monsters::eMonsterState::Chase:
 			Chase();
@@ -158,10 +159,6 @@ namespace ex
 		mTransform->SetPosition(pos);
 	}
 
-	void GreenMush::Attack()
-	{
-	}
-
 	void GreenMush::Chase()
 	{
 	}
@@ -181,6 +178,7 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
+			mGreenMushDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 	}
@@ -196,9 +194,7 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"GreenMushRightDead", false);
 		}
-
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
-
 		if (bCheck)
 		{
 			Destroy(this);

@@ -3,6 +3,8 @@
 
 namespace ex
 {
+	class Sound;
+
 	class BossScene : public Scene
 	{
 	public:
@@ -17,6 +19,6 @@ namespace ex
 		virtual void SceneOut() override;
 
 	private:
-
+		Sound* mBossSceneSound;
 	};
 }

@@ -7,6 +7,7 @@ namespace ex
 	class Collider;
 	class Transform;
 	class Thanatos;
+	class Sound;
 
 	class ThanatosAttack : public EffectManger
 	{
@@ -33,7 +34,7 @@ namespace ex
 
 		EffectInfo mThanatosAttackInfo;
 		int	   mThanatosAttackDamege;
-
+		Sound* mThanatosAttackSound;
 	};
 
 }

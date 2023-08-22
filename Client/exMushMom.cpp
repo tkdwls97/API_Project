@@ -12,6 +12,7 @@
 #include "exPlayer.h"
 #include "exObject.h"
 #include "exDamageManager.h"
+#include "exSound.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -31,6 +32,8 @@ namespace ex
 		: mSkillDamage(0)
 		, mAttackDelay(0.0f)
 		, mbMushMomHit(false)
+		, mMushMomHitSound(nullptr)
+		, mMushMomDeadSound(nullptr)
 	{
 		mMonstersInfo.mMaxHp = 300000000;
 		mMonstersInfo.mHp = 300000000;
@@ -76,6 +79,10 @@ namespace ex
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightAttack",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\Attack\\Right", math::Vector2(0.0f, -110.0f), 0.3f);
+
+		mMushMomHitSound = ResourceManager::Load<Sound>(L"MushMomHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\MushMom\\MushMom_Hit.wav");
+		mMushMomDeadSound = ResourceManager::Load<Sound>(L"MushMomDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\MushMom\\MushMom_Die.wav");
+
 
 		mAnimator->SetAffectedCamera(true);
 		mAnimator->SetScale(math::Vector2(2.2f, 2.2f));
@@ -281,6 +288,7 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
+			mMushMomDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 	}
@@ -313,6 +321,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mMushMomHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -326,6 +335,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mMushMomHitSound->Play(false);
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
@@ -340,6 +350,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mMushMomHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -353,6 +364,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mMushMomHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -366,6 +378,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mMushMomHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 			}

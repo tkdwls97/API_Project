@@ -7,6 +7,7 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Rigidbody;
+	class Sound;
 
 	class Thanatos : public Monsters
 	{
@@ -37,6 +38,8 @@ namespace ex
 		int		mSkillDamage;
 		float	mAttackDelay;
 
+		Sound* mThanatosHitSound;
+		Sound* mThanatosDeadSound;
 	};
 
 }

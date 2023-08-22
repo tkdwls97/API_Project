@@ -7,10 +7,12 @@
 #include "exCollider.h"
 #include "exPlayer.h"
 #include "exTransform.h"
+#include "exSound.h"
 
 namespace ex
 {
 	Portal::Portal()
+		: mPortalSound(nullptr)
 	{
 	}
 	Portal::~Portal()
@@ -61,6 +63,8 @@ namespace ex
 		std::wstring ActiveSceneName = SceneManager::GetActiveScene()->GetName();
 		if (portalState && Input::GetKeyDown(eKeyCode::Up))
 		{
+			mPortalSound = ResourceManager::Load<Sound>(L"PortalSound", L"..\\Resources\\Maple\\Sound\\Portal\\Portal.wav");
+			mPortalSound->Play(false);
 			if (ActiveSceneName == L"StageScene")
 			{
 				SceneManager::LoadScene(L"MushMomScene");

@@ -13,7 +13,7 @@
 #include "exMonsters.h"
 #include "exDamageManager.h"
 #include "exGateKeeper.h"
-
+#include "exSound.h"
 
 namespace ex
 {
@@ -21,11 +21,15 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 		, mGateKeeperAttackDamege(0)
+		, mGateKeeperAttackSound(nullptr)
 	{
 		mGateKeeperAttackInfo.AttackCount = 1;
 		mGateKeeperAttackInfo.DamagePercentage = 9;
 		mGateKeeperAttackDamege = _owner->GetSkillDamage();
 		SetEffectInfo(mGateKeeperAttackInfo);
+
+		mGateKeeperAttackSound = ResourceManager::Load<Sound>(L"GateKeeperHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\GateKeeper\\GateKeeper_Attack.wav");
+		mGateKeeperAttackSound->Play(false);
 
 		mAnimator = _owner->GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();

@@ -7,6 +7,7 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Rigidbody;
+	class Sound;
 
 	class Robo : public Monsters
 	{
@@ -27,12 +28,13 @@ namespace ex
 
 		void Idle();
 		void Move();
-		void Attack();
 		void Chase();
 		void Hit();
 		void Dead();
 
 	private:
+		Sound* mRoboHitSound;
+		Sound* mRoboDeadSound;
 	};
 
 }

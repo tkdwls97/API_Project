@@ -11,6 +11,7 @@
 #include "exSceneManager.h"
 #include "exDamageManager.h"
 #include "exGateKeeperAttack.h"
+#include "exSound.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -24,6 +25,8 @@ namespace ex
 {
 	GateKeeper::GateKeeper()
 		: mAttackDelay(0)
+		, mGateKeeperHitSound(nullptr)
+		, mGateKeeperDeadSound(nullptr)
 	{
 		mMonstersInfo.mMaxHp = 30000000;
 		mMonstersInfo.mHp = 30000000;
@@ -70,6 +73,9 @@ namespace ex
 
 		mAnimator->CreateAnimationFolder(L"GateKeeperRightAttack",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\GateKeeper\\Attack\\Right", math::Vector2(100.0f, -100.0f), 0.15f);
+
+		mGateKeeperHitSound = ResourceManager::Load<Sound>(L"GateKeeperHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\GateKeeper\\GateKeeper_Die.wav");
+		mGateKeeperDeadSound = ResourceManager::Load<Sound>(L"GateKeeperDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\GateKeeper\\GateKeeper_Hit.wav");
 
 		mCollider->SetSize(math::Vector2(200.0f, 130.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
@@ -270,6 +276,7 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
+			mGateKeeperDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 	}
@@ -301,9 +308,9 @@ namespace ex
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
-
 			if (attList->find(this) == attList->end())
 			{
+				mGateKeeperHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -317,6 +324,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mGateKeeperHitSound->Play(false);
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
@@ -331,6 +339,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mGateKeeperHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -344,6 +353,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mGateKeeperHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -357,6 +367,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
+				mGateKeeperHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 			}

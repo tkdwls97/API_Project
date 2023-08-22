@@ -17,10 +17,12 @@
 #include "exThanatos.h"
 #include "exWall.h"
 #include "exRope.h"
+#include "exSound.h"
 
 namespace ex
 {
 	StageScene3::StageScene3()
+		: mStage3_Sound(nullptr)
 	{
 	}
 
@@ -209,6 +211,9 @@ namespace ex
 		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
 		Camera::SetTarget(player);
 
+		mStage3_Sound = ResourceManager::Load<Sound>(L"Stage3Sound", L"..\\Resources\\Maple\\Sound\\Stage\\Stage3.wav");
+		mStage3_Sound->Play(true);
+
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Floor, true);
@@ -222,6 +227,7 @@ namespace ex
 	}
 	void StageScene3::SceneOut()
 	{
+		mStage3_Sound->Stop(true);
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();
 	}

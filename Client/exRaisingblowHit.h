@@ -7,6 +7,7 @@ namespace ex
 	class Collider;
 	class Transform;
 	class Animation;
+	class Sound;
 
 	class RaisingblowHit : public EffectManger
 	{
@@ -27,6 +28,7 @@ namespace ex
 
 		Animator* mAnimator;
 		Transform* mTransform;
+		Sound* mRaisingBlowHitSound;
 	};
 
 }

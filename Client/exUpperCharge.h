@@ -6,6 +6,7 @@ namespace ex
 	class Animator;
 	class Collider;
 	class Transform;
+	class Sound;
 
 	class UpperCharge : public EffectManger
 	{
@@ -29,8 +30,10 @@ namespace ex
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
+		Sound* mUpperChargeSound;
 
 		EffectInfo mUpperChargeInfo;
+
 	};
 
 }

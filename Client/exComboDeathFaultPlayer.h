@@ -5,6 +5,7 @@ namespace ex
 {
 	class Animator;
 	class Transform;
+	class Sound;
 
 	class ComboDeathFaultPlayer : public EffectManger
 	{
@@ -25,6 +26,7 @@ namespace ex
 
 		Animator* mAnimator;
 		Transform* mTransform;
+		Sound* mComboDeathFaultSound;
 	};
 
 }

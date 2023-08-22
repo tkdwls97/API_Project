@@ -21,7 +21,6 @@ namespace ex
 	std::map<std::wstring, Scene*> SceneManager::mScenes = {};
 	Scene* SceneManager::mActiveScene = nullptr;
 	Player* SceneManager::mPlayer = new Player;
-	PlayerAttack* SceneManager::mPlayerAtt = new PlayerAttack(mPlayer);
 	StatusBar* SceneManager::mStatusBar = new StatusBar;
 	ExpBar* SceneManager::mExpBar = new ExpBar;
 	HpBar* SceneManager::mHpBar = new HpBar;
@@ -38,7 +37,6 @@ namespace ex
 		CreateScene<StageScene3>(L"Stage3Scene");
 		CreateScene<BossScene>(L"BossScene");
 		mPlayer->Initialize();
-		mPlayerAtt->Initialize();
 
 		LoadScene(L"TitleScene");
 	}
@@ -68,7 +66,6 @@ namespace ex
 		if (_name != L"TitleScene" && _name != L"EndScene")
 		{
 			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);
-			mActiveScene->AddGameObject(enums::eLayerType::Effect, mPlayerAtt);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mStatusBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mExpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mHpBar);

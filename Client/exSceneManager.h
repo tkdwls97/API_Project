@@ -5,7 +5,6 @@
 namespace ex
 {
 	class Player;
-	class PlayerAttack;
 	class StatusBar;
 	class ExpBar;
 	class HpBar;
@@ -35,7 +34,6 @@ namespace ex
 		static Scene* GetActiveScene() { return mActiveScene; }
 
 		static Player* GetPlayer() { return mPlayer; }
-		static PlayerAttack* GetPlayerAttack() { return mPlayerAtt; }
 		static StatusBar* GetStatusBar() { return mStatusBar; }
 		static DamageManager* GetDamageManager() { return mDamageManager; }
 
@@ -45,7 +43,6 @@ namespace ex
 		static std::map<std::wstring, Scene*> mScenes;
 		static Scene* mActiveScene;
 		static Player* mPlayer;
-		static PlayerAttack* mPlayerAtt;
 		static StatusBar* mStatusBar;
 		static ExpBar* mExpBar;
 		static HpBar* mHpBar;

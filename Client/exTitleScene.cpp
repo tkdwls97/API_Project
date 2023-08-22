@@ -17,6 +17,7 @@
 namespace ex
 {
 	TitleScene::TitleScene()
+		: mTitleSound(nullptr)
 	{
 	}
 
@@ -56,8 +57,8 @@ namespace ex
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
-		//Sound* titleSound = ResourceManager::Load<Sound>(L"TitleSound", L"..\\Resources\\Maple\\Sound\\Stage\\Title.wav");
-		//titleSound->Play(true);
+		mTitleSound = ResourceManager::Load<Sound>(L"TitleSound", L"..\\Resources\\Maple\\Sound\\Stage\\Title.wav");
+		mTitleSound->Play(true);
 
 		Login* login = object::Instantiate<Login>(enums::eLayerType::Floor);
 		login->Initialize();
@@ -66,6 +67,7 @@ namespace ex
 	}
 	void TitleScene::SceneOut()
 	{
+		mTitleSound->Stop(true);
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();
 	}

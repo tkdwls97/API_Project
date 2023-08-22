@@ -11,13 +11,14 @@
 #include "exObject.h"
 #include "exAnimation.h"
 #include "exMonsters.h"
-
+#include "exSound.h"
 
 namespace ex
 {
 	RaisingblowHit::RaisingblowHit(GameObject* _owner)
 		: EffectManger(_owner)
 		, mOwner(_owner)
+		, mRaisingBlowHitSound(nullptr)
 	{
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
@@ -30,6 +31,9 @@ namespace ex
 		mAnimator->SetScale(math::Vector2(0.5f, 0.5f));
 		mTransform->SetPosition(math::Vector2(pos));
 		mAnimator->PlayAnimation(L"RaisingblowHit", false);
+
+		mRaisingBlowHitSound = ResourceManager::Load<Sound>(L"RaisingBlowHit", L"..\\Resources\\Maple\\Sound\\Skill\\Ragingblow_Hit.wav");
+		mRaisingBlowHitSound->Play(false);
 	}
 
 	RaisingblowHit::~RaisingblowHit()

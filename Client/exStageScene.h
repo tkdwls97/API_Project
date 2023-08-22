@@ -4,6 +4,8 @@
 
 namespace ex
 {
+	class Sound;
+
 	class StageScene : public Scene
 	{
 	public:
@@ -17,5 +19,6 @@ namespace ex
 		virtual void SceneIN() override;
 		virtual void SceneOut() override;
 	private:
+		Sound* mStage1_Sound;
 	};
 }

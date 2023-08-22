@@ -7,6 +7,7 @@ namespace ex
 	class Collider;
 	class Transform;
 	class MushMom;
+	class Sound;
 
 	class MushMomSkill : public EffectManger
 	{
@@ -34,6 +35,7 @@ namespace ex
 		EffectInfo mMushMomSkillInfo;
 		int	   mMonsterSkillDamege;
 
+		Sound* mMushMomSkillSound;
 	};
 
 }

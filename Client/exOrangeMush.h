@@ -3,7 +3,8 @@
 
 namespace ex
 {
-
+	class Sound;
+				
 	class OrangeMush : public Monsters
 	{
 	public:
@@ -20,7 +21,6 @@ namespace ex
 
 		void Idle();
 		void Move();
-		void Attack();
 		void Chase();
 		void Hit();
 		void Dead();
@@ -30,5 +30,7 @@ namespace ex
 	private:	
 		float mIdleDelay;
 		float mMoveDelay;
+
+		Sound* mOrangeMushDeadSound;
 	};
 }

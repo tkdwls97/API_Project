@@ -13,6 +13,7 @@
 #include "exMonsters.h"
 #include "exDamageManager.h"
 #include "exThanatos.h"
+#include "exSound.h"
 
 
 namespace ex
@@ -21,11 +22,16 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 		, mThanatosAttackDamege(0)
+		, mThanatosAttackSound(nullptr)
 	{
 		mThanatosAttackInfo.AttackCount = 1;
 		mThanatosAttackInfo.DamagePercentage = 9;
 		mThanatosAttackDamege = _owner->GetSkillDamage();
 		SetEffectInfo(mThanatosAttackInfo);
+
+		mThanatosAttackSound = ResourceManager::Load<Sound>(L"ThanatosAttackSound", L"..\\Resources\\Maple\\Sound\\Monster\\Thanatos\\Thanatos_Attack.wav");
+		mThanatosAttackSound->Play(false);
+
 
 		mAnimator = _owner->GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
