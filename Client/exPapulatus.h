@@ -23,10 +23,14 @@ namespace ex
 
 		void SetPapulatusInfo(MonstersInfo _info) { mMonstersInfo = _info; }
 		MonstersInfo GetPapulatusInfo() { return mMonstersInfo; }
+		
+		int GetSkill1Damage() { return mSkill1Damage; }
+		int GetSkill2Damage() { return mSkill2Damage; }
+		int GetSkill3Damage() { return mSkill3Damage; }
+		int GetSkill4Damage() { return mSkill4Damage; }
 
 		void Idle();
 		void Move();
-		void Attack();
 		void Chase();
 		void Hit();
 		void Dead();
@@ -38,6 +42,8 @@ namespace ex
 	private:
 		bool	mbPapulatusHit;
 		float	mAttackDelay;
+
+		int     mUsingSkillNumber;
 
 		int		mSkill1Damage;
 		int		mSkill2Damage;

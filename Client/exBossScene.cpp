@@ -33,7 +33,7 @@ namespace ex
 		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
 		papulatus->Initialize();
 		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		papulatusTr->SetPosition(math::Vector2(900.0f, 320.0f));
+		papulatusTr->SetPosition(math::Vector2(900.0f, 330.0f));
 
 		PapulatusHpBar* papulatusHpBar = new PapulatusHpBar(papulatus);
 		object::ActiveSceneAddGameObject(enums::eLayerType::UI, papulatusHpBar);
@@ -117,8 +117,6 @@ namespace ex
 		RightwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
 		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
 		Rightwalltr->SetPosition(math::Vector2(2190.0f, 360.0f));
-
-
 	}
 
 	void BossScene::Update()
@@ -147,7 +145,6 @@ namespace ex
 		math::Vector2 widthLimit = math::Vector2(bg->GetLimitLeft(), bg->GetLimitRight());
 		math::Vector2 heightLimit = math::Vector2(bg->GetLimitUp(), bg->GetLimitDown());
 		Camera::SetLimitDistance(widthLimit, heightLimit);
-
 
 		Player* player = SceneManager::GetPlayer();
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함

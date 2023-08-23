@@ -55,6 +55,11 @@ namespace ex
 			Chase,
 			Hit,
 			Dead,
+			Skill1,
+			Skill2,
+			Skill3,
+			Skill4,
+
 		};
 
 		enum class eObjectState

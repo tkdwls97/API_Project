@@ -28,7 +28,7 @@ namespace ex
 		mGateKeeperAttackDamege = _owner->GetSkillDamage();
 		SetEffectInfo(mGateKeeperAttackInfo);
 
-		mGateKeeperAttackSound = ResourceManager::Load<Sound>(L"GateKeeperHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\GateKeeper\\GateKeeper_Attack.wav");
+		mGateKeeperAttackSound = ResourceManager::Load<Sound>(L"GateKeeperAttackSound", L"..\\Resources\\Maple\\Sound\\Monster\\GateKeeper\\GateKeeper_Attack.wav");
 		mGateKeeperAttackSound->Play(false);
 
 		mAnimator = _owner->GetComponent<Animator>();

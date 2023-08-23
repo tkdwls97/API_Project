@@ -193,11 +193,11 @@ namespace ex
 		if (mbInvincible)
 		{
 			mhitDelay += Time::GetDeltaTime();
-			if (mhitDelay >= 1.5f)
-			{
-				mbInvincible = false;
-				mhitDelay = 0.0f;
-			}
+				if (mhitDelay >= 1.5f)
+				{
+					mbInvincible = false;
+					mhitDelay = 0.0f;
+				}
 		}
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
 		{

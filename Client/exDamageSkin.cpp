@@ -67,6 +67,7 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerDamage_7", mPlayerDamageArr[7], math::Vector2(0.0f, 0.0f), math::Vector2(76.0f, 76.0f)
 			, math::Vector2(76.0f, 76.0f), 1, math::Vector2(0.0f, 0.0f), 0.4f);
 
+
 		mPlayerDamageArr[8] = ResourceManager::Load<Texture>(L"PlayerDamage_8"
 			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_8.png");
 		mAnimator->CreateAnimation(L"PlayerDamage_8", mPlayerDamageArr[8], math::Vector2(0.0f, 0.0f), math::Vector2(76.0f, 76.0f)
