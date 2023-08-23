@@ -171,6 +171,12 @@ namespace ex
 			mMonsterState = eMonsterState::Skill5;
 		}
 
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mPapulatusDeadSound->Play(false);
+			mMonsterState = eMonsterState::Dead;
+		}
+
 		switch (mMonsterState)
 		{
 		case ex::Monsters::eMonsterState::Idle:
@@ -444,11 +450,6 @@ namespace ex
 			}
 
 			mHitDelay = 0.0f;
-		}
-		if (mMonstersInfo.mHp <= 0)
-		{
-			mPapulatusDeadSound->Play(false);
-			mMonsterState = eMonsterState::Dead;
 		}
 		mTransform->SetMoveDir(mDirection);
 	}
