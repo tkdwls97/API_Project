@@ -154,6 +154,11 @@
     <ClCompile Include="exGreenMush.cpp" />
     <ClCompile Include="exMonsters.cpp" />
     <ClCompile Include="exPapulatusHpBar.cpp" />
+    <ClCompile Include="exPapulatusSkill1.cpp" />
+    <ClCompile Include="exPapulatusSkill2.cpp" />
+    <ClCompile Include="exPapulatusSkill3.cpp" />
+    <ClCompile Include="exPapulatusSkill4.cpp" />
+    <ClCompile Include="exPapulatusSkillArea.cpp" />
     <ClCompile Include="exPlayerAttack.cpp" />
     <ClCompile Include="exHpBar.cpp" />
     <ClCompile Include="exMpBar.cpp" />
@@ -230,6 +235,11 @@
     <ClInclude Include="exGreenMush.h" />
     <ClInclude Include="exMonsters.h" />
     <ClInclude Include="exPapulatusHpBar.h" />
+    <ClInclude Include="exPapulatusSkill1.h" />
+    <ClInclude Include="exPapulatusSkill2.h" />
+    <ClInclude Include="exPapulatusSkill3.h" />
+    <ClInclude Include="exPapulatusSkill4.h" />
+    <ClInclude Include="exPapulatusSkillArea.h" />
     <ClInclude Include="exPlayerAttack.h" />
     <ClInclude Include="exHpBar.h" />
     <ClInclude Include="exMpBar.h" />

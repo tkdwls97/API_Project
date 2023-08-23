@@ -5,6 +5,7 @@
 #include "exTransform.h"
 #include "exMonsters.h"
 #include "exSceneManager.h"
+#include "exPapulatus.h"
 
 namespace ex
 {
@@ -55,6 +56,12 @@ namespace ex
 				tr->SetPosition(objPos);
 			}
 			rb->SetGround(true);	// Floor 객체와 충돌한 객체가 땅에 붙어있는 상태로 만들어준다.
+		}
+
+		Papulatus* paulatus = dynamic_cast<Papulatus*>(_other->GetOwner());
+		if (paulatus != nullptr)
+		{
+			int a = 0;
 		}
 	}
 

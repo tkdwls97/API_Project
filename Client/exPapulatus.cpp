@@ -11,6 +11,7 @@
 #include "exPlayer.h"
 #include "exObject.h"
 #include "exDamageManager.h"
+#include "exFloor.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -47,38 +48,62 @@ namespace ex
 	{
 		// Left
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Left");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Left", math::Vector2(0.0f,-40.0f));
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Left");
-
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Left", math::Vector2(0.0f, -40.0f));
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left", math::Vector2(0.0f, -40.0f));
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Left");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Left", math::Vector2(0.0f, -40.0f));
+
+		// Left Skill
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill1",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left", math::Vector2(0.0f, -40.0f));
+		
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill2",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left", math::Vector2(0.0f, -40.0f));
+
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill3",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Left", math::Vector2(0.0f, -40.0f));
+
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill4",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Left", math::Vector2(0.0f, -40.0f));
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"PapulatusRightIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Right");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Right", math::Vector2(0.0f, -40.0f));
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Right");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Right", math::Vector2(0.0f, -40.0f));
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Right");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Right", math::Vector2(0.0f, -40.0f));
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Right");
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Right", math::Vector2(0.0f, -40.0f));
+
+		//Right Skill
+		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill1",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Right", math::Vector2(0.0f, -40.0f));
+
+		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill2",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Right", math::Vector2(0.0f, -40.0f));
+
+		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill3",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Right", math::Vector2(0.0f, -40.0f));
+
+		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill4",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Right", math::Vector2(0.0f, -40.0f));
+
 
 		mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
 		mTransform->SetMoveDir(enums::eMoveDir::Left);
 
 		mAnimator->SetAffectedCamera(true);
-		mCollider->SetSize(math::Vector2(250.0f, 235.0f));
+		mCollider->SetSize(math::Vector2(250.0f, 120.0f));
 		mCollider->SetOffset(math::Vector2(0.0f, 0.0f));
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
@@ -109,6 +134,7 @@ namespace ex
 		default:
 			break;
 		}
+
 
 		GameObject::Update();
 	}
@@ -235,8 +261,26 @@ namespace ex
 			Destroy(this);
 		}
 	}
+
+	void Papulatus::Skill1()
+	{
+	}
+
+	void Papulatus::Skill2()
+	{
+	}
+
+	void Papulatus::Skill3()
+	{
+	}
+
+	void Papulatus::Skill4()
+	{
+	}
+
 	void Papulatus::OnCollisionEnter(Collider* _other)
 	{
+
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{

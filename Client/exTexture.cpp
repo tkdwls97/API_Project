@@ -107,7 +107,7 @@ namespace ex
 			func.BlendFlags = 0;
 			func.AlphaFormat = AC_SRC_ALPHA;
 			func.SourceConstantAlpha = 255;
-
+			 
 			GdiAlphaBlend(hdc
 				, (int)pos.x - (int)(size.x * scale.x / 2.0f)
 				, (int)pos.y - (int)(size.y * scale.y / 2.0f)

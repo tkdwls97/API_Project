@@ -30,6 +30,10 @@ namespace ex
 		void Chase();
 		void Hit();
 		void Dead();
+		void Skill1();
+		void Skill2();
+		void Skill3();
+		void Skill4();
 
 	private:
 		bool	mbPapulatusHit;
@@ -38,6 +42,7 @@ namespace ex
 		int		mSkill1Damage;
 		int		mSkill2Damage;
 		int		mSkill3Damage;
+		int		mSkill4Damage;
 	};
 
 }
