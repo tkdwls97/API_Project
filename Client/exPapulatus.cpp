@@ -166,23 +166,22 @@ namespace ex
 		mIdleDelay += Time::GetDeltaTime();
 
 		math::Vector2 pos = mTransform->GetPosition();
-		if (mIdleDelay >= 2.3f && mbChaseOn == false)
+		if (mIdleDelay >= 2.3f)
 		{
-			if (mDirection == enums::eMoveDir::Left)
-			{
-				mDirection = enums::eMoveDir::Right;
-			}
-			else
-			{
-				mDirection = enums::eMoveDir::Left;
-			}
-
 			if (mbChaseOn)
 			{
 				mMonsterState = eMonsterState::Chase;
 			}
 			else
 			{
+				if (mDirection == enums::eMoveDir::Left)
+				{
+					mDirection = enums::eMoveDir::Right;
+				}
+				else
+				{
+					mDirection = enums::eMoveDir::Left;
+				}
 				mMonsterState = eMonsterState::Move;
 			}
 			mIdleDelay = 0.0f;
