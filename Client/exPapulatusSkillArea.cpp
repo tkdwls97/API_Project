@@ -29,9 +29,6 @@ namespace ex
 		mPapulatusSkillArea_Damege = 398;
 		SetEffectInfo(mPapulatusSkillArea_Info);
 
-		//PapulatusSkillArea_Sound = ResourceManager::Load<Sound>(L"PapulatusSkill1_Sound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Skill1.wav");
-		//PapulatusSkillArea_Sound->Play(false);
-
 		mAnimator = _owner->GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
@@ -41,11 +38,8 @@ namespace ex
 
 		mAnimator->PlayAnimation(L"PapulatusSkillArea", true);
 
-
 		// 맵 사이즈 안에서 랜덤 위치에 설정
 		//mTransform->
-
-
 	}
 
 	PapulatusSkillArea::~PapulatusSkillArea()

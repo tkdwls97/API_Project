@@ -41,7 +41,9 @@ namespace ex
 
 	private:
 		bool	mbPapulatusHit;
+		bool    mbChaseOn;
 		float	mAttackDelay;
+		float	mSkillDelay;
 
 		int     mUsingSkillNumber;
 

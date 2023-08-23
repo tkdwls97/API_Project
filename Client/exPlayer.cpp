@@ -175,7 +175,6 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerRopeMove", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 2, math::Vector2(-23.0f, 0.0f));
 
-
 		// Player Sound
 		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
 
@@ -189,6 +188,8 @@ namespace ex
 
 	void Player::Update()
 	{
+
+		math::Vector2 playerPos = mTransform->GetPosition();
 
 		if (mbInvincible)
 		{

@@ -28,8 +28,8 @@ namespace ex
 		mPapulatusSkill1_Info.DamagePercentage = 0;
 		SetEffectInfo(mPapulatusSkill1_Info);
 
-		//mPapulatusSkill1_Sound = ResourceManager::Load<Sound>(L"PapulatusSkill1_Sound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Skill1.wav");
-		//mPapulatusSkill1_Sound->Play(false);
+		mPapulatusSkill1_Sound = ResourceManager::Load<Sound>(L"PapulatusSkill1_Sound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Skill1.wav");
+		mPapulatusSkill1_Sound->Play(false);
 
 		mAnimator = _owner->GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();

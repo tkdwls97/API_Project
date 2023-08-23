@@ -83,12 +83,10 @@ namespace ex
 		mMushMomHitSound = ResourceManager::Load<Sound>(L"MushMomHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\MushMom\\MushMom_Hit.wav");
 		mMushMomDeadSound = ResourceManager::Load<Sound>(L"MushMomDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\MushMom\\MushMom_Die.wav");
 
-
 		mAnimator->SetAffectedCamera(true);
 		mAnimator->SetScale(math::Vector2(2.2f, 2.2f));
 		mCollider->SetSize(math::Vector2(300.0f, 200.0f));
 		mCollider->SetOffset(math::Vector2(0.0f, 10.0f));
-
 
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
@@ -249,8 +247,8 @@ namespace ex
 		mbMushMomHit = true;
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
-		float GateKeeperPosX = mTransform->GetPositionX();
-		if (playerPosX <= GateKeeperPosX)
+		float MushMomPosX = mTransform->GetPositionX();
+		if (playerPosX <= MushMomPosX)
 		{
 			mAnimator->PlayAnimation(L"MushMomLeftHit", false);
 			mDirection = enums::eMoveDir::Left;
@@ -276,13 +274,13 @@ namespace ex
 			if (mDirection == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"MushMomLeftMove", true);
-				mMonsterState = eMonsterState::Move;
 			}
 			else
 			{
 				mAnimator->PlayAnimation(L"MushMomRightMove", true);
-				mMonsterState = eMonsterState::Move;
 			}
+
+			mMonsterState = eMonsterState::Move;
 			mHitDelay = 0.0f;
 		}
 
