@@ -198,6 +198,7 @@ namespace ex
 				{
 					mbInvincible = false;
 					mhitDelay = 0.0f;
+					mState = eState::Idle;
 				}
 		}
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
@@ -454,22 +455,6 @@ namespace ex
 			mState = eState::ComboDeathFault;
 			mRigidbody->SetVelocity(velocity);
 		}
-
-		// Idle Áß ÇÇ°Ý
-		bool bCheck = mCollider->GetCollisionType();
-		if (bCheck && !mbInvincible)
-		{
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-			}
-			else if (playerDir == enums::eMoveDir::Right)
-			{
-				mAnimator->PlayAnimation(L"PlayerRightHit", true);
-			}
-			mState = eState::Hit;
-		}
-
 	}
 
 	void Player::Move()

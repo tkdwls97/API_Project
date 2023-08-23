@@ -46,7 +46,7 @@ namespace ex
 
 		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
 		mCollider->SetSize(math::Vector2(130.0f, 150.0f));
-		mCollider->SetOffset(math::Vector2(0.0f,30.0f));
+		mCollider->SetOffset(math::Vector2(0.0f, 30.0f));
 
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
 		math::Vector2 playerPos = _owner->GetPosition();
@@ -109,11 +109,17 @@ namespace ex
 		{
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
-				DamageManager* damage = new DamageManager();
-				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
-				damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage);
+				if (monsters->GetMonstersState() != eMonsterState::Sleep &&
+					monsters->GetMonstersState() != eMonsterState::Skill5 &&
+					monsters->GetMonstersState() != eMonsterState::WakeUp &&
+					monsters->GetMonstersState() != eMonsterState::Dead)
+				{
+					DamageManager* damage = new DamageManager();
+					damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
+					damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage);
 
-				monsters->ReductiongHp(damage->GetPlayerResultDamage());
+					monsters->ReductiongHp(damage->GetPlayerResultDamage());
+				}
 			}
 		}
 	}

@@ -89,6 +89,11 @@ namespace ex
 
 	void Thanatos::Update()
 	{
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mThanatosDeadSound->Play(false);
+			mMonsterState = eMonsterState::Dead;
+		}
 
 		switch (mMonsterState)
 		{
@@ -311,8 +316,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mThanatosHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 
 			}
 		}
@@ -327,8 +337,13 @@ namespace ex
 				mThanatosHitSound->Play(false);
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 			}
 		}
 
@@ -340,9 +355,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mThanatosHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
-
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 			}
 		}
 
@@ -354,8 +373,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mThanatosHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 
 			}
 		}
@@ -368,8 +392,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mThanatosHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 			}
 		}
 

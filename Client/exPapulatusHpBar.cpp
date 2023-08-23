@@ -55,7 +55,7 @@ namespace ex
 		int hp = mPapulatusHp;
 		float fhp = (float)hp / mPapulatusMaxHp;
 
-		if (mPapulatus->IsPapulatusHit())
+		if (mPapulatus->IsPapulatusChaseOn())
 		{
 			::TransparentBlt(_hdc, 75, 5, (int)(mPapulatusHpBar->GetWidth() * fhp), mPapulatusHpBar->GetHeight(), mPapulatusHpBar->GetHdc()
 				, 0, 0, (int)(mPapulatusHpBar->GetWidth() * fhp), mPapulatusHpBar->GetHeight(), RGB(255, 0, 255));

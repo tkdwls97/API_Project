@@ -22,7 +22,7 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 		, mMonsterSkillDamege(0)
-		, mMasterCronusSkillSound(nullptr)
+		, mMasterCronusAttackSound(nullptr)
 	{
 		mMasterCronusSkillInfo.AttackCount = 1;
 		mMasterCronusSkillInfo.DamagePercentage = 9;
@@ -32,6 +32,9 @@ namespace ex
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
+
+		mMasterCronusAttackSound = ResourceManager::Load<Sound>(L"MasterCronusAttackSound", L"..\\Resources\\Maple\\Sound\\Monster\\MasterCronus\\MasterCronus_Attack.wav");
+		mMasterCronusAttackSound->Play(false);
 
 		mAnimator->CreateAnimationFolder(L"MasterCronusLeftAttackEffect",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\AttackEffect\\Left", math::Vector2(0.0f, 0.0f), 0.05f);

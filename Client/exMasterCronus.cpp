@@ -74,8 +74,8 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"MasterCronusRightAttack",
 			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Attack\\Right"/*, math::Vector2(100.0f, -100.0f), 0.15f*/);
 
-		//mMasterCronusHitSound = ResourceManager::Load<Sound>(L"MasterCronusHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\MasterCronus\\MasterCronus_Die.wav");
-		//mMasterCronusDeadSound = ResourceManager::Load<Sound>(L"MasterCronusDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\MasterCronus\\MasterCronus_Hit.wav");
+		mMasterCronusHitSound = ResourceManager::Load<Sound>(L"MasterCronusHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\MasterCronus\\MasterCronus_Die.wav");
+		mMasterCronusDeadSound = ResourceManager::Load<Sound>(L"MasterCronusDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\MasterCronus\\MasterCronus_Hit.wav");
 
 		mCollider->SetSize(math::Vector2(80.0f, 80.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));

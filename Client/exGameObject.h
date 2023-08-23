@@ -59,6 +59,9 @@ namespace ex
 			Skill2,
 			Skill3,
 			Skill4,
+			Skill5,
+			Sleep,
+			WakeUp,
 
 		};
 

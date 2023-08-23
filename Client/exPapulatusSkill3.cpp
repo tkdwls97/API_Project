@@ -81,6 +81,16 @@ namespace ex
 
 	void PapulatusSkill3::OnCollisionStay(Collider* _other)
 	{
+		Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		if (player != nullptr && player->IsInvincible() == false)
+		{
+			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
+			{
+				DamageManager* damage = new DamageManager();
+				damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f * i));
+				damage->PlayMonsterDamageAnimation(mPapulatusSkill3_Damege, this->GetEffectInfo().DamagePercentage);
+			}
+		}
 	}
 
 	void PapulatusSkill3::OnCollisionExit(Collider* _other)

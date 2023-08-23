@@ -160,7 +160,9 @@
     <ClCompile Include="exPapulatusSkill2.cpp" />
     <ClCompile Include="exPapulatusSkill3.cpp" />
     <ClCompile Include="exPapulatusSkill4.cpp" />
+    <ClCompile Include="exPapulatusSkill5.cpp" />
     <ClCompile Include="exPapulatusSkillArea.cpp" />
+    <ClCompile Include="exPapulatusSleep.cpp" />
     <ClCompile Include="exPlayerAttack.cpp" />
     <ClCompile Include="exHpBar.cpp" />
     <ClCompile Include="exMpBar.cpp" />
@@ -243,7 +245,9 @@
     <ClInclude Include="exPapulatusSkill2.h" />
     <ClInclude Include="exPapulatusSkill3.h" />
     <ClInclude Include="exPapulatusSkill4.h" />
+    <ClInclude Include="exPapulatusSkill5.h" />
     <ClInclude Include="exPapulatusSkillArea.h" />
+    <ClInclude Include="exPapulatusSleep.h" />
     <ClInclude Include="exPlayerAttack.h" />
     <ClInclude Include="exHpBar.h" />
     <ClInclude Include="exMpBar.h" />

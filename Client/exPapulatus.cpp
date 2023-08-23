@@ -12,6 +12,7 @@
 #include "exObject.h"
 #include "exDamageManager.h"
 #include "exFloor.h"
+#include "exSound.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -27,6 +28,7 @@
 #include "exPapulatusSkill2.h"
 #include "exPapulatusSkill3.h"
 #include "exPapulatusSkill4.h"
+#include "exPapulatusSkill5.h"
 
 namespace ex
 {
@@ -35,6 +37,11 @@ namespace ex
 		, mbChaseOn(false)
 		, mSkillDelay(1.5f)
 		, mUsingSkillNumber(0)
+		, mPapulatusHitSound(nullptr)
+		, mPapulatusDeadSound(nullptr)
+		, mSleepDelay(0.0f)
+		, mSkill3Delay(0.0f)
+		, mbSleepOn(false)
 	{
 		mMonstersInfo.mMaxHp = 700000000;
 		mMonstersInfo.mHp = 700000000;
@@ -67,7 +74,7 @@ namespace ex
 
 		// Left Skill
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left", math::Vector2(0.0f, -150.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left", math::Vector2(0.0f, -160.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill2",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left", math::Vector2(-75.0f, -100.0f), 0.077f);
@@ -76,7 +83,17 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Left", math::Vector2(0.0f, -140.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill4",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Left", math::Vector2(0.0f, -120.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Left", math::Vector2(0.0f, -100.0f), 0.077f);
+
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill5",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Left", math::Vector2(0.0f, -120.0f), 0.077f);
+
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftSleep",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Sleep\\Left", math::Vector2(0.0f, -50.0f), 0.077f);
+
+		mAnimator->CreateAnimationFolder(L"PapulatusLeftWakeUp",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\WakeUp\\Left", math::Vector2(0.0f, -120.0f), 0.077f);
+
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"PapulatusRightIdle",
@@ -93,7 +110,7 @@ namespace ex
 
 		//Right Skill
 		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Right", math::Vector2(0.0f, -150.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Right", math::Vector2(0.0f, -160.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill2",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Right", math::Vector2(75.0f, -100.0f), 0.077f);
@@ -102,8 +119,21 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Right", math::Vector2(0.0f, -140.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill4",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Right", math::Vector2(0.0f, -120.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Right", math::Vector2(0.0f, -100.0f), 0.077f);
 
+		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill5",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Right", math::Vector2(0.0f, -120.0f), 0.077f);
+
+		mAnimator->CreateAnimationFolder(L"PapulatusRightSleep",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Sleep\\Right", math::Vector2(0.0f, -50.0f), 0.077f);
+
+		mAnimator->CreateAnimationFolder(L"PapulatusRightWakeUp",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\WakeUp\\Right", math::Vector2(0.0f, -120.0f), 0.077f);
+
+
+
+		mPapulatusHitSound = ResourceManager::Load<Sound>(L"PapulatusHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Die.wav");
+		mPapulatusDeadSound = ResourceManager::Load<Sound>(L"PapulatusDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Hit.wav");
 
 		mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
 		mTransform->SetMoveDir(enums::eMoveDir::Left);
@@ -115,9 +145,31 @@ namespace ex
 		mMoveTime = mMoveDelay;
 	}
 
+
 	void Papulatus::Update()
 	{
-		mDirection = mTransform->GetMoveDir();
+
+		int halfHp = mMonstersInfo.mMaxHp / 2;
+		if (halfHp >= mMonstersInfo.mHp && false == mbSleepOn)
+		{
+			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+			float PapulatusPosX = mTransform->GetPositionX();
+			mbSleepOn = true;
+			if (playerPosX <= PapulatusPosX)
+			{
+				mAnimator->PlayAnimation(L"PapulatusLeftSkill5", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PapulatusRightSkill5", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+
+			PapulatusSkill5* papulatusSkill5 = new PapulatusSkill5(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkill5);
+			mMonsterState = eMonsterState::Skill5;
+		}
 
 		switch (mMonsterState)
 		{
@@ -148,6 +200,16 @@ namespace ex
 		case ex::Monsters::eMonsterState::Skill4:
 			Skill4();
 			break;
+		case ex::Monsters::eMonsterState::Skill5:
+			Skill5();
+			break;
+		case ex::Monsters::eMonsterState::Sleep:
+			Sleep();
+			break;
+		case ex::Monsters::eMonsterState::WakeUp:
+			WakeUp();
+			break;
+
 		default:
 			break;
 		}
@@ -199,14 +261,13 @@ namespace ex
 		}
 
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 1.8f)
+		if (mSkillDelay >= 1.5f)
 		{
 			math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = 4;/*rand() % 4 + 1;*/
-			mSkillDelay = 0.0f;
+			mUsingSkillNumber = rand() % 4 + 1;
 
 			if (distanceX < 300.0f && distanceY < 200.0f)
 			{
@@ -278,6 +339,7 @@ namespace ex
 					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkill4);
 					mMonsterState = eMonsterState::Skill4;
 				}
+				mSkillDelay = 0.0f;
 				mTransform->SetMoveDir(mDirection);
 			}
 		}
@@ -380,11 +442,12 @@ namespace ex
 			{
 				mMonsterState = eMonsterState::Move;
 			}
-				
+
 			mHitDelay = 0.0f;
 		}
 		if (mMonstersInfo.mHp <= 0)
 		{
+			mPapulatusDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 		mTransform->SetMoveDir(mDirection);
@@ -429,11 +492,33 @@ namespace ex
 
 	void Papulatus::Skill3()
 	{
-		bool bCheck = mAnimator->IsActiveAnimationComplete();
-		if (bCheck)
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float PapulatusPosX = mTransform->GetPositionX();
+		mSkill3Delay += Time::GetDeltaTime();
+		if (mSkill3Delay <= 4.0f)
 		{
-			mMonsterState = eMonsterState::Idle;
+			if (playerPosX <= PapulatusPosX)
+			{
+				mAnimator->PlayAnimation(L"PapulatusLeftSkill3", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PapulatusRightSkill3", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+
 		}
+		else
+		{
+			bool bCheck = mAnimator->IsActiveAnimationComplete();
+			if (bCheck)
+			{
+				mMonsterState = eMonsterState::Idle;
+			}
+			mSkill3Delay = 0.0f;
+		}
+		
 	}
 
 	void Papulatus::Skill4()
@@ -445,74 +530,181 @@ namespace ex
 		}
 	}
 
+	void Papulatus::Skill5()
+	{
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float PapulatusPosX = mTransform->GetPositionX();
+
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			if (playerPosX <= PapulatusPosX)
+			{
+				mAnimator->PlayAnimation(L"PapulatusLeftSleep", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+			mMonsterState = eMonsterState::Sleep;
+		}
+	}
+
+	void Papulatus::Sleep()
+	{
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float PapulatusPosX = mTransform->GetPositionX();
+
+		mSleepDelay += Time::GetDeltaTime();
+		if (mSleepDelay <= 5.0f)
+		{
+			if (playerPosX <= PapulatusPosX)
+			{
+				mAnimator->PlayAnimation(L"PapulatusLeftSleep", false);
+				mDirection = enums::eMoveDir::Left;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+		}
+
+		else
+		{
+			bool bCheck = mAnimator->IsActiveAnimationComplete();
+			if (bCheck)
+			{
+				if (playerPosX <= PapulatusPosX)
+				{
+					mAnimator->PlayAnimation(L"PapulatusLeftWakeUp", false);
+					mDirection = enums::eMoveDir::Left;
+				}
+				else
+				{
+					mAnimator->PlayAnimation(L"PapulatusRightWakeUp", false);
+					mDirection = enums::eMoveDir::Right;
+				}
+				mMonsterState = eMonsterState::WakeUp;
+			}
+			mSleepDelay = 0.0f;
+		}
+	}
+
+	void Papulatus::WakeUp()
+	{
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			mMonsterState = eMonsterState::Idle;
+		}
+	}
+
 	void Papulatus::OnCollisionEnter(Collider* _other)
 	{
-
-		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
-		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
+		if (mMonsterState != eMonsterState::Sleep && mMonsterState != eMonsterState::WakeUp && mMonsterState != eMonsterState::Skill5)
 		{
-			std::set<GameObject*>* attList = playerAtt->GetAttackList();
-
-			if (attList->find(this) == attList->end())
+			PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
+			if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 			{
-				mMonsterState = eMonsterState::Hit;
-				attList->insert(this);
+				std::set<GameObject*>* attList = playerAtt->GetAttackList();
 
+				if (attList->find(this) == attList->end())
+				{
+					mPapulatusHitSound->Play(false);
+					attList->insert(this);
+					if (mMonsterState == eMonsterState::Idle ||
+						mMonsterState == eMonsterState::Move ||
+						mMonsterState == eMonsterState::Chase)
+					{
+						mMonsterState = eMonsterState::Hit;
+
+					}
+				}
+			}
+
+			Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
+			if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
+			{
+				std::set<GameObject*>* attList = raisingblow->GetAttackList();
+
+				if (attList->find(this) == attList->end())
+				{
+					mPapulatusHitSound->Play(false);
+					RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
+					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
+					attList->insert(this);
+					if (mMonsterState == eMonsterState::Idle ||
+						mMonsterState == eMonsterState::Move ||
+						mMonsterState == eMonsterState::Chase)
+					{
+						mMonsterState = eMonsterState::Hit;
+
+					}
+				}
+			}
+
+			UpperCharge* upperCharge = dynamic_cast<UpperCharge*>(_other->GetOwner());
+			if (upperCharge != nullptr && mMonsterState != eMonsterState::Dead)
+			{
+				std::set<GameObject*>* attList = upperCharge->GetAttackList();
+
+				if (attList->find(this) == attList->end())
+				{
+					mPapulatusHitSound->Play(false);
+					attList->insert(this);
+					if (mMonsterState == eMonsterState::Idle ||
+						mMonsterState == eMonsterState::Move ||
+						mMonsterState == eMonsterState::Chase)
+					{
+						mMonsterState = eMonsterState::Hit;
+
+					}
+
+				}
+			}
+
+			Rush* rush = dynamic_cast<Rush*>(_other->GetOwner());
+			if (rush != nullptr && mMonsterState != eMonsterState::Dead)
+			{
+				std::set<GameObject*>* attList = rush->GetAttackList();
+
+				if (attList->find(this) == attList->end())
+				{
+					mPapulatusHitSound->Play(false);
+					attList->insert(this);
+					if (mMonsterState == eMonsterState::Idle ||
+						mMonsterState == eMonsterState::Move ||
+						mMonsterState == eMonsterState::Chase)
+					{
+						mMonsterState = eMonsterState::Hit;
+
+					}
+
+				}
+			}
+
+			ComboDeathFaultScreen* ComboDeathFault = dynamic_cast<ComboDeathFaultScreen*>(_other->GetOwner());
+			if (ComboDeathFault != nullptr && mMonsterState != eMonsterState::Dead)
+			{
+				std::set<GameObject*>* attList = ComboDeathFault->GetAttackList();
+
+				if (attList->find(this) == attList->end())
+				{
+					mPapulatusHitSound->Play(false);
+					attList->insert(this);
+					if (mMonsterState == eMonsterState::Idle ||
+						mMonsterState == eMonsterState::Move ||
+						mMonsterState == eMonsterState::Chase)
+					{
+						mMonsterState = eMonsterState::Hit;
+
+					}
+				}
 			}
 		}
-
-		Raisingblow* raisingblow = dynamic_cast<Raisingblow*>(_other->GetOwner());
-		if (raisingblow != nullptr && mMonsterState != eMonsterState::Dead)
-		{
-			std::set<GameObject*>* attList = raisingblow->GetAttackList();
-
-			if (attList->find(this) == attList->end())
-			{
-				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
-				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
-				mMonsterState = eMonsterState::Hit;
-				attList->insert(this);
-			}
-		}
-
-		UpperCharge* upperCharge = dynamic_cast<UpperCharge*>(_other->GetOwner());
-		if (upperCharge != nullptr && mMonsterState != eMonsterState::Dead)
-		{
-			std::set<GameObject*>* attList = upperCharge->GetAttackList();
-
-			if (attList->find(this) == attList->end())
-			{
-				mMonsterState = eMonsterState::Hit;
-				attList->insert(this);
-
-			}
-		}
-
-		Rush* rush = dynamic_cast<Rush*>(_other->GetOwner());
-		if (rush != nullptr && mMonsterState != eMonsterState::Dead)
-		{
-			std::set<GameObject*>* attList = rush->GetAttackList();
-
-			if (attList->find(this) == attList->end())
-			{
-				mMonsterState = eMonsterState::Hit;
-				attList->insert(this);
-
-			}
-		}
-
-		ComboDeathFaultScreen* ComboDeathFault = dynamic_cast<ComboDeathFaultScreen*>(_other->GetOwner());
-		if (ComboDeathFault != nullptr && mMonsterState != eMonsterState::Dead)
-		{
-			std::set<GameObject*>* attList = ComboDeathFault->GetAttackList();
-
-			if (attList->find(this) == attList->end())
-			{
-				mMonsterState = eMonsterState::Hit;
-				attList->insert(this);
-			}
-		}
-
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 		if (player != nullptr && player->IsInvincible() == false)
 		{

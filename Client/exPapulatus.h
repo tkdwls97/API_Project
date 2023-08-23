@@ -3,6 +3,7 @@
 
 namespace ex
 {
+	class Sound;
 
 	class Papulatus : public Monsters
 	{
@@ -18,8 +19,8 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
-		bool IsPapulatusHit() { return mbPapulatusHit; }
-		void SetPapulatusHit(bool _data) { mbPapulatusHit = _data; }
+		bool IsPapulatusChaseOn() { return mbChaseOn; }
+		void SetPapulatusHit(bool _data) { mbChaseOn = _data; }
 
 		void SetPapulatusInfo(MonstersInfo _info) { mMonstersInfo = _info; }
 		MonstersInfo GetPapulatusInfo() { return mMonstersInfo; }
@@ -38,12 +39,18 @@ namespace ex
 		void Skill2();
 		void Skill3();
 		void Skill4();
+		void Skill5();
+		void Sleep();
+		void WakeUp();
+
 
 	private:
-		bool	mbPapulatusHit;
 		bool    mbChaseOn;
+		bool    mbSleepOn;
 		float	mAttackDelay;
 		float	mSkillDelay;
+		float	mSleepDelay;
+		float	mSkill3Delay;
 
 		int     mUsingSkillNumber;
 
@@ -51,6 +58,8 @@ namespace ex
 		int		mSkill2Damage;
 		int		mSkill3Damage;
 		int		mSkill4Damage;
+		Sound* mPapulatusHitSound;
+		Sound* mPapulatusDeadSound;
 	};
 
 }

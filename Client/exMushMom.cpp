@@ -94,6 +94,12 @@ namespace ex
 
 	void MushMom::Update()
 	{
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMushMomDeadSound->Play(false);
+			mMonsterState = eMonsterState::Dead;
+		}
+
 		switch (mMonsterState)
 		{
 		case ex::Monsters::eMonsterState::Idle:
@@ -164,16 +170,21 @@ namespace ex
 		{
 			MushMomSkill* mushMomSkill = new MushMomSkill(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mushMomSkill);
-			enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
-			if (playerDir == enums::eMoveDir::Left)
+			
+			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+			if (playerPosX <= mTransform->GetPositionX())
 			{
-				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+				mDirection = enums::eMoveDir::Left;
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+				mDirection = enums::eMoveDir::Right;
 			}
 			mMonsterState = eMonsterState::Attack;
+
+			mTransform->SetMoveDir(mDirection);
 		}
 	}
 
@@ -209,17 +220,19 @@ namespace ex
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mushMomSkill);
 			enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 
-			if (playerDir == enums::eMoveDir::Left)
+			if (playerPos.x <= mTransform->GetPositionX())
 			{
-				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+				mDirection = enums::eMoveDir::Left;
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"MushMomLeftAttack", false);
+				mAnimator->PlayAnimation(L"MushMomRightAttack", false);
+				mDirection = enums::eMoveDir::Right;
 			}
 			mMonsterState = eMonsterState::Attack;
 		}
-
+		mTransform->SetMoveDir(mDirection);
 		mTransform->SetPosition(pos);
 	}
 
@@ -244,7 +257,6 @@ namespace ex
 
 	void MushMom::Hit()
 	{
-		mbMushMomHit = true;
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetTransform()->GetMoveDir();
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float MushMomPosX = mTransform->GetPositionX();
@@ -283,12 +295,6 @@ namespace ex
 			mMonsterState = eMonsterState::Move;
 			mHitDelay = 0.0f;
 		}
-
-		if (mMonstersInfo.mHp <= 0)
-		{
-			mMushMomDeadSound->Play(false);
-			mMonsterState = eMonsterState::Dead;
-		}
 	}
 
 	void MushMom::Dead()
@@ -320,9 +326,14 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 				attList->insert(this);
-
+				mbMushMomHit = true;
 			}
 		}
 
@@ -336,8 +347,14 @@ namespace ex
 				mMushMomHitSound->Play(false);
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
+				mbMushMomHit = true;
 			}
 		}
 
@@ -349,9 +366,14 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 				attList->insert(this);
-
+				mbMushMomHit = true;
 			}
 		}
 
@@ -363,9 +385,14 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 				attList->insert(this);
-
+				mbMushMomHit = true;
 			}
 		}
 
@@ -377,8 +404,14 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 				attList->insert(this);
+				mbMushMomHit = true;
 			}
 		}
 

@@ -106,11 +106,18 @@ namespace ex
 		{
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
-				DamageManager* damage = new DamageManager();
-				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
-				damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
+				if (monsters->GetMonstersState() != eMonsterState::Sleep &&
+					monsters->GetMonstersState() != eMonsterState::Skill5 &&
+					monsters->GetMonstersState() != eMonsterState::WakeUp &&
+					monsters->GetMonstersState() != eMonsterState::Dead)
+				{
 
-				monsters->ReductiongHp(damage->GetPlayerResultDamage());
+					DamageManager* damage = new DamageManager();
+					damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
+					damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
+
+					monsters->ReductiongHp(damage->GetPlayerResultDamage());
+				}
 			}
 		}
 	}

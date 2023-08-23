@@ -35,7 +35,7 @@ namespace ex
 		EffectInfo mMasterCronusSkillInfo;
 		int	   mMonsterSkillDamege;
 
-		Sound* mMasterCronusSkillSound;
+		Sound* mMasterCronusAttackSound;
 	};
 
 }

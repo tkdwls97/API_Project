@@ -157,6 +157,53 @@ namespace ex
 		orangeMush8->SetMoveDelay(3.0f);
 		orangeMush8->Initialize();
 
+		// 3Ãþ
+
+		GreenMush* greenMush9 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		Transform* grMushtr9 = greenMush9->GetComponent<Transform>();
+		grMushtr9->SetMoveDir(enums::eMoveDir::Left);
+		grMushtr9->SetPosition(math::Vector2(640.0f, 140.0f));
+		greenMush9->SetMoveDelay(4.21f);
+		greenMush9->Initialize();
+
+
+		GreenMush* greenMush10 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		Transform* grMushtr10 = greenMush10->GetComponent<Transform>();
+		grMushtr10->SetMoveDir(enums::eMoveDir::Right);
+		grMushtr10->SetPosition(math::Vector2(440.0f, 140.0f));
+		greenMush10->SetMoveDelay(3.563f);
+		greenMush10->Initialize();
+
+
+		GreenMush* greenMush11 = object::Instantiate<GreenMush>(enums::eLayerType::Monster);
+		Transform* grMushtr11 = greenMush11->GetComponent<Transform>();
+		grMushtr11->SetMoveDir(enums::eMoveDir::Left);
+		grMushtr11->SetPosition(math::Vector2(840.0f, 140.0f));
+		greenMush11->SetMoveDelay(3.98f);
+		greenMush11->Initialize();
+
+
+		OrangeMush* orangeMush9 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr9 = orangeMush9->GetComponent<Transform>();
+		orangeMushTr9->SetMoveDir(enums::eMoveDir::Right);
+		orangeMushTr9->SetPosition(math::Vector2(760.0f, 140.0f));
+		orangeMush9->SetMoveDelay(4.11f);
+		orangeMush9->Initialize();
+
+		OrangeMush* orangeMush10 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr10 = orangeMush10->GetComponent<Transform>();
+		orangeMushTr10->SetMoveDir(enums::eMoveDir::Left);
+		orangeMushTr10->SetPosition(math::Vector2(1000.0f, 140.0f));
+		orangeMush10->SetMoveDelay(3.76f);
+		orangeMush10->Initialize();
+
+		OrangeMush* orangeMush11 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr11 = orangeMush11->GetComponent<Transform>();
+		orangeMushTr11->SetMoveDir(enums::eMoveDir::Left);
+		orangeMushTr11->SetPosition(math::Vector2(630, 140.0f));
+		orangeMush11->SetMoveDelay(3.33f);
+		orangeMush11->Initialize();
+
 		// 1Ãþ ¹Ù´Ú
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		Transform* floorTr = floor1->GetComponent<Transform>();
@@ -241,6 +288,7 @@ namespace ex
 
 	void StageScene::Update()
 	{
+
 		Scene::Update();
 	}
 

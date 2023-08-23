@@ -93,16 +93,22 @@ namespace ex
 
 	void PlayerAttack::OnCollisionEnter(Collider* _other)
 	{
+
 		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
 		if (monsters != nullptr)
 		{
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
-				DamageManager* damage = new DamageManager();
-				damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
-				damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage);
-
-				monsters->ReductiongHp(damage->GetPlayerResultDamage());
+				if (monsters->GetMonstersState() != eMonsterState::Sleep && 
+					monsters->GetMonstersState() != eMonsterState::Skill5 &&
+					monsters->GetMonstersState() != eMonsterState::WakeUp &&
+					monsters->GetMonstersState() != eMonsterState::Dead)
+				{
+					DamageManager* damage = new DamageManager();
+					damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
+					damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage);
+					monsters->ReductiongHp(damage->GetPlayerResultDamage());
+				}
 			}
 		}
 	}

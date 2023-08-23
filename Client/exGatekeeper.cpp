@@ -89,6 +89,13 @@ namespace ex
 	void GateKeeper::Update()
 	{
 
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mGateKeeperDeadSound->Play(false);
+			mMonsterState = eMonsterState::Dead;
+		}
+
+
 		switch (mMonsterState)
 		{
 		case ex::Monsters::eMonsterState::Idle:
@@ -273,12 +280,6 @@ namespace ex
 			}
 			mHitDelay = 0.0f;
 		}
-
-		if (mMonstersInfo.mHp <= 0)
-		{
-			mGateKeeperDeadSound->Play(false);
-			mMonsterState = eMonsterState::Dead;
-		}
 	}
 
 	void GateKeeper::Dead()
@@ -311,8 +312,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mGateKeeperHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 
 			}
 		}
@@ -327,8 +333,13 @@ namespace ex
 				mGateKeeperHitSound->Play(false);
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 			}
 		}
 
@@ -340,8 +351,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mGateKeeperHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 
 			}
 		}
@@ -354,8 +370,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mGateKeeperHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 
 			}
 		}
@@ -368,8 +389,13 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mGateKeeperHitSound->Play(false);
-				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
+				if (mMonsterState == eMonsterState::Idle ||
+					mMonsterState == eMonsterState::Move ||
+					mMonsterState == eMonsterState::Chase)
+				{
+					mMonsterState = eMonsterState::Hit;
+				}
 			}
 		}
 

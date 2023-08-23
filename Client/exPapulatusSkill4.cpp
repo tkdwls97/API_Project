@@ -93,6 +93,21 @@ namespace ex
 		masterCronus3->SetMoveDelay(randomDelay);
 		masterCronus3->Initialize();
 
+		MasterCronus* masterCronus4 = object::Instantiate<MasterCronus>(enums::eLayerType::Monster);
+		Transform* masterCronustr4 = masterCronus4->GetComponent<Transform>();
+		if (randomDir == 1)
+		{
+			masterCronustr4->SetMoveDir(enums::eMoveDir::Left);
+
+		}
+		else
+		{
+			masterCronustr4->SetMoveDir(enums::eMoveDir::Right);
+		}
+		masterCronustr4->SetPosition(math::Vector2(_owner->GetPositionX() -80.0f, _owner->GetPositionY()));
+		masterCronus4->SetMoveDelay(randomDelay);
+		masterCronus4->Initialize();
+
 
 
 	}

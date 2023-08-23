@@ -18,6 +18,7 @@
 #include "exRope.h"
 #include "exWall.h"
 #include "exSound.h"
+#include "exOrangeMush.h"
 
 namespace ex
 {
@@ -47,6 +48,64 @@ namespace ex
 		MushMomHpBar* mushMomHpBar = new MushMomHpBar(mMushMom);
 		object::ActiveSceneAddGameObject(enums::eLayerType::UI, mushMomHpBar);
 
+
+		OrangeMush* orangeMush1 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr1 = orangeMush1->GetComponent<Transform>();
+		orangeMushTr1->SetMoveDir(enums::eMoveDir::Left);
+		orangeMushTr1->SetPosition(math::Vector2(400.0f, 330.0f));
+		orangeMush1->SetMoveDelay(5.1f);
+		orangeMush1->Initialize();
+
+		OrangeMush* orangeMush2 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr2 = orangeMush2->GetComponent<Transform>();
+		orangeMushTr2->SetMoveDir(enums::eMoveDir::Right);
+		orangeMushTr2->SetPosition(math::Vector2(700.0f, 330.0f));
+		orangeMush2->SetMoveDelay(4.5f);
+		orangeMush2->Initialize();
+
+		OrangeMush* orangeMush3 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr3 = orangeMush3->GetComponent<Transform>();
+		orangeMushTr3->SetMoveDir(enums::eMoveDir::Left);
+		orangeMushTr3->SetPosition(math::Vector2(-50.0f, 0.0f));
+		orangeMush3->SetMoveDelay(3.5f);
+		orangeMush3->Initialize();
+
+		OrangeMush* orangeMush4 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr4 = orangeMush4->GetComponent<Transform>();
+		orangeMushTr4->SetMoveDir(enums::eMoveDir::Left);
+		orangeMushTr4->SetPosition(math::Vector2(50.0f, 0.0f));
+		orangeMush4->SetMoveDelay(4.5f);
+		orangeMush4->Initialize();
+
+		OrangeMush* orangeMush5 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr5 = orangeMush5->GetComponent<Transform>();
+		orangeMushTr5->SetMoveDir(enums::eMoveDir::Left);
+		orangeMushTr5->SetPosition(math::Vector2(1200.0f, 0.0f));
+		orangeMush5->SetMoveDelay(5.5f);
+		orangeMush5->Initialize();
+
+
+		OrangeMush* orangeMush6 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr6 = orangeMush6->GetComponent<Transform>();
+		orangeMushTr6->SetMoveDir(enums::eMoveDir::Right);
+		orangeMushTr6->SetPosition(math::Vector2(1500.0f, 0.0f));
+		orangeMush6->SetMoveDelay(3.75f);
+		orangeMush6->Initialize();
+
+		OrangeMush* orangeMush7 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr7 = orangeMush7->GetComponent<Transform>();
+		orangeMushTr7->SetMoveDir(enums::eMoveDir::Right);
+		orangeMushTr7->SetPosition(math::Vector2(600.0f, 130.0f));
+		orangeMush7->SetMoveDelay(5.25f);
+		orangeMush7->Initialize();
+
+
+		OrangeMush* orangeMush8 = object::Instantiate<OrangeMush>(enums::eLayerType::Monster);
+		Transform* orangeMushTr8 = orangeMush8->GetComponent<Transform>();
+		orangeMushTr8->SetMoveDir(enums::eMoveDir::Right);
+		orangeMushTr8->SetPosition(math::Vector2(780.0f, 130.0f));
+		orangeMush8->SetMoveDelay(4.25f);
+		orangeMush8->Initialize();
 
 
 		//////////////////////////////////////////////////////////////////////
@@ -206,7 +265,10 @@ namespace ex
 
 	void MushMomScene::Update()
 	{
+		if (mbMushMomHit)
+		{
 
+		}
 		bool bCheck = SceneManager::GetPortalCheck();
 		if (bCheck)
 		{

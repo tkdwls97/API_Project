@@ -34,13 +34,13 @@ namespace ex
 		mCollider = AddComponent<Collider>();
 
 		mAnimator->CreateAnimationFolder(L"MushMomLeftAttackEffect",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Left", math::Vector2(5.0f, -85.0f), 0.03f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Left", math::Vector2(0.0f, -45.0f), 0.03f);
 
 		mAnimator->CreateAnimationFolder(L"MushMomRightAttackEffect",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Right",math::Vector2(5.0f,-85.0f), 0.03f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Right",math::Vector2(0.0f,-45.0f), 0.03f);
 
 		mMushMomSkillSound = ResourceManager::Load<Sound>(L"MushMomSkillSound", L"..\\Resources\\Maple\\Sound\\Monster\\MushMom\\MushMom_Attack.wav");
-		mMushMomSkillSound->SetVolume(100.0f);
+		mMushMomSkillSound->SetVolume(130.0f);
 		mMushMomSkillSound->Play(false);
 
 		mAnimator->SetScale(math::Vector2(1.3f, 1.3f));

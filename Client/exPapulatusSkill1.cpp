@@ -35,11 +35,29 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
 
-		for (size_t i = 0; i < mPapulatusSkill1_Info.AttackCount; i++)
-		{
-			PapulatusSkillArea* papulatusSkillArea = new PapulatusSkillArea(_owner);
-			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea);
-		}
+		PapulatusSkillArea* papulatusSkillArea1 = new PapulatusSkillArea(_owner);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea1);
+	
+		PapulatusSkillArea* papulatusSkillArea2 = new PapulatusSkillArea(_owner);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea2);
+		
+
+		PapulatusSkillArea* papulatusSkillArea3 = new PapulatusSkillArea(_owner);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea3);
+		
+
+		PapulatusSkillArea* papulatusSkillArea4 = new PapulatusSkillArea(_owner);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea4);
+
+		PapulatusSkillArea* papulatusSkillArea5 = new PapulatusSkillArea(_owner);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea5);
+
+		PapulatusSkillArea* papulatusSkillArea6 = new PapulatusSkillArea(_owner);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea6);
+
+		PapulatusSkillArea* papulatusSkillArea7 = new PapulatusSkillArea(_owner);
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea7);
+		
 
 	}
 
