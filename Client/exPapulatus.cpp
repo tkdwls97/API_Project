@@ -31,8 +31,7 @@
 namespace ex
 {
 	Papulatus::Papulatus()
-		: mbPapulatusHit(false)
-		, mAttackDelay(0.0f)
+		: mAttackDelay(0.0f)
 		, mbChaseOn(false)
 		, mSkillDelay(1.5f)
 		, mUsingSkillNumber(0)
@@ -43,7 +42,7 @@ namespace ex
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 411;
 		mSkill2Damage = 403;
-		mSkill3Damage = 380;
+		mSkill3Damage = 280;
 		mSkill4Damage = 0;
 	}
 
@@ -71,7 +70,7 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left", math::Vector2(0.0f, -150.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left", math::Vector2(0.0f, -130.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left", math::Vector2(-75.0f, -100.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill3",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Left", math::Vector2(0.0f, -140.0f), 0.077f);
@@ -97,7 +96,7 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Right", math::Vector2(0.0f, -150.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Right", math::Vector2(0.0f, -130.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Right", math::Vector2(75.0f, -100.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill3",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Right", math::Vector2(0.0f, -140.0f), 0.077f);
@@ -136,6 +135,7 @@ namespace ex
 			break;
 		case ex::Monsters::eMonsterState::Dead:
 			Dead();
+			break;
 		case ex::Monsters::eMonsterState::Skill1:
 			Skill1();
 			break;
@@ -205,10 +205,10 @@ namespace ex
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = 2;/*rand() % 4 + 1;*/
+			mUsingSkillNumber = 4;/*rand() % 4 + 1;*/
 			mSkillDelay = 0.0f;
 
-			if (distanceX < 400.0f && distanceY < 200.0f)
+			if (distanceX < 300.0f && distanceY < 200.0f)
 			{
 				float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 				float PapulatusPosX = mTransform->GetPositionX();
@@ -335,7 +335,7 @@ namespace ex
 		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 		float distanceX = fabs(playerPos.x - this->GetPositionX());
 		float distanceY = fabs(playerPos.y - this->GetPositionY());
-		if (distanceX < 400.0f && distanceY < 200.0f)
+		if (distanceX < 300.0f && distanceY < 200.0f)
 		{
 			mMonsterState = eMonsterState::Idle;
 		}
@@ -346,7 +346,6 @@ namespace ex
 
 	void Papulatus::Hit()
 	{
-		mbPapulatusHit = true;
 		mbChaseOn = true;
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float GateKeeperPosX = mTransform->GetPositionX();
@@ -373,7 +372,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
 				mDirection = enums::eMoveDir::Right;
 			}
-			if (mbPapulatusHit)
+			if (mbChaseOn)
 			{
 				mMonsterState = eMonsterState::Chase;
 			}

@@ -15,6 +15,7 @@
 #include "exPapulatus.h"
 #include "exSound.h"
 #include "exPapulatusSkillArea.h"
+#include "exMasterCronus.h"
 
 namespace ex
 {
@@ -28,12 +29,69 @@ namespace ex
 		mPapulatusSkill4_Info.DamagePercentage = 0;
 		SetEffectInfo(mPapulatusSkill4_Info);
 
-		//mPapulatusSkill4_Sound = ResourceManager::Load<Sound>(L"PapulatusSkill4_Sound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Skill4.wav");
-		//mPapulatusSkill4_Sound->Play(false);
+		mPapulatusSkill4_Sound = ResourceManager::Load<Sound>(L"PapulatusSkill4_Sound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Skill4.wav");
+		mPapulatusSkill4_Sound->Play(false);
 
 		mAnimator = _owner->GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
+
+
+
+		bool randomDir = rand() % 2;
+		float randomDelay = rand() % 8 + 4.3f;
+
+		MasterCronus* masterCronus1 = object::Instantiate<MasterCronus>(enums::eLayerType::Monster);
+		Transform* masterCronustr1 = masterCronus1->GetComponent<Transform>();
+		if (randomDir == 1)
+		{
+			masterCronustr1->SetMoveDir(enums::eMoveDir::Left);
+		
+		}
+		else
+		{
+			masterCronustr1->SetMoveDir(enums::eMoveDir::Right);
+		}
+		masterCronustr1->SetPosition(math::Vector2(_owner->GetPositionX(), _owner->GetPositionY()));
+		masterCronus1->SetMoveDelay(randomDelay);
+		masterCronus1->Initialize();
+
+
+		randomDir = rand() % 2;
+		randomDelay = rand() % 8 + 4.3f;
+
+		MasterCronus* masterCronus2 = object::Instantiate<MasterCronus>(enums::eLayerType::Monster);
+		Transform* masterCronustr2 = masterCronus2->GetComponent<Transform>();
+		if (randomDir == 1)
+		{
+			masterCronustr2->SetMoveDir(enums::eMoveDir::Left);
+
+		}
+		else
+		{
+			masterCronustr2->SetMoveDir(enums::eMoveDir::Right);
+		}
+		masterCronustr2->SetPosition(math::Vector2(_owner->GetPositionX() + 80.0f, _owner->GetPositionY()));
+		masterCronus2->SetMoveDelay(randomDelay);
+		masterCronus2->Initialize();
+
+		randomDir = rand() % 2;
+		randomDelay = rand() % 8 + 4.3f;
+
+		MasterCronus* masterCronus3 = object::Instantiate<MasterCronus>(enums::eLayerType::Monster);
+		Transform* masterCronustr3 = masterCronus3->GetComponent<Transform>();
+		if (randomDir == 1)
+		{
+			masterCronustr3->SetMoveDir(enums::eMoveDir::Left);
+
+		}
+		else
+		{
+			masterCronustr3->SetMoveDir(enums::eMoveDir::Right);
+		}
+		masterCronustr3->SetPosition(math::Vector2(_owner->GetPositionX() + 160.0f, _owner->GetPositionY()));
+		masterCronus3->SetMoveDelay(randomDelay);
+		masterCronus3->Initialize();
 
 
 

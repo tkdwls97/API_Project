@@ -268,7 +268,7 @@ namespace ex
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"GateKeeperRightHit", true);
+				mAnimator->PlayAnimation(L"GateKeeperRightMove", true);
 				mMonsterState = eMonsterState::Move;
 			}
 			mHitDelay = 0.0f;

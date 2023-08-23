@@ -1,4 +1,4 @@
-#include "exThanatos.h"
+#include "exMasterCronus.h"
 #include "exInput.h" 
 #include "exTime.h"
 #include "exObject.h"
@@ -10,7 +10,7 @@
 #include "exPlayer.h"
 #include "exSceneManager.h"
 #include "exDamageManager.h"
-#include "exThanatosAttack.h"
+#include "exMasterCronusAttack.h"
 #include "exSound.h"
 
 // PlayerSkill
@@ -23,71 +23,70 @@
 
 namespace ex
 {
-	Thanatos::Thanatos()
-		: mThanatosHitSound(nullptr)
-		, mThanatosDeadSound(nullptr)
+	MasterCronus::MasterCronus()
+		: mAttackDelay(0)
+		, mMasterCronusHitSound(nullptr)
+		, mMasterCronusDeadSound(nullptr)
 	{
-		mMonstersInfo.mMaxHp = 27000000;
-		mMonstersInfo.mHp = 27000000;
-		mMonstersInfo.mLevel = 180;
-		mMonstersInfo.mDamage = 1212;
-		mSkillDamage = 280;
+		mMonstersInfo.mMaxHp = 13000000;
+		mMonstersInfo.mHp = 13000000;
+		mMonstersInfo.mLevel = 150;
+		mMonstersInfo.mDamage = 300;
+		mSkillDamage = 150;
 	}
 
-	Thanatos::~Thanatos()
+	MasterCronus::~MasterCronus()
 	{
 	}
 
-	void Thanatos::Initialize()
+	void MasterCronus::Initialize()
 	{
 		// left
-		mAnimator->CreateAnimationFolder(L"ThanatosLeftIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Idle\\Left");
+		mAnimator->CreateAnimationFolder(L"MasterCronusLeftIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Idle\\Left");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosLeftMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Move\\Left");
+		mAnimator->CreateAnimationFolder(L"MasterCronusLeftMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Move\\Left");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosLeftHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Hit\\Left");
+		mAnimator->CreateAnimationFolder(L"MasterCronusLeftHit",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Hit\\Left");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosLeftDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Die\\Left");
+		mAnimator->CreateAnimationFolder(L"MasterCronusLeftDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Die\\Left");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosLeftAttack",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Attack\\Left", math::Vector2(0.0f, 0.0f), 0.1f);
+		mAnimator->CreateAnimationFolder(L"MasterCronusLeftAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Attack\\Left"/*, math::Vector2(-100.0f, -100.0f), 0.15f*/);
 
 
 		// Right
-		mAnimator->CreateAnimationFolder(L"ThanatosRightIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Idle\\Right");
+		mAnimator->CreateAnimationFolder(L"MasterCronusRightIdle",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Idle\\Right");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosRightMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Move\\Right");
+		mAnimator->CreateAnimationFolder(L"MasterCronusRightMove",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Move\\Right");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosRightHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Hit\\Right");
+		mAnimator->CreateAnimationFolder(L"MasterCronusRightHit",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Hit\\Right");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosRightDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Die\\Right");
+		mAnimator->CreateAnimationFolder(L"MasterCronusRightDead",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Die\\Right");
 
-		mAnimator->CreateAnimationFolder(L"ThanatosRightAttack",
-			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\Thanatos\\Attack\\Right", math::Vector2(0.0f, 0.0f), 0.1f);
+		mAnimator->CreateAnimationFolder(L"MasterCronusRightAttack",
+			L"..\\Resources\\Maple\\Image\\Monster\\Ability\\MasterCronus\\Attack\\Right"/*, math::Vector2(100.0f, -100.0f), 0.15f*/);
 
+		//mMasterCronusHitSound = ResourceManager::Load<Sound>(L"MasterCronusHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\MasterCronus\\MasterCronus_Die.wav");
+		//mMasterCronusDeadSound = ResourceManager::Load<Sound>(L"MasterCronusDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\MasterCronus\\MasterCronus_Hit.wav");
 
-		mThanatosHitSound = ResourceManager::Load<Sound>(L"ThanatosHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\Thanatos\\Thanatos_Hit.wav");
-		mThanatosDeadSound = ResourceManager::Load<Sound>(L"ThanatosDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\Thanatos\\Thanatos_Die.wav");
-
-
-		mCollider->SetSize(math::Vector2(200.0f, 170.0f));
+		mCollider->SetSize(math::Vector2(80.0f, 80.0f));
 		//mCollider->SetOffset(math::Vector2(1.0f, 1.0f));
 		mAnimator->SetAffectedCamera(true);
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
 
-		mAnimator->PlayAnimation(L"ThanatosLeftIdle", true);
+		mAnimator->PlayAnimation(L"MasterCronusLeftIdle", true);
 	}
 
-	void Thanatos::Update()
+	void MasterCronus::Update()
 	{
 
 		switch (mMonsterState)
@@ -117,13 +116,13 @@ namespace ex
 		GameObject::Update();
 	}
 
-	void Thanatos::Render(HDC _hdc)
+	void MasterCronus::Render(HDC _hdc)
 	{
 
 		GameObject::Render(_hdc);
 	}
 
-	void Thanatos::Idle()
+	void MasterCronus::Idle()
 	{
 		mIdleDelay += Time::GetDeltaTime();
 
@@ -145,11 +144,11 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"ThanatosLeftIdle", true);
+				mAnimator->PlayAnimation(L"MasterCronusLeftIdle", true);
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"ThanatosRightIdle", true);
+				mAnimator->PlayAnimation(L"MasterCronusRightIdle", true);
 			}
 		}
 
@@ -157,28 +156,28 @@ namespace ex
 		float distanceX = fabs(playerPos.x - this->GetPositionX());
 		float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-		if (distanceX < 300.0f && distanceY < 70.0f)
+		if (distanceX < 300.0f && distanceY < 50.0f)
 		{
 			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
-			float ThanatosPosX = mTransform->GetPositionX();
+			float MasterCronusPosX = mTransform->GetPositionX();
 
-			if (playerPosX <= ThanatosPosX)
+			if (playerPosX <= MasterCronusPosX)
 			{
-				mAnimator->PlayAnimation(L"ThanatosLeftAttack", false);
+				mAnimator->PlayAnimation(L"MasterCronusLeftAttack", false);
 				mDirection = enums::eMoveDir::Left;
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"ThanatosRightAttack", false);
+				mAnimator->PlayAnimation(L"MasterCronusRightAttack", false);
 				mDirection = enums::eMoveDir::Right;
 			}
-			ThanatosAttack* thanatosAttack = new ThanatosAttack(this);
-			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, thanatosAttack);
+			MasterCronusAttack* masterCronusAttack = new MasterCronusAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, masterCronusAttack);
 			mMonsterState = eMonsterState::Attack;
 		}
 	}
 
-	void Thanatos::Move()
+	void MasterCronus::Move()
 	{
 		mMoveTime -= Time::GetDeltaTime();
 		math::Vector2 pos = mTransform->GetPosition();
@@ -191,12 +190,12 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"ThanatosLeftMove", true);
+				mAnimator->PlayAnimation(L"MasterCronusLeftMove", true);
 				pos.x -= 50.0f * Time::GetDeltaTime();
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"ThanatosRightMove", true);
+				mAnimator->PlayAnimation(L"MasterCronusRightMove", true);
 				pos.x += 50.0f * Time::GetDeltaTime();
 			}
 		}
@@ -204,31 +203,33 @@ namespace ex
 		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 		float distanceX = fabs(playerPos.x - this->GetPositionX());
 		float distanceY = fabs(playerPos.y - this->GetPositionY());
-		if (distanceX < 300.0f && distanceY < 70.0f)
+		if (distanceX < 300.0f && distanceY < 50.0f)
 		{
 			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
-			float ThanatosPosX = mTransform->GetPositionX();
-			if (playerPosX <= ThanatosPosX)
+			float MasterCronusPosX = mTransform->GetPositionX();
+			if (playerPosX <= MasterCronusPosX)
 			{
-				mAnimator->PlayAnimation(L"ThanatosLeftAttack", false);
+				mAnimator->PlayAnimation(L"MasterCronusLeftAttack", false);
 				mDirection = enums::eMoveDir::Left;
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"ThanatosRightAttack", false);
+				mAnimator->PlayAnimation(L"MasterCronusRightAttack", false);
 				mDirection = enums::eMoveDir::Right;
 			}
 			mTransform->SetMoveDir(mDirection);
-			ThanatosAttack* thanatosAttack = new ThanatosAttack(this);
-			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, thanatosAttack);
+			MasterCronusAttack* masterCronusAttack = new MasterCronusAttack(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, masterCronusAttack);
 			mMonsterState = eMonsterState::Attack;
 		}
-
+		mTransform->SetMoveDir(mDirection);
 		mTransform->SetPosition(pos);
 	}
 
-	void Thanatos::Attack()
+	void MasterCronus::Attack()
 	{
+		mAttackDelay += Time::GetDeltaTime();
+
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
@@ -236,22 +237,22 @@ namespace ex
 		}
 	}
 
-	void Thanatos::Chase()
+	void MasterCronus::Chase()
 	{
 	}
 
-	void Thanatos::Hit()
+	void MasterCronus::Hit()
 	{
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
-		float ThanatosPosX = mTransform->GetPositionX();
-		if (playerPosX <= ThanatosPosX)
+		float MasterCronusPosX = mTransform->GetPositionX();
+		if (playerPosX <= MasterCronusPosX)
 		{
-			mAnimator->PlayAnimation(L"ThanatosLeftHit", false);
+			mAnimator->PlayAnimation(L"MasterCronusLeftHit", false);
 			mDirection = enums::eMoveDir::Left;
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"ThanatosRightHit", false);
+			mAnimator->PlayAnimation(L"MasterCronusRightHit", false);
 			mDirection = enums::eMoveDir::Right;
 		}
 		mHitDelay += Time::GetDeltaTime();
@@ -262,12 +263,12 @@ namespace ex
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
-				mAnimator->PlayAnimation(L"ThanatosLeftMove", true);
+				mAnimator->PlayAnimation(L"MasterCronusLeftMove", true);
 				mMonsterState = eMonsterState::Move;
 			}
 			else
 			{
-				mAnimator->PlayAnimation(L"ThanatosRightMove", true);
+				mAnimator->PlayAnimation(L"MasterCronusRightMove", true);
 				mMonsterState = eMonsterState::Move;
 			}
 			mHitDelay = 0.0f;
@@ -275,21 +276,22 @@ namespace ex
 
 		if (mMonstersInfo.mHp <= 0)
 		{
-			mThanatosDeadSound->Play(false);
+			mMasterCronusDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
+		mTransform->SetMoveDir(mDirection);
 	}
 
-	void Thanatos::Dead()
+	void MasterCronus::Dead()
 	{
 		if (mDirection == enums::eMoveDir::Left)
 		{
-			mAnimator->PlayAnimation(L"ThanatosLeftDead", false);
+			mAnimator->PlayAnimation(L"MasterCronusLeftDead", false);
 
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"ThanatosRightDead", false);
+			mAnimator->PlayAnimation(L"MasterCronusRightDead", false);
 		}
 
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
@@ -301,16 +303,15 @@ namespace ex
 
 
 	}
-	void Thanatos::OnCollisionEnter(Collider* _other)
+	void MasterCronus::OnCollisionEnter(Collider* _other)
 	{
 		PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 		if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
 		{
 			std::set<GameObject*>* attList = playerAtt->GetAttackList();
-
 			if (attList->find(this) == attList->end())
 			{
-				mThanatosHitSound->Play(false);
+				mMasterCronusHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -324,7 +325,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
-				mThanatosHitSound->Play(false);
+				mMasterCronusHitSound->Play(false);
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				mMonsterState = eMonsterState::Hit;
@@ -339,7 +340,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
-				mThanatosHitSound->Play(false);
+				mMasterCronusHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -353,7 +354,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
-				mThanatosHitSound->Play(false);
+				mMasterCronusHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 
@@ -367,7 +368,7 @@ namespace ex
 
 			if (attList->find(this) == attList->end())
 			{
-				mThanatosHitSound->Play(false);
+				mMasterCronusHitSound->Play(false);
 				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 			}
@@ -382,7 +383,7 @@ namespace ex
 		}
 	}
 
-	void Thanatos::OnCollisionStay(Collider* _other)
+	void MasterCronus::OnCollisionStay(Collider* _other)
 	{
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 		if (player != nullptr && player->IsInvincible() == false)
@@ -393,7 +394,7 @@ namespace ex
 		}
 	}
 
-	void Thanatos::OnCollisionExit(Collider* _other)
+	void MasterCronus::OnCollisionExit(Collider* _other)
 	{
 	}
 }
