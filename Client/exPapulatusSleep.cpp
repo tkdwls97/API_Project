@@ -43,7 +43,7 @@ namespace ex
 	}
 
 	void PapulatusSleep::Update()
-	{
+	{		
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);

@@ -5,7 +5,6 @@ namespace ex
 {
 	class Animator;
 	class Collider;
-
 	class Transform;
 	class Papulatus;
 	class Sound;
@@ -26,7 +25,7 @@ namespace ex
 
 		std::set<GameObject*>* GetAttackList() { return &mAttackList; }
 	private:
-		GameObject* mOwner;
+		Papulatus* mOwner;
 		std::set<GameObject*> mAttackList;
 
 		Animator* mAnimator;

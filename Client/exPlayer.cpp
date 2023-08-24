@@ -189,17 +189,27 @@ namespace ex
 	void Player::Update()
 	{
 
+		if (Input::GetKeyDown(eKeyCode::H))
+		{
+			mInfo->mHp += mInfo->mMaxHp / 2;
+
+			if (mInfo->mHp > mInfo->mMaxHp)
+			{
+				mInfo->mHp = mInfo->mMaxHp;
+			}
+		}
+
 		math::Vector2 playerPos = mTransform->GetPosition();
 
 		if (mbInvincible)
 		{
 			mhitDelay += Time::GetDeltaTime();
-				if (mhitDelay >= 1.5f)
-				{
-					mbInvincible = false;
-					mhitDelay = 0.0f;
-					mState = eState::Idle;
-				}
+			if (mhitDelay >= 1.5f)
+			{
+				mbInvincible = false;
+				mhitDelay = 0.0f;
+				//mState = eState::Idle;
+			}
 		}
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump || mState == eState::UpperCharge)
 		{
@@ -295,11 +305,6 @@ namespace ex
 		else if (playerDir == enums::eMoveDir::Right)
 		{
 			mAnimator->PlayAnimation(L"PlayerRightIdle", true);
-		}
-
-		if (Input::GetKeyDown(eKeyCode::H))
-		{
-			mInfo->mHp += -5000;
 		}
 
 		// Rope, Down, Right, Left 키 입력 이동 상태
@@ -909,6 +914,20 @@ namespace ex
 
 		mbDoubleJump = false;
 		velocity.x = 0.0f;
+
+		if (mbInvincible)
+		{
+			if (mhitDelay >= 1.5f)
+			{
+				mbInvincible = false;
+				mhitDelay = 0.0f;
+				mState = eState::Idle;
+			}
+		}
+		else
+		{
+			mState = eState::Idle;
+		}
 
 		if (playerDir == enums::eMoveDir::Left)
 		{

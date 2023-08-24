@@ -29,6 +29,7 @@
 #include "exPapulatusSkill3.h"
 #include "exPapulatusSkill4.h"
 #include "exPapulatusSkill5.h"
+#include "exPapulatusSleep.h"
 
 namespace ex
 {
@@ -272,7 +273,7 @@ namespace ex
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = 3;//rand() % 4 + 1;
+			mUsingSkillNumber = rand() % 4 + 1;
 
 			if (distanceX < 300.0f && distanceY < 200.0f)
 			{
@@ -557,6 +558,8 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
 				mDirection = enums::eMoveDir::Right;
 			}
+			PapulatusSleep* papulatusSleep = new PapulatusSleep(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSleep);
 			mMonsterState = eMonsterState::Sleep;
 		}
 	}
@@ -579,6 +582,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
 				mDirection = enums::eMoveDir::Right;
 			}
+			mMonstersInfo.mHp += 3000000;
 		}
 
 		else
