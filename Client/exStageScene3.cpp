@@ -163,8 +163,10 @@ namespace ex
 		Collider* portalCol = portal->GetComponent<Collider>();
 		portalAt->SetScale(math::Vector2(0.8f, 0.8f));
 		portalTr->SetPosition(math::Vector2(1950.0f, 862.0f));
-		//portalTr->SetPosition(math::Vector2(640.0f, 862.0f));
 		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
+		
+		//Test
+		portalTr->SetPosition(math::Vector2(640.0f, 862.0f));
 
 	}
 

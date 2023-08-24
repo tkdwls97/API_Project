@@ -254,17 +254,16 @@ namespace ex
 			}
 			mIdleDelay = 0.0f;
 		}
+
+		if (mDirection == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"PapulatusLeftIdle", true);
+		}
 		else
 		{
-			if (mDirection == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PapulatusLeftIdle", true);
-			}
-			else
-			{
-				mAnimator->PlayAnimation(L"PapulatusRightIdle", true);
-			}
+			mAnimator->PlayAnimation(L"PapulatusRightIdle", true);
 		}
+
 
 		mSkillDelay += Time::GetDeltaTime();
 		if (mSkillDelay >= 1.5f)
@@ -273,7 +272,7 @@ namespace ex
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = 1; /*rand() % 4 + 1;*/
+			mUsingSkillNumber = 3;//rand() % 4 + 1;
 
 			if (distanceX < 300.0f && distanceY < 200.0f)
 			{
@@ -510,16 +509,25 @@ namespace ex
 			}
 
 		}
-		else
+
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
 		{
-			bool bCheck = mAnimator->IsActiveAnimationComplete();
-			if (bCheck)
+			if (playerPosX <= PapulatusPosX)
 			{
-				mMonsterState = eMonsterState::Idle;
+				mAnimator->PlayAnimation(L"PapulatusLeftIdle", false);
+				mDirection = enums::eMoveDir::Left;
 			}
-			mSkill3Delay = 0.0f;
+			else
+			{
+				mAnimator->PlayAnimation(L"PapulatusRightIdle", false);
+				mDirection = enums::eMoveDir::Right;
+			}
+			mMonsterState = eMonsterState::Idle;
 		}
-		
+		mSkill3Delay = 0.0f;
+
+
 	}
 
 	void Papulatus::Skill4()

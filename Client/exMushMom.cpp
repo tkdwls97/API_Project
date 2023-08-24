@@ -135,7 +135,7 @@ namespace ex
 	void MushMom::Idle()
 	{
 		mIdleDelay += Time::GetDeltaTime();
-
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 		math::Vector2 pos = mTransform->GetPosition();
 		if (mIdleDelay >= 2.3f)
 		{
@@ -150,19 +150,18 @@ namespace ex
 			mMonsterState = eMonsterState::Move;
 			mIdleDelay = 0.0f;
 		}
+
+		if (playerPos.x <= mTransform->GetPositionX())
+		{
+			mAnimator->PlayAnimation(L"MushMomLeftIdle", false);
+			mDirection = enums::eMoveDir::Left;
+		}
 		else
 		{
-			if (mDirection == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"MushMomLeftIdle", true);
-			}
-			else
-			{
-				mAnimator->PlayAnimation(L"MushMomRightIdle", true);
-			}
+			mAnimator->PlayAnimation(L"MushMomRightIdle", false);
+			mDirection = enums::eMoveDir::Right;
 		}
 
-		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 		float distanceX = fabs(playerPos.x - this->GetPositionX());
 		float distanceY = fabs(playerPos.y - this->GetPositionY());
 
@@ -170,7 +169,7 @@ namespace ex
 		{
 			MushMomSkill* mushMomSkill = new MushMomSkill(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mushMomSkill);
-			
+
 			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 			if (playerPosX <= mTransform->GetPositionX())
 			{
@@ -239,13 +238,23 @@ namespace ex
 	void MushMom::Attack()
 	{
 		mAttackDelay += Time::GetDeltaTime();
-
+		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 		if (mAttackDelay >= 1.5f)
 		{
 			bool bCheck = mAnimator->IsActiveAnimationComplete();
 			if (bCheck)
 			{
-				mMonsterState = eMonsterState::Move;
+				if (playerPos.x <= mTransform->GetPositionX())
+				{
+					mAnimator->PlayAnimation(L"MushMomLeftIdle", false);
+					mDirection = enums::eMoveDir::Left;
+				}
+				else
+				{
+					mAnimator->PlayAnimation(L"MushMomRightIdle", false);
+					mDirection = enums::eMoveDir::Right;
+				}
+				mMonsterState = eMonsterState::Idle;
 			}
 			mAttackDelay = 0.0f;
 		}
@@ -416,7 +425,7 @@ namespace ex
 		}
 
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		
+
 		if (player != nullptr && player->IsInvincible() == false)
 		{
 			DamageManager* damage = new DamageManager();
