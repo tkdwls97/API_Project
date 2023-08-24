@@ -29,6 +29,11 @@ namespace ex
 			mLayers[(int)_type].AddGameObject(_gameObj);
 		}
 
+		void RemoveGameObject(enums::eLayerType _type, GameObject* _gameObj)
+		{
+			mLayers[(int)_type].RemoveGameObject(_gameObj);
+		}
+
 	private:
 		std::vector<Layer> mLayers;
 	};

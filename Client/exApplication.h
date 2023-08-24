@@ -15,6 +15,7 @@ namespace ex
 		void Run();
 		void Update();
 		void Render();
+		void Release();
 
 		//Hwnd(윈도우 핸들)을 반환한다.
 		HWND GetHwnd() { return mHwnd; }

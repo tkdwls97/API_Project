@@ -24,6 +24,8 @@ namespace ex
 		, mOwner(_owner)
 		, mPapulatusSkill5_Sound(nullptr)
 		, mPapulatusSkill5_Heal(1000000)
+		, mCollider(nullptr)
+		, mTransform(nullptr)
 	{
 		mPapulatusSkill5_Sound = ResourceManager::Load<Sound>(L"PapulatusSkill5_Sound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Skill5.wav");
 		mPapulatusSkill5_Sound->Play(false);

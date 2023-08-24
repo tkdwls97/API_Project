@@ -19,6 +19,6 @@ namespace ex
 	private:
 		LPDIRECTSOUNDBUFFER		mSoundBuffer;
 		DSBUFFERDESC			mBufferDesc;
-		int						mVolume;
+		int						mVolume = 0;
 	};
 }

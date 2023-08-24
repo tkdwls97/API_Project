@@ -175,6 +175,10 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerRopeMove", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 2, math::Vector2(-23.0f, 0.0f));
 
+
+		ResourceManager::Load<Texture>(L"ComboDeathFaultLeftScreen"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
+
 		// Player Sound
 		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
 

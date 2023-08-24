@@ -15,6 +15,11 @@ namespace ex
 
 	GameObject::~GameObject()
 	{
+		for (Component* comp : mComponents)
+		{
+			delete comp;
+			comp = nullptr;
+		}
 	}
 
 	void GameObject::Initialize()

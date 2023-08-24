@@ -8,6 +8,11 @@ namespace ex
 
 	Layer::~Layer()
 	{
+		for (GameObject* obj : mGameObjects)
+		{
+			delete obj;
+			obj = nullptr;
+		}
 	}
 
 	void Layer::Initialize()
@@ -51,6 +56,15 @@ namespace ex
 	}
 
 	
+	void Layer::RemoveGameObject(GameObject* _gameObj)
+	{
+		// mGameObjects 내에서 해당 오브젝트의 iterator 를 찾아온다
+		std::vector<GameObject*>::iterator iter = find(mGameObjects.begin(), mGameObjects.end(), _gameObj);
+		// mGameObjects벡터 에서 해당 오브젝트가 존재한다면 제외한다
+		if (iter != mGameObjects.end())
+			mGameObjects.erase(iter);
+	}
+
 	std::vector<GameObject*>& Layer::GetGameObjects()
 	{
 		return mGameObjects;

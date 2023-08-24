@@ -20,6 +20,7 @@ namespace ex
 			mGameObjects.push_back(_gameObj);
 		}
 
+		void RemoveGameObject(GameObject* _gameObj);
 		std::vector<GameObject*>& GetGameObjects();
 
 	private:

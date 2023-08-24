@@ -51,11 +51,50 @@ namespace ex
 		mActiveScene->Render(_hdc);
 	}
 
+	void SceneManager::Release()
+	{
+
+		if (mActiveScene->GetName() == L"TitleScene")
+		{
+			delete mPlayer;
+			mPlayer = nullptr;
+
+			delete mStatusBar;
+			mStatusBar = nullptr;
+
+			delete mExpBar;
+			mExpBar = nullptr;
+
+			delete mHpBar;
+			mHpBar = nullptr;
+
+			delete mMpBar;
+			mMpBar = nullptr;
+
+			delete mDamageManager;
+			mDamageManager = nullptr;
+		}
+
+		for (auto iter : mScenes)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
+
+	}
+
 	Scene* SceneManager::LoadScene(const std::wstring& _name)
 	{
 		mActiveScene->SceneOut();
 
 		std::map<std::wstring, Scene*>::iterator iter = mScenes.find(_name);
+
+		mActiveScene->RemoveGameObject(enums::eLayerType::Player, mPlayer);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mStatusBar);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mHpBar);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mMpBar);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mExpBar);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mDamageManager);
 
 		if (iter == mScenes.end())
 			return nullptr;
@@ -71,8 +110,8 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mHpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mMpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mDamageManager);
-
 		}
+
 		mActiveScene->SceneIN();
 
 		return iter->second;

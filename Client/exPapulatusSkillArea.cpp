@@ -27,7 +27,7 @@ namespace ex
 	{
 		mPapulatusSkillArea_Info.AttackCount = 1;
 		mPapulatusSkillArea_Info.DamagePercentage = 9;
-		mPapulatusSkillArea_Damege = 398;
+		mPapulatusSkillArea_Damege = 3000;
 		SetEffectInfo(mPapulatusSkillArea_Info);
 
 		mAnimator = GetComponent<Animator>();

@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "Client.h"
 #include "exApplication.h"
+#include "exResourceManager.h"
+#include "exSceneManager.h"
 
 #define MAX_LOADSTRING 100
 
@@ -31,6 +33,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    _CrtSetBreakAlloc(230);
+
     // TODO: 여기에 코드를 입력합니다.
 
     // 전역 문자열을 초기화합니다.
@@ -47,10 +52,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 커서 설정하는 부분
     LPCWSTR MapleStoryCursor = L"..\\Resources\\Maple\\Image\\UI\\basiccursor0.cur";
 
-    // 커서 핸들 생성
-    HCURSOR hCursor = LoadCursorFromFile(MapleStoryCursor);
+    //// 커서 핸들 생성
+    //HCURSOR hCursor = LoadCursorFromFile(MapleStoryCursor);
 
-    SetCursor(hCursor);
+    //SetCursor(hCursor);
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
@@ -81,7 +86,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-            SetCursor(hCursor);
+       /*     SetCursor(hCursor);*/
             // (게임 실행)
             application.Run();
         }
@@ -92,9 +97,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     {
         
     }
-
+    application.Release();
+    ex::SceneManager::Release();
+    ex::ResourceManager::Release();
     Gdiplus::GdiplusShutdown(gdiplusToken);
-    DestroyCursor(hCursor);
+ //   DestroyCursor(hCursor);
 
     return (int)msg.wParam;
 }
