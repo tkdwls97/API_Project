@@ -115,10 +115,10 @@ namespace ex
 		enums::eLayerType GetLayerType() { return mLayerType; }
 
 		eObjectState GetObjectState() { return mObjectState; }
-		void Pause() { mObjectState = eObjectState::Pause; }
 
 	private:
 		void death() { mObjectState = eObjectState::Dead; }
+		void Pause() { mObjectState = eObjectState::Pause; }
 
 	private:
 		std::vector<Component*> mComponents;

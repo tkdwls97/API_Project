@@ -9,6 +9,7 @@ namespace ex
 
 	void CollisionManager::Initialize()
 	{
+		Clear();
 	}
 
 	void CollisionManager::Update()

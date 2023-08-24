@@ -17,10 +17,13 @@ namespace ex
 
 	Animator::~Animator()
 	{
-		for (auto iter : mAnimations)
+ 		for (auto iter : mAnimations)
 		{
-			delete iter.second;
-			iter.second = nullptr;
+			if (nullptr != iter.second)
+			{
+				delete iter.second;
+				iter.second = nullptr;
+			}
 		}
 	}
 

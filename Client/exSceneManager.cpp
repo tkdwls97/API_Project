@@ -77,10 +77,14 @@ namespace ex
 
 		for (auto iter : mScenes)
 		{
-			delete iter.second;
-			iter.second = nullptr;
+			if (nullptr != iter.second)
+			{
+				delete iter.second;
+				iter.second = nullptr;
+			}
 		}
 
+		mScenes.clear();
 	}
 
 	Scene* SceneManager::LoadScene(const std::wstring& _name)
@@ -90,6 +94,7 @@ namespace ex
 		std::map<std::wstring, Scene*>::iterator iter = mScenes.find(_name);
 
 		mActiveScene->RemoveGameObject(enums::eLayerType::Player, mPlayer);
+
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mStatusBar);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mHpBar);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mMpBar);
@@ -97,7 +102,9 @@ namespace ex
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mDamageManager);
 
 		if (iter == mScenes.end())
+		{
 			return nullptr;
+		}
 
 		mActiveScene = iter->second;
 

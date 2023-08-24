@@ -58,8 +58,8 @@ void ex::Application::Initialize(HWND Hwnd)
 	Time::Initialize();
 	Input::Initialize();
 	Camera::Initialize();
-	CollisionManager::Initialize();
 	SoundManager::Initialize();
+	CollisionManager::Initialize();
 	SceneManager::Initialize();
 }
 

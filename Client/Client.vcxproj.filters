@@ -223,9 +223,6 @@
     <Filter Include="Contents\Scene\05.BossScene">
       <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\02.MushMomSkill">
-      <UniqueIdentifier>{1293c9e0-6d2c-438d-8704-50a790f15bbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\00.GateKeeperAttack">
       <UniqueIdentifier>{5ebf8c6e-1af7-4b02-a865-6ef4bf5a0685}</UniqueIdentifier>
     </Filter>
@@ -249,6 +246,39 @@
     </Filter>
     <Filter Include="Engine\Sound\00.SoundManager">
       <UniqueIdentifier>{67eb0531-24a7-4f05-a332-27c5a8df6f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\01.Ability\02.MasterCronus">
+      <UniqueIdentifier>{2b2505f9-c7fc-411d-be2b-ae8476574ed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\03.MushMomSkill">
+      <UniqueIdentifier>{1293c9e0-6d2c-438d-8704-50a790f15bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\02.MasterCronusAttack">
+      <UniqueIdentifier>{ef369ea1-25b0-4cfa-ad1c-7f300096ccd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill">
+      <UniqueIdentifier>{948c7c63-ff4e-4ae0-b556-90e20c4d31b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\00.PapulatusSkill1">
+      <UniqueIdentifier>{28c43905-3de9-4596-a409-200186b49ec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\00.PapulatusSkill1\00.PapulatusSkillArea">
+      <UniqueIdentifier>{d41531e2-1641-470e-81e6-26a73929d0a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\01.PapulatusSkill2">
+      <UniqueIdentifier>{40210d52-a6b0-47c1-a01a-4ef176b8c31d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\02.PapulatusSkill3">
+      <UniqueIdentifier>{a5bffe3b-029c-4052-8980-0a9f246e9cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\03.PapulatusSkill4">
+      <UniqueIdentifier>{d4de857c-0d49-4fb5-80bc-529155c7b770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\04.PapulatusSkill5">
+      <UniqueIdentifier>{279c0661-3123-417f-8d21-9baeab2b47be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\04.PapulatusSkill5\00.PapulatusSleep">
+      <UniqueIdentifier>{f07737da-659e-42fb-a1d2-eb941247ec32}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -433,7 +463,7 @@
       <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
     </ClCompile>
     <ClCompile Include="exMushMomSkill.cpp">
-      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\02.MushMomSkill</Filter>
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\03.MushMomSkill</Filter>
     </ClCompile>
     <ClCompile Include="exMushMomHpBar.cpp">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar</Filter>
@@ -464,6 +494,33 @@
     </ClCompile>
     <ClCompile Include="exSoundManager.cpp">
       <Filter>Engine\Sound\00.SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="exMasterCronus.cpp">
+      <Filter>Contents\GameObject\02.Monster\01.Ability\02.MasterCronus</Filter>
+    </ClCompile>
+    <ClCompile Include="exMasterCronusAttack.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\02.MasterCronusAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusSkill1.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\00.PapulatusSkill1</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusSkillArea.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\00.PapulatusSkill1\00.PapulatusSkillArea</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusSkill2.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\01.PapulatusSkill2</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusSkill3.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\02.PapulatusSkill3</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusSkill4.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\03.PapulatusSkill4</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusSkill5.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\04.PapulatusSkill5</Filter>
+    </ClCompile>
+    <ClCompile Include="exPapulatusSleep.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\04.PapulatusSkill5\00.PapulatusSleep</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -660,7 +717,7 @@
       <Filter>Contents\GameObject\04.UI\01.DamageManager\02.MonsterDamageSkin</Filter>
     </ClInclude>
     <ClInclude Include="exMushMomSkill.h">
-      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\02.MushMomSkill</Filter>
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\03.MushMomSkill</Filter>
     </ClInclude>
     <ClInclude Include="exMushMomHpBar.h">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar</Filter>
@@ -688,6 +745,33 @@
     </ClInclude>
     <ClInclude Include="exSoundManager.h">
       <Filter>Engine\Sound\00.SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="exMasterCronus.h">
+      <Filter>Contents\GameObject\02.Monster\01.Ability\02.MasterCronus</Filter>
+    </ClInclude>
+    <ClInclude Include="exMasterCronusAttack.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\02.MasterCronusAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusSkill1.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\00.PapulatusSkill1</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusSkillArea.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\00.PapulatusSkill1\00.PapulatusSkillArea</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusSkill2.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\01.PapulatusSkill2</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusSkill3.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\02.PapulatusSkill3</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusSkill4.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\03.PapulatusSkill4</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusSkill5.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\04.PapulatusSkill5</Filter>
+    </ClInclude>
+    <ClInclude Include="exPapulatusSleep.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\04.PapulatusSkill\04.PapulatusSkill5\00.PapulatusSleep</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

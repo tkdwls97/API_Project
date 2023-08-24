@@ -34,6 +34,21 @@ namespace ex
 			mLayers[(int)_type].RemoveGameObject(_gameObj);
 		}
 
+		void DeleteLayer(enums::eLayerType type)
+		{
+			// 해당 레이어 안의 오브젝트를 삭제
+			mLayers[(int)type].DeleteObjects();
+		}
+
+		void DeleteAllLayer()
+		{
+			// 모든 레이어의 오브젝트 삭제
+			for (size_t i = 0; i < mLayers.size(); i++)
+			{
+				DeleteLayer((enums::eLayerType)i);
+			}
+		}
+
 	private:
 		std::vector<Layer> mLayers;
 	};
