@@ -23,6 +23,7 @@ namespace ex
 		, mOwner(_owner)
 		, mPapulatusSkillArea_Info()
 		, mPapulatusSkillArea_Sound(nullptr)
+		, mSkillDelay(0.0f)
 	{
 		mPapulatusSkillArea_Info.AttackCount = 1;
 		mPapulatusSkillArea_Info.DamagePercentage = 9;
@@ -80,9 +81,14 @@ namespace ex
 
 	void PapulatusSkillArea::Update()
 	{
-		if (mAnimator->IsActiveAnimationComplete())
+		mSkillDelay += Time::GetDeltaTime();
+		if (mSkillDelay >= 4.0f)
 		{
 			mCollider->SetSize(math::Vector2(120.0f, 800.0f));
+			mSkillDelay = 0.0f;
+		}
+		if (mAnimator->IsActiveAnimationComplete())
+		{
 			Destroy(this);
 		}
 		GameObject::Update();

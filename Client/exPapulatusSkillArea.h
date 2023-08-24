@@ -35,6 +35,8 @@ namespace ex
 		EffectInfo mPapulatusSkillArea_Info;
 		int	   mPapulatusSkillArea_Damege;
 		Sound* mPapulatusSkillArea_Sound;
+
+		float mSkillDelay;
 	};
 
 }

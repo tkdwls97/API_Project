@@ -5,6 +5,7 @@ namespace ex
 {
 	class Animator;
 	class Collider;
+
 	class Transform;
 	class Papulatus;
 	class Sound;

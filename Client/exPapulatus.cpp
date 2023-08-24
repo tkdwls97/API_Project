@@ -273,7 +273,7 @@ namespace ex
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = rand() % 4 + 1;
+			mUsingSkillNumber = 1; /*rand() % 4 + 1;*/
 
 			if (distanceX < 300.0f && distanceY < 200.0f)
 			{
