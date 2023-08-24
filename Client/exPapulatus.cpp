@@ -387,18 +387,24 @@ namespace ex
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float papulatusPosX = mTransform->GetPositionX();
 		math::Vector2 pos = mTransform->GetPosition();
-
+		float diff = playerPosX - papulatusPosX;
 		if (playerPosX <= papulatusPosX)
 		{
 			mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
-			pos.x -= 60.0f * Time::GetDeltaTime();
 			mDirection = enums::eMoveDir::Left;
+			if (diff < 10.0f)
+			{
+				pos.x -= 60.0f * Time::GetDeltaTime();
+			}
 		}
 		else
 		{
 			mAnimator->PlayAnimation(L"PapulatusRightMove", true);
-			pos.x += 60.0f * Time::GetDeltaTime();
 			mDirection = enums::eMoveDir::Right;
+			if (diff > 10.0f)
+			{
+				pos.x += 60.0f * Time::GetDeltaTime();
+			}
 		}
 		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 		float distanceX = fabs(playerPos.x - this->GetPositionX());
