@@ -52,10 +52,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 커서 설정하는 부분
     LPCWSTR MapleStoryCursor = L"..\\Resources\\Maple\\Image\\UI\\basiccursor0.cur";
 
-    //// 커서 핸들 생성
-    //HCURSOR hCursor = LoadCursorFromFile(MapleStoryCursor);
+    // 커서 핸들 생성
+    HCURSOR hCursor = LoadCursorFromFile(MapleStoryCursor);
 
-    //SetCursor(hCursor);
+    SetCursor(hCursor);
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
@@ -86,7 +86,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
-       /*     SetCursor(hCursor);*/
+            SetCursor(hCursor);
             // (게임 실행)
             application.Run();
         }
@@ -101,7 +101,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ex::SceneManager::Release();
     ex::ResourceManager::Release();
     Gdiplus::GdiplusShutdown(gdiplusToken);
- //   DestroyCursor(hCursor);
+    DestroyCursor(hCursor);
 
     return (int)msg.wParam;
 }
