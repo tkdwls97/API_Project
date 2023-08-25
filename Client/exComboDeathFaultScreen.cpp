@@ -105,7 +105,7 @@ namespace ex
 		{
 			ComboDeathFaultHit* comboDeathFaultHit = new ComboDeathFaultHit(_other->GetOwner());
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeathFaultHit);
-
+		
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				if (monsters->GetMonstersState() != eMonsterState::Sleep &&

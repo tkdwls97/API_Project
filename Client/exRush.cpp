@@ -34,18 +34,12 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"LeftRush"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Rush\\Left\\Left_Rush.png");
 
-		//Texture* image = ResourceManager::Load<Texture>(L"LeftRush"
-		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Rush\\Left\\LeftRush.bmp");
-
 		mAnimator->CreateAnimation(L"LeftRush", image, math::Vector2(0.0f, 0.0f), math::Vector2(798.0f,435.0f)
 			, math::Vector2(798.0f, 435.0f), 14, math::Vector2(0), 0.05f);
 
 		//// png
 		image = ResourceManager::Load<Texture>(L"RightRush"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Rush\\Right\\Right_Rush.png");
-
-		//image = ResourceManager::Load<Texture>(L"RightRush"
-		//	, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Rush\\Right\\RightRush.bmp");
 
 		mAnimator->CreateAnimation(L"RightRush", image, math::Vector2(11172.0f, 0.0f), math::Vector2(798.0f, 435.0f)
 			, math::Vector2(-798.0f, 0.0f), 14, math::Vector2(0), 0.05f);

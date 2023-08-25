@@ -32,7 +32,7 @@ namespace ex
 		mTransform->SetPosition(math::Vector2(pos));
 		mAnimator->PlayAnimation(L"ComboDeathFaultHit", false);
 
-		mComboDeathFaultHitSound = ResourceManager::Load<Sound>(L"ComboDeathFaultHit", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault_Hit.wav");
+		mComboDeathFaultHitSound = ResourceManager::Load<Sound>(L"ComboDeathFaultHitSound", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault_Hit.wav");
 		mComboDeathFaultHitSound->SetVolume(20.0f);
 		mComboDeathFaultHitSound->Play(false);
 	}

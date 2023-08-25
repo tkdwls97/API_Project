@@ -29,14 +29,14 @@ namespace ex
 		Texture* image = ResourceManager::Load<Texture>(L"LeftComboDeathFault"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Player\\Left\\Player_Left_ComboDeathFault.png");
 
-		mAnimator->CreateAnimation(L"LeftRaisingblow", image, math::Vector2(0.0f, 0.0f), math::Vector2(1311.0f, 464.0f)
+		mAnimator->CreateAnimation(L"LeftComboDeathFault", image, math::Vector2(0.0f, 0.0f), math::Vector2(1311.0f, 464.0f)
 			, math::Vector2(1311.0f, 464.0f), 24, math::Vector2(-33.0f,0.0f), 0.05f);
 
 		//// png
 		image = ResourceManager::Load<Texture>(L"RightComboDeathFault"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Player\\Right\\Player_Right_ComboDeathFault.png");
 
-		mAnimator->CreateAnimation(L"RightRaisingblow", image, math::Vector2(31464.0f, 0.0f), math::Vector2(1311.0f, 464.0f)
+		mAnimator->CreateAnimation(L"RightComboDeathFault", image, math::Vector2(31464.0f, 0.0f), math::Vector2(1311.0f, 464.0f)
 			, math::Vector2(-1311.0f, 0.0f), 24, math::Vector2(33.0f, 0.0f), 0.05f);
 
 		mAnimator->SetScale(math::Vector2(0.85f, 0.70f));
@@ -47,15 +47,17 @@ namespace ex
 
 		if (playerDir == enums::eMoveDir::Left)
 		{
-			mAnimator->PlayAnimation(L"LeftRaisingblow", false);
+			mAnimator->PlayAnimation(L"LeftComboDeathFault", false);
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"RightRaisingblow", false);
+			mAnimator->PlayAnimation(L"RightComboDeathFault", false);
 		}
 
-		mComboDeathFaultSound = ResourceManager::Load<Sound>(L"ComboDeathFault", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault.wav");
+		mComboDeathFaultSound = ResourceManager::Load<Sound>(L"ComboDeathFaultSound", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault.wav");
+		mComboDeathFaultSound->SetVolume(70.0f);
 		mComboDeathFaultSound->Play(false);
+
 	}
 
 	ComboDeathFaultPlayer::~ComboDeathFaultPlayer()

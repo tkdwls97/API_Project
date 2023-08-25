@@ -23,7 +23,6 @@ namespace ex
 		void PlayPlayerDamageAnimation(int _skillDamage, float _delay = 0);
 		void PlayMonsterDamageAnimation(int _monsterDamage, int _skillDamage = 1);
 
-		Texture* GetDamageArr() { return *mDamageArr; }
 
 		int GetPlayerDamage() { return mPlayerDamage; }
 		int GetMonsterDamage() { return mMonsterDamage; }
@@ -34,7 +33,6 @@ namespace ex
 
 
 	private:
-		Texture* mDamageArr[10];
 		std::vector<int> mDamageIndexArr;
 
 		int		 mPlayerDamage;

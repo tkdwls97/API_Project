@@ -7,6 +7,9 @@
 #include "exResourceManager.h"
 #include "exSceneManager.h"
 
+#include <crtdbg.h>
+#define _CRTDBG_MAP_ALLOC
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -34,7 +37,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    // _CrtSetBreakAlloc(63980);
+    //_CrtSetBreakAlloc(228);
 
 
     // TODO: 여기에 코드를 입력합니다.

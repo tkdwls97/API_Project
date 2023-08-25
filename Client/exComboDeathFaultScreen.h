@@ -31,8 +31,6 @@ namespace ex
 		Collider* mCollider;
 
 		EffectInfo mComboDeathFaultInfo;
-
-		std::vector<class DamageManager*> test;
 	};
 
 }

@@ -22,13 +22,13 @@
 namespace ex
 {
 	DamageManager::DamageManager()
-		: mDamageArr{}
-		, mDamageSize(0)
+		: mDamageSize(0)
 		, mPlayerDamage(0)
 		, mDamageIndex(0)
 		, mDamageIndexArr{}
 		, mPlayerResultDamage(0)
 		, mMonsterResultDamage(0)
+		, mMonsterDamage(0)
 	{
 		Player* player = SceneManager::GetPlayer();
 		int minDamage = player->GetInfo()->mMinDamage;

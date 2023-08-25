@@ -46,7 +46,7 @@ namespace ex
 		// 평타 Collider 색 세팅
 		mCollider->SetNomalCollor(RGB(255, 255, 0));
 
-		mAttackSound = ResourceManager::Load<Sound>(L"playerAttack", L"..\\Resources\\Maple\\Sound\\Player\\player_Attack.wav");
+		mAttackSound = ResourceManager::Load<Sound>(L"playerAttackSound", L"..\\Resources\\Maple\\Sound\\Player\\player_Attack.wav");
 		mAttackSound->Play(false);
 	}
 

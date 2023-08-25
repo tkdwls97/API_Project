@@ -58,7 +58,7 @@ namespace ex
 			mAnimator->PlayAnimation(L"RightWarriorLeap", false);
 		}
 
-		mWarriorLeap = ResourceManager::Load<Sound>(L"WarriorLeap", L"..\\Resources\\Maple\\Sound\\Skill\\WarriorLeap.wav");
+		mWarriorLeap = ResourceManager::Load<Sound>(L"WarriorLeapSound", L"..\\Resources\\Maple\\Sound\\Skill\\WarriorLeap.wav");
 		mWarriorLeap->Play(false);
 	}
 

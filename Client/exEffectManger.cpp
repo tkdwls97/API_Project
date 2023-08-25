@@ -14,14 +14,6 @@ namespace ex
 
 	EffectManger::~EffectManger()
 	{
-		//for (DamageManager* damageStorage : mDamageStorage)
-		//{
-		//	if (dynamic_cast<DamageManager*>(damageStorage) == nullptr)
-		//		continue;
-
-		//	delete damageStorage;
-		//	damageStorage = nullptr;
-		//}
 	}
 
 	void EffectManger::Initialize()

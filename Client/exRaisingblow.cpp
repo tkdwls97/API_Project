@@ -61,7 +61,7 @@ namespace ex
 			mAnimator->PlayAnimation(L"RightRaisingblow", false);
 		}
 
-		mRaisingblowSound = ResourceManager::Load<Sound>(L"Ragingblow", L"..\\Resources\\Maple\\Sound\\Skill\\Ragingblow.wav");
+		mRaisingblowSound = ResourceManager::Load<Sound>(L"RagingblowScound", L"..\\Resources\\Maple\\Sound\\Skill\\Ragingblow.wav");
 		mRaisingblowSound->Play(false);
 	}
 

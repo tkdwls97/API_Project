@@ -56,6 +56,11 @@ namespace ex
 
 	Player::~Player()
 	{
+		if (nullptr != mInfo)
+		{
+			delete mInfo;
+			mInfo = nullptr;
+		}
 	}
 
 	void Player::Initialize()
@@ -183,7 +188,7 @@ namespace ex
 		// Player Sound
 		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
 		mPortionSound = ResourceManager::Load<Sound>(L"PlayerPortion", L"..\\Resources\\Maple\\Sound\\Player\\Player_Portion.wav");
-
+		mPortionSound->SetVolume(150.0f);
 
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(45.0f, 70.0f));
