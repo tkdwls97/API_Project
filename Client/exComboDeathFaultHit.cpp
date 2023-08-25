@@ -33,7 +33,6 @@ namespace ex
 		mAnimator->PlayAnimation(L"ComboDeathFaultHit", false);
 
 		mComboDeathFaultHitSound = ResourceManager::Load<Sound>(L"ComboDeathFaultHitSound", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault_Hit.wav");
-		mComboDeathFaultHitSound->SetVolume(20.0f);
 		mComboDeathFaultHitSound->Play(false);
 	}
 
