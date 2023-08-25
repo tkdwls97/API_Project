@@ -403,6 +403,7 @@ namespace ex
 		if (player != nullptr && player->IsInvincible() == false)
 		{
 			DamageManager* damage = new DamageManager();
+			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
 			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
 			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
 		}
@@ -414,6 +415,7 @@ namespace ex
 		if (player != nullptr && player->IsInvincible() == false)
 		{
 			DamageManager* damage = new DamageManager();
+			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
 			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
 			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
 		}

@@ -6,6 +6,7 @@
 #include "exCamera.h"
 #include "exCollisionManager.h"
 #include "exSoundManager.h"
+#include "exResourceManager.h"
 
 
 ex::Application::Application()

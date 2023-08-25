@@ -40,6 +40,7 @@ namespace ex
 		, mbRopeState(false)
 		, mbDoubleJump(false)
 		, mJumpSound(nullptr)
+		, mPortionSound(nullptr)
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
@@ -181,6 +182,7 @@ namespace ex
 
 		// Player Sound
 		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
+		mPortionSound = ResourceManager::Load<Sound>(L"PlayerPortion", L"..\\Resources\\Maple\\Sound\\Player\\Player_Portion.wav");
 
 
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
@@ -195,6 +197,7 @@ namespace ex
 
 		if (Input::GetKeyDown(eKeyCode::H))
 		{
+			mPortionSound->Play(false);
 			mInfo->mHp += mInfo->mMaxHp / 2;
 
 			if (mInfo->mHp > mInfo->mMaxHp)

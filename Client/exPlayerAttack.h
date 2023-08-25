@@ -7,6 +7,7 @@ namespace ex
 	class Transform;
 	class Animator;
 	class Sound;
+	
 
 	class PlayerAttack : public EffectManger
 	{

@@ -60,7 +60,7 @@ namespace ex
 				GameObject* obj = *iter;
 				iter = mGameObjects.erase(iter);
 				delete obj;
-				obj = nullptr;\
+				obj = nullptr;
 			}
 			else
 			{

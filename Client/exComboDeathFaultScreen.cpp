@@ -65,7 +65,7 @@ namespace ex
 	}
 
 	ComboDeathFaultScreen::~ComboDeathFaultScreen()
-	{
+	{		
 	}
 
 	void ComboDeathFaultScreen::Initialize()
@@ -74,11 +74,6 @@ namespace ex
 
 	void ComboDeathFaultScreen::Update()
 	{
-		if (mAnimator->IsActiveAnimationComplete())
-		{
-			Destroy(this);
-		}
-
 		eState playerState = SceneManager::GetPlayer()->GetState();
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (playerState == eState::ComboDeathFault)
@@ -89,6 +84,11 @@ namespace ex
 		{
 			// 어택이 끝나면 초기화해줌
 			mAttackList.clear();
+		}
+
+		if (mAnimator->IsActiveAnimationComplete())
+		{
+			Destroy(this);
 		}
 		GameObject::Update();
 	}
@@ -114,10 +114,11 @@ namespace ex
 					monsters->GetMonstersState() != eMonsterState::Dead)
 				{
 					DamageManager* damage = new DamageManager();
+					object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
 					damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
 					damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
-
 					monsters->ReductiongHp(damage->GetPlayerResultDamage());
+					
 				}
 			}
 		}

@@ -121,10 +121,11 @@ namespace ex
 					monsters->GetMonstersState() != eMonsterState::Dead)
 				{
 					DamageManager* damage = new DamageManager();
+					object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
 					damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
 					damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage);
-
 					monsters->ReductiongHp(damage->GetPlayerResultDamage());
+
 				}
 			}
 		}

@@ -17,7 +17,7 @@ namespace ex
 
 	Animator::~Animator()
 	{
- 		for (auto iter : mAnimations)
+ 		for (auto& iter : mAnimations)
 		{
 			if (nullptr != iter.second)
 			{

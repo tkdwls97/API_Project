@@ -79,6 +79,7 @@ namespace ex
 		eState			mState;
 		PlayerInfo* 	mInfo;
 		Sound*			mJumpSound;
+		Sound*			mPortionSound;
 
 		bool			mbDoubleJump;
 		bool			mbPortalState;

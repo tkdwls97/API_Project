@@ -6,6 +6,7 @@ namespace ex
 	class Collider;
 	class Transform;
 	class Animator;
+	class DamageManager;
 
 	class EffectManger : public GameObject
 	{
@@ -29,13 +30,18 @@ namespace ex
 		virtual void OnCollisionExit(Collider* _other) override;
 
 		EffectInfo GetEffectInfo() { return mEffectInfo; }
-		void SetEffectInfo(EffectInfo _info) {  mEffectInfo = _info; }
+		void SetEffectInfo(EffectInfo _info) { mEffectInfo = _info; }
 
 		GameObject* GetOwner() { return mOwner; }
+
+		void SetDamageStorage(DamageManager* _damage) { mDamageStorage.push_back(_damage); }
+		std::vector<DamageManager*> GetDamageStorage() { return mDamageStorage; }
 
 	private:
 		GameObject* mOwner;
 		EffectInfo  mEffectInfo;
+
+		std::vector<DamageManager*> mDamageStorage;
 	};
 
 }

@@ -82,6 +82,7 @@ namespace ex
 
 	DamageSkin::~DamageSkin()
 	{
+	
 	}
 
 	void DamageSkin::Initialize()

@@ -33,6 +33,8 @@ namespace ex
 		Sound*	mRaisingblowSound;
 
 		EffectInfo mRaisingblowInfo;
+
+		std::vector<class DamageManager*> test;
 	};
 
 }
