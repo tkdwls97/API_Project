@@ -64,7 +64,7 @@ namespace ex
 		float Exp = player->GetInfo()->mExp;
 		float fExp = (Exp / (player->GetInfo()->mMaxExp));
 
-		::TransparentBlt(_hdc, 30, 707, (int)(mExpBar->GetWidth() * fExp), mExpBar->GetHeight(), mExpBar->GetHdc()
+		::TransparentBlt(_hdc, 30, 708.5f, (int)(mExpBar->GetWidth() * fExp), mExpBar->GetHeight(), mExpBar->GetHdc()
 			, 0, 0, (int)(mExpBar->GetWidth() * fExp), mExpBar->GetHeight(), RGB(255, 0, 255));
 	}
 

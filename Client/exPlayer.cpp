@@ -44,6 +44,7 @@ namespace ex
 		, mJumpSound(nullptr)
 		, mPortionSound(nullptr)
 		, mbLevelUpCheck(false)
+		, mLevelUpSound(nullptr)
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
