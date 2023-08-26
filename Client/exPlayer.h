@@ -76,16 +76,16 @@ namespace ex
 		void ComboDeathFault();
 
 	private:
-		Animator* mAnimator;
-		Transform* mTransform;
-		Rigidbody* mRigidbody;
-		Collider* mCollider;
+		Animator*		mAnimator;
+		Transform*		mTransform;
+		Rigidbody*		mRigidbody;
+		Collider*		mCollider;
 
 		eState			mState;
-		PlayerInfo* mInfo;
-		Sound* mJumpSound;
-		Sound* mPortionSound;
-		Sound* mLevelUpSound;
+		PlayerInfo*		mInfo;
+		Sound*			mJumpSound;
+		Sound*			mPortionSound;
+		Sound*			mLevelUpSound;
 
 		bool			mbDoubleJump;
 		bool			mbPortalState;

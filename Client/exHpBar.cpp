@@ -51,11 +51,25 @@ namespace ex
 		int hp = player->GetInfo()->mHp;
 		float fhp = (float)hp / player->GetInfo()->mMaxHp;
 
-		::TransparentBlt(_hdc, 563, 664, (int)(mMiddleHpBar->GetWidth() * (mReductionHp / player->GetInfo()->mMaxHp)), mMiddleHpBar->GetHeight(), mMiddleHpBar->GetHdc()
-			, 0, 0, (int)(mMiddleHpBar->GetWidth() * (mReductionHp / player->GetInfo()->mMaxHp)), mMiddleHpBar->GetHeight(), RGB(255, 0, 255));
+		::TransparentBlt(_hdc
+			, 563, 664
+			,(int)(mMiddleHpBar->GetWidth() * (mReductionHp / player->GetInfo()->mMaxHp))
+			, mMiddleHpBar->GetHeight()
+			, mMiddleHpBar->GetHdc()
+			, 0, 0
+			, (int)(mMiddleHpBar->GetWidth() * (mReductionHp / player->GetInfo()->mMaxHp))
+			, mMiddleHpBar->GetHeight()
+			, RGB(255, 0, 255));
 
-		::TransparentBlt(_hdc, 563, 664, (int)(mHpBar->GetWidth() * fhp), mHpBar->GetHeight(), mHpBar->GetHdc()
-			, 0, 0, (int)(mHpBar->GetWidth() * fhp), mHpBar->GetHeight(), RGB(255, 0, 255));
+		::TransparentBlt(_hdc
+			, 563, 664
+			,(int)(mHpBar->GetWidth() * fhp)
+			, mHpBar->GetHeight()
+			, mHpBar->GetHdc()
+			, 0, 0
+			, (int)(mHpBar->GetWidth() * fhp)
+			, mHpBar->GetHeight()
+			, RGB(255, 0, 255));
 
 
 		

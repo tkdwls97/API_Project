@@ -25,6 +25,7 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"PlayerLevelUp",
 			L"..\\Resources\\Maple\\Image\\Player2\\LevelUp");
 		mAnimator->SetAffectedCamera(true);
+		mAnimator->SetScale(math::Vector2(1.3f, 1.3f));
 		mAnimator->PlayAnimation(L"PlayerLevelUp", false);
 
 		mLevelUpSound = ResourceManager::Load<Sound>(L"PlayerLevelUpSound",
@@ -44,7 +45,7 @@ namespace ex
 	void LevelUp::Update()
 	{
 		math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
-		mTransform->SetPosition(playerPos.x, playerPos.y - 40.0f);
+		mTransform->SetPosition(playerPos.x, playerPos.y - 210.0f);
 
 		if (mAnimator->IsActiveAnimationComplete())
 		{
