@@ -33,6 +33,7 @@ namespace ex
 		mMonstersInfo.mLevel = 180;
 		mMonstersInfo.mDamage = 1212;
 		mSkillDamage = 257;
+		mMonstersInfo.mExp = 35;
 	}
 
 	GateKeeper::~GateKeeper()
@@ -298,6 +299,8 @@ namespace ex
 
 		if (bCheck)
 		{
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 

@@ -32,6 +32,7 @@ namespace ex
 		mMonstersInfo.mHp = 5000;
 		mMonstersInfo.mLevel = 10;
 		mMonstersInfo.mDamage = 176;
+		mMonstersInfo.mExp = 10;
 	}
 
 	OrangeMush::~OrangeMush()
@@ -198,6 +199,8 @@ namespace ex
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 	}

@@ -32,6 +32,7 @@ namespace ex
 		mMonstersInfo.mLevel = 180;
 		mMonstersInfo.mDamage = 1212;
 		mSkillDamage = 280;
+		mMonstersInfo.mExp = 35;
 	}
 
 	Thanatos::~Thanatos()
@@ -301,6 +302,8 @@ namespace ex
 
 		if (bCheck)
 		{
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 

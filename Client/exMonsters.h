@@ -18,6 +18,7 @@ namespace ex
 			int mSpeed;
 			int mDamage;
 			int mLevel;
+			float mExp;
 		};
 
 		Monsters();

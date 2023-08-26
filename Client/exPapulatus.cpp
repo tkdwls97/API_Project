@@ -52,6 +52,7 @@ namespace ex
 		mSkill2Damage = 403;
 		mSkill3Damage = 280;
 		mSkill4Damage = 0;
+		mMonstersInfo.mExp = 70;
 	}
 
 	Papulatus::~Papulatus()
@@ -475,6 +476,8 @@ namespace ex
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 	}

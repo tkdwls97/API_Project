@@ -21,9 +21,11 @@ namespace ex
 			int mMaxHp;
 			int mMp;
 			int mMaxMp;
-			int mMinDamage;
-			int mMaxDamage;
 			int mLevel;
+			float mMaxExp;
+			float mExp;
+			float mMinDamage;
+			float mMaxDamage;
 
 		};
 
@@ -47,11 +49,14 @@ namespace ex
 		bool IsPotalState() { return mbPortalState; }
 		void SetPotalState(bool _state) { mbPortalState = _state; }
 
-		bool IsRopeState() { return mbRopeState ; }
+		bool IsRopeState() { return mbRopeState; }
 		void SetRopeState(bool _state) { mbRopeState = _state; }
 
 		bool IsInvincible() { return mbInvincible; }
 		void SetInvincible(bool _data) { mbInvincible = _data; }
+
+		bool IsLevelUpCheck() { return mbLevelUpCheck; }
+		void SetLevelUpCheck(bool _data) { mbLevelUpCheck = _data; }
 
 
 		void Idle();
@@ -71,20 +76,22 @@ namespace ex
 		void ComboDeathFault();
 
 	private:
-		Animator*		mAnimator;
-		Transform*		mTransform;
-		Rigidbody*		mRigidbody;
-		Collider*		mCollider;
-		
+		Animator* mAnimator;
+		Transform* mTransform;
+		Rigidbody* mRigidbody;
+		Collider* mCollider;
+
 		eState			mState;
-		PlayerInfo* 	mInfo;
-		Sound*			mJumpSound;
-		Sound*			mPortionSound;
+		PlayerInfo* mInfo;
+		Sound* mJumpSound;
+		Sound* mPortionSound;
+		Sound* mLevelUpSound;
 
 		bool			mbDoubleJump;
 		bool			mbPortalState;
 		bool			mbRopeState;
 		bool			mbInvincible;
+		bool			mbLevelUpCheck;
 		static float	mhitDelay;
 
 	};

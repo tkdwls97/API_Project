@@ -31,8 +31,8 @@ namespace ex
 		, mMonsterDamage(0)
 	{
 		Player* player = SceneManager::GetPlayer();
-		int minDamage = player->GetInfo()->mMinDamage;
-		int maxDamage = player->GetInfo()->mMaxDamage;
+		int minDamage =(int)player->GetInfo()->mMinDamage;
+		int maxDamage = (int)player->GetInfo()->mMaxDamage;
 		mPlayerDamage = minDamage + std::rand() % (maxDamage - minDamage + 1);
 	}
 

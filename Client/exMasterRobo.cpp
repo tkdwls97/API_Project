@@ -29,6 +29,7 @@ namespace ex
 		mMonstersInfo.mHp = 3500000;
 		mMonstersInfo.mLevel = 10;
 		mMonstersInfo.mDamage = 1212;
+		mMonstersInfo.mExp = 23;
 	}
 
 	MasterRobo::~MasterRobo()
@@ -201,6 +202,8 @@ namespace ex
 
 		if (bCheck)
 		{
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 

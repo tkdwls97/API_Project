@@ -10,6 +10,7 @@
 #include "exMonsters.h"
 #include "exSound.h"
 
+
 // Component
 #include "exTransform.h"
 #include "exRigidbody.h"
@@ -23,6 +24,7 @@
 #include "exRush.h"
 #include "exComboDeathFaultPlayer.h"
 #include "exComboDeathFaultScreen.h"
+#include "exLevelUp.h"
 
 
 namespace ex
@@ -41,6 +43,7 @@ namespace ex
 		, mbDoubleJump(false)
 		, mJumpSound(nullptr)
 		, mPortionSound(nullptr)
+		, mbLevelUpCheck(false)
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
@@ -52,6 +55,9 @@ namespace ex
 		mInfo->mLevel = 200;
 		mInfo->mMinDamage = 7300;
 		mInfo->mMaxDamage = 15212;
+		mInfo->mMaxExp = 100.0f;
+		mInfo->mExp = 90.0f;
+
 	}
 
 	Player::~Player()
@@ -181,7 +187,6 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerRopeMove", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 2, math::Vector2(-23.0f, 0.0f));
 
-
 		ResourceManager::Load<Texture>(L"ComboDeathFaultLeftScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
 
@@ -189,7 +194,7 @@ namespace ex
 		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
 		mPortionSound = ResourceManager::Load<Sound>(L"PlayerPortion", L"..\\Resources\\Maple\\Sound\\Player\\Player_Portion.wav");
 		mPortionSound->SetVolume(150.0f);
-
+		
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(45.0f, 70.0f));
 		mCollider->SetOffset(math::Vector2(-12.0f, 10.0f));
@@ -199,6 +204,23 @@ namespace ex
 
 	void Player::Update()
 	{
+
+		if (mbLevelUpCheck)
+		{
+			LevelUp* playerLevelUp = new LevelUp(this);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerLevelUp);
+			mInfo->mLevel += 1;
+
+			mInfo->mMaxDamage *= 1.15f;
+			mInfo->mMinDamage *= 1.15f;
+
+			mInfo->mMaxHp *= 1.35f;
+			mInfo->mHp = mInfo->mMaxHp;
+
+			mInfo->mMaxMp *= 1.15f;
+			mInfo->mMp = mInfo->mMaxMp;
+			mbLevelUpCheck = false;
+		}
 
 		if (Input::GetKeyDown(eKeyCode::H))
 		{

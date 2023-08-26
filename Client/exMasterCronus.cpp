@@ -33,6 +33,7 @@ namespace ex
 		mMonstersInfo.mLevel = 150;
 		mMonstersInfo.mDamage = 300;
 		mSkillDamage = 150;
+		mMonstersInfo.mExp = 0;
 	}
 
 	MasterCronus::~MasterCronus()
@@ -298,6 +299,8 @@ namespace ex
 
 		if (bCheck)
 		{
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 

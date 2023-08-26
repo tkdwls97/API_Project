@@ -22,7 +22,10 @@ namespace ex
 		virtual void OnCollisionExit(Collider* _other) override;
 
 	private:
+		Texture* mEmptyExpBar;
 		Texture* mExpBar;
+
+		float mIncreaseExpBar;
 	};
 
 }
