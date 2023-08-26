@@ -286,6 +286,9 @@
     <Filter Include="Contents\GameObject\04.UI\02.SkillSlot">
       <UniqueIdentifier>{5c291222-37fe-4a38-8226-6862b9afec01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\04.UI\03.Level">
+      <UniqueIdentifier>{49f3531f-d8f0-40a7-8c14-c864018c9ee5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -536,6 +539,9 @@
     </ClCompile>
     <ClCompile Include="exSkillSlot.cpp">
       <Filter>Contents\GameObject\04.UI\02.SkillSlot</Filter>
+    </ClCompile>
+    <ClCompile Include="exLevel.cpp">
+      <Filter>Contents\GameObject\04.UI\03.Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -796,6 +802,9 @@
     </ClInclude>
     <ClInclude Include="exSkillSlot.h">
       <Filter>Contents\GameObject\04.UI\02.SkillSlot</Filter>
+    </ClInclude>
+    <ClInclude Include="exLevel.h">
+      <Filter>Contents\GameObject\04.UI\03.Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

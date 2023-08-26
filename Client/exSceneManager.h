@@ -12,6 +12,8 @@ namespace ex
 	class DamageManager;
 	class MushMomHpBar;
 	class SkillSlot;
+	class Level;
+
 	class SceneManager
 	{
 	public:
@@ -50,6 +52,7 @@ namespace ex
 		static MpBar* mMpBar;
 		static DamageManager* mDamageManager;
 		static SkillSlot* mSkillSlot;
+		static Level*     mLevel;
 		static bool mbPortalCheck;
 	};
 

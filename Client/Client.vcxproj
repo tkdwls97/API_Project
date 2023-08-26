@@ -144,6 +144,7 @@
     <ClCompile Include="exCollider.cpp" />
     <ClCompile Include="exGatekeeper.cpp" />
     <ClCompile Include="exGateKeeperAttack.cpp" />
+    <ClCompile Include="exLevel.cpp" />
     <ClCompile Include="exLevelUp.cpp" />
     <ClCompile Include="exMasterCronus.cpp" />
     <ClCompile Include="exMasterCronusAttack.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="exCollider.h" />
     <ClInclude Include="exGatekeeper.h" />
     <ClInclude Include="exGateKeeperAttack.h" />
+    <ClInclude Include="exLevel.h" />
     <ClInclude Include="exLevelUp.h" />
     <ClInclude Include="exMasterCronus.h" />
     <ClInclude Include="exMasterCronusAttack.h" />
