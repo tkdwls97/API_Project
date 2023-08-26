@@ -40,7 +40,7 @@ namespace ex
 		mMonstersInfo.mLevel = 150;
 		mMonstersInfo.mDamage = 700;
 		mSkillDamage = 337;
-		mMonstersInfo.mExp = 50;
+		mMonstersInfo.mExp = 100;
 	}
 
 	MushMom::~MushMom()

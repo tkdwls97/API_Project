@@ -52,7 +52,7 @@ namespace ex
 		mSkill2Damage = 403;
 		mSkill3Damage = 280;
 		mSkill4Damage = 0;
-		mMonstersInfo.mExp = 70;
+		mMonstersInfo.mExp = 200;
 	}
 
 	Papulatus::~Papulatus()
@@ -591,7 +591,11 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
 				mDirection = enums::eMoveDir::Right;
 			}
-			mMonstersInfo.mHp += 3000000;
+			mMonstersInfo.mHp += 5000000;
+			if (mMonstersInfo.mHp >= mMonstersInfo.mMaxHp)
+			{
+				mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
+			}
 		}
 
 		else
