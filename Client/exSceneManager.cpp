@@ -15,6 +15,7 @@
 #include "exMpBar.h"
 #include "exDamageManager.h"
 #include "exMushMomHpBar.h"
+#include "exSkillSlot.h"
 
 namespace ex
 {
@@ -25,6 +26,7 @@ namespace ex
 	ExpBar* SceneManager::mExpBar = new ExpBar;
 	HpBar* SceneManager::mHpBar = new HpBar;
 	MpBar* SceneManager::mMpBar = new MpBar;
+	SkillSlot* SceneManager::mSkillSlot = new SkillSlot;
 	bool			SceneManager::mbPortalCheck = false;
 
 	void SceneManager::Initialize()
@@ -70,6 +72,9 @@ namespace ex
 			delete mMpBar;
 			mMpBar = nullptr;
 
+			delete mSkillSlot;
+			mSkillSlot = nullptr;
+
 		}
 
 		for (auto iter : mScenes)
@@ -96,6 +101,7 @@ namespace ex
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mHpBar);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mMpBar);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mExpBar);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mSkillSlot);
 
 		if (iter == mScenes.end())
 		{
@@ -112,6 +118,7 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mExpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mHpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mMpBar);
+			mActiveScene->AddGameObject(enums::eLayerType::UI, mSkillSlot);
 		}
 
 		mActiveScene->SceneIN();

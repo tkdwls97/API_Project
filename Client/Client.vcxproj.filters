@@ -283,6 +283,9 @@
     <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\06.LevelUp">
       <UniqueIdentifier>{d36c1bba-f65c-4bba-8256-31e8f5f1322a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\04.UI\02.SkillSlot">
+      <UniqueIdentifier>{5c291222-37fe-4a38-8226-6862b9afec01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -530,6 +533,9 @@
     </ClCompile>
     <ClCompile Include="exLevelUp.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.LevelUp</Filter>
+    </ClCompile>
+    <ClCompile Include="exSkillSlot.cpp">
+      <Filter>Contents\GameObject\04.UI\02.SkillSlot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -787,6 +793,9 @@
     </ClInclude>
     <ClInclude Include="exLevelUp.h">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.LevelUp</Filter>
+    </ClInclude>
+    <ClInclude Include="exSkillSlot.h">
+      <Filter>Contents\GameObject\04.UI\02.SkillSlot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

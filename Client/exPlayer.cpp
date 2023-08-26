@@ -56,7 +56,7 @@ namespace ex
 		mInfo->mMinDamage = 7300;
 		mInfo->mMaxDamage = 15212;
 		mInfo->mMaxExp = 100.0f;
-		mInfo->mExp = 90.0f;
+		mInfo->mExp = 00.0f;
 
 	}
 
