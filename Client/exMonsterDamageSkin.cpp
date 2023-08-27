@@ -125,13 +125,10 @@ namespace ex
 
 	void MonsterDamageSkin::Update()
 	{
-
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);
 		}
-
-
 
 		UI::Update();
 	}

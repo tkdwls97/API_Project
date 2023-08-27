@@ -32,6 +32,7 @@ namespace ex::enums
 		Floor,
 		Wall,
 		Rope,
+		NPC,
 		Monster,
 		Potal,
 		Player,

@@ -292,6 +292,36 @@
     <Filter Include="Contents\Scene\06.BossScene2">
       <UniqueIdentifier>{dbed7756-885e-405a-8137-f1dfc3416375}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\02.Boss\03.VonLeon">
+      <UniqueIdentifier>{6d672e1a-26ee-4afe-8c66-97cad5a0ecf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\02.Monster\02.Boss\03.VonLeon\00.VonLeonHuman">
+      <UniqueIdentifier>{31a4ac53-8fd7-4797-9466-7916b3a25bac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill">
+      <UniqueIdentifier>{a18be255-cba7-4b06-b576-d26908805848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\00.VonLeonSkill1">
+      <UniqueIdentifier>{a0c07b06-6d0e-483b-9abc-9e1c6a0f644b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\01.VonLeonSkill2">
+      <UniqueIdentifier>{7b4a9392-a46b-4eac-98e1-da6e093447ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\02.VonLeonSkill3">
+      <UniqueIdentifier>{f24a9c00-c093-4d6c-aed6-d1b162d6ecb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\03.VonLeonSkill4">
+      <UniqueIdentifier>{7a50eb41-1869-4a4c-8be0-df9abb5fd1bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\04.VonLeonSkill5">
+      <UniqueIdentifier>{a3beb051-c996-4934-9454-c77957991e13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\05.VonLeonTeleport">
+      <UniqueIdentifier>{97d4da9f-985f-461e-b47c-1b8acdb325da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\02.VonLeonHpBar">
+      <UniqueIdentifier>{8498b1ac-6853-4312-95f4-d5cce3a0bd4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -551,6 +581,33 @@
     </ClCompile>
     <ClCompile Include="exBossScene2.cpp">
       <Filter>Contents\Scene\06.BossScene2</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeon.cpp">
+      <Filter>Contents\GameObject\02.Monster\02.Boss\03.VonLeon</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonHuman.cpp">
+      <Filter>Contents\GameObject\02.Monster\02.Boss\03.VonLeon\00.VonLeonHuman</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonSkill1.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\00.VonLeonSkill1</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonSkill2.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\01.VonLeonSkill2</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonSkill3.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\02.VonLeonSkill3</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonSkill4.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\03.VonLeonSkill4</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonSkill5.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\04.VonLeonSkill5</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonTeleport.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\05.VonLeonTeleport</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonHpBar.cpp">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\02.VonLeonHpBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -820,6 +877,33 @@
     </ClInclude>
     <ClInclude Include="exBossScene2.h">
       <Filter>Contents\Scene\06.BossScene2</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeon.h">
+      <Filter>Contents\GameObject\02.Monster\02.Boss\03.VonLeon</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonHuman.h">
+      <Filter>Contents\GameObject\02.Monster\02.Boss\03.VonLeon\00.VonLeonHuman</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonSkill1.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\00.VonLeonSkill1</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonSkill2.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\01.VonLeonSkill2</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonSkill3.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\02.VonLeonSkill3</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonSkill4.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\03.VonLeonSkill4</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonSkill5.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\04.VonLeonSkill5</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonTeleport.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\05.VonLeonTeleport</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonHpBar.h">
+      <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\02.VonLeonHpBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -49,9 +49,9 @@ namespace ex
 		mMonstersInfo.mHp = 720000000;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
-		mSkill1Damage = 11012;
+		mSkill1Damage = 4017;
 		mSkill2Damage = 2412;
-		mSkill3Damage = 1878;
+		mSkill3Damage = 878;
 		mSkill4Damage = 0;
 		mMonstersInfo.mExp = 200;
 	}
@@ -152,7 +152,7 @@ namespace ex
 	void Papulatus::Update()
 	{
 
-		int halfHp = mMonstersInfo.mMaxHp / 2;
+		__int64 halfHp = mMonstersInfo.mMaxHp / 2;
 		if (halfHp >= mMonstersInfo.mHp && false == mbSleepOn)
 		{
 			float playerPosX = SceneManager::GetPlayer()->GetPositionX();

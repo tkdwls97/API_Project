@@ -78,7 +78,7 @@ namespace ex
 
 	void DamageManager::PlayMonsterDamageAnimation(int _monsterDamage, int _skillDamage)
 	{
-		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
+		// resultDamage = 몬스터의 Damage값 * 스킬 데미지
 		mMonsterResultDamage = _monsterDamage * _skillDamage;
 
 		int temp = mMonsterResultDamage;

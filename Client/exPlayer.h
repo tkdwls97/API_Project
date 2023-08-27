@@ -76,6 +76,7 @@ namespace ex
 		void ComboDeathFault();
 
 		void PlayLevelUI();
+		void PlayerSkillLoad();
 
 	private:
 		Animator*		mAnimator;

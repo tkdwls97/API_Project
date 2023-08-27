@@ -14,7 +14,6 @@
 #include "exDamageManager.h"
 #include "exPapulatus.h"
 #include "exSound.h"
-#include "exPapulatusSkillArea.h"
 
 namespace ex
 {

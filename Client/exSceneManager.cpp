@@ -19,6 +19,7 @@
 #include "exMushMomHpBar.h"
 #include "exSkillSlot.h"
 #include "exLevel.h"
+#include "exResourceManager.h"
 
 namespace ex
 {
@@ -50,7 +51,17 @@ namespace ex
 		mLevel2->SetPosition(mLevel1->GetPositionX() + 10.0f, mLevel1->GetPositionY());
 		mLevel3->SetPosition(mLevel2->GetPositionX() + 10.0f, mLevel1->GetPositionY());
 
-		LoadScene(L"BossScene2");
+
+		ResourceManager::Load<Texture>(L"TitleBackGroundImgae", L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
+		ResourceManager::Load<Texture>(L"Stage1BackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
+		ResourceManager::Load<Texture>(L"BossStage1BackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
+		ResourceManager::Load<Texture>(L"Stage2BackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\Stage2.bmp");
+		ResourceManager::Load<Texture>(L"Stage3BackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\Stage3.bmp");
+		ResourceManager::Load<Texture>(L"BossBackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage2.bmp");
+		ResourceManager::Load<Texture>(L"VonLeonBackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage3.bmp");
+		ResourceManager::Load<Texture>(L"EndBackGroundImgae", L"..\\Resources\\Maple\\Image\\Logo\\EndScene.bmp");
+
+		LoadScene(L"TitleScene");
 	}
 
 	void SceneManager::Update()

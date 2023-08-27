@@ -281,7 +281,7 @@ namespace ex
 
 	void MushMomScene::SceneIN()
 	{
-		Texture* image = ResourceManager::Load<Texture>(L"BossStage1"
+		Texture* image = ResourceManager::Load<Texture>(L"BossStage1BackGroundImgae"
 			, L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
 
 		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);

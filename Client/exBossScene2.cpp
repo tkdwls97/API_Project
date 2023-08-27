@@ -18,11 +18,14 @@
 #include "exWall.h"
 #include "exRope.h"
 #include "exSound.h"
+#include "exVonLeonHuman.h"
 
 namespace ex
 {
 	BossScene2::BossScene2()
 		: mBossScene2_Sound(nullptr)
+		, mVonLeonDial_Sound(nullptr)
+		, mPortal(nullptr)
 	{
 	}
 
@@ -46,8 +49,6 @@ namespace ex
 		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
 		Rightwalltr->SetPosition(math::Vector2(2880.0f, 360.0f));
 
-
-
 		// 바닥 1층
 		Floor* floor1 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		Collider* col1 = floor1->AddComponent<Collider>();
@@ -55,26 +56,22 @@ namespace ex
 		col1->SetSize(math::Vector2(4300.0f, 200.0f));
 		tr1->SetPosition(math::Vector2(640.0f, 652.0f));
 
-
-
-
 		// 포탈
-		Portal* portal = object::Instantiate<Portal>(enums::eLayerType::Potal);
-		portal->Initialize();
-		Transform* portalTr = portal->GetComponent<Transform>();
-		Animator* portalAt = portal->GetComponent<Animator>();
-		Collider* portalCol = portal->GetComponent<Collider>();
-		portalAt->SetScale(math::Vector2(0.8f, 0.8f));
-		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
-		//portalTr->SetPosition(math::Vector2(2656.0f, 511.0f));
-
+		mPortal = object::Instantiate<Portal>(enums::eLayerType::Potal);
+		mPortal->Initialize();
+		Transform* portalTr = mPortal->GetComponent<Transform>();
 		//Test
-		//portalTr->SetPosition(math::Vector2(640.0f, 862.0f));
+		portalTr->SetPosition(math::Vector2(640.0f, 2062.0f));
 
 	}
 
 	void BossScene2::Update()
 	{
+		bool bCheck = SceneManager::GetPortalCheck();
+		if (bCheck)
+		{
+			mPortal->SetPosition(math::Vector2(2656.0f, 511.0f));
+		}
 		Scene::Update();
 	}
 
@@ -101,12 +98,17 @@ namespace ex
 		Camera::SetLimitDistance(widthLimit, heightLimit);
 		Camera::FadeIn(1.f, RGB(0, 0, 0));
 
+
+		VonLeonHuman* humanVonLeon = object::Instantiate<VonLeonHuman>(enums::eLayerType::Monster);
+		humanVonLeon->Initialize();
+
 		Player* player = SceneManager::GetPlayer();
 
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
-		playerTF->SetPosition(math::Vector2(640.0f, 200.0f));
-		//playerTF->SetPosition(math::Vector2(400.0f, 800.0f));
+		playerTF->SetPosition(math::Vector2(-1117.0f, 480.0f));
+		//playerTF->SetPosition(math::Vector2(603.0f, 480.0f));
+	
 		// 플레이어가 중력을 받기위해 
 		player->GetComponent<Rigidbody>()->SetGround(false);
 
@@ -119,6 +121,11 @@ namespace ex
 
 		mBossScene2_Sound = ResourceManager::Load<Sound>(L"Stage3Sound", L"..\\Resources\\Maple\\Sound\\Stage\\VonLeonRoom.wav");
 		mBossScene2_Sound->Play(true);
+
+		mVonLeonDial_Sound = ResourceManager::Load<Sound>(L"VonLeonDial", L"..\\Resources\\Maple\\Sound\\Monster\\VonLeon\\VonLeon_Dial1.wav");
+		mVonLeonDial_Sound->SetVolume(150.0f);
+		mVonLeonDial_Sound->Play(false);
+
 
 		// 씬에 들어갈때 충돌체크 세팅
 		CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);

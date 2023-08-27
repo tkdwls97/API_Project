@@ -26,7 +26,7 @@ namespace ex
 	{
 		mPapulatusSkill2_Info.AttackCount = 1;
 		mPapulatusSkill2_Info.DamagePercentage = 9;
-		mPapulatusSkill2_Damege = _owner->GetSkill2Damage();
+		mPapulatusSkill2_Damege = 2412;
 		SetEffectInfo(mPapulatusSkill2_Info);
 
 		mPapulatusSkill2_Sound = ResourceManager::Load<Sound>(L"PapulatusSkill2_Sound", L"..\\Resources\\Maple\\Sound\\Monster\\Papulatus\\Papulatus_Skill2.wav");

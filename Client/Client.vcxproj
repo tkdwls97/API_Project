@@ -146,6 +146,8 @@
     <ClCompile Include="exEndScene.cpp" />
     <ClCompile Include="exGatekeeper.cpp" />
     <ClCompile Include="exGateKeeperAttack.cpp" />
+    <ClCompile Include="exVonLeonHpBar.cpp" />
+    <ClCompile Include="exVonLeonHuman.cpp" />
     <ClCompile Include="exLevel.cpp" />
     <ClCompile Include="exLevelUp.cpp" />
     <ClCompile Include="exMasterCronus.cpp" />
@@ -203,6 +205,13 @@
     <ClCompile Include="exLayer.cpp" />
     <ClCompile Include="exPapulatus.cpp" />
     <ClCompile Include="exUpperCharge.cpp" />
+    <ClCompile Include="exVonLeon.cpp" />
+    <ClCompile Include="exVonLeonSkill1.cpp" />
+    <ClCompile Include="exVonLeonSkill2.cpp" />
+    <ClCompile Include="exVonLeonSkill3.cpp" />
+    <ClCompile Include="exVonLeonSkill4.cpp" />
+    <ClCompile Include="exVonLeonSkill5.cpp" />
+    <ClCompile Include="exVonLeonTeleport.cpp" />
     <ClCompile Include="exWall.cpp" />
     <ClCompile Include="exWarriorLeap.cpp" />
     <ClCompile Include="main.cpp" />
@@ -237,6 +246,8 @@
     <ClInclude Include="exEndScene.h" />
     <ClInclude Include="exGatekeeper.h" />
     <ClInclude Include="exGateKeeperAttack.h" />
+    <ClInclude Include="exVonLeonHpBar.h" />
+    <ClInclude Include="exVonLeonHuman.h" />
     <ClInclude Include="exLevel.h" />
     <ClInclude Include="exLevelUp.h" />
     <ClInclude Include="exMasterCronus.h" />
@@ -296,6 +307,13 @@
     <ClInclude Include="exEntity.h" />
     <ClInclude Include="exPapulatus.h" />
     <ClInclude Include="exUpperCharge.h" />
+    <ClInclude Include="exVonLeon.h" />
+    <ClInclude Include="exVonLeonSkill1.h" />
+    <ClInclude Include="exVonLeonSkill2.h" />
+    <ClInclude Include="exVonLeonSkill3.h" />
+    <ClInclude Include="exVonLeonSkill4.h" />
+    <ClInclude Include="exVonLeonSkill5.h" />
+    <ClInclude Include="exVonLeonTeleport.h" />
     <ClInclude Include="exWall.h" />
     <ClInclude Include="exWarriorLeap.h" />
     <ClInclude Include="framework.h" />

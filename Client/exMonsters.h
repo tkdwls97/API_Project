@@ -13,11 +13,11 @@ namespace ex
 	public:
 		struct MonstersInfo
 		{
-			int mHp;
-			int mMaxHp;
-			int mSpeed;
+			__int64 mHp;
+			__int64 mMaxHp;
 			int mDamage;
 			int mLevel;
+			float mSpeed;
 			float mExp;
 		};
 

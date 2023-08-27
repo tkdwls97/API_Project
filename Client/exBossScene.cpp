@@ -194,5 +194,6 @@ namespace ex
 		mBossSceneSound->Stop(true);
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();
+		SceneManager::SetPortalCheck(false);
 	}
 }

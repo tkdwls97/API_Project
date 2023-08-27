@@ -4,6 +4,7 @@
 namespace ex
 {
 	class Sound;
+	class Portal;
 
 	class BossScene2 : public Scene
 	{
@@ -19,6 +20,9 @@ namespace ex
 		virtual void SceneOut() override;
 
 	private:
+		Portal* mPortal;
+
 		Sound* mBossScene2_Sound;
+		Sound* mVonLeonDial_Sound;
 	};
 }

@@ -191,9 +191,8 @@ namespace ex
 		mAnimator->CreateAnimation(L"PlayerRopeMove", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
 			, math::Vector2(224.0f, 156.0f), 2, math::Vector2(-23.0f, 0.0f));
 
-		ResourceManager::Load<Texture>(L"ComboDeathFaultLeftScreen"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
-
+		// 이미지 미리 로드
+		PlayerSkillLoad();
 
 		image = ResourceManager::Load<Texture>(L"PlayerDead"
 			, L"..\\Resources\\Maple\\Image\\Dead\\Tomb.bmp");
@@ -225,7 +224,7 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::P))
 		{
 			enums::eMoveDir playerDir = mTransform->GetMoveDir();
-			mTransform->SetPosition(math::Vector2(640.0f, 360.0f));
+			mTransform->SetPosition(math::Vector2(640.0f, 260.0f));
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftJump", false);
@@ -1472,6 +1471,39 @@ namespace ex
 		SceneManager::GetLevel_1()->PlayLevelAnimation(mLevelArr[0]);
 		SceneManager::GetLevel_2()->PlayLevelAnimation(mLevelArr[1]);
 		SceneManager::GetLevel_3()->PlayLevelAnimation(mLevelArr[2]);
+	}
+
+	void Player::PlayerSkillLoad()
+	{
+
+		// 레이징 블로우
+		ResourceManager::Load<Texture>(L"LeftRaisingblow"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Left\\LeftRaisingblow.png");
+		ResourceManager::Load<Texture>(L"RightRaisingblow"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Right\\RightRaisingblow.png");
+
+		// 어퍼 차지
+		ResourceManager::Load<Texture>(L"LeftUpperCharge"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\UpperCharge\\Left\\Left_UpperCharge.png");
+		ResourceManager::Load<Texture>(L"RightUpperCharge"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\UpperCharge\\Right\\Right_UpperCharge.png");
+
+		// 돌진
+		ResourceManager::Load<Texture>(L"LeftRush"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Rush\\Left\\Left_Rush.png");
+		ResourceManager::Load<Texture>(L"RightRush"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Rush\\Right\\Right_Rush.png");
+
+		// 콤보 데스폴트
+		ResourceManager::Load<Texture>(L"LeftComboDeathFault"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Player\\Left\\Player_Left_ComboDeathFault.png");
+		ResourceManager::Load<Texture>(L"RightComboDeathFault"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Player\\Right\\Player_Right_ComboDeathFault.png");
+		// 콤보 데스폴트 스크린
+		ResourceManager::Load<Texture>(L"ComboDeathFaultLeftScreen"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
+		ResourceManager::Load<Texture>(L"ComboDeathFaultRightScreen"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Right\\Right_ComboDeathFault_Screen.png");
 	}
 
 }

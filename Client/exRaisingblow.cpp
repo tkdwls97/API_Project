@@ -104,6 +104,7 @@ namespace ex
 		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
 		if (monsters != nullptr)
 		{
+
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				if (monsters->GetMonstersState() != eMonsterState::Sleep &&

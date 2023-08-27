@@ -29,6 +29,7 @@ namespace ex
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
+
 		//// png
 		Texture* image = ResourceManager::Load<Texture>(L"ComboDeathFaultLeftScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
@@ -36,7 +37,6 @@ namespace ex
 		mAnimator->CreateAnimation(L"ComboDeathFaultLeftScreen", image, math::Vector2(0.0f, 0.0f), math::Vector2(1370.0f, 768.0f)
 			, math::Vector2(1370.f, 768.f), 48, math::Vector2(0.0f, 0.0f), 0.02f);
 
-		//// png
 		image = ResourceManager::Load<Texture>(L"ComboDeathFaultRightScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Right\\Right_ComboDeathFault_Screen.png");
 
