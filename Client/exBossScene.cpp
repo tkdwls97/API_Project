@@ -35,7 +35,7 @@ namespace ex
 		Papulatus* papulatus = object::Instantiate<Papulatus>(enums::eLayerType::Monster);
 		papulatus->Initialize();
 		Transform* papulatusTr = papulatus->GetComponent<Transform>();
-		papulatusTr->SetPosition(math::Vector2(900.0f, 330.0f));
+		papulatusTr->SetPosition(math::Vector2(900.0f, 410.0f));
 
 		PapulatusHpBar* papulatusHpBar = new PapulatusHpBar(papulatus);
 		object::ActiveSceneAddGameObject(enums::eLayerType::UI, papulatusHpBar);
@@ -47,7 +47,7 @@ namespace ex
 		col = floor1->AddComponent<Collider>();
 		col->SetSize(math::Vector2(3000.0f, 1000.0f));
 		tr1 = floor1->GetComponent<Transform>();
-		tr1->SetPosition(math::Vector2(680.0f, 1020.0f));
+		tr1->SetPosition(math::Vector2(680.0f, 1005.0f));
 
 		Floor* floor2 = object::Instantiate<Floor>(enums::eLayerType::Floor);
 		Collider* col2 = floor2->GetComponent<Collider>();
@@ -163,7 +163,7 @@ namespace ex
 		Player* player = SceneManager::GetPlayer();
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
-		playerTF->SetPosition(math::Vector2(400.0f, 300.0f));
+		playerTF->SetPosition(math::Vector2(-190.0f, 380.0f));
 		// 플레이어가 중력을 받기위해 
 		player->GetComponent<Rigidbody>()->SetGround(false);
 

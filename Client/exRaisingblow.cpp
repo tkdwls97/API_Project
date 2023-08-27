@@ -22,7 +22,7 @@ namespace ex
 		, mRaisingblowSound(nullptr)
 	{
 		mRaisingblowInfo.AttackCount = 4;
-		mRaisingblowInfo.DamagePercentage = 344;
+		mRaisingblowInfo.DamagePercentage = 384;
 		SetEffectInfo(mRaisingblowInfo);
 
 		mAnimator = GetComponent<Animator>();

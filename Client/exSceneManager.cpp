@@ -3,6 +3,7 @@
 #include "exStageScene.h"
 #include "exInput.h"
 #include "exBossScene.h"
+#include "exBossScene2.h"
 #include "exStageScene2.h"
 #include "exStageScene3.h"
 #include "exMushMomScene.h"
@@ -29,7 +30,9 @@ namespace ex
 	HpBar* SceneManager::mHpBar = new HpBar;
 	MpBar* SceneManager::mMpBar = new MpBar;
 	SkillSlot* SceneManager::mSkillSlot = new SkillSlot;
-	Level* SceneManager::mLevel = new Level;
+	Level* SceneManager::mLevel1 = new Level;
+	Level* SceneManager::mLevel2= new Level;
+	Level* SceneManager::mLevel3 = new Level;
 	bool SceneManager::mbPortalCheck = false;
 
 	void SceneManager::Initialize()
@@ -40,10 +43,14 @@ namespace ex
 		CreateScene<StageScene2>(L"Stage2Scene");
 		CreateScene<StageScene3>(L"Stage3Scene");
 		CreateScene<BossScene>(L"BossScene");
+		CreateScene<BossScene2>(L"BossScene2");
 		CreateScene<EndScene>(L"EndScene");
 		mPlayer->Initialize();
+		mLevel1->SetPosition(587.0f, 648.5f);
+		mLevel2->SetPosition(mLevel1->GetPositionX() + 10.0f, mLevel1->GetPositionY());
+		mLevel3->SetPosition(mLevel2->GetPositionX() + 10.0f, mLevel1->GetPositionY());
 
-		LoadScene(L"TitleScene");
+		LoadScene(L"BossScene2");
 	}
 
 	void SceneManager::Update()
@@ -79,8 +86,14 @@ namespace ex
 			delete mSkillSlot;
 			mSkillSlot = nullptr;
 
-			delete mLevel;
-			mLevel = nullptr;
+			delete mLevel1;
+			mLevel1 = nullptr;
+			
+			delete mLevel2;
+			mLevel2 = nullptr;
+
+			delete mLevel3;
+			mLevel3 = nullptr;
 
 		}
 
@@ -109,7 +122,9 @@ namespace ex
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mMpBar);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mExpBar);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mSkillSlot);
-		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mLevel);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mLevel1);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mLevel2);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mLevel3);
 
 		if (iter == mScenes.end())
 		{
@@ -127,7 +142,9 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mHpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mMpBar);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mSkillSlot);
-			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel);
+			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel1);
+			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel2);
+			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel3);
 		}
 
 		mActiveScene->SceneIN();

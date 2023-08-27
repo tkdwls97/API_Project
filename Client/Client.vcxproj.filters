@@ -118,9 +118,6 @@
     <Filter Include="Contents\Scene\03.StageScene2">
       <UniqueIdentifier>{9be67ea4-d7b4-4376-9689-48569839a3ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\06.EndScene">
-      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Scene\04.StageScene3">
       <UniqueIdentifier>{76e88cc0-57ae-4836-aacf-a4baa64f3a42}</UniqueIdentifier>
     </Filter>
@@ -288,6 +285,12 @@
     </Filter>
     <Filter Include="Contents\GameObject\04.UI\03.Level">
       <UniqueIdentifier>{49f3531f-d8f0-40a7-8c14-c864018c9ee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\07.EndScene">
+      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\06.BossScene2">
+      <UniqueIdentifier>{dbed7756-885e-405a-8137-f1dfc3416375}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -544,7 +547,10 @@
       <Filter>Contents\GameObject\04.UI\03.Level</Filter>
     </ClCompile>
     <ClCompile Include="exEndScene.cpp">
-      <Filter>Contents\Scene\06.EndScene</Filter>
+      <Filter>Contents\Scene\07.EndScene</Filter>
+    </ClCompile>
+    <ClCompile Include="exBossScene2.cpp">
+      <Filter>Contents\Scene\06.BossScene2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -810,7 +816,10 @@
       <Filter>Contents\GameObject\04.UI\03.Level</Filter>
     </ClInclude>
     <ClInclude Include="exEndScene.h">
-      <Filter>Contents\Scene\06.EndScene</Filter>
+      <Filter>Contents\Scene\07.EndScene</Filter>
+    </ClInclude>
+    <ClInclude Include="exBossScene2.h">
+      <Filter>Contents\Scene\06.BossScene2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

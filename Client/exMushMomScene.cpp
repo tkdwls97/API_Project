@@ -260,7 +260,7 @@ namespace ex
 		portalTr->SetPosition(math::Vector2(-1000.0f, -1000.0f));
 
 		// test
-		portalTr->SetPosition(math::Vector2(659.0f, -20.0f));
+		//portalTr->SetPosition(math::Vector2(659.0f, -20.0f));
 	}
 
 	void MushMomScene::Update()

@@ -37,7 +37,7 @@ namespace ex
 		mCollider = AddComponent<Collider>();
 
 
-		mCollider->SetSize(math::Vector2(400.0f, 200.0f));
+		mCollider->SetSize(math::Vector2(550.0f, 200.0f));
 		mTransform->SetPosition(_owner->GetPositionX(), _owner->GetPositionY());
 		enums::eMoveDir papulatusDir = _owner->GetComponent<Transform>()->GetMoveDir();
 

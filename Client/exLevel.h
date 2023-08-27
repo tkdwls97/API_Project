@@ -21,7 +21,7 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
-		void PlayLevelAnimation(Animator* _animator);
+		void PlayLevelAnimation(int _level);
 
 	private:
 		Texture* mLevelArr[10];

@@ -26,8 +26,8 @@ namespace ex
 		, mSkillDelay(0.0f)
 	{
 		mPapulatusSkillArea_Info.AttackCount = 1;
-		mPapulatusSkillArea_Info.DamagePercentage = 9;
-		mPapulatusSkillArea_Damege = 3000;
+		mPapulatusSkillArea_Info.DamagePercentage = 17;
+		mPapulatusSkillArea_Damege = _owner->GetSkill2Damage();
 		SetEffectInfo(mPapulatusSkillArea_Info);
 
 		mAnimator = GetComponent<Animator>();

@@ -24,7 +24,7 @@ namespace ex
 		, mOwner(_owner)
 	{
 		mComboDeathFaultInfo.AttackCount = 14;
-		mComboDeathFaultInfo.DamagePercentage = 800;
+		mComboDeathFaultInfo.DamagePercentage = 650;
 		SetEffectInfo(mComboDeathFaultInfo);
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();

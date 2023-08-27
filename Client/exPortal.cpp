@@ -85,6 +85,10 @@ namespace ex
 			}
 			else if (ActiveSceneName == L"BossScene")
 			{
+				SceneManager::LoadScene(L"BossScene2");
+			}
+			else if (ActiveSceneName == L"BossScene2")
+			{
 				SceneManager::LoadScene(L"EndScene");
 			}
 		}

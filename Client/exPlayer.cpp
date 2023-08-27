@@ -9,6 +9,7 @@
 #include "exSceneManager.h"
 #include "exMonsters.h"
 #include "exSound.h"
+#include "exLevel.h"
 
 
 // Component
@@ -45,6 +46,8 @@ namespace ex
 		, mPortionSound(nullptr)
 		, mbLevelUpCheck(false)
 		, mLevelUpSound(nullptr)
+		, mPlayerDeadSound(nullptr)
+		, mLevelArr{}
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
@@ -112,12 +115,12 @@ namespace ex
 		image = ResourceManager::Load<Texture>(L"PlayerLeftRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Left\\Player_Left_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftRaisingBlow", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(224.0f, 156.0f), 11, math::Vector2(0.0f, 0.0f), 0.04f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerLeftUpperCharge"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\UpperCharge\\Left\\Player_Left_UpperCharge.bmp");
 		mAnimator->CreateAnimation(L"PlayerLeftUpperCharge", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 9, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(224.0f, 156.0f), 9, math::Vector2(0.0f, 0.0f), 0.03f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerLeftRush"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Left\\Player_Left_Rush.bmp");
@@ -165,12 +168,12 @@ namespace ex
 		image = ResourceManager::Load<Texture>(L"PlayerRightRaisingBlow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\RaisingBlow\\Right\\Player_Right_RaisingBlow.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightRaisingBlow", image, math::Vector2(2464.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(-224.0f, 0.0f), 11, math::Vector2(0.0f, 0.0f), 0.04f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerRightUpperCharge"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\UpperCharge\\Right\\Player_Right_UpperCharge.bmp");
 		mAnimator->CreateAnimation(L"PlayerRightUpperCharge", image, math::Vector2(2016.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(-224.0f, 0.0f), 9, math::Vector2(0.0f, 0.0f), 0.03f);
 
 		image = ResourceManager::Load<Texture>(L"PlayerRightRush"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Skill\\Rush\\Right\\Player_Right_Rush.bmp");
@@ -191,11 +194,20 @@ namespace ex
 		ResourceManager::Load<Texture>(L"ComboDeathFaultLeftScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
 
+
+		image = ResourceManager::Load<Texture>(L"PlayerDead"
+			, L"..\\Resources\\Maple\\Image\\Dead\\Tomb.bmp");
+		mAnimator->CreateAnimation(L"PlayerDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(101.0f, 47.0f)
+			, math::Vector2(101.0f, 47.0f), 20, math::Vector2(0.0f, 0.0f), 0.05f);
+
+
 		// Player Sound
 		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
 		mPortionSound = ResourceManager::Load<Sound>(L"PlayerPortion", L"..\\Resources\\Maple\\Sound\\Player\\Player_Portion.wav");
 		mPortionSound->SetVolume(150.0f);
-		
+		mPlayerDeadSound = ResourceManager::Load<Sound>(L"PlayerDieSound", L"..\\Resources\\Maple\\Sound\\Player\\Player_Die.wav");
+		mPlayerDeadSound->SetVolume(150.0f);
+
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(45.0f, 70.0f));
 		mCollider->SetOffset(math::Vector2(-12.0f, 10.0f));
@@ -205,6 +217,25 @@ namespace ex
 
 	void Player::Update()
 	{
+
+		math::Vector2 pos = mTransform->GetPosition();
+		PlayLevelUI();
+
+		// 플레이어가 떨어졌을시 
+		if (Input::GetKeyDown(eKeyCode::P))
+		{
+			enums::eMoveDir playerDir = mTransform->GetMoveDir();
+			mTransform->SetPosition(math::Vector2(640.0f, 360.0f));
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftJump", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightJump", false);
+			}
+			mState = eState::Fall;
+		}
 
 		if (mbLevelUpCheck)
 		{
@@ -251,13 +282,23 @@ namespace ex
 		}
 
 		if (mState == eState::Jump || mState == eState::Rope || mState == eState::DoubleJump ||
-			mState == eState::UpperCharge || mState == eState::Rush || mState == eState::ComboDeathFault)
+			mState == eState::UpperCharge || mState == eState::Rush || mState == eState::ComboDeathFault ||
+			mState == eState::Death)
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, false);
 		}
 		else
 		{
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Monster, true);
+		}
+
+		if (mState == eState::Death)
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Effect, false);
+		}
+		else
+		{
+			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Effect, true);
 		}
 
 		switch (mState)
@@ -1092,11 +1133,37 @@ namespace ex
 			}
 			mState = eState::Down;
 		}
+
+		if (mInfo->mHp <= 0)
+		{
+			mInfo->mExp /= 2.0f;
+			mAnimator->PlayAnimation(L"PlayerDead", false);
+			mPlayerDeadSound->Play(false);
+			mState = eState::Death;
+		}
 		mRigidbody->SetVelocity(velocity);
 	}
 
 	void Player::Death()
 	{
+		mRigidbody->SetVelocity(0.0f);
+		mPlayerDeadSound->Play(false);
+		if (Input::GetKeyDown(eKeyCode::R))
+		{
+			enums::eMoveDir playerDir = mTransform->GetMoveDir();
+			mTransform->SetPosition(mTransform->GetPositionX(), mTransform->GetPositionY() - 400.0f);
+			mInfo->mHp = mInfo->mMaxHp;
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftJump", false);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightJump", false);
+			}
+			mState = eState::Fall;
+		}
+
 	}
 
 
@@ -1382,6 +1449,29 @@ namespace ex
 	void Player::OnCollisionExit(Collider* _other)
 	{
 		mCollider->SetCollisionType(false);
+	}
+
+	void Player::PlayLevelUI()
+	{
+		int temp = mInfo->mLevel;
+		// 플레이어 레벨의 Len구하기
+		std::string numStr = std::to_string(temp);
+		int levelLen = static_cast<int>(numStr.length());
+
+		// 데미지를 뒤에부터 하나씩 받기위해 만든 배열
+		for (size_t i = 0; i < levelLen; ++i)
+		{
+			int remainder = temp % 10;
+			mLevelArr.push_back(remainder);
+			temp /= 10;
+		}
+
+		// 배열 다시 뒤집어서 정렬
+		reverse(mLevelArr.begin(), mLevelArr.end());
+
+		SceneManager::GetLevel_1()->PlayLevelAnimation(mLevelArr[0]);
+		SceneManager::GetLevel_2()->PlayLevelAnimation(mLevelArr[1]);
+		SceneManager::GetLevel_3()->PlayLevelAnimation(mLevelArr[2]);
 	}
 
 }

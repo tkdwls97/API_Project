@@ -49,9 +49,9 @@ namespace ex
 		mMonstersInfo.mHp = 720000000;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
-		mSkill1Damage = 411;
-		mSkill2Damage = 403;
-		mSkill3Damage = 400;
+		mSkill1Damage = 11012;
+		mSkill2Damage = 2412;
+		mSkill3Damage = 1878;
 		mSkill4Damage = 0;
 		mMonstersInfo.mExp = 200;
 	}
@@ -277,7 +277,7 @@ namespace ex
 
 			mUsingSkillNumber = rand() % 4 + 1;
 
-			if (distanceX < 400.0f && distanceY < 200.0f)
+			if (distanceX < 600.0f && distanceY < 200.0f)
 			{
 				float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 				float PapulatusPosX = mTransform->GetPositionX();
@@ -422,10 +422,9 @@ namespace ex
 
 	void Papulatus::Hit()
 	{
-		mbChaseOn = true;
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float GateKeeperPosX = mTransform->GetPositionX();
-		if (playerPosX <= GateKeeperPosX)
+		if (playerPosX <= GateKeeperPosX && mbChaseOn == false)
 		{
 			mAnimator->PlayAnimation(L"PapulatusLeftHit", false);
 			mDirection = enums::eMoveDir::Left;
@@ -436,7 +435,7 @@ namespace ex
 			mDirection = enums::eMoveDir::Right;
 		}
 		mHitDelay += Time::GetDeltaTime();
-		if (mHitDelay >= 1.3f)
+		if (mHitDelay >= 1.3f && mbChaseOn == false)
 		{
 			if (mDirection == enums::eMoveDir::Left)
 			{
@@ -459,6 +458,12 @@ namespace ex
 
 			mHitDelay = 0.0f;
 		}
+		if (mbChaseOn)
+		{
+			mMonsterState = eMonsterState::Idle;
+		}
+
+		mbChaseOn = true;
 		mTransform->SetMoveDir(mDirection);
 	}
 
@@ -508,7 +513,7 @@ namespace ex
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float PapulatusPosX = mTransform->GetPositionX();
 		mSkill3Delay += Time::GetDeltaTime();
-		if (mSkill3Delay <= 4.0f)
+		if (mSkill3Delay <= 6.0f)
 		{
 			if (playerPosX <= PapulatusPosX)
 			{
@@ -644,11 +649,9 @@ namespace ex
 					mPapulatusHitSound->Play(false);
 					attList->insert(this);
 					if (mMonsterState == eMonsterState::Idle ||
-						mMonsterState == eMonsterState::Move ||
-						mMonsterState == eMonsterState::Chase)
+						mMonsterState == eMonsterState::Move)
 					{
 						mMonsterState = eMonsterState::Hit;
-
 					}
 				}
 			}
@@ -665,11 +668,9 @@ namespace ex
 					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 					attList->insert(this);
 					if (mMonsterState == eMonsterState::Idle ||
-						mMonsterState == eMonsterState::Move ||
-						mMonsterState == eMonsterState::Chase)
+						mMonsterState == eMonsterState::Move)
 					{
 						mMonsterState = eMonsterState::Hit;
-
 					}
 				}
 			}
@@ -684,11 +685,9 @@ namespace ex
 					mPapulatusHitSound->Play(false);
 					attList->insert(this);
 					if (mMonsterState == eMonsterState::Idle ||
-						mMonsterState == eMonsterState::Move ||
-						mMonsterState == eMonsterState::Chase)
+						mMonsterState == eMonsterState::Move)
 					{
 						mMonsterState = eMonsterState::Hit;
-
 					}
 
 				}
@@ -704,11 +703,9 @@ namespace ex
 					mPapulatusHitSound->Play(false);
 					attList->insert(this);
 					if (mMonsterState == eMonsterState::Idle ||
-						mMonsterState == eMonsterState::Move ||
-						mMonsterState == eMonsterState::Chase)
+						mMonsterState == eMonsterState::Move)
 					{
 						mMonsterState = eMonsterState::Hit;
-
 					}
 
 				}
@@ -724,11 +721,9 @@ namespace ex
 					mPapulatusHitSound->Play(false);
 					attList->insert(this);
 					if (mMonsterState == eMonsterState::Idle ||
-						mMonsterState == eMonsterState::Move ||
-						mMonsterState == eMonsterState::Chase)
+						mMonsterState == eMonsterState::Move)
 					{
 						mMonsterState = eMonsterState::Hit;
-
 					}
 				}
 			}

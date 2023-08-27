@@ -75,6 +75,8 @@ namespace ex
 		void PlayerRush();
 		void ComboDeathFault();
 
+		void PlayLevelUI();
+
 	private:
 		Animator*		mAnimator;
 		Transform*		mTransform;
@@ -86,6 +88,7 @@ namespace ex
 		Sound*			mJumpSound;
 		Sound*			mPortionSound;
 		Sound*			mLevelUpSound;
+		Sound*			mPlayerDeadSound;
 
 		bool			mbDoubleJump;
 		bool			mbPortalState;
@@ -93,6 +96,8 @@ namespace ex
 		bool			mbInvincible;
 		bool			mbLevelUpCheck;
 		static float	mhitDelay;
+
+		std::vector<int> mLevelArr;
 
 	};
 }

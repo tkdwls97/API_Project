@@ -40,6 +40,12 @@ namespace ex
 		static StatusBar* GetStatusBar() { return mStatusBar; }
 		static DamageManager* GetDamageManager() { return mDamageManager; }
 
+		static Level* GetLevel_1() { return mLevel1; }
+		static Level* GetLevel_2() { return mLevel2; }
+		static Level* GetLevel_3() { return mLevel3; }
+
+
+
 		static bool GetPortalCheck() { return mbPortalCheck; }
 		static void SetPortalCheck(bool _data) { mbPortalCheck = _data; }
 	private:
@@ -52,7 +58,9 @@ namespace ex
 		static MpBar* mMpBar;
 		static DamageManager* mDamageManager;
 		static SkillSlot* mSkillSlot;
-		static Level*     mLevel;
+		static Level*     mLevel1;
+		static Level*     mLevel2;
+		static Level*     mLevel3;
 		static bool mbPortalCheck;
 	};
 

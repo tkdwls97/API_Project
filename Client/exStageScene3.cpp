@@ -166,7 +166,7 @@ namespace ex
 		portalCol->SetSize(math::Vector2(45.0f, 80.0f));
 		
 		//Test
-		portalTr->SetPosition(math::Vector2(640.0f, 862.0f));
+		//portalTr->SetPosition(math::Vector2(640.0f, 862.0f));
 
 	}
 
@@ -202,7 +202,7 @@ namespace ex
 
 		// 게임오브젝트는 생성자에서 AddComponent<Transform>()을 선언함
 		Transform* playerTF = player->GetComponent<Transform>();
-		playerTF->SetPosition(math::Vector2(50.0f, 810.0f));
+		playerTF->SetPosition(math::Vector2(-600.0f, 810.0f));
 		//playerTF->SetPosition(math::Vector2(400.0f, 800.0f));
 		// 플레이어가 중력을 받기위해 
 		player->GetComponent<Rigidbody>()->SetGround(false);

@@ -20,7 +20,6 @@ namespace ex
 		: mLevelArr{}
 
 	{
-
 		mLevelArr[0] = ResourceManager::Load<Texture>(L"LevelNum_0"
 			, L"..\\Resources\\Maple\\Image\\UI\\LevelNum\\LevelNum_0.bmp");
 		mAnimator->CreateAnimation(L"LevelNum_0", mLevelArr[0], math::Vector2(0.0f, 0.0f), math::Vector2(10.0f, 12.0f)
@@ -83,7 +82,6 @@ namespace ex
 
 	void Level::Update()
 	{
-		//PlayLevelAnimation();
 		UI::Update();
 	}
 
@@ -103,59 +101,42 @@ namespace ex
 	void Level::OnCollisionExit(Collider* _other)
 	{
 	}
-	void Level::PlayLevelAnimation(Animator* _animator)
+	void Level::PlayLevelAnimation(int _level)
 	{
-		Player* player = SceneManager::GetPlayer();
-		int level = player->GetInfo()->mLevel;
-
-		std::string numStr = std::to_string(level);
-		int len = static_cast<int>(numStr.length());
-
-		int measure = 100;
-
-		for (int i = 0; i < len; i++)
+		switch (_level)
 		{
-			int result = level / measure;
-
-			switch (result)
-			{
-			case 0:
-				_animator->PlayAnimation(L"LevelNum_0", false);
-				break;
-			case 1:
-				_animator->PlayAnimation(L"LevelNum_1", false);
-				break;
-			case 2:
-				_animator->PlayAnimation(L"LevelNum_2", false);
-				break;
-			case 3:
-				_animator->PlayAnimation(L"LevelNum_3", false);
-				break;
-			case 4:
-				_animator->PlayAnimation(L"LevelNum_4", false);
-				break;
-			case 5:
-				_animator->PlayAnimation(L"LevelNum_5", false);
-				break;
-			case 6:
-				_animator->PlayAnimation(L"LevelNum_6", false);
-				break;
-			case 7:
-				_animator->PlayAnimation(L"LevelNum_7", false);
-				break;
-			case 8:
-				_animator->PlayAnimation(L"LevelNum_8", false);
-				break;
-			case 9:
-				_animator->PlayAnimation(L"LevelNum_9", false);
-				break;
-			default:
-				break;
-			}
-
-			mTransform->SetPosition(math::Vector2(630.0f, 360.0f));
-			level -= result * measure;
-			measure /= 10;
+		case 0:
+			mAnimator->PlayAnimation(L"LevelNum_0", false);
+			break;
+		case 1:
+			mAnimator->PlayAnimation(L"LevelNum_1", false);
+			break;
+		case 2:
+			mAnimator->PlayAnimation(L"LevelNum_2", false);
+			break;
+		case 3:
+			mAnimator->PlayAnimation(L"LevelNum_3", false);
+			break;
+		case 4:
+			mAnimator->PlayAnimation(L"LevelNum_4", false);
+			break;
+		case 5:
+			mAnimator->PlayAnimation(L"LevelNum_5", false);
+			break;
+		case 6:
+			mAnimator->PlayAnimation(L"LevelNum_6", false);
+			break;
+		case 7:
+			mAnimator->PlayAnimation(L"LevelNum_7", false);
+			break;
+		case 8:
+			mAnimator->PlayAnimation(L"LevelNum_8", false);
+			break;
+		case 9:
+			mAnimator->PlayAnimation(L"LevelNum_9", false);
+			break;
+		default:
+			break;
 		}
 	}
 }
