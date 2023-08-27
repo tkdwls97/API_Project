@@ -20,6 +20,7 @@ namespace ex
 		: mReductionHp(0.0f)
 		, mMushMomHp(0)
 		, mMushMomMaxHp(0)
+		, mbMushMomHpBarOn(false)
 	{
 		mMushMom = _owner;
 		mMushMomHpBar = ResourceManager::Load<Texture>(L"MushMomHpBar", L"..\\Resources\\Maple\\Image\\UI\\Boss_HpBar.bmp");
@@ -55,7 +56,7 @@ namespace ex
 		int hp = mMushMomHp;
 		float fhp = (float)hp / mMushMomMaxHp;
 
-		if (mMushMom->IsMushMomHit())
+		if (hp < mMushMomMaxHp && hp >= 0)
 		{
 			::TransparentBlt(_hdc, 75, 5, (int)(mMushMomHpBar->GetWidth() * fhp), mMushMomHpBar->GetHeight(), mMushMomHpBar->GetHdc()
 				, 0, 0, (int)(mMushMomHpBar->GetWidth() * fhp), mMushMomHpBar->GetHeight(), RGB(255, 0, 255));

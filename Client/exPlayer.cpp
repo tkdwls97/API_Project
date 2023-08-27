@@ -212,14 +212,9 @@ namespace ex
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, playerLevelUp);
 			mInfo->mLevel += 1;
 
-			mInfo->mMaxDamage *= 1.15f;
-			mInfo->mMinDamage *= 1.15f;
-
-			mInfo->mMaxHp *= 1.35f;
 			mInfo->mHp = mInfo->mMaxHp;
-
-			mInfo->mMaxMp *= 1.15f;
 			mInfo->mMp = mInfo->mMaxMp;
+
 			mbLevelUpCheck = false;
 		}
 
@@ -239,7 +234,7 @@ namespace ex
 		if (mbInvincible)
 		{
 			mhitDelay += Time::GetDeltaTime();
-			if (mhitDelay >= 1.5f)
+			if (mhitDelay >= 1.2f)
 			{
 				mbInvincible = false;
 				mhitDelay = 0.0f;

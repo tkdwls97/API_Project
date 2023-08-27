@@ -543,6 +543,9 @@
     <ClCompile Include="exLevel.cpp">
       <Filter>Contents\GameObject\04.UI\03.Level</Filter>
     </ClCompile>
+    <ClCompile Include="exEndScene.cpp">
+      <Filter>Contents\Scene\06.EndScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -805,6 +808,9 @@
     </ClInclude>
     <ClInclude Include="exLevel.h">
       <Filter>Contents\GameObject\04.UI\03.Level</Filter>
+    </ClInclude>
+    <ClInclude Include="exEndScene.h">
+      <Filter>Contents\Scene\06.EndScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

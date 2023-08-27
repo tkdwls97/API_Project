@@ -47,6 +47,7 @@ namespace ex
 	private:
 		bool    mbChaseOn;
 		bool    mbSleepOn;
+
 		float	mAttackDelay;
 		float	mSkillDelay;
 		float	mSleepDelay;

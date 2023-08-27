@@ -13,6 +13,7 @@
 #include "exDamageManager.h"
 #include "exFloor.h"
 #include "exSound.h"
+#include "exPapulatusHpBar.h"
 
 // PlayerSkill
 #include "exPlayerAttack.h"
@@ -44,13 +45,13 @@ namespace ex
 		, mSkill3Delay(0.0f)
 		, mbSleepOn(false)
 	{
-		mMonstersInfo.mMaxHp = 700000000;
-		mMonstersInfo.mHp = 700000000;
+		mMonstersInfo.mMaxHp = 720000000;
+		mMonstersInfo.mHp = 720000000;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 411;
 		mSkill2Damage = 403;
-		mSkill3Damage = 280;
+		mSkill3Damage = 400;
 		mSkill4Damage = 0;
 		mMonstersInfo.mExp = 200;
 	}
@@ -268,7 +269,7 @@ namespace ex
 
 
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 1.5f)
+		if (mSkillDelay >= 0.75f)
 		{
 			math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
@@ -276,7 +277,7 @@ namespace ex
 
 			mUsingSkillNumber = rand() % 4 + 1;
 
-			if (distanceX < 300.0f && distanceY < 200.0f)
+			if (distanceX < 400.0f && distanceY < 200.0f)
 			{
 				float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 				float PapulatusPosX = mTransform->GetPositionX();
@@ -463,6 +464,7 @@ namespace ex
 
 	void Papulatus::Dead()
 	{
+		mbChaseOn = false;
 		if (mDirection == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PapulatusLeftDead", false);
@@ -478,6 +480,7 @@ namespace ex
 		{
 			Player* player = SceneManager::GetPlayer();
 			player->GetInfo()->mExp += mMonstersInfo.mExp;
+			SceneManager::SetPortalCheck(true);
 			Destroy(this);
 		}
 	}
@@ -579,7 +582,7 @@ namespace ex
 		float PapulatusPosX = mTransform->GetPositionX();
 
 		mSleepDelay += Time::GetDeltaTime();
-		if (mSleepDelay <= 5.0f)
+		if (mSleepDelay <= 4.0f)
 		{
 			if (playerPosX <= PapulatusPosX)
 			{
@@ -591,13 +594,12 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
 				mDirection = enums::eMoveDir::Right;
 			}
-			mMonstersInfo.mHp += 5000000;
+			mMonstersInfo.mHp += 2000000;
 			if (mMonstersInfo.mHp >= mMonstersInfo.mMaxHp)
 			{
 				mMonstersInfo.mHp = mMonstersInfo.mMaxHp;
 			}
 		}
-
 		else
 		{
 			bool bCheck = mAnimator->IsActiveAnimationComplete();

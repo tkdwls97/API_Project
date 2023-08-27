@@ -265,10 +265,6 @@ namespace ex
 
 	void MushMomScene::Update()
 	{
-		if (mbMushMomHit)
-		{
-
-		}
 		bool bCheck = SceneManager::GetPortalCheck();
 		if (bCheck)
 		{

@@ -6,6 +6,7 @@
 #include "exStageScene2.h"
 #include "exStageScene3.h"
 #include "exMushMomScene.h"
+#include "exEndScene.h"
 #include "exPlayer.h"
 #include "exObject.h"
 #include "exPlayerAttack.h"
@@ -39,6 +40,7 @@ namespace ex
 		CreateScene<StageScene2>(L"Stage2Scene");
 		CreateScene<StageScene3>(L"Stage3Scene");
 		CreateScene<BossScene>(L"BossScene");
+		CreateScene<EndScene>(L"EndScene");
 		mPlayer->Initialize();
 
 		LoadScene(L"TitleScene");
@@ -57,7 +59,7 @@ namespace ex
 	void SceneManager::Release()
 	{
 
-		if (mActiveScene->GetName() == L"TitleScene")
+		if (mActiveScene->GetName() == L"TitleScene" || mActiveScene->GetName() == L"EndScene")
 		{
 			delete mPlayer;
 			mPlayer = nullptr;

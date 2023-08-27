@@ -142,6 +142,7 @@
     <ClCompile Include="exCollisionManager.cpp" />
     <ClCompile Include="exComponent.cpp" />
     <ClCompile Include="exCollider.cpp" />
+    <ClCompile Include="exEndScene.cpp" />
     <ClCompile Include="exGatekeeper.cpp" />
     <ClCompile Include="exGateKeeperAttack.cpp" />
     <ClCompile Include="exLevel.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="exEffectManger.h" />
     <ClInclude Include="exCollisionManager.h" />
     <ClInclude Include="exCollider.h" />
+    <ClInclude Include="exEndScene.h" />
     <ClInclude Include="exGatekeeper.h" />
     <ClInclude Include="exGateKeeperAttack.h" />
     <ClInclude Include="exLevel.h" />

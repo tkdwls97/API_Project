@@ -22,12 +22,18 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
+
+		bool IsMushMomHpBarOn() { return mbMushMomHpBarOn; }
+		void SetMushMomHpBarOn(bool _data) {  mbMushMomHpBarOn = _data; }
+
 	private:
 		Texture* mMushMomHpBar;
 		MushMom* mMushMom;
 		int		 mMushMomHp;
 		int		 mMushMomMaxHp;
 		float	 mReductionHp;
+
+		bool    mbMushMomHpBarOn;
 
 	};
 

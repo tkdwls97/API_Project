@@ -3,14 +3,13 @@
 
 namespace ex
 {
+	class Login;
 	class Sound;
-	class Portal;
-
-	class BossScene : public Scene
+	class EndScene : public Scene
 	{
 	public:
-		BossScene();
-		virtual ~BossScene();
+		EndScene();
+		virtual ~EndScene();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -20,7 +19,6 @@ namespace ex
 		virtual void SceneOut() override;
 
 	private:
-		Sound* mBossSceneSound;
-		Portal* mPortal;
+		Sound* mEndSound;
 	};
 }

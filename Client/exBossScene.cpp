@@ -16,11 +16,13 @@
 #include "exWall.h"
 #include "exPapulatusHpBar.h"
 #include "exSound.h"
+#include "exPortal.h"
 
 namespace ex
 {
 	BossScene::BossScene()
 		: mBossSceneSound(nullptr)
+		, mPortal(nullptr)
 	{
 	}
 
@@ -117,11 +119,23 @@ namespace ex
 		RightwallCol->SetSize(math::Vector2(1000.0f, 1500.0f));
 		Transform* Rightwalltr = RightWall->GetComponent<Transform>();
 		Rightwalltr->SetPosition(math::Vector2(2190.0f, 360.0f));
+
+		// Æ÷Å»
+		mPortal = object::Instantiate<Portal>(enums::eLayerType::Potal);
+		mPortal->Initialize();
+		Transform* portalTr = mPortal->GetComponent<Transform>();
+		portalTr->SetPosition(math::Vector2(-1000.0f, -1000.0f));
 	}
 
 	void BossScene::Update()
 	{
 		math::Vector2 pos = SceneManager::GetPlayer()->GetPosition();
+		bool bCheck = SceneManager::GetPortalCheck();
+		if (bCheck)
+		{
+			Transform* portalTr = mPortal->GetComponent<Transform>();
+			portalTr->SetPosition(math::Vector2(1070.0f, 460.0f));
+		}
 		Scene::Update();
 	}
 
@@ -177,7 +191,7 @@ namespace ex
 	}
 	void BossScene::SceneOut()
 	{
-		//mBossSceneSound->Stop(true);
+		mBossSceneSound->Stop(true);
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();
 	}

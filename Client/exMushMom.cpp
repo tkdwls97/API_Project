@@ -309,6 +309,7 @@ namespace ex
 
 	void MushMom::Dead()
 	{
+		mbMushMomHit = false;
 		if (mDirection == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"MushMomLeftDead", false);

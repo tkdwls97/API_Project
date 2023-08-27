@@ -73,6 +73,7 @@ namespace ex
 			else if (ActiveSceneName == L"MushMomScene")
 			{
 				SceneManager::LoadScene(L"Stage2Scene");
+				SceneManager::SetPortalCheck(false);
 			}
 			else if (ActiveSceneName == L"Stage2Scene")
 			{
@@ -81,6 +82,10 @@ namespace ex
 			else if (ActiveSceneName == L"Stage3Scene")
 			{
 				SceneManager::LoadScene(L"BossScene");
+			}
+			else if (ActiveSceneName == L"BossScene")
+			{
+				SceneManager::LoadScene(L"EndScene");
 			}
 		}
 	}

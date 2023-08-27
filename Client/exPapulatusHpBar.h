@@ -22,12 +22,17 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
+		bool IsHpBarOn() { return mbHpBarOn; }
+		void SetHpBarOn(bool _data) { mbHpBarOn = _data; }
+
 	private:
 		Texture* mPapulatusHpBar;
 		Papulatus* mPapulatus;
 		int		 mPapulatusHp;
 		int		 mPapulatusMaxHp;
 		float	 mReductionHp;
+
+		bool     mbHpBarOn;
 
 	};
 

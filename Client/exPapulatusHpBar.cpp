@@ -20,6 +20,7 @@ namespace ex
 		: mReductionHp(0.0f)
 		, mPapulatusHp(0)
 		, mPapulatusMaxHp(0)
+		, mbHpBarOn(false)
 	{
 		mPapulatus = _owner;
 		mPapulatusHpBar = ResourceManager::Load<Texture>(L"PapulatusHpBar", L"..\\Resources\\Maple\\Image\\UI\\Boss_HpBar.bmp");
@@ -55,7 +56,7 @@ namespace ex
 		int hp = mPapulatusHp;
 		float fhp = (float)hp / mPapulatusMaxHp;
 
-		if (mPapulatus->IsPapulatusChaseOn())
+		if (hp < mPapulatusMaxHp && hp >= 0)
 		{
 			::TransparentBlt(_hdc, 75, 5, (int)(mPapulatusHpBar->GetWidth() * fhp), mPapulatusHpBar->GetHeight(), mPapulatusHpBar->GetHdc()
 				, 0, 0, (int)(mPapulatusHpBar->GetWidth() * fhp), mPapulatusHpBar->GetHeight(), RGB(255, 0, 255));
