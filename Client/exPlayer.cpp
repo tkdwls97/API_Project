@@ -53,7 +53,7 @@ namespace ex
 
 		mInfo = new PlayerInfo();
 		mInfo->mMaxHp = 70000;
-		mInfo->mHp = 70000;
+		mInfo->mHp = 10000;
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
@@ -216,7 +216,6 @@ namespace ex
 
 	void Player::Update()
 	{
-
 		math::Vector2 pos = mTransform->GetPosition();
 		PlayLevelUI();
 
@@ -1146,7 +1145,7 @@ namespace ex
 	void Player::Death()
 	{
 		mRigidbody->SetVelocity(0.0f);
-		mPlayerDeadSound->Play(false);
+		//mPlayerDeadSound->Play(false);
 		if (Input::GetKeyDown(eKeyCode::R))
 		{
 			enums::eMoveDir playerDir = mTransform->GetMoveDir();

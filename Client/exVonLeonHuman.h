@@ -21,9 +21,10 @@ namespace ex
 		virtual void OnCollisionExit(Collider* _other) override;
 
 	private:
+		
 		Sound* mVonLeonDial2_Sound;
 		VonLeon* mVonLeon;
-
+		bool mbSoundCheck;
 	};
 
 }

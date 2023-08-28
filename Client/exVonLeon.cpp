@@ -485,7 +485,7 @@ namespace ex
 
 	void VonLeon::OnCollisionEnter(Collider* _other)
 	{
-		if (mMonsterState != eMonsterState::Sleep && mMonsterState != eMonsterState::WakeUp && mMonsterState != eMonsterState::Skill5)
+		if (mMonsterState != eMonsterState::Sleep || mMonsterState != eMonsterState::WakeUp ||  mMonsterState != eMonsterState::Dead)
 		{
 			PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 			if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
@@ -576,14 +576,18 @@ namespace ex
 				}
 			}
 		}
-		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr && player->IsInvincible() == false)
-		{
-			DamageManager* damage = new DamageManager();
-			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
-			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
-			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
 
+		if (mMonsterState != eMonsterState::Dead)
+		{
+			Player* player = dynamic_cast<Player*>(_other->GetOwner());
+			if (player != nullptr && player->IsInvincible() == false)
+			{
+				DamageManager* damage = new DamageManager();
+				object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
+				damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+				damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+
+			}
 		}
 	}
 

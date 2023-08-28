@@ -19,6 +19,7 @@ namespace ex
 {
 	VonLeonHuman::VonLeonHuman()
 		:mVonLeonDial2_Sound(nullptr)
+		, mbSoundCheck(true)
 	{
 		VonLeon* vonLeon = object::Instantiate<VonLeon>(enums::eLayerType::Monster);
 		mVonLeon = vonLeon;
@@ -60,7 +61,11 @@ namespace ex
 
 		if (distanceX < 480.0f && distanceY < 200.0f)
 		{
-			mVonLeonDial2_Sound->Play(false);
+			if (mbSoundCheck)
+			{
+				mVonLeonDial2_Sound->Play(false);
+				mbSoundCheck = false;
+			}
 			mAnimator->PlayAnimation(L"VonLeonTransform", false);
 
 			bool bCheck = mAnimator->IsActiveAnimationComplete();

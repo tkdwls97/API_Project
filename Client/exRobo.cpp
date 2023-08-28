@@ -278,16 +278,18 @@ namespace ex
 				attList->insert(this);
 			}
 		}
-
-		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr&& player->IsInvincible() == false)
+		if (mMonsterState != eMonsterState::Dead)
 		{
-			DamageManager* damage = new DamageManager();
-			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
-			damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
-			damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
-			player->GetInfo()->mHp -= damage->GetMonsterResultDamage();
+			Player* player = dynamic_cast<Player*>(_other->GetOwner());
+			if (player != nullptr && player->IsInvincible() == false)
+			{
+				DamageManager* damage = new DamageManager();
+				object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
+				damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+				damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+				player->GetInfo()->mHp -= damage->GetMonsterResultDamage();
 
+			}
 		}
 	}
 
