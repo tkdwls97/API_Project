@@ -10,11 +10,11 @@ namespace ex
 	Rigidbody::Rigidbody()
 		: Component(enums::eComponentType::Rigidbody)
 		, mMass(1.0f)
-		, mFriction(1200.0f)
+		, mFriction(600.0f)
 		, mbGround(false)
 		, mAccelation(500.0f)
 	{
-		mLimitedVelocty.x = 200.0f;
+		mLimitedVelocty.x = 2000.0f;
 		mLimitedVelocty.y = 2000.0f;
 		mGravity = math::Vector2(0.0f, 2000.0f);
 	}

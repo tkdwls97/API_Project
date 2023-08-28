@@ -23,6 +23,7 @@ namespace ex
 		, mOwner(_owner)
 		, mPapulatusSkill2_Damege(0)
 		, mPapulatusSkill2_Sound(nullptr)
+		, mSkillDelay(0.0f)
 	{
 		mPapulatusSkill2_Info.AttackCount = 1;
 		mPapulatusSkill2_Info.DamagePercentage = 9;
@@ -36,8 +37,6 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
 
-
-		mCollider->SetSize(math::Vector2(550.0f, 200.0f));
 		mTransform->SetPosition(_owner->GetPositionX(), _owner->GetPositionY());
 		enums::eMoveDir papulatusDir = _owner->GetComponent<Transform>()->GetMoveDir();
 
@@ -61,6 +60,12 @@ namespace ex
 
 	void PapulatusSkill2::Update()
 	{
+		mSkillDelay += Time::GetDeltaTime();
+		if (mSkillDelay >= 1.3f)
+		{
+			mCollider->SetSize(math::Vector2(550.0f, 200.0f));
+			mSkillDelay = 0.0f;
+		}
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);

@@ -194,10 +194,11 @@ namespace ex
 		// 이미지 미리 로드
 		PlayerSkillLoad();
 
+		// 플레이어 Dead
 		image = ResourceManager::Load<Texture>(L"PlayerDead"
 			, L"..\\Resources\\Maple\\Image\\Dead\\Tomb.bmp");
 		mAnimator->CreateAnimation(L"PlayerDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(101.0f, 47.0f)
-			, math::Vector2(101.0f, 47.0f), 20, math::Vector2(0.0f, 0.0f), 0.05f);
+			, math::Vector2(101.0f, 47.0f), 20, math::Vector2(0.0f, 25.0f), 0.05f);
 
 
 		// Player Sound
@@ -216,6 +217,8 @@ namespace ex
 
 	void Player::Update()
 	{
+		float num = mRigidbody->GetFriction();
+
 		math::Vector2 pos = mTransform->GetPosition();
 		PlayLevelUI();
 
@@ -223,7 +226,7 @@ namespace ex
 		if (Input::GetKeyDown(eKeyCode::P))
 		{
 			enums::eMoveDir playerDir = mTransform->GetMoveDir();
-			mTransform->SetPosition(math::Vector2(640.0f, 260.0f));
+			mTransform->SetPosition(math::Vector2(mTransform->GetPositionX(), 260.0f));
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftJump", false);
@@ -247,7 +250,7 @@ namespace ex
 			mbLevelUpCheck = false;
 		}
 
-		if (Input::GetKeyDown(eKeyCode::H))
+		if (Input::GetKeyDown(eKeyCode::H) && mState != eState::Death)
 		{
 			mPortionSound->Play(false);
 			mInfo->mHp += mInfo->mMaxHp / 2;
@@ -263,7 +266,7 @@ namespace ex
 		if (mbInvincible)
 		{
 			mhitDelay += Time::GetDeltaTime();
-			if (mhitDelay >= 1.2f)
+			if (mhitDelay >= 1.0f)
 			{
 				mbInvincible = false;
 				mhitDelay = 0.0f;
@@ -681,10 +684,7 @@ namespace ex
 		}
 
 		// 키 안누른 상태
-		if (Input::GetKeyUp(eKeyCode::Up)
-			|| Input::GetKeyUp(eKeyCode::Left)
-			|| Input::GetKeyUp(eKeyCode::Down)
-			|| Input::GetKeyUp(eKeyCode::Right))
+		if ((!Input::GetKeyPressed(eKeyCode::Up)) && (!Input::GetKeyPressed(eKeyCode::Left)) && (!Input::GetKeyPressed(eKeyCode::Down)) && !Input::GetKeyPressed(eKeyCode::Right))
 		{
 			if (playerDir == enums::eMoveDir::Left)
 			{
@@ -696,11 +696,10 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
 				mState = eState::Idle;
 			}
-			mRigidbody->SetFriction(1000.0f);
 		}
 		else
 		{
-			mRigidbody->SetFriction(0.0f);
+			//mRigidbody->SetFriction(0.0f);
 		}
 
 
@@ -860,7 +859,6 @@ namespace ex
 				mState = eState::Idle;
 			}
 		}
-		mRigidbody->SetFriction(1000.0f);
 	}
 
 	void Player::Jump()
@@ -982,7 +980,23 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 
 		mbDoubleJump = false;
-		velocity.x = 0.0f;
+		if (velocity.y > 0.0f)
+		{
+			velocity.x = 0.0f;
+		}
+
+		if (velocity.y <= 0.0f)
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				velocity.x = 100.0f;
+			}
+			else
+			{
+				velocity.x = -100.0f;
+			}
+		}
+
 
 		if (mbInvincible)
 		{
@@ -1145,7 +1159,6 @@ namespace ex
 	void Player::Death()
 	{
 		mRigidbody->SetVelocity(0.0f);
-		//mPlayerDeadSound->Play(false);
 		if (Input::GetKeyDown(eKeyCode::R))
 		{
 			enums::eMoveDir playerDir = mTransform->GetMoveDir();
@@ -1411,21 +1424,6 @@ namespace ex
 				mState = eState::RaisingBlow;
 			}
 		}
-
-		//if (bGround && mbInvincible)
-		//{
-		//	if (playerDir == enums::eMoveDir::Left)
-		//	{
-		//		mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-		//	}
-		//	else
-		//	{
-		//		mAnimator->PlayAnimation(L"PlayerRightHit", true);
-
-		//	}
-		//	mState = eState::Hit;
-		//	mRigidbody->SetFriction(1000.0f);
-		//}
 	}
 
 	void Player::OnCollisionEnter(Collider* _other)

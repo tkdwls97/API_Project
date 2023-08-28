@@ -35,6 +35,7 @@ namespace ex
 		EffectInfo mPapulatusSkill3_Info;
 		int	   mPapulatusSkill3_Damege;
 		Sound* mPapulatusSkill3_Sound;
+		float mSkillDelay;
 	};
 
 }

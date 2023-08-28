@@ -108,7 +108,6 @@ namespace ex
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				if (monsters->GetMonstersState() != eMonsterState::Sleep &&
-					monsters->GetMonstersState() != eMonsterState::Skill5 &&
 					monsters->GetMonstersState() != eMonsterState::WakeUp &&
 					monsters->GetMonstersState() != eMonsterState::Dead)
 				{

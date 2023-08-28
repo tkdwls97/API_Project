@@ -22,6 +22,7 @@ namespace ex
 		, mOwner(_owner)
 		, mPapulatusSkill3_Damege(0)
 		, mPapulatusSkill3_Sound(nullptr)
+		, mSkillDelay(0.0f)
 	{
 		mPapulatusSkill3_Info.AttackCount = 1;
 		mPapulatusSkill3_Info.DamagePercentage = 9;
@@ -36,9 +37,6 @@ namespace ex
 		mCollider = AddComponent<Collider>();
 
 		mTransform->SetPosition(_owner->GetPosition());
-		mCollider->SetSize(math::Vector2(1100.0f, 600.0f));
-
-
 	}
 
 	PapulatusSkill3::~PapulatusSkill3()
@@ -51,6 +49,13 @@ namespace ex
 
 	void PapulatusSkill3::Update()
 	{
+		mSkillDelay += Time::GetDeltaTime();
+		if (mSkillDelay >= 1.5f)
+		{
+			mCollider->SetSize(math::Vector2(1100.0f, 600.0f));
+			mSkillDelay = 0.0f;
+		}
+
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);

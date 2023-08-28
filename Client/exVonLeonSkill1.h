@@ -35,6 +35,8 @@ namespace ex
 		EffectInfo mVonLeonSkill1_Info;
 		int	   mVonLeonSkill1_Damege;
 		Sound* mVonLeonSkill1_Sound;
+
+		float mSkillDelay;
 	};
 
 }

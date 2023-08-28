@@ -45,11 +45,11 @@ namespace ex
 		, mSkill3Delay(0.0f)
 	{
 		mMonstersInfo.mMaxHp = 1000000000;
-		mMonstersInfo.mHp = 5000000;
+		mMonstersInfo.mHp = 1000000000;
 		mMonstersInfo.mLevel = 200;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 5012;
-		mSkill2Damage = 2412;
+		mSkill2Damage = 4417;
 		mSkill3Damage = 1878;
 		mSkill4Damage = 0;
 		mMonstersInfo.mExp = 300;
@@ -72,16 +72,16 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill1\\Left", math::Vector2(0.0f, 0.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Left", math::Vector2(-75.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Left", math::Vector2(5.0f, 0.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill3",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill3\\Left", math::Vector2(0.0f, 0.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill4",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill4\\Left", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill4\\Left", math::Vector2(0.0f, 40.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill5",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Left", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Left", math::Vector2(-50.0f, 30.0f), 0.077f);
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"VonLeonRightIdle",
@@ -101,16 +101,16 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill1\\Right", math::Vector2(0.0f, 0.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Right", math::Vector2(75.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Right", math::Vector2(5.0f, 0.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill3",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill3\\Right", math::Vector2(0.0f, 0.0f), 0.077f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill4",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill4\\Right", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill4\\Right", math::Vector2(0.0f, 40.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill5",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Right", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Right", math::Vector2(50.0f, 30.0f), 0.077f);
 
 		mVonLeonHitSound = ResourceManager::Load<Sound>(L"VonLeonHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\VonLeon\\VonLeon_Hit.wav");
 		mVonLeonDeadSound = ResourceManager::Load<Sound>(L"VonLeonDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\VonLeon\\VonLeon_Die.wav");
@@ -136,8 +136,22 @@ namespace ex
 	}
 
 
+
 	void VonLeon::Update()
 	{
+
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float vonLeonPosX = mTransform->GetPositionX();
+
+		if (playerPosX < vonLeonPosX)
+		{
+			mDirection = enums::eMoveDir::Left;
+		}
+		if (playerPosX > vonLeonPosX)
+		{
+			mDirection = enums::eMoveDir::Right;
+		}
+
 		switch (mMonsterState)
 		{
 		case ex::Monsters::eMonsterState::Idle:
@@ -206,13 +220,13 @@ namespace ex
 
 
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 0.75f)
+		if (mSkillDelay >= 1.2f)
 		{
 			math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = 1; //rand() % 4 + 1;
+			mUsingSkillNumber = 5; //rand() % 6 + 1;
 
 			if (distanceX < 400.0f && distanceY < 500.0f)
 			{
@@ -247,9 +261,9 @@ namespace ex
 						mAnimator->PlayAnimation(L"VonLeonRightSkill2", false);
 						mDirection = enums::eMoveDir::Right;
 					}
-					//VonLeonSkill2* papulatusSkill2 = new VonLeonSkill2(this);
-					//object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkill2);
-					//mMonsterState = eMonsterState::Skill2;
+					VonLeonSkill2* vonLeonSkill2 = new VonLeonSkill2(this);
+					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, vonLeonSkill2);
+					mMonsterState = eMonsterState::Skill2;
 				}
 				else if (mUsingSkillNumber == 3)
 				{
@@ -263,9 +277,9 @@ namespace ex
 						mAnimator->PlayAnimation(L"VonLeonRightSkill3", false);
 						mDirection = enums::eMoveDir::Right;
 					}
-					//VonLeonSkill3* papulatusSkill3 = new VonLeonSkill3(this);
-					//object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkill3);
-					//mMonsterState = eMonsterState::Skill3;
+					VonLeonSkill3* vonLeonSkill3 = new VonLeonSkill3(this);
+					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, vonLeonSkill3);
+					mMonsterState = eMonsterState::Skill3;
 				}
 				else if (mUsingSkillNumber == 4)
 				{
@@ -280,9 +294,26 @@ namespace ex
 						mDirection = enums::eMoveDir::Right;
 					}
 
-					//VonLeonSkill4* papulatusSkill4 = new VonLeonSkill4(this);
-					//object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkill4);
-					//mMonsterState = eMonsterState::Skill4;
+					VonLeonSkill4* vonLeonSkill4 = new VonLeonSkill4(this);
+					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, vonLeonSkill4);
+					mMonsterState = eMonsterState::Skill4;
+				}
+				else if (mUsingSkillNumber == 5)
+				{
+					if (playerPosX <= VonLeonPosX)
+					{
+						mAnimator->PlayAnimation(L"VonLeonLeftSkill5", false);
+						mDirection = enums::eMoveDir::Left;
+					}
+					else
+					{
+						mAnimator->PlayAnimation(L"VonLeonRightSkill5", false);
+						mDirection = enums::eMoveDir::Right;
+					}
+
+					VonLeonSkill5* vonLeonSkill5 = new VonLeonSkill5(this);
+					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, vonLeonSkill5);
+					mMonsterState = eMonsterState::Skill5;
 				}
 				mSkillDelay = 0.0f;
 				mTransform->SetMoveDir(mDirection);
@@ -485,7 +516,7 @@ namespace ex
 
 	void VonLeon::OnCollisionEnter(Collider* _other)
 	{
-		if (mMonsterState != eMonsterState::Sleep || mMonsterState != eMonsterState::WakeUp ||  mMonsterState != eMonsterState::Dead)
+		if (mMonsterState != eMonsterState::Sleep || mMonsterState != eMonsterState::WakeUp || mMonsterState != eMonsterState::Dead)
 		{
 			PlayerAttack* playerAtt = dynamic_cast<PlayerAttack*>(_other->GetOwner());
 			if (playerAtt != nullptr && mMonsterState != eMonsterState::Dead)
@@ -577,18 +608,18 @@ namespace ex
 			}
 		}
 
-		if (mMonsterState != eMonsterState::Dead)
-		{
-			Player* player = dynamic_cast<Player*>(_other->GetOwner());
-			if (player != nullptr && player->IsInvincible() == false)
-			{
-				DamageManager* damage = new DamageManager();
-				object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
-				damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
-				damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
+		//if (mMonsterState != eMonsterState::Dead)
+		//{
+		//	Player* player = dynamic_cast<Player*>(_other->GetOwner());
+		//	if (player != nullptr && player->IsInvincible() == false)
+		//	{
+		//		DamageManager* damage = new DamageManager();
+		//		object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
+		//		damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f));
+		//		damage->PlayMonsterDamageAnimation(this->GetMonstersInfo().mDamage);
 
-			}
-		}
+		//	}
+		//}
 	}
 
 	void VonLeon::OnCollisionStay(Collider* _other)

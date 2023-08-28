@@ -13,6 +13,7 @@ namespace ex
 		virtual void Update();
 		virtual void Render(HDC _hdc);
 
+
 		void AddForce(math::Vector2 _force) { mForce += _force; }
 		void SetMass(float _mass) { mMass = _mass; }
 

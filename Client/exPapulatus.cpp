@@ -46,7 +46,7 @@ namespace ex
 		, mbSleepOn(false)
 	{
 		mMonstersInfo.mMaxHp = 720000000;
-		mMonstersInfo.mHp = 1;
+		mMonstersInfo.mHp = 720000000;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 4017;
@@ -275,7 +275,7 @@ namespace ex
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = rand() % 4 + 1;
+			mUsingSkillNumber = 3;//rand() % 4 + 1;
 
 			if (distanceX < 600.0f && distanceY < 200.0f)
 			{
@@ -392,19 +392,19 @@ namespace ex
 		float diff = playerPosX - papulatusPosX;
 		if (playerPosX <= papulatusPosX)
 		{
-			mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
-			mDirection = enums::eMoveDir::Left;
 			if (diff < 10.0f)
 			{
+				mAnimator->PlayAnimation(L"PapulatusLeftMove", true);
+				mDirection = enums::eMoveDir::Left;
 				pos.x -= 60.0f * Time::GetDeltaTime();
 			}
 		}
 		else
 		{
-			mAnimator->PlayAnimation(L"PapulatusRightMove", true);
-			mDirection = enums::eMoveDir::Right;
 			if (diff > 10.0f)
 			{
+				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
+				mDirection = enums::eMoveDir::Right;
 				pos.x += 60.0f * Time::GetDeltaTime();
 			}
 		}
@@ -422,6 +422,7 @@ namespace ex
 
 	void Papulatus::Hit()
 	{
+		mbChaseOn = true;
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float GateKeeperPosX = mTransform->GetPositionX();
 		if (playerPosX <= GateKeeperPosX && mbChaseOn == false)
@@ -447,14 +448,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightMove", true);
 				mDirection = enums::eMoveDir::Right;
 			}
-			if (mbChaseOn)
-			{
-				mMonsterState = eMonsterState::Chase;
-			}
-			else
-			{
-				mMonsterState = eMonsterState::Move;
-			}
+
 
 			mHitDelay = 0.0f;
 		}
@@ -462,8 +456,6 @@ namespace ex
 		{
 			mMonsterState = eMonsterState::Idle;
 		}
-
-		mbChaseOn = true;
 		mTransform->SetMoveDir(mDirection);
 	}
 

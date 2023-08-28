@@ -23,6 +23,7 @@ namespace ex
 		, mOwner(_owner)
 		, mVonLeonSkill1_Damege(0)
 		, mVonLeonSkill1_Sound(nullptr)
+		, mSkillDelay(0.0f)
 	{
 		mVonLeonSkill1_Info.AttackCount = 1;
 		mVonLeonSkill1_Info.DamagePercentage = 9;
@@ -36,18 +37,17 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
 
-
-		mCollider->SetSize(math::Vector2(660.0f, 300.0f));
+		mCollider->SetSize(math::Vector2(0.0f, 0.0f));
 		mTransform->SetPosition(_owner->GetPositionX(), _owner->GetPositionY());
-		enums::eMoveDir papulatusDir = _owner->GetComponent<Transform>()->GetMoveDir();
+		enums::eMoveDir vonLeonDir = _owner->GetComponent<Transform>()->GetMoveDir();
 
-		if (papulatusDir == enums::eMoveDir::Left)
+		if (vonLeonDir == enums::eMoveDir::Left)
 		{
 			mCollider->SetOffset(math::Vector2(0.0f, 100.0f));
 		}
 		else
 		{
-			mCollider->SetOffset(math::Vector2(100.0f, -50.0f));
+			mCollider->SetOffset(math::Vector2(0.0f, 100.0f));
 		}
 	}
 
@@ -61,6 +61,12 @@ namespace ex
 
 	void VonLeonSkill1::Update()
 	{
+		mSkillDelay += Time::GetDeltaTime();
+		if (mSkillDelay >= 1.5f)
+		{
+			mCollider->SetSize(math::Vector2(700.0f, 300.0f));
+			mSkillDelay = 0.0f;
+		}
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);
