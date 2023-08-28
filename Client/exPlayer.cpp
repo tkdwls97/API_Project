@@ -10,7 +10,7 @@
 #include "exMonsters.h"
 #include "exSound.h"
 #include "exLevel.h"
-
+#include "exStun.h"
 
 // Component
 #include "exTransform.h"
@@ -50,6 +50,7 @@ namespace ex
 		, mStunDelay(0.0f)
 		, mhitDelay(0.0f)
 		, mLevelArr{}
+		, mStun(nullptr)
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
@@ -224,8 +225,6 @@ namespace ex
 		math::Vector2 velLimit = mRigidbody->GetLimitedVeloctyX();
 		math::Vector2 pos = mTransform->GetPosition();
 
-	
-
 		PlayLevelUI();
 
 		// 플레이어가 떨어졌을시 
@@ -309,9 +308,14 @@ namespace ex
 		}
 
 
+		// 플레이어가 스턴에 걸리면
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		if (mbStunCheck)
 		{
+			// 1번만 실행되게 해야됌
+			//Stun* stun = new Stun(this);
+			//object::ActiveSceneAddGameObject(enums::eLayerType::Effect, stun);
+
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftHit", true);

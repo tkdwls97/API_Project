@@ -11,6 +11,7 @@ namespace ex
 	class Rigidbody;
 	class Texture;
 	class Sound;
+	class Stun;
 
 	class Player : public GameObject
 	{
@@ -61,6 +62,7 @@ namespace ex
 		bool IsStunCheck() { return mbStunCheck; }
 		void SetStunCheck(bool _data) { mbStunCheck = _data; }
 
+		
 
 		void Idle();
 		void Move();
@@ -93,6 +95,8 @@ namespace ex
 		Sound*			mPortionSound;
 		Sound*			mLevelUpSound;
 		Sound*			mPlayerDeadSound;
+
+		Stun*			mStun;
 		 
 		bool			mbStunCheck;
 		bool			mbDoubleJump;

@@ -325,6 +325,12 @@
     <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\06.VonLeonTeleportAfter">
       <UniqueIdentifier>{42b29b4d-54ec-4049-9686-da57c96bcbca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\02.ConditionEffect">
+      <UniqueIdentifier>{040fa7c9-6e73-4021-bea0-3ca7c102ff13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\02.ConditionEffect\00.Stun">
+      <UniqueIdentifier>{1289b008-8132-4fb5-a2c4-96cd44223553}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -614,6 +620,9 @@
     </ClCompile>
     <ClCompile Include="exVonLeonTeleportAfter.cpp">
       <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\06.VonLeonTeleportAfter</Filter>
+    </ClCompile>
+    <ClCompile Include="exStun.cpp">
+      <Filter>Contents\GameObject\03.Effect\02.ConditionEffect\00.Stun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -913,6 +922,9 @@
     </ClInclude>
     <ClInclude Include="exVonLeonTeleportAfter.h">
       <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\06.VonLeonTeleportAfter</Filter>
+    </ClInclude>
+    <ClInclude Include="exStun.h">
+      <Filter>Contents\GameObject\03.Effect\02.ConditionEffect\00.Stun</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
