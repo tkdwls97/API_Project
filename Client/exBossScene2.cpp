@@ -26,6 +26,7 @@ namespace ex
 		: mBossScene2_Sound(nullptr)
 		, mVonLeonDial_Sound(nullptr)
 		, mPortal(nullptr)
+		, mVonLeonHuman(nullptr)
 	{
 	}
 
@@ -35,6 +36,8 @@ namespace ex
 
 	void BossScene2::Initialize()
 	{
+		VonLeonHuman* humanVonLeon = object::Instantiate<VonLeonHuman>(enums::eLayerType::Monster);
+		mVonLeonHuman = humanVonLeon;
 		// ¿ÞÂÊ º®
 		Wall* leftWall = object::Instantiate<Wall>(enums::eLayerType::Wall);
 		Collider* leftwallCol = leftWall->AddComponent<Collider>();
@@ -98,9 +101,7 @@ namespace ex
 		Camera::SetLimitDistance(widthLimit, heightLimit);
 		Camera::FadeIn(1.f, RGB(0, 0, 0));
 
-
-		VonLeonHuman* humanVonLeon = object::Instantiate<VonLeonHuman>(enums::eLayerType::Monster);
-		humanVonLeon->Initialize();
+		mVonLeonHuman->Initialize();
 
 		Player* player = SceneManager::GetPlayer();
 

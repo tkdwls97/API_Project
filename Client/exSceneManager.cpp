@@ -20,6 +20,7 @@
 #include "exSkillSlot.h"
 #include "exLevel.h"
 #include "exResourceManager.h"
+#include "exVonLeonHuman.h"
 
 namespace ex
 {
@@ -46,6 +47,7 @@ namespace ex
 		CreateScene<BossScene>(L"BossScene");
 		CreateScene<BossScene2>(L"BossScene2");
 		CreateScene<EndScene>(L"EndScene");
+
 		mPlayer->Initialize();
 		mLevel1->SetPosition(587.0f, 648.5f);
 		mLevel2->SetPosition(mLevel1->GetPositionX() + 10.0f, mLevel1->GetPositionY());
@@ -61,7 +63,8 @@ namespace ex
 		ResourceManager::Load<Texture>(L"VonLeonBackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage3.bmp");
 		ResourceManager::Load<Texture>(L"EndBackGroundImgae", L"..\\Resources\\Maple\\Image\\Logo\\EndScene.bmp");
 
-		LoadScene(L"BossScene2");
+
+		LoadScene(L"TitleScene");
 	}
 
 	void SceneManager::Update()

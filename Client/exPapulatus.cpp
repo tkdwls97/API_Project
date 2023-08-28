@@ -46,7 +46,7 @@ namespace ex
 		, mbSleepOn(false)
 	{
 		mMonstersInfo.mMaxHp = 720000000;
-		mMonstersInfo.mHp = 720000000;
+		mMonstersInfo.mHp = 1;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 4017;

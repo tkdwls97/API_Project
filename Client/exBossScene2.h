@@ -5,7 +5,7 @@ namespace ex
 {
 	class Sound;
 	class Portal;
-
+	class VonLeonHuman;
 	class BossScene2 : public Scene
 	{
 	public:
@@ -24,5 +24,7 @@ namespace ex
 
 		Sound* mBossScene2_Sound;
 		Sound* mVonLeonDial_Sound;
+
+		VonLeonHuman* mVonLeonHuman;
 	};
 }

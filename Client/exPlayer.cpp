@@ -53,14 +53,14 @@ namespace ex
 
 		mInfo = new PlayerInfo();
 		mInfo->mMaxHp = 70000;
-		mInfo->mHp = 10000;
+		mInfo->mHp = 70000;
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
 		mInfo->mMinDamage = 7300;
 		mInfo->mMaxDamage = 15212;
 		mInfo->mMaxExp = 100.0f;
-		mInfo->mExp = 00.0f;
+		mInfo->mExp = 0.0f;
 
 	}
 

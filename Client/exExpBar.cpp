@@ -51,7 +51,7 @@ namespace ex
 			// 현재 경험치가 Max 경험치를 넘으면 레벨업조건 달성
 			player->SetLevelUpCheck(true);
 			player->GetInfo()->mExp -= maxExp;
-			player->GetInfo()->mMaxExp *= 1.3f;
+			player->GetInfo()->mMaxExp *= 1.5f;
 		}
 		GameObject::Update();
 	}
