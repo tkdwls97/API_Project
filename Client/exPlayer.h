@@ -57,6 +57,9 @@ namespace ex
 
 		bool IsLevelUpCheck() { return mbLevelUpCheck; }
 		void SetLevelUpCheck(bool _data) { mbLevelUpCheck = _data; }
+		
+		bool IsStunCheck() { return mbStunCheck; }
+		void SetStunCheck(bool _data) { mbStunCheck = _data; }
 
 
 		void Idle();
@@ -90,13 +93,16 @@ namespace ex
 		Sound*			mPortionSound;
 		Sound*			mLevelUpSound;
 		Sound*			mPlayerDeadSound;
-
+		 
+		bool			mbStunCheck;
 		bool			mbDoubleJump;
 		bool			mbPortalState;
 		bool			mbRopeState;
 		bool			mbInvincible;
 		bool			mbLevelUpCheck;
-		static float	mhitDelay;
+		bool			mbKnockBackCheck;
+		float			mhitDelay;
+		float			mStunDelay;
 
 		std::vector<int> mLevelArr;
 

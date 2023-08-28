@@ -39,6 +39,7 @@ namespace ex
 		void Skill3();
 		void Skill4();
 		void Skill5();
+		void Teleport();
 
 
 	private:

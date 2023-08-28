@@ -56,7 +56,7 @@ namespace ex
 
 		// Left
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Idle\\Left", math::Vector2(0.0f, 0.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Idle\\Left", math::Vector2(0.0f, 10.0f));
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftMove",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Move\\Left", math::Vector2(0.0f, 0.0f));
@@ -69,23 +69,29 @@ namespace ex
 
 		// Left Skill
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill1\\Left", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill1\\Left", math::Vector2(0.0f, 0.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Left", math::Vector2(5.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Left", math::Vector2(5.0f, 0.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill3",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill3\\Left", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill3\\Left", math::Vector2(0.0f, 42.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill4",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill4\\Left", math::Vector2(0.0f, 40.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonLeftSkill5",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Left", math::Vector2(-50.0f, 30.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Left", math::Vector2(-50.0f, 30.0f), 0.1f);
+
+		mAnimator->CreateAnimationFolder(L"VonLeonLeftTeleport",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Teleport\\Left", math::Vector2(0.0f, -30.0f), 0.1f);
+
+		mAnimator->CreateAnimationFolder(L"VonLeonLeftTeleportAfter",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\TeleportAfter\\Left", math::Vector2(0.0f, 0.0f), 0.1f);
 
 		// Right
 		mAnimator->CreateAnimationFolder(L"VonLeonRightIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Idle\\Right", math::Vector2(0.0f, 0.0f));
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Idle\\Right", math::Vector2(0.0f, 10.0f));
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightMove",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Move\\Right", math::Vector2(0.0f, 0.0f));
@@ -98,19 +104,25 @@ namespace ex
 
 		//Right Skill
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill1\\Right", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill1\\Right", math::Vector2(0.0f, 0.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Right", math::Vector2(5.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill2\\Right", math::Vector2(5.0f, 0.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill3",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill3\\Right", math::Vector2(0.0f, 0.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill3\\Right", math::Vector2(0.0f, 42.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill4",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill4\\Right", math::Vector2(0.0f, 40.0f), 0.1f);
 
 		mAnimator->CreateAnimationFolder(L"VonLeonRightSkill5",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Right", math::Vector2(50.0f, 30.0f), 0.077f);
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Skill5\\Right", math::Vector2(50.0f, 30.0f), 0.1f);
+
+		mAnimator->CreateAnimationFolder(L"VonLeonRightTeleport",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\Teleport\\Right", math::Vector2(0.0f, -30.0f), 0.1f);
+
+		mAnimator->CreateAnimationFolder(L"VonLeonRightTeleportAfter",
+			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\VonLeon\\TeleportAfter\\Right", math::Vector2(0.0f, 0.0f), 0.1f);
 
 		mVonLeonHitSound = ResourceManager::Load<Sound>(L"VonLeonHitSound", L"..\\Resources\\Maple\\Sound\\Monster\\VonLeon\\VonLeon_Hit.wav");
 		mVonLeonDeadSound = ResourceManager::Load<Sound>(L"VonLeonDeadSound", L"..\\Resources\\Maple\\Sound\\Monster\\VonLeon\\VonLeon_Die.wav");
@@ -130,7 +142,6 @@ namespace ex
 
 		mAnimator->SetAffectedCamera(true);
 		mCollider->SetSize(math::Vector2(400.0f, 520.0f));
-		mCollider->SetOffset(math::Vector2(0.0f, 0.0f));
 		mDirection = mTransform->GetMoveDir();
 		mMoveTime = mMoveDelay;
 	}
@@ -181,6 +192,9 @@ namespace ex
 		case ex::Monsters::eMonsterState::Skill5:
 			Skill5();
 			break;
+		case ex::Monsters::eMonsterState::Teleport:
+			Teleport();
+			break;
 
 		default:
 			break;
@@ -226,9 +240,9 @@ namespace ex
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = 5; //rand() % 6 + 1;
+			mUsingSkillNumber = 3;//rand() % 6 + 1;
 
-			if (distanceX < 400.0f && distanceY < 500.0f)
+			if (distanceX < 500.0f && distanceY < 500.0f)
 			{
 				float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 				float VonLeonPosX = mTransform->GetPositionX();
@@ -314,6 +328,23 @@ namespace ex
 					VonLeonSkill5* vonLeonSkill5 = new VonLeonSkill5(this);
 					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, vonLeonSkill5);
 					mMonsterState = eMonsterState::Skill5;
+				}
+				else
+				{
+					if (playerPosX <= VonLeonPosX)
+					{
+						mAnimator->PlayAnimation(L"VonLeonLeftTeleport", false);
+						mDirection = enums::eMoveDir::Left;
+					}
+					else
+					{
+						mAnimator->PlayAnimation(L"VonLeonRightTeleport", false);
+						mDirection = enums::eMoveDir::Right;
+					}
+
+					VonLeonTeleport* vonLeonTeleport = new VonLeonTeleport(this);
+					object::ActiveSceneAddGameObject(enums::eLayerType::Effect, vonLeonTeleport);
+					mMonsterState = eMonsterState::Teleport;
 				}
 				mSkillDelay = 0.0f;
 				mTransform->SetMoveDir(mDirection);
@@ -513,6 +544,17 @@ namespace ex
 		}
 
 	}
+
+	void VonLeon::Teleport()
+	{
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			mMonsterState = eMonsterState::Idle;
+		}
+	}
+
+
 
 	void VonLeon::OnCollisionEnter(Collider* _other)
 	{

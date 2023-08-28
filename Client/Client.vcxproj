@@ -212,6 +212,7 @@
     <ClCompile Include="exVonLeonSkill4.cpp" />
     <ClCompile Include="exVonLeonSkill5.cpp" />
     <ClCompile Include="exVonLeonTeleport.cpp" />
+    <ClCompile Include="exVonLeonTeleportAfter.cpp" />
     <ClCompile Include="exWall.cpp" />
     <ClCompile Include="exWarriorLeap.cpp" />
     <ClCompile Include="main.cpp" />
@@ -314,6 +315,7 @@
     <ClInclude Include="exVonLeonSkill4.h" />
     <ClInclude Include="exVonLeonSkill5.h" />
     <ClInclude Include="exVonLeonTeleport.h" />
+    <ClInclude Include="exVonLeonTeleportAfter.h" />
     <ClInclude Include="exWall.h" />
     <ClInclude Include="exWarriorLeap.h" />
     <ClInclude Include="framework.h" />

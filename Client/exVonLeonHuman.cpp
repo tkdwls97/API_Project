@@ -72,9 +72,6 @@ namespace ex
 			if (bCheck)
 			{
 				mVonLeon->Initialize();
-				//VonLeonHpBar* vonLeonHpBar = new VonLeonHpBar(vonLeon);
-				//object::ActiveSceneAddGameObject(enums::eLayerType::UI, vonLeonHpBar);
-
 				Destroy(this);
 			}
 		}

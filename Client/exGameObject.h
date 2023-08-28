@@ -60,6 +60,7 @@ namespace ex
 			Skill3,
 			Skill4,
 			Skill5,
+			Teleport,
 			Sleep,
 			WakeUp,
 

@@ -26,6 +26,7 @@ namespace ex
 	Thanatos::Thanatos()
 		: mThanatosHitSound(nullptr)
 		, mThanatosDeadSound(nullptr)
+		, mAttackDelay(0.0f)
 	{
 		mMonstersInfo.mMaxHp = 27000000;
 		mMonstersInfo.mHp = 27000000;

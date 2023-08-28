@@ -85,6 +85,7 @@ namespace ex
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 		if (player != nullptr && player->IsInvincible() == false)
 		{
+			player->SetStunCheck(true);
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				DamageManager* damage = new DamageManager();

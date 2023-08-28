@@ -102,6 +102,16 @@ namespace ex
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 		if (player != nullptr && player->IsInvincible() == false)
 		{
+			float playerPos = player->GetPositionX();
+			float monsterPos = mOwner->GetPositionX();
+			if (playerPos <= monsterPos)
+			{
+				player->GetComponent<Rigidbody>()->SetVelocity(math::Vector2(-100.0f, 0.0f));
+			}
+			else
+			{
+				player->GetComponent<Rigidbody>()->SetVelocity(math::Vector2(100.0f, 0.0f));
+			}
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				DamageManager* damage = new DamageManager();

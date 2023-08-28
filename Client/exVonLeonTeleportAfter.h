@@ -10,11 +10,11 @@ namespace ex
 	class VonLeon;
 	class Sound;
 
-	class VonLeonTeleport : public EffectManger
+	class VonLeonTeleportAfter : public EffectManger
 	{
 	public:
-		VonLeonTeleport(VonLeon* _owner);
-		virtual ~VonLeonTeleport();
+		VonLeonTeleportAfter(VonLeon* _owner);
+		virtual ~VonLeonTeleportAfter();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -28,16 +28,13 @@ namespace ex
 	private:
 		GameObject* mOwner;
 		std::set<GameObject*> mAttackList;
-		VonLeon* mVonLeon;
 
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
 		Rigidbody* mRigidbody;
 
-		EffectInfo mVonLeonTeleport_Info;
-		int	   mVonLeonTeleport_Damege;
-		Sound* mVonLeonTeleport_Sound;
+		EffectInfo mVonLeonTeleportAfter_Info;
 	};
 
 }

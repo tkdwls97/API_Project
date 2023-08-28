@@ -26,6 +26,7 @@ namespace ex
 		: mPortal(nullptr)
 		, mbMushMomHit(false)
 		, mMushMomSceneSound(nullptr)
+		, mMushMom(nullptr)
 	{
 	}
 

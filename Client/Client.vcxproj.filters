@@ -322,6 +322,9 @@
     <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\02.VonLeonHpBar">
       <UniqueIdentifier>{8498b1ac-6853-4312-95f4-d5cce3a0bd4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\06.VonLeonTeleportAfter">
+      <UniqueIdentifier>{42b29b4d-54ec-4049-9686-da57c96bcbca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -608,6 +611,9 @@
     </ClCompile>
     <ClCompile Include="exVonLeonHpBar.cpp">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\02.VonLeonHpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="exVonLeonTeleportAfter.cpp">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\06.VonLeonTeleportAfter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -904,6 +910,9 @@
     </ClInclude>
     <ClInclude Include="exVonLeonHpBar.h">
       <Filter>Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\02.VonLeonHpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="exVonLeonTeleportAfter.h">
+      <Filter>Contents\GameObject\03.Effect\01.MonsterEffect\05.VonLeonSkill\06.VonLeonTeleportAfter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

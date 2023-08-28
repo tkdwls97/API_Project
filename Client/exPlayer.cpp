@@ -30,8 +30,6 @@
 
 namespace ex
 {
-	float Player::mhitDelay = 0.0f;
-
 	Player::Player()
 		: mAnimator(nullptr)
 		, mTransform(nullptr)
@@ -47,6 +45,10 @@ namespace ex
 		, mbLevelUpCheck(false)
 		, mLevelUpSound(nullptr)
 		, mPlayerDeadSound(nullptr)
+		, mbKnockBackCheck(true)
+		, mbStunCheck(false)
+		, mStunDelay(0.0f)
+		, mhitDelay(0.0f)
 		, mLevelArr{}
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
@@ -218,8 +220,12 @@ namespace ex
 	void Player::Update()
 	{
 		float num = mRigidbody->GetFriction();
-
+		math::Vector2 vel = mRigidbody->GetVelocity();
+		math::Vector2 velLimit = mRigidbody->GetLimitedVeloctyX();
 		math::Vector2 pos = mTransform->GetPosition();
+
+	
+
 		PlayLevelUI();
 
 		// 플레이어가 떨어졌을시 
@@ -302,57 +308,81 @@ namespace ex
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Effect, true);
 		}
 
-		switch (mState)
+
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		if (mbStunCheck)
 		{
-		case Player::eState::Idle:
-			Idle();
-			break;
-		case Player::eState::Move:
-			Move();
-			break;
-		case Player::eState::Jump:
-			Jump();
-			break;
-		case Player::eState::DoubleJump:
-			DoubleJump();
-			break;
-		case Player::eState::Down:
-			Down();
-			break;
-		case Player::eState::Fall:
-			Fall();
-			break;
-		case Player::eState::Rope:
-			Rope();
-			break;
-		case Player::eState::Attack:
-			Attack();
-			break;
-		case Player::eState::JumpAttack:
-			JumpAttack();
-			break;
-		case Player::eState::RaisingBlow:
-			RaisingBlow();
-			break;
-		case Player::eState::UpperCharge:
-			Uppercharge();
-			break;
-		case Player::eState::Rush:
-			PlayerRush();
-			break;
-		case Player::eState::ComboDeathFault:
-			ComboDeathFault();
-			break;
-		case Player::eState::Hit:
-			Hit();
-			break;
-		case Player::eState::Death:
-			Death();
-			break;
-		case Player::eState::End:
-			break;
-		default:
-			break;
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
+			}
+			else if (playerDir == enums::eMoveDir::Right)
+			{
+				mAnimator->PlayAnimation(L"PlayerRightHit", true);
+			}
+
+			mStunDelay += Time::GetDeltaTime();
+			if (mStunDelay >= 2.5f)
+			{
+				mState = eState::Idle;
+				mbStunCheck = false;
+				mStunDelay = 0.0f;
+			}
+		}
+		else
+		{
+			switch (mState)
+			{
+			case Player::eState::Idle:
+				Idle();
+				break;
+			case Player::eState::Move:
+				Move();
+				break;
+			case Player::eState::Jump:
+				Jump();
+				break;
+			case Player::eState::DoubleJump:
+				DoubleJump();
+				break;
+			case Player::eState::Down:
+				Down();
+				break;
+			case Player::eState::Fall:
+				Fall();
+				break;
+			case Player::eState::Rope:
+				Rope();
+				break;
+			case Player::eState::Attack:
+				Attack();
+				break;
+			case Player::eState::JumpAttack:
+				JumpAttack();
+				break;
+			case Player::eState::RaisingBlow:
+				RaisingBlow();
+				break;
+			case Player::eState::UpperCharge:
+				Uppercharge();
+				break;
+			case Player::eState::Rush:
+				PlayerRush();
+				break;
+			case Player::eState::ComboDeathFault:
+				ComboDeathFault();
+				break;
+			case Player::eState::Hit:
+				Hit();
+				break;
+			case Player::eState::Death:
+				Death();
+				break;
+			case Player::eState::End:
+				break;
+			default:
+				break;
+			}
 		}
 
 		GameObject::Update();
@@ -368,6 +398,7 @@ namespace ex
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		math::Vector2 velocity = mRigidbody->GetVelocity();
 		math::Vector2 pos = mTransform->GetPosition();
+		mbKnockBackCheck = true;
 
 		// 좌우 Idle 상태
 		if (playerDir == enums::eMoveDir::Left)
@@ -498,17 +529,16 @@ namespace ex
 		// 돌진
 		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKeyPressed(eKeyCode::D))
 		{
-			mRigidbody->SetLimitedVeloctyX(1000.0f);
 			Rush* rush = new Rush(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, rush);
 			if (playerDir == enums::eMoveDir::Left)
 			{
-				velocity.x = -750.0f;
+				velocity.x = -900.0f;
 				mAnimator->PlayAnimation(L"PlayerLeftRush", false);
 			}
 			else
 			{
-				velocity.x = 750.0f;
+				velocity.x = 900.0f;
 				mAnimator->PlayAnimation(L"PlayerRightRush", false);
 			}
 			mState = eState::Rush;
@@ -531,6 +561,22 @@ namespace ex
 			}
 			mState = eState::ComboDeathFault;
 			mRigidbody->SetVelocity(velocity);
+		}
+
+		if (Input::GetKeyPressed(eKeyCode::Down) && Input::GetKeyDown(eKeyCode::Jump))
+		{
+			mRigidbody->SetGround(false);
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+				mState = eState::Fall;
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightJump", true);
+				mState = eState::Fall;
+			}
+			mJumpSound->Play(false);
 		}
 	}
 
@@ -611,18 +657,17 @@ namespace ex
 		// 돌진
 		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKeyPressed(eKeyCode::D))
 		{
-			mRigidbody->SetLimitedVeloctyX(1000.0f);
 			mRigidbody->SetVelocityX(0.0f);
 			Rush* rush = new Rush(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, rush);
 			if (playerDir == enums::eMoveDir::Left)
 			{
-				velocity.x = -750.0f;
+				velocity.x = -850.0f;
 				mAnimator->PlayAnimation(L"PlayerLeftRush", false);
 			}
 			else
 			{
-				velocity.x = 750.0f;
+				velocity.x = 850.0f;
 				mAnimator->PlayAnimation(L"PlayerRightRush", false);
 			}
 			mState = eState::Rush;
@@ -652,8 +697,8 @@ namespace ex
 			(Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
 			mRigidbody->SetGround(false);
-			velocity.x = 220.0f;
-			velocity.y = -600.0f;
+			velocity.x = 350.0f;
+			velocity.y = -680.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 			mJumpSound->Play(false);
@@ -662,8 +707,8 @@ namespace ex
 			(Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyPressed(eKeyCode::Jump)))
 		{
 			mRigidbody->SetGround(false);
-			velocity.x = -220.0f;
-			velocity.y = -600.0f;
+			velocity.x = -350.0f;
+			velocity.y = -680.0f;
 			mState = eState::Jump;
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 			mJumpSound->Play(false);
@@ -684,7 +729,10 @@ namespace ex
 		}
 
 		// 키 안누른 상태
-		if ((!Input::GetKeyPressed(eKeyCode::Up)) && (!Input::GetKeyPressed(eKeyCode::Left)) && (!Input::GetKeyPressed(eKeyCode::Down)) && !Input::GetKeyPressed(eKeyCode::Right))
+		if ((!Input::GetKeyPressed(eKeyCode::Up)) &&
+			(!Input::GetKeyPressed(eKeyCode::Left)) &&
+			(!Input::GetKeyPressed(eKeyCode::Down)) &&
+			!Input::GetKeyPressed(eKeyCode::Right))
 		{
 			if (playerDir == enums::eMoveDir::Left)
 			{
@@ -696,6 +744,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
 				mState = eState::Idle;
 			}
+			mRigidbody->SetVelocityX(0.0f);
 		}
 		else
 		{
@@ -794,7 +843,6 @@ namespace ex
 
 		if (Input::GetKeyPressed(eKeyCode::Left) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mRigidbody->SetLimitedVeloctyX(700.0f);
 			mAnimator->PlayAnimation(L"PlayerLeftJump", true);
 			velocity.x = -300.0f;
 			velocity.y = -200.0f;
@@ -804,7 +852,6 @@ namespace ex
 		}
 		if (Input::GetKeyPressed(eKeyCode::Right) && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mRigidbody->SetLimitedVeloctyX(700.0f);
 			mAnimator->PlayAnimation(L"PlayerRightJump", true);
 			velocity.x = 300.0f;
 			velocity.y = -200.0f;
@@ -910,7 +957,6 @@ namespace ex
 		// mbDoubleJump 가 false일때 점프를 누르면 더블점프
 		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mRigidbody->SetLimitedVeloctyX(700.0f);
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
@@ -984,19 +1030,6 @@ namespace ex
 		{
 			velocity.x = 0.0f;
 		}
-
-		if (velocity.y <= 0.0f)
-		{
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				velocity.x = 100.0f;
-			}
-			else
-			{
-				velocity.x = -100.0f;
-			}
-		}
-
 
 		if (mbInvincible)
 		{
@@ -1085,17 +1118,16 @@ namespace ex
 		// 돌진
 		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKeyPressed(eKeyCode::D))
 		{
-			mRigidbody->SetLimitedVeloctyX(1000.0f);
 			Rush* rush = new Rush(this);
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, rush);
 			if (playerDir == enums::eMoveDir::Left)
 			{
-				velocity.x = -750.0f;
+				velocity.x = -900.0f;
 				mAnimator->PlayAnimation(L"PlayerLeftRush", false);
 			}
 			else
 			{
-				velocity.x = 750.0f;
+				velocity.x = 900.0f;
 				mAnimator->PlayAnimation(L"PlayerRightRush", false);
 			}
 			mState = eState::Rush;
@@ -1195,10 +1227,6 @@ namespace ex
 			mState = eState::Idle;
 		}
 		bool bGround = mRigidbody->GetGround();
-		if (bGround)
-		{
-			mRigidbody->SetVelocityX(0.0f);
-		}
 	}
 
 	void Player::Uppercharge()
@@ -1245,7 +1273,6 @@ namespace ex
 
 		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mRigidbody->SetLimitedVeloctyX(700.0f);
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
@@ -1332,7 +1359,6 @@ namespace ex
 		// mbDoubleJump 가 false일때 점프를 누르면
 		if (false == mbDoubleJump && Input::GetKeyDown(eKeyCode::Jump))
 		{
-			mRigidbody->SetLimitedVeloctyX(500.0f);
 			if (playerDir == enums::eMoveDir::Left)
 			{
 				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
@@ -1357,7 +1383,6 @@ namespace ex
 		bool bGround = mRigidbody->GetGround();
 		if (bGround)
 		{
-			mRigidbody->SetLimitedVeloctyX(200.0f);
 			mRigidbody->SetVelocityX(0.0f);
 			// 땅에 닿으면 더블점프 초기화
 			mbDoubleJump = false;
@@ -1431,6 +1456,23 @@ namespace ex
 		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
 		if (nullptr != monsters && mbInvincible == false)
 		{
+			float monstersPosX = monsters->GetPositionX();
+			float playerPosX = mTransform->GetPositionX();
+			math::Vector2 velocity = mRigidbody->GetVelocity();
+			if (velocity.y <= 0.0f && mbKnockBackCheck)
+			{
+				if (playerPosX <= monstersPosX && 
+					mState != eState::Rush &&
+					mState != eState::UpperCharge)
+				{
+					mRigidbody->SetVelocityX(-200.0f);
+				}
+				else
+				{
+					mRigidbody->SetVelocityX(200.0f);
+				}
+				mbKnockBackCheck = false;
+			}
 			mCollider->SetCollisionType(true);
 		}
 	}

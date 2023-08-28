@@ -62,7 +62,7 @@ namespace ex
 	void VonLeonSkill4::Update()
 	{
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 1.7f)
+		if (mSkillDelay >= 2.0f)
 		{
 			mCollider->SetSize(math::Vector2(1150.0f, 100.0f));
 			mSkillDelay = 0.0f;

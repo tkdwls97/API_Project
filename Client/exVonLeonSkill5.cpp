@@ -85,14 +85,18 @@ namespace ex
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
 		if (player != nullptr && player->IsInvincible() == false)
 		{
-			enums::eMoveDir vonLeondir = mOwner->GetComponent<Transform>()->GetMoveDir();
-			if (enums::eMoveDir::Left == vonLeondir)
+			float playerPos = player->GetPositionX();
+			float monsterPos = mOwner->GetPositionX();
+
+			if (playerPos <= monsterPos &&
+				player->GetState() != eState::Rush &&
+				player->GetState() != eState::UpperCharge)
 			{
-				player->GetComponent<Rigidbody>()->SetVelocity(math::Vector2(-2000.0f, 0.0f));
+				player->GetComponent<Rigidbody>()->SetVelocity(math::Vector2(-700.0f, 0.0f));
 			}
 			else
 			{
-				player->GetComponent<Rigidbody>()->SetVelocity(math::Vector2(2000.0f, 0.0f));
+				player->GetComponent<Rigidbody>()->SetVelocity(math::Vector2(700.0f, 0.0f));
 			}
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
