@@ -83,7 +83,7 @@ namespace ex
 	void VonLeonSkill5::OnCollisionEnter(Collider* _other)
 	{
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr && player->IsInvincible() == false)
+		if (player != nullptr && player->IsInvincible() == false && player->GetState() != eState::Death)
 		{
 			float playerPos = player->GetPositionX();
 			float monsterPos = mOwner->GetPositionX();

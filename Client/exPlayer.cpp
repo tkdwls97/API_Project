@@ -50,7 +50,6 @@ namespace ex
 		, mStunDelay(0.0f)
 		, mhitDelay(0.0f)
 		, mLevelArr{}
-		, mStun(nullptr)
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
@@ -307,86 +306,65 @@ namespace ex
 			CollisionManager::CollisionLayerCheck(enums::eLayerType::Player, enums::eLayerType::Effect, true);
 		}
 
-
-		// 플레이어가 스턴에 걸리면
-		enums::eMoveDir playerDir = mTransform->GetMoveDir();
 		if (mbStunCheck)
 		{
-			// 1번만 실행되게 해야됌
-			//Stun* stun = new Stun(this);
-			//object::ActiveSceneAddGameObject(enums::eLayerType::Effect, stun);
-
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftHit", true);
-			}
-			else if (playerDir == enums::eMoveDir::Right)
-			{
-				mAnimator->PlayAnimation(L"PlayerRightHit", true);
-			}
-
-			mStunDelay += Time::GetDeltaTime();
-			if (mStunDelay >= 2.5f)
-			{
-				mState = eState::Idle;
-				mbStunCheck = false;
-				mStunDelay = 0.0f;
-			}
+			mState = eState::Stun;
 		}
-		else
+
+		switch (mState)
 		{
-			switch (mState)
-			{
-			case Player::eState::Idle:
-				Idle();
-				break;
-			case Player::eState::Move:
-				Move();
-				break;
-			case Player::eState::Jump:
-				Jump();
-				break;
-			case Player::eState::DoubleJump:
-				DoubleJump();
-				break;
-			case Player::eState::Down:
-				Down();
-				break;
-			case Player::eState::Fall:
-				Fall();
-				break;
-			case Player::eState::Rope:
-				Rope();
-				break;
-			case Player::eState::Attack:
-				Attack();
-				break;
-			case Player::eState::JumpAttack:
-				JumpAttack();
-				break;
-			case Player::eState::RaisingBlow:
-				RaisingBlow();
-				break;
-			case Player::eState::UpperCharge:
-				Uppercharge();
-				break;
-			case Player::eState::Rush:
-				PlayerRush();
-				break;
-			case Player::eState::ComboDeathFault:
-				ComboDeathFault();
-				break;
-			case Player::eState::Hit:
-				Hit();
-				break;
-			case Player::eState::Death:
-				Death();
-				break;
-			case Player::eState::End:
-				break;
-			default:
-				break;
-			}
+		case Player::eState::Idle:
+			Idle();
+			break;
+		case Player::eState::Move:
+			Move();
+			break;
+		case Player::eState::Jump:
+			Jump();
+			break;
+		case Player::eState::DoubleJump:
+			DoubleJump();
+			break;
+		case Player::eState::Down:
+			Down();
+			break;
+		case Player::eState::Fall:
+			Fall();
+			break;
+		case Player::eState::Rope:
+			Rope();
+			break;
+		case Player::eState::Attack:
+			Attack();
+			break;
+		case Player::eState::JumpAttack:
+			JumpAttack();
+			break;
+		case Player::eState::RaisingBlow:
+			RaisingBlow();
+			break;
+		case Player::eState::UpperCharge:
+			Uppercharge();
+			break;
+		case Player::eState::Rush:
+			PlayerRush();
+			break;
+		case Player::eState::ComboDeathFault:
+			ComboDeathFault();
+			break;
+		case Player::eState::Hit:
+			Hit();
+			break;
+		case Player::eState::Death:
+			Death();
+			break;
+		case Player::eState::Stun:
+			Stun();
+			break;
+		case Player::eState::End:
+			break;
+		default:
+			break;
 		}
 
 		GameObject::Update();
@@ -1465,7 +1443,7 @@ namespace ex
 			math::Vector2 velocity = mRigidbody->GetVelocity();
 			if (velocity.y <= 0.0f && mbKnockBackCheck)
 			{
-				if (playerPosX <= monstersPosX && 
+				if (playerPosX <= monstersPosX &&
 					mState != eState::Rush &&
 					mState != eState::UpperCharge)
 				{
@@ -1514,6 +1492,28 @@ namespace ex
 		SceneManager::GetLevel_1()->PlayLevelAnimation(mLevelArr[0]);
 		SceneManager::GetLevel_2()->PlayLevelAnimation(mLevelArr[1]);
 		SceneManager::GetLevel_3()->PlayLevelAnimation(mLevelArr[2]);
+	}
+
+	void Player::Stun()
+	{
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		if (playerDir == enums::eMoveDir::Left)
+		{
+			mAnimator->PlayAnimation(L"PlayerLeftHit", false);
+		}
+		else
+		{
+			mAnimator->PlayAnimation(L"PlayerRightHit", false);
+		}
+		
+		mStunDelay += Time::GetDeltaTime();
+		if (mStunDelay >= 2.5f)
+		{
+			mState = eState::Idle;
+			mbStunCheck = false;
+			mStunDelay = 0.0f;
+		}
+
 	}
 
 	void Player::PlayerSkillLoad()

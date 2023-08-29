@@ -79,9 +79,9 @@ namespace ex
 		void Uppercharge();
 		void PlayerRush();
 		void ComboDeathFault();
-
 		void PlayLevelUI();
 		void PlayerSkillLoad();
+		void Stun();
 
 	private:
 		Animator*		mAnimator;
@@ -95,8 +95,6 @@ namespace ex
 		Sound*			mPortionSound;
 		Sound*			mLevelUpSound;
 		Sound*			mPlayerDeadSound;
-
-		Stun*			mStun;
 		 
 		bool			mbStunCheck;
 		bool			mbDoubleJump;

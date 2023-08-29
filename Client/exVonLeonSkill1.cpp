@@ -83,7 +83,7 @@ namespace ex
 	void VonLeonSkill1::OnCollisionEnter(Collider* _other)
 	{
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr && player->IsInvincible() == false)
+		if (player != nullptr && player->IsInvincible() == false && player->GetState() != eState::Death)
 		{
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{

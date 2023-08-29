@@ -22,7 +22,7 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 
 		mAnimator->CreateAnimationFolder(L"StunEffect",
-			L"..\\Resources\\Maple\\Image\\Player2\\Stun");
+			L"..\\Resources\\Maple\\Image\\Player2\\Stun",math::Vector2(0.0f,0.0f), 0.37f);
 
 		mAnimator->PlayAnimation(L"StunEffect", false);
 		math::Vector2 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
@@ -30,6 +30,14 @@ namespace ex
 
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
 
+		if (dir == enums::eMoveDir::Left)
+		{
+			mTransform->SetPosition(pos.x + 22.0f, pos.y - 15.0f);
+		}
+		else
+		{
+			mTransform->SetPosition(pos.x - 22.0f, pos.y - 15.0f);
+		}
 	}
 
 	Stun::~Stun()
@@ -46,11 +54,20 @@ namespace ex
 		math::Vector2 pos = player->GetPosition();
 		enums::eMoveDir dir = GetOwner()->GetComponent<Transform>()->GetMoveDir();
 		mTransform->SetPosition(math::Vector2(pos.x, pos.y - 20.0f));
-	
+
+		bool bStunCheck = player->IsStunCheck();
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
-		if (bCheck)
+		if (bCheck && bStunCheck == false)
 		{
 			Destroy(this);
+		}
+		else
+		{
+			if (bCheck)
+			{
+				mAnimator->PlayAnimation(L"StunEffect", false);
+			}
+
 		}
 		GameObject::Update();
 

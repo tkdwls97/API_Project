@@ -14,6 +14,7 @@
 #include "exDamageManager.h"
 #include "exVonLeon.h"
 #include "exSound.h"
+#include "exStun.h"
 
 
 namespace ex
@@ -83,16 +84,20 @@ namespace ex
 	void VonLeonSkill3::OnCollisionEnter(Collider* _other)
 	{
 		Player* player = dynamic_cast<Player*>(_other->GetOwner());
-		if (player != nullptr && player->IsInvincible() == false)
+		if (player != nullptr && player->IsInvincible() == false && player->GetState() != eState::Death)
 		{
 			player->SetStunCheck(true);
+			Stun* stun = new Stun(player);
+			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, stun);
+
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				DamageManager* damage = new DamageManager();
 				object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
-				damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f * i));
+				damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 35.0f * i));
 				damage->PlayMonsterDamageAnimation(mVonLeonSkill3_Damege, this->GetEffectInfo().DamagePercentage);
 			}
+
 		}
 	}
 
