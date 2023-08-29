@@ -53,7 +53,7 @@ namespace ex
 	void PapulatusHpBar::Render(HDC _hdc)
 	{
 
-		int hp = mPapulatusHp;
+		__int64 hp = mPapulatusHp;
 		float fhp = (float)hp / mPapulatusMaxHp;
 
 		if (hp < mPapulatusMaxHp && hp >= 0)

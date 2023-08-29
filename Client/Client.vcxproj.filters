@@ -277,9 +277,6 @@
     <Filter Include="Contents\GameObject\02.Monster\02.Boss\02.PilotPapulatus">
       <UniqueIdentifier>{49d84a00-242f-4fe6-974e-da52d918b151}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\06.LevelUp">
-      <UniqueIdentifier>{d36c1bba-f65c-4bba-8256-31e8f5f1322a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\04.UI\02.SkillSlot">
       <UniqueIdentifier>{5c291222-37fe-4a38-8226-6862b9afec01}</UniqueIdentifier>
     </Filter>
@@ -330,6 +327,21 @@
     </Filter>
     <Filter Include="Contents\GameObject\03.Effect\02.ConditionEffect\00.Stun">
       <UniqueIdentifier>{1289b008-8132-4fb5-a2c4-96cd44223553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\03.Buff">
+      <UniqueIdentifier>{f575875f-86ff-445b-9ec4-9a769e4e6ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\07.LevelUp">
+      <UniqueIdentifier>{d36c1bba-f65c-4bba-8256-31e8f5f1322a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy">
+      <UniqueIdentifier>{dc4ba0a2-35f3-4c1f-84ea-2446dc08df46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\00.ComboSynergyBody">
+      <UniqueIdentifier>{455dc2bf-6694-4fcc-8e2e-4a70e4fff884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\01.ComboSynergyEffect">
+      <UniqueIdentifier>{7638aadf-1f39-451d-a224-888dbf494645}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -577,7 +589,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Boss\02.PilotPapulatus</Filter>
     </ClCompile>
     <ClCompile Include="exLevelUp.cpp">
-      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.LevelUp</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\07.LevelUp</Filter>
     </ClCompile>
     <ClCompile Include="exSkillSlot.cpp">
       <Filter>Contents\GameObject\04.UI\02.SkillSlot</Filter>
@@ -623,6 +635,15 @@
     </ClCompile>
     <ClCompile Include="exStun.cpp">
       <Filter>Contents\GameObject\03.Effect\02.ConditionEffect\00.Stun</Filter>
+    </ClCompile>
+    <ClCompile Include="exBuff.cpp">
+      <Filter>Contents\GameObject\03.Effect\03.Buff</Filter>
+    </ClCompile>
+    <ClCompile Include="exComboSynergyBody.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\00.ComboSynergyBody</Filter>
+    </ClCompile>
+    <ClCompile Include="exComboSynergyEffect.cpp">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\01.ComboSynergyEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -879,7 +900,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Boss\02.PilotPapulatus</Filter>
     </ClInclude>
     <ClInclude Include="exLevelUp.h">
-      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.LevelUp</Filter>
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\07.LevelUp</Filter>
     </ClInclude>
     <ClInclude Include="exSkillSlot.h">
       <Filter>Contents\GameObject\04.UI\02.SkillSlot</Filter>
@@ -925,6 +946,15 @@
     </ClInclude>
     <ClInclude Include="exStun.h">
       <Filter>Contents\GameObject\03.Effect\02.ConditionEffect\00.Stun</Filter>
+    </ClInclude>
+    <ClInclude Include="exBuff.h">
+      <Filter>Contents\GameObject\03.Effect\03.Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="exComboSynergyBody.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\00.ComboSynergyBody</Filter>
+    </ClInclude>
+    <ClInclude Include="exComboSynergyEffect.h">
+      <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\01.ComboSynergyEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

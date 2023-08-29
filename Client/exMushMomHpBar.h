@@ -29,8 +29,8 @@ namespace ex
 	private:
 		Texture* mMushMomHpBar;
 		MushMom* mMushMom;
-		int		 mMushMomHp;
-		int		 mMushMomMaxHp;
+		__int64	 mMushMomHp;
+		__int64	 mMushMomMaxHp;
 		float	 mReductionHp;
 
 		bool    mbMushMomHpBarOn;

@@ -8,7 +8,6 @@
 
 namespace ex
 {
-
 	BackGround::BackGround()
 	{
 	}

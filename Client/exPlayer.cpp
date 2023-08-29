@@ -553,7 +553,7 @@ namespace ex
 		}
 
 		// ÄÞº¸ ½Ã³ÊÁö
-		if (Input::GetKeyDown(eKeyCode::Z) || Input::GetKeyPressed(eKeyCode::Z))
+		if (Input::GetKeyDown(eKeyCode::Z))
 		{
 			if (playerDir == enums::eMoveDir::Left && mbBuffCheck == false)
 			{
@@ -1389,7 +1389,6 @@ namespace ex
 					mAnimator->PlayAnimation(L"PlayerRightIdle", true);
 				}
 			}
-
 		}
 		mState = eState::Idle;
 

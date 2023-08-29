@@ -28,6 +28,10 @@ namespace ex
 		GameObject* mOwner;
 		Animator* mAnimator;
 		Transform* mTransform;
+		Texture* mTextureArr[5];
+		UINT mTypeNum;
+
+		float mDegree;
 	};
 
 }

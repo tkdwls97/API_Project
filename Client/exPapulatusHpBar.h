@@ -28,8 +28,8 @@ namespace ex
 	private:
 		Texture* mPapulatusHpBar;
 		Papulatus* mPapulatus;
-		int		 mPapulatusHp;
-		int		 mPapulatusMaxHp;
+		__int64		 mPapulatusHp;
+		__int64		 mPapulatusMaxHp;
 		float	 mReductionHp;
 
 		bool     mbHpBarOn;
