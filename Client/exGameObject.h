@@ -44,6 +44,7 @@ namespace ex
 			UpperCharge,
 			Rush,
 			ComboDeathFault,
+			Buff,
 			Stun,
 			End,
 		};

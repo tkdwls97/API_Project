@@ -275,7 +275,7 @@ namespace ex
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
 			float distanceY = fabs(playerPos.y - this->GetPositionY());
 
-			mUsingSkillNumber = 3;//rand() % 4 + 1;
+			mUsingSkillNumber = rand() % 4 + 1;
 
 			if (distanceX < 600.0f && distanceY < 200.0f)
 			{
@@ -591,7 +591,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
 				mDirection = enums::eMoveDir::Right;
 			}
-			mMonstersInfo.mHp += 2000000;
+			mMonstersInfo.mHp += (int)(2000000 * Time::GetDeltaTime());
 			if (mMonstersInfo.mHp >= mMonstersInfo.mMaxHp)
 			{
 				mMonstersInfo.mHp = mMonstersInfo.mMaxHp;

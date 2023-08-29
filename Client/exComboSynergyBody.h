@@ -29,7 +29,6 @@ namespace ex
 		Animator* mAnimator;
 		Collider* mCollider;
 		Transform* mTransform;
-		Sound* mComboSynergyBody;
 	};
 
 }

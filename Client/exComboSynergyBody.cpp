@@ -30,19 +30,16 @@ namespace ex
 			, math::Vector2(111.0f, 112.0f), 1, math::Vector2(0), 0.1f);
 
 
-		mAnimator->SetScale(math::Vector2(0.65f, 0.65f));
-		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
-		math::Vector2 playerPos = _owner->GetPosition();
+		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
+		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
 
 		if (playerDir == enums::eMoveDir::Left)
 		{
-			mTransform->SetPosition(math::Vector2(playerPos.x + 100.0f, playerPos.y + 20.0f));
-			mAnimator->PlayAnimation(L"LeftComboSynergy", false);
+			//mTransform->SetPosition(math::Vector2(playerPos.x + 100.0f, playerPos.y + 20.0f));
 		}
 		else
 		{
-			mTransform->SetPosition(math::Vector2(playerPos.x - 120.0f, playerPos.y + 20.0f));
-			mAnimator->PlayAnimation(L"RightComboSynergy", false);
+			//mTransform->SetPosition(math::Vector2(playerPos.x - 120.0f, playerPos.y + 20.0f));
 		}
 	}
 
@@ -56,9 +53,18 @@ namespace ex
 
 	void ComboSynergyBody::Update()
 	{
-		if (mAnimator->IsActiveAnimationComplete())
+		Player* player = SceneManager::GetPlayer();
+		math::Vector2 playerPos = player->GetPosition();
+
+		bool bCheck = player->IsBuffCheck();
+		if (bCheck == false)
 		{
 			Destroy(this);
+		}
+		else
+		{
+			mTransform->SetPosition(playerPos);
+			mAnimator->PlayAnimation(L"ComboSynergyBody", false);
 		}
 		GameObject::Update();
 	}

@@ -11,6 +11,7 @@
 #include "exSound.h"
 #include "exLevel.h"
 #include "exStun.h"
+#include "exBuff.h"
 
 // Component
 #include "exTransform.h"
@@ -25,6 +26,7 @@
 #include "exRush.h"
 #include "exComboDeathFaultPlayer.h"
 #include "exComboDeathFaultScreen.h"
+#include "exComboSynergyBody.h"
 #include "exLevelUp.h"
 
 
@@ -50,6 +52,8 @@ namespace ex
 		, mStunDelay(0.0f)
 		, mhitDelay(0.0f)
 		, mLevelArr{}
+		, mbBuffCheck(false)
+		, mBuff(nullptr)
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 
@@ -358,6 +362,9 @@ namespace ex
 		case Player::eState::Death:
 			Death();
 			break;
+		case Player::eState::Buff:
+			PlayerBuff();
+			break;
 		case Player::eState::Stun:
 			Stun();
 			break;
@@ -542,6 +549,34 @@ namespace ex
 				mAnimator->PlayAnimation(L"PlayerRightComboDeathFault", false);
 			}
 			mState = eState::ComboDeathFault;
+			mRigidbody->SetVelocity(velocity);
+		}
+
+		// ÄÞº¸ ½Ã³ÊÁö
+		if (Input::GetKeyDown(eKeyCode::Z) || Input::GetKeyPressed(eKeyCode::Z))
+		{
+			if (playerDir == enums::eMoveDir::Left && mbBuffCheck == false)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftHit", false);
+			}
+			else if (playerDir == enums::eMoveDir::Right && mbBuffCheck == false)
+			{
+				mAnimator->PlayAnimation(L"PlayerRightHit", false);
+			}
+
+			if (mbBuffCheck == false)
+			{
+				mBuff = new Buff(this);
+				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mBuff);
+				mbBuffCheck = true;
+			}
+			else if (mbBuffCheck)
+			{
+				mbBuffCheck = false;
+				mBuff = nullptr;
+			}
+
+			mState = eState::Buff;
 			mRigidbody->SetVelocity(velocity);
 		}
 
@@ -1319,6 +1354,47 @@ namespace ex
 		}
 	}
 
+	void Player::ComboSynergyBody()
+	{
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+			}
+			mState = eState::Idle;
+		}
+	}
+
+	void Player::PlayerBuff()
+	{
+		enums::eMoveDir playerDir = mTransform->GetMoveDir();
+		if (mBuff != nullptr)
+		{
+			bool bCheck = mBuff->GetComponent<Animator>()->IsActiveAnimationComplete();
+			if (bCheck)
+			{
+				if (playerDir == enums::eMoveDir::Left)
+				{
+					mAnimator->PlayAnimation(L"PlayerLeftIdle", true);
+				}
+				else
+				{
+					mAnimator->PlayAnimation(L"PlayerRightIdle", true);
+				}
+			}
+
+		}
+		mState = eState::Idle;
+
+	}
+
 	void Player::Fall()
 	{
 		enums::eMoveDir playerDir = mTransform->GetMoveDir();
@@ -1505,7 +1581,7 @@ namespace ex
 		{
 			mAnimator->PlayAnimation(L"PlayerRightHit", false);
 		}
-		
+
 		mStunDelay += Time::GetDeltaTime();
 		if (mStunDelay >= 2.5f)
 		{
@@ -1547,11 +1623,24 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
 		ResourceManager::Load<Texture>(L"ComboDeathFaultRightScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Right\\Right_ComboDeathFault_Screen.png");
-		
+
 		ResourceManager::Load<Texture>(L"ComboSynergyBody"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Body\\ComboSynergy_Body.png");
-		
-	
+
+		ResourceManager::Load<Texture>(L"ComboSynergyEffect_0"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Effect\\ComboSynergy_000.png");
+
+		ResourceManager::Load<Texture>(L"ComboSynergyEffect_1"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Effect\\ComboSynergy_001.png");
+
+		ResourceManager::Load<Texture>(L"ComboSynergyEffect_2"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Effect\\ComboSynergy_002.png");
+
+		ResourceManager::Load<Texture>(L"ComboSynergyEffect_3"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Effect\\ComboSynergy_003.png");
+
+		ResourceManager::Load<Texture>(L"ComboSynergyEffect_4"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Effect\\ComboSynergy_004.png");
 	}
 
 }

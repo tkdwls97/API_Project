@@ -8,11 +8,13 @@ namespace ex
 	class Transform;
 	class Sound;
 
-	class ComboSynergyEffect : public EffectManger
+	class ComboSynergyBody;
+
+	class Buff : public EffectManger
 	{
 	public:
-		ComboSynergyEffect(GameObject* _owner);
-		virtual ~ComboSynergyEffect();
+		Buff(GameObject* _owner);
+		virtual ~Buff();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -25,8 +27,13 @@ namespace ex
 
 	private:
 		GameObject* mOwner;
+
 		Animator* mAnimator;
+		Collider* mCollider;
 		Transform* mTransform;
+		Sound* mBuff;
+
+		ComboSynergyBody* mComboSynergyBody;
 	};
 
 }

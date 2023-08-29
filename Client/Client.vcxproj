@@ -133,10 +133,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="exBossScene2.cpp" />
+    <ClCompile Include="exBuff.cpp" />
     <ClCompile Include="exComboDeathFaultHit.cpp" />
     <ClCompile Include="exComboDeathFaultPlayer.cpp" />
     <ClCompile Include="exComboDeathFaultScreen.cpp" />
     <ClCompile Include="exComboSynergyBody.cpp" />
+    <ClCompile Include="exComboSynergyEffect.cpp" />
     <ClCompile Include="exDamageManager.cpp" />
     <ClCompile Include="exDamageSkin.cpp" />
     <ClCompile Include="exEffectManger.cpp" />
@@ -238,10 +240,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="exBossScene2.h" />
+    <ClInclude Include="exBuff.h" />
     <ClInclude Include="exComboDeathFaultHit.h" />
     <ClInclude Include="exComboDeathFaultPlayer.h" />
     <ClInclude Include="exComboDeathFaultScreen.h" />
     <ClInclude Include="exComboSynergyBody.h" />
+    <ClInclude Include="exComboSynergyEffect.h" />
     <ClInclude Include="exDamageManager.h" />
     <ClInclude Include="exDamageSkin.h" />
     <ClInclude Include="exEffectManger.h" />

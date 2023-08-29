@@ -12,6 +12,7 @@ namespace ex
 	class Texture;
 	class Sound;
 	class Stun;
+	class Buff;
 
 	class Player : public GameObject
 	{
@@ -62,7 +63,8 @@ namespace ex
 		bool IsStunCheck() { return mbStunCheck; }
 		void SetStunCheck(bool _data) { mbStunCheck = _data; }
 
-		
+		bool IsBuffCheck() { return mbBuffCheck; }
+		void SetBuffCheck(bool _data) { mbBuffCheck = _data; }
 
 		void Idle();
 		void Move();
@@ -79,6 +81,9 @@ namespace ex
 		void Uppercharge();
 		void PlayerRush();
 		void ComboDeathFault();
+		void ComboSynergyBody();
+		void PlayerBuff();
+
 		void PlayLevelUI();
 		void PlayerSkillLoad();
 		void Stun();
@@ -91,6 +96,7 @@ namespace ex
 
 		eState			mState;
 		PlayerInfo*		mInfo;
+		Buff*			mBuff;
 		Sound*			mJumpSound;
 		Sound*			mPortionSound;
 		Sound*			mLevelUpSound;
@@ -103,6 +109,8 @@ namespace ex
 		bool			mbInvincible;
 		bool			mbLevelUpCheck;
 		bool			mbKnockBackCheck;
+		bool		    mbBuffCheck;
+
 		float			mhitDelay;
 		float			mStunDelay;
 

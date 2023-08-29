@@ -35,6 +35,7 @@ namespace ex::enums
 		NPC,
 		Monster,
 		Potal,
+		Buff,
 		Player,
 		PlayerAttack,
 		Effect,
