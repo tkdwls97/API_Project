@@ -11,6 +11,7 @@
 #include "exObject.h"
 #include "exSound.h"
 #include "exComboSynergyEffect.h"
+#include "exBuffIcon.h"
 
 namespace ex
 {
@@ -48,6 +49,9 @@ namespace ex
 
 		ComboSynergyEffect* effect_4 = new ComboSynergyEffect(4);
 		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, effect_4);
+
+		BuffIcon* buffIcon = new BuffIcon();
+		object::ActiveSceneAddGameObject(enums::eLayerType::UI, buffIcon);
 	}
 
 	ComboSynergyBody::~ComboSynergyBody()

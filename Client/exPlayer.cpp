@@ -573,16 +573,16 @@ namespace ex
 				
 				mBuff = new Buff(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mBuff);
-				mInfo->mMinDamage += 3000.0f;
-				mInfo->mMaxDamage += 3000.0f;
+				mInfo->mMinDamage += 4000.0f;
+				mInfo->mMaxDamage += 4000.0f;
 				mbBuffCheck = true;
 			}
 			else if (mbBuffCheck)
 			{
 				mbBuffCheck = false;
 				mBuff = nullptr;
-				mInfo->mMinDamage -= 3000.0f;
-				mInfo->mMaxDamage -= 3000.0f;
+				mInfo->mMinDamage -= 4000.0f;
+				mInfo->mMaxDamage -= 4000.0f;
 			}
 
 			mState = eState::Buff;
@@ -1649,6 +1649,9 @@ namespace ex
 
 		ResourceManager::Load<Texture>(L"ComboSynergyEffect_4"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Effect\\ComboSynergy_004.png");
+
+		ResourceManager::Load<Texture>(L"ComboSynergyIcon"
+			, L"..\\Resources\\Maple\\Image\\UI\\BuffUI\\ComboSynergyIcon.png");
 	}
 
 }

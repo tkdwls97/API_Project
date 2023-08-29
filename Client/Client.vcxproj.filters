@@ -343,6 +343,9 @@
     <Filter Include="Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\01.ComboSynergyEffect">
       <UniqueIdentifier>{7638aadf-1f39-451d-a224-888dbf494645}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\GameObject\04.UI\04.BuffIcon">
+      <UniqueIdentifier>{26c28691-3c13-4f52-8da7-5311f0f0db78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -644,6 +647,9 @@
     </ClCompile>
     <ClCompile Include="exComboSynergyEffect.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\01.ComboSynergyEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="exBuffIcon.cpp">
+      <Filter>Contents\GameObject\04.UI\04.BuffIcon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -955,6 +961,9 @@
     </ClInclude>
     <ClInclude Include="exComboSynergyEffect.h">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\06.ComboSynergy\01.ComboSynergyEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="exBuffIcon.h">
+      <Filter>Contents\GameObject\04.UI\04.BuffIcon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

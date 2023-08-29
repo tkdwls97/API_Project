@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="exBossScene2.cpp" />
     <ClCompile Include="exBuff.cpp" />
+    <ClCompile Include="exBuffIcon.cpp" />
     <ClCompile Include="exComboDeathFaultHit.cpp" />
     <ClCompile Include="exComboDeathFaultPlayer.cpp" />
     <ClCompile Include="exComboDeathFaultScreen.cpp" />
@@ -241,6 +242,7 @@
   <ItemGroup>
     <ClInclude Include="exBossScene2.h" />
     <ClInclude Include="exBuff.h" />
+    <ClInclude Include="exBuffIcon.h" />
     <ClInclude Include="exComboDeathFaultHit.h" />
     <ClInclude Include="exComboDeathFaultPlayer.h" />
     <ClInclude Include="exComboDeathFaultScreen.h" />
