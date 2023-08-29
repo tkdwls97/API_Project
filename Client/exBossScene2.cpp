@@ -120,7 +120,7 @@ namespace ex
 		// 씬에 들어갈때 카메라 타겟 플레이어한테 세팅
 		Camera::SetTarget(player);
 
-		mBossScene2_Sound = ResourceManager::Load<Sound>(L"Stage3Sound", L"..\\Resources\\Maple\\Sound\\Stage\\VonLeonRoom.wav");
+		mBossScene2_Sound = ResourceManager::Load<Sound>(L"VonLeonRoomSound", L"..\\Resources\\Maple\\Sound\\Stage\\VonLeonRoom.wav");
 		mBossScene2_Sound->Play(true);
 
 		mVonLeonDial_Sound = ResourceManager::Load<Sound>(L"VonLeonDial", L"..\\Resources\\Maple\\Sound\\Monster\\VonLeon\\VonLeon_Dial1.wav");

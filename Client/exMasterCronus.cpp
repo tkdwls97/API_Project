@@ -28,11 +28,11 @@ namespace ex
 		, mMasterCronusHitSound(nullptr)
 		, mMasterCronusDeadSound(nullptr)
 	{
-		mMonstersInfo.mMaxHp = 13000000;
-		mMonstersInfo.mHp = 13000000;
+		mMonstersInfo.mMaxHp = 50000000;
+		mMonstersInfo.mHp = 50000000;
 		mMonstersInfo.mLevel = 150;
 		mMonstersInfo.mDamage = 300;
-		mSkillDamage = 150;
+		mSkillDamage = 250;
 		mMonstersInfo.mExp = 0;
 	}
 

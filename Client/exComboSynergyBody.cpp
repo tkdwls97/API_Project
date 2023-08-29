@@ -32,6 +32,7 @@ namespace ex
 
 		mAnimator->PlayAnimation(L"ComboSynergyBody", false);
 		enums::eMoveDir playerDir = SceneManager::GetPlayer()->GetComponent<Transform>()->GetMoveDir();
+		mTransform->SetPosition(player->GetPosition());
 
 		ComboSynergyEffect* effect_0 = new ComboSynergyEffect(0);
 		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, effect_0);

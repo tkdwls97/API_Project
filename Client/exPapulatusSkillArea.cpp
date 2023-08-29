@@ -18,9 +18,8 @@
 
 namespace ex
 {
-	PapulatusSkillArea::PapulatusSkillArea(Papulatus* _owner)
-		: EffectManger(_owner)
-		, mOwner(_owner)
+	PapulatusSkillArea::PapulatusSkillArea(UINT _type)
+		: EffectManger(nullptr)
 		, mPapulatusSkillArea_Info()
 		, mPapulatusSkillArea_Sound(nullptr)
 		, mSkillDelay(0.0f)
@@ -39,32 +38,32 @@ namespace ex
 
 		mAnimator->PlayAnimation(L"PapulatusSkillArea", false);
 		mCollider->SetSize(math::Vector2(0.0f, 0.0f));
-		int random = rand() % 7 + 1;
-		if (random == 1)
+
+		if (_type == 1)
 		{
 			mTransform->SetPosition(math::Vector2(-169.0f, 245.0f));
 		}
-		else if (random == 2)
+		else if (_type == 2)
 		{
 			mTransform->SetPosition(math::Vector2(128.0f, 245.0f));
 		}
-		else if (random == 3)
+		else if (_type == 3)
 		{
 			mTransform->SetPosition(math::Vector2(454.0f, 245.0f));
 		}
-		else if (random == 4)
+		else if (_type == 4)
 		{
 			mTransform->SetPosition(math::Vector2(699.0f, 245.0f));
 		}
-		else if (random == 5)
+		else if (_type == 5)
 		{
 			mTransform->SetPosition(math::Vector2(955.0f, 245.0f));
 		}
-		else if (random == 6)
+		else if (_type == 6)
 		{
 			mTransform->SetPosition(math::Vector2(1220.0f, 245.0f));
 		}
-		else if (random == 7)
+		else if (_type == 7)
 		{
 			mTransform->SetPosition(math::Vector2(1561.0f, 245.0f));
 		}
@@ -82,7 +81,7 @@ namespace ex
 	void PapulatusSkillArea::Update()
 	{
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 4.0f)
+		if (mSkillDelay >= 3.0f)
 		{
 			mCollider->SetSize(math::Vector2(120.0f, 800.0f));
 			mSkillDelay = 0.0f;

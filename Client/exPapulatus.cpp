@@ -591,7 +591,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
 				mDirection = enums::eMoveDir::Right;
 			}
-			mMonstersInfo.mHp += (int)(2000000 * Time::GetDeltaTime());
+			mMonstersInfo.mHp += (int)(60000000 * Time::GetDeltaTime());
 			if (mMonstersInfo.mHp >= mMonstersInfo.mMaxHp)
 			{
 				mMonstersInfo.mHp = mMonstersInfo.mMaxHp;

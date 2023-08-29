@@ -12,7 +12,7 @@ namespace ex
 	class PapulatusSkillArea : public EffectManger
 	{
 	public:
-		PapulatusSkillArea(Papulatus* _owner);
+		PapulatusSkillArea(UINT _type);
 		virtual ~PapulatusSkillArea();
 
 		virtual void Initialize() override;
@@ -25,7 +25,6 @@ namespace ex
 
 		std::set<GameObject*>* GetAttackList() { return &mAttackList; }
 	private:
-		GameObject* mOwner;
 		std::set<GameObject*> mAttackList;
 
 		Animator* mAnimator;

@@ -227,7 +227,11 @@ namespace ex
 		math::Vector2 vel = mRigidbody->GetVelocity();
 		math::Vector2 velLimit = mRigidbody->GetLimitedVeloctyX();
 		math::Vector2 pos = mTransform->GetPosition();
+		float minDamage = mInfo->mMinDamage;
+		float maxDamage = mInfo->mMaxDamage;
 
+
+		bool bTest = mbBuffCheck;
 		PlayLevelUI();
 
 		// 플레이어가 떨어졌을시 
@@ -566,14 +570,19 @@ namespace ex
 
 			if (mbBuffCheck == false)
 			{
+				
 				mBuff = new Buff(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mBuff);
+				mInfo->mMinDamage += 3000.0f;
+				mInfo->mMaxDamage += 3000.0f;
 				mbBuffCheck = true;
 			}
 			else if (mbBuffCheck)
 			{
 				mbBuffCheck = false;
 				mBuff = nullptr;
+				mInfo->mMinDamage -= 3000.0f;
+				mInfo->mMaxDamage -= 3000.0f;
 			}
 
 			mState = eState::Buff;
