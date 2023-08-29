@@ -592,15 +592,15 @@ namespace ex
 
 		if (Input::GetKeyPressed(eKeyCode::Left))
 		{
-			//mRigidbody->AddForce(math::Vector2(-500.0f, 0.0f));
-			velocity.x = -200.0f;
+			//velocity.x = -200.0f;
+			pos.x += -200.0f * Time::GetDeltaTime();
 			mTransform->SetMoveDir(enums::eMoveDir::Left);
 
 		}
 		if (Input::GetKeyPressed(eKeyCode::Right))
 		{
-			//mRigidbody->AddForce(math::Vector2(500.0f, 0.0f));
-			velocity.x = 200.0f;
+			//velocity.x = 200.0f;
+			pos.x += 200.0f * Time::GetDeltaTime();
 			mTransform->SetMoveDir(enums::eMoveDir::Right);
 		}
 
@@ -755,7 +755,7 @@ namespace ex
 			//mRigidbody->SetFriction(0.0f);
 		}
 
-
+		mTransform->SetPosition(pos);
 		mRigidbody->SetVelocity(velocity);
 	}
 
