@@ -1547,6 +1547,11 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
 		ResourceManager::Load<Texture>(L"ComboDeathFaultRightScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Right\\Right_ComboDeathFault_Screen.png");
+		
+		ResourceManager::Load<Texture>(L"ComboSynergyBody"
+			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Body\\ComboSynergy_Body.png");
+		
+	
 	}
 
 }
