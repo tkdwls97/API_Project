@@ -53,7 +53,7 @@ namespace ex
 	void MushMomHpBar::Render(HDC _hdc)
 	{
 
-		int hp = mMushMomHp;
+		__int64 hp = mMushMomHp;
 		float fhp = (float)hp / mMushMomMaxHp;
 
 		if (hp < mMushMomMaxHp && hp >= 0)

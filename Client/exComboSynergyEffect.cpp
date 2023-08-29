@@ -86,6 +86,7 @@ namespace ex
 		float degree = 72.0f;
 		float radius = 50.0f;
 		mDegree -= 72.0f * Time::GetDeltaTime() + 1.0f;
+
 		bool bCheck = player->IsBuffCheck();
 		if (bCheck == false)
 		{
@@ -93,6 +94,7 @@ namespace ex
 		}
 		else
 		{
+			// 콤보 시너지 각자 초기위치 값  세팅
 			if (mTypeNum == 0)
 			{
 				mTransform->SetPositionX(cosf(degree / 180 * PI * mTypeNum) * radius);
@@ -119,13 +121,16 @@ namespace ex
 				mTransform->SetPositionY(sinf(degree / 180 * PI * mTypeNum) * radius);
 			}
 
+			// Rotate()에서 회전 방향을 구하고 (resultPos)에 복사
+			// 인자로 ComboSynergyEffect 객체의 좌표, 각도 72(mDegree)(360 / 5(객체의 총 개수) = 72) 
 			math::Vector2 resultPos = math::Rotate(math::Vector2(mTransform->GetPositionX(), mTransform->GetPositionY()), mDegree);
+			
+			// 기준점 셋팅(offSetPlayerPos) 0.0에서 플레이어의 위치까지 평행이동하는 거리
+			// 회전 방향(resultPos)
+			// 플레이어로 부터 떨어져있는 값(radius)
 			mTransform->SetPositionX(offSetPlayerPosX + resultPos.x * radius);
 			mTransform->SetPositionY(offSetPlayerPosY + resultPos.y * radius);
-
 		}
-
-
 		GameObject::Update();
 	}
 
