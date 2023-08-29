@@ -53,7 +53,6 @@ namespace ex
 		mLevel2->SetPosition(mLevel1->GetPositionX() + 10.0f, mLevel1->GetPositionY());
 		mLevel3->SetPosition(mLevel2->GetPositionX() + 10.0f, mLevel1->GetPositionY());
 
-
 		ResourceManager::Load<Texture>(L"TitleBackGroundImgae", L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
 		ResourceManager::Load<Texture>(L"Stage1BackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\Stage1.bmp");
 		ResourceManager::Load<Texture>(L"BossStage1BackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage1.bmp");
@@ -62,7 +61,6 @@ namespace ex
 		ResourceManager::Load<Texture>(L"BossBackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage2.bmp");
 		ResourceManager::Load<Texture>(L"VonLeonBackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage3.bmp");
 		ResourceManager::Load<Texture>(L"EndBackGroundImgae", L"..\\Resources\\Maple\\Image\\Logo\\EndScene.bmp");
-
 
 		LoadScene(L"TitleScene");
 	}

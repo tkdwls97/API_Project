@@ -1602,7 +1602,6 @@ namespace ex
 
 	void Player::PlayerSkillLoad()
 	{
-
 		// 레이징 블로우
 		ResourceManager::Load<Texture>(L"LeftRaisingblow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Left\\LeftRaisingblow.png");
@@ -1632,9 +1631,12 @@ namespace ex
 		ResourceManager::Load<Texture>(L"ComboDeathFaultRightScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Right\\Right_ComboDeathFault_Screen.png");
 
+
+		// 콤보 시너지 바디
 		ResourceManager::Load<Texture>(L"ComboSynergyBody"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Body\\ComboSynergy_Body.png");
 
+		// 콤보 시너지 이펙트
 		ResourceManager::Load<Texture>(L"ComboSynergyEffect_0"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboSynergy\\Effect\\ComboSynergy_000.png");
 
@@ -1652,6 +1654,7 @@ namespace ex
 
 		ResourceManager::Load<Texture>(L"ComboSynergyIcon"
 			, L"..\\Resources\\Maple\\Image\\UI\\BuffUI\\ComboSynergyIcon.png");
+
 	}
 
 }

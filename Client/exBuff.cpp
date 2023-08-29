@@ -23,6 +23,8 @@ namespace ex
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
+		mBuff = ResourceManager::Load<Sound>(L"BuffSound", L"..\\Resources\\Maple\\Sound\\Player\\player_Buff.wav");
+		mBuff->Play(false);
 
 		mAnimator->CreateAnimationFolder(L"PlayerBuff",
 			L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Buff");

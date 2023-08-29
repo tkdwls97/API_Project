@@ -45,6 +45,7 @@ namespace ex
 
 		static bool GetPortalCheck() { return mbPortalCheck; }
 		static void SetPortalCheck(bool _data) { mbPortalCheck = _data; }
+
 	private:
 		static std::map<std::wstring, Scene*> mScenes;
 		static Scene* mActiveScene;

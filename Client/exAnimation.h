@@ -70,7 +70,6 @@ namespace ex
 		// 부모 클래스인 Resource로부터 override(재정의)한 Load 함수.
 		// 추후 애니메이션 자체를 파일로 저장할 가능성이 있지만
 		// 지금은 사용하지 않기 때문에 간단하게 return S_FALSE 처리
-		// 상진아 override 선생님이 안 붙여도 니는 붙여라.
 		virtual HRESULT Load(const std::wstring& _path) { return S_FALSE; };
 
 		// 애니메이션을 생성해준다.
