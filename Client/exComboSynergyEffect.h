@@ -7,11 +7,12 @@ namespace ex
 	class Collider;
 	class Transform;
 	class Sound;
+	class Texture;
 
 	class ComboSynergyEffect : public EffectManger
 	{
 	public:
-		ComboSynergyEffect(GameObject* _owner);
+		ComboSynergyEffect(UINT _type);
 		virtual ~ComboSynergyEffect();
 
 		virtual void Initialize() override;
