@@ -210,9 +210,8 @@ namespace ex
 		// Player Sound
 		mJumpSound = ResourceManager::Load<Sound>(L"PlayerJump", L"..\\Resources\\Maple\\Sound\\Player\\Player_Jump.wav");
 		mPortionSound = ResourceManager::Load<Sound>(L"PlayerPortion", L"..\\Resources\\Maple\\Sound\\Player\\Player_Portion.wav");
-		mPortionSound->SetVolume(150.0f);
 		mPlayerDeadSound = ResourceManager::Load<Sound>(L"PlayerDieSound", L"..\\Resources\\Maple\\Sound\\Player\\Player_Die.wav");
-		mPlayerDeadSound->SetVolume(150.0f);
+
 
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(45.0f, 70.0f));

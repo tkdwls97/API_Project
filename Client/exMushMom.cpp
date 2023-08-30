@@ -95,11 +95,6 @@ namespace ex
 
 	void MushMom::Update()
 	{
-		if (mMonstersInfo.mHp <= 0)
-		{
-			mMushMomDeadSound->Play(false);
-			mMonsterState = eMonsterState::Dead;
-		}
 
 		switch (mMonsterState)
 		{
@@ -305,6 +300,14 @@ namespace ex
 			mMonsterState = eMonsterState::Move;
 			mHitDelay = 0.0f;
 		}
+
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mMushMomDeadSound->Play(false);
+			mMonsterState = eMonsterState::Dead;
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
+		}
 	}
 
 	void MushMom::Dead()
@@ -323,8 +326,6 @@ namespace ex
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
-			Player* player = SceneManager::GetPlayer();
-			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			SceneManager::SetPortalCheck(true);
 			Destroy(this);
 		}

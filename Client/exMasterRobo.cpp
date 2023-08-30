@@ -183,6 +183,8 @@ namespace ex
 		{
 			mMasterRoboDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 		}
 	}
 
@@ -202,8 +204,6 @@ namespace ex
 
 		if (bCheck)
 		{
-			Player* player = SceneManager::GetPlayer();
-			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 

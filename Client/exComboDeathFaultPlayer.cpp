@@ -55,7 +55,6 @@ namespace ex
 		}
 
 		mComboDeathFaultSound = ResourceManager::Load<Sound>(L"ComboDeathFaultSound", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault.wav");
-		mComboDeathFaultSound->SetVolume(100.0f);
 		mComboDeathFaultSound->Play(false);
 
 	}

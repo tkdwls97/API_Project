@@ -70,6 +70,10 @@ namespace ex
 
 	void BossScene2::Update()
 	{
+		if (Input::GetKeyDown(eKeyCode::L))
+		{
+			mVonLeonHuman->Initialize();
+		}
 		bool bCheck = SceneManager::GetPortalCheck();
 		if (bCheck)
 		{
@@ -124,7 +128,6 @@ namespace ex
 		mBossScene2_Sound->Play(true);
 
 		mVonLeonDial_Sound = ResourceManager::Load<Sound>(L"VonLeonDial", L"..\\Resources\\Maple\\Sound\\Monster\\VonLeon\\VonLeon_Dial1.wav");
-		mVonLeonDial_Sound->SetVolume(150.0f);
 		mVonLeonDial_Sound->Play(false);
 
 

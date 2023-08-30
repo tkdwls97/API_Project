@@ -439,6 +439,8 @@ namespace ex
 		{
 			mVonLeonDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 		}
 	}
 

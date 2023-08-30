@@ -1,24 +1,30 @@
 #pragma once
-
 #include <vector>
 #include <list>
 #include <map>
 #include <set>
 #include <functional>
 #include <string>
-#include <assert.h>
 #include <filesystem>
 #include <bitset>
-#include <cstdio>
+
 #include "framework.h"
 #include "exMath.h"
 
-#define DIRECTINPUT_VERSION 0x0800
+// Assert() ÇÔ¼ö
+#include <cassert>
 
+#define DIRECTINPUT_VERSION 0x0800
+#pragma comment(lib, "Msimg32.lib")
+
+// Sound 
 #include <mmsystem.h>
 #include <dsound.h>
-#include <Objbase.h>
 #include <dinput.h>
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "dsound.lib")
+
+
 
 #pragma comment(lib, "Msimg32.lib")
 #pragma comment(lib, "winmm.lib")

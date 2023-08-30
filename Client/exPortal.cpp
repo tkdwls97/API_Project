@@ -15,7 +15,7 @@ namespace ex
 		: mPortalSound(nullptr)
 	{
 		mPortalSound = ResourceManager::Load<Sound>(L"PortalSound", L"..\\Resources\\Maple\\Sound\\Portal\\Portal.wav");
-		mPortalSound->SetVolume(130.0f);
+		mPortalSound->SetVolume(100.0f);
 	}
 	Portal::~Portal()
 	{

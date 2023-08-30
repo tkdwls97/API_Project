@@ -462,6 +462,8 @@ namespace ex
 	void Papulatus::Dead()
 	{
 		mbChaseOn = false;
+		Player* player = SceneManager::GetPlayer();
+		player->GetInfo()->mExp += mMonstersInfo.mExp;
 		if (mDirection == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PapulatusLeftDead", false);

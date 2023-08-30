@@ -91,11 +91,7 @@ namespace ex
 
 	void Thanatos::Update()
 	{
-		if (mMonstersInfo.mHp <= 0)
-		{
-			mThanatosDeadSound->Play(false);
-			mMonsterState = eMonsterState::Dead;
-		}
+
 
 		switch (mMonsterState)
 		{
@@ -284,6 +280,8 @@ namespace ex
 		{
 			mThanatosDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 		}
 	}
 

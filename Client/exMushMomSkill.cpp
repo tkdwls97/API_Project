@@ -40,7 +40,6 @@ namespace ex
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\MushMom\\AttackEffect\\Right",math::Vector2(0.0f,-45.0f), 0.03f);
 
 		mMushMomSkillSound = ResourceManager::Load<Sound>(L"MushMomSkillSound", L"..\\Resources\\Maple\\Sound\\Monster\\MushMom\\MushMom_Attack.wav");
-		mMushMomSkillSound->SetVolume(130.0f);
 		mMushMomSkillSound->Play(false);
 
 		mAnimator->SetScale(math::Vector2(1.3f, 1.3f));

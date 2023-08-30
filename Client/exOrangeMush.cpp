@@ -181,6 +181,8 @@ namespace ex
 		{
 			mOrangeMushDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
 		}
 	}
 
@@ -199,8 +201,6 @@ namespace ex
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
-			Player* player = SceneManager::GetPlayer();
-			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			Destroy(this);
 		}
 	}
