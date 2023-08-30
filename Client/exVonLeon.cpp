@@ -166,10 +166,7 @@ namespace ex
 			}
 		}
 		
-		if (mMonstersInfo.mHp <= 0)
-		{
-			mMonsterState = eMonsterState::Dead;
-		}
+
 
 		switch (mMonsterState)
 		{
