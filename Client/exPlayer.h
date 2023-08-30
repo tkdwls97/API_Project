@@ -66,6 +66,8 @@ namespace ex
 		bool IsBuffCheck() { return mbBuffCheck; }
 		void SetBuffCheck(bool _data) { mbBuffCheck = _data; }
 
+		Buff* GetPlayerBuff() { return mBuff; }
+
 		void Idle();
 		void Move();
 		void Down();

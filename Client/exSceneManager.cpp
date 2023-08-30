@@ -33,7 +33,7 @@ namespace ex
 	MpBar* SceneManager::mMpBar = new MpBar;
 	SkillSlot* SceneManager::mSkillSlot = new SkillSlot;
 	Level* SceneManager::mLevel1 = new Level;
-	Level* SceneManager::mLevel2= new Level;
+	Level* SceneManager::mLevel2 = new Level;
 	Level* SceneManager::mLevel3 = new Level;
 	bool SceneManager::mbPortalCheck = false;
 
@@ -100,7 +100,7 @@ namespace ex
 
 			delete mLevel1;
 			mLevel1 = nullptr;
-			
+
 			delete mLevel2;
 			mLevel2 = nullptr;
 
@@ -128,6 +128,15 @@ namespace ex
 		std::map<std::wstring, Scene*>::iterator iter = mScenes.find(_name);
 
 		mActiveScene->RemoveGameObject(enums::eLayerType::Player, mPlayer);
+
+		// 현재 씬의 레이어안에 있는 GameObject를 변수에 복사
+		std::vector<GameObject*> buffObject = mActiveScene->GetLayer(enums::eLayerType::Buff).GetGameObjects();
+		// 현재 씬의 레이어 초기화
+		mActiveScene->RemoveLayer(enums::eLayerType::Buff);
+		std::vector<GameObject*> buffEffectObject = mActiveScene->GetLayer(enums::eLayerType::BuffEffect).GetGameObjects();
+		mActiveScene->RemoveLayer(enums::eLayerType::BuffEffect);
+		std::vector<GameObject*> buffUIObject = mActiveScene->GetLayer(enums::eLayerType::BuffUI).GetGameObjects();
+		mActiveScene->RemoveLayer(enums::eLayerType::BuffUI);
 
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mStatusBar);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mHpBar);
@@ -157,6 +166,23 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel1);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel2);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel3);
+
+			// 현재 Scene에 그 전 Scene 레이어에 들어있던 GameObject의 사이즈만큼 순회하면서
+			// 넣어줌
+			for (size_t i = 0; i < buffObject.size(); i++)
+			{
+				mActiveScene->AddGameObject(enums::eLayerType::Buff, buffObject[i]);
+			}
+
+			for (size_t i = 0; i < buffEffectObject.size(); i++)
+			{
+				mActiveScene->AddGameObject(enums::eLayerType::BuffEffect, buffEffectObject[i]);
+			}
+
+			for (size_t i = 0; i < buffUIObject.size(); i++)
+			{
+				mActiveScene->AddGameObject(enums::eLayerType::BuffUI, buffUIObject[i]);
+			}
 		}
 
 		mActiveScene->SceneIN();

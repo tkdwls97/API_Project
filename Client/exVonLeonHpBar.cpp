@@ -8,7 +8,7 @@
 #include "exCollisionManager.h"
 #include "exSceneManager.h"
 #include "exSpriteRenderer.h"
-#include "exVonLeon.h";
+#include "exVonLeon.h"
 // Component
 #include "exTransform.h"
 #include "exAnimator.h"

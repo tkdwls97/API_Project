@@ -79,6 +79,11 @@ namespace ex
 			mGameObjects.erase(iter);
 	}
 
+	void Layer::RemoveGameObjects()
+	{
+		mGameObjects.clear();
+	}
+
 	std::vector<GameObject*>& Layer::GetGameObjects()
 	{
 		return mGameObjects;

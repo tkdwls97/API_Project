@@ -570,7 +570,6 @@ namespace ex
 
 			if (mbBuffCheck == false)
 			{
-				
 				mBuff = new Buff(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mBuff);
 				mInfo->mMinDamage += 4000.0f;
@@ -772,11 +771,19 @@ namespace ex
 			}
 			mRigidbody->SetVelocityX(0.0f);
 		}
-		else
-		{
-			//mRigidbody->SetFriction(0.0f);
-		}
 
+		if (mRigidbody->GetGround() == false)
+		{
+			if (playerDir == enums::eMoveDir::Left)
+			{
+				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
+			}
+			else
+			{
+				mAnimator->PlayAnimation(L"PlayerRightJump", true);
+			}
+				mState = eState::Fall;
+		}
 		mTransform->SetPosition(pos);
 		mRigidbody->SetVelocity(velocity);
 	}

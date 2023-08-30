@@ -21,6 +21,7 @@ namespace ex
 		}
 
 		void RemoveGameObject(GameObject* _gameObj);
+		void RemoveGameObjects();
 		void DeleteObjects();
 		std::vector<GameObject*>& GetGameObjects();
 

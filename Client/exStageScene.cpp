@@ -23,6 +23,7 @@
 #include "exRope.h"
 #include "exStatusBar.h"
 #include "exSound.h"
+#include "exBuff.h"
 
 namespace ex
 {
@@ -349,6 +350,7 @@ namespace ex
 
 	void StageScene::SceneOut()
 	{
+
 		mStage1_Sound->Stop(true);
 		// 씬에서 나올때 카메라 타겟 초기화
 		Camera::SetTarget(nullptr);

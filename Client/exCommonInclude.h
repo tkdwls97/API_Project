@@ -10,17 +10,17 @@
 #include <filesystem>
 #include <bitset>
 #include <cstdio>
-
-
 #include "framework.h"
 #include "exMath.h"
 
-#pragma comment(lib, "Msimg32.lib")
+#define DIRECTINPUT_VERSION 0x0800
 
 #include <mmsystem.h>
 #include <dsound.h>
+#include <Objbase.h>
 #include <dinput.h>
 
+#pragma comment(lib, "Msimg32.lib")
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "dsound.lib")
 
@@ -38,8 +38,10 @@ namespace ex::enums
 		Potal,
 		Buff,
 		Player,
+		BuffEffect,
 		PlayerAttack,
 		Effect,
+		BuffUI,
 		UI,
 		End,
 	};

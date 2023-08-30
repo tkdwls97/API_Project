@@ -6,6 +6,7 @@
 #include "exApplication.h"
 #include "exResourceManager.h"
 #include "exSceneManager.h"
+#include <Objbase.h>
 
 #include <crtdbg.h>
 #define _CRTDBG_MAP_ALLOC
@@ -58,7 +59,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 커서 핸들 생성
     HCURSOR hCursor = LoadCursorFromFile(MapleStoryCursor);
-
     SetCursor(hCursor);
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));

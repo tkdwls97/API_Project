@@ -36,22 +36,22 @@ namespace ex
 		mTransform->SetPosition(player->GetPosition());
 
 		ComboSynergyEffect* effect_0 = new ComboSynergyEffect(0);
-		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, effect_0);
+		object::ActiveSceneAddGameObject(enums::eLayerType::BuffEffect, effect_0);
 
 		ComboSynergyEffect* effect_1 = new ComboSynergyEffect(1);
-		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, effect_1);
+		object::ActiveSceneAddGameObject(enums::eLayerType::BuffEffect, effect_1);
 
 		ComboSynergyEffect* effect_2 = new ComboSynergyEffect(2);
-		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, effect_2);
+		object::ActiveSceneAddGameObject(enums::eLayerType::BuffEffect, effect_2);
 
 		ComboSynergyEffect* effect_3 = new ComboSynergyEffect(3);
-		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, effect_3);
+		object::ActiveSceneAddGameObject(enums::eLayerType::BuffEffect, effect_3);
 
 		ComboSynergyEffect* effect_4 = new ComboSynergyEffect(4);
-		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, effect_4);
+		object::ActiveSceneAddGameObject(enums::eLayerType::BuffEffect, effect_4);
 
 		BuffIcon* buffIcon = new BuffIcon();
-		object::ActiveSceneAddGameObject(enums::eLayerType::UI, buffIcon);
+		object::ActiveSceneAddGameObject(enums::eLayerType::BuffUI, buffIcon);
 	}
 
 	ComboSynergyBody::~ComboSynergyBody()

@@ -40,6 +40,12 @@ namespace ex
 			mLayers[(int)type].DeleteObjects();
 		}
 
+		void RemoveLayer(enums::eLayerType type)
+		{
+			// 해당 레이어 안의 오브젝트를 삭제
+			mLayers[(int)type].RemoveGameObjects();
+		}
+
 		void DeleteAllLayer()
 		{
 			// 모든 레이어의 오브젝트 삭제
