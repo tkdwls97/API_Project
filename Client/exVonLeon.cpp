@@ -154,13 +154,21 @@ namespace ex
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float vonLeonPosX = mTransform->GetPositionX();
 
-		if (playerPosX < vonLeonPosX)
+		if (mMonsterState != eMonsterState::Dead)
 		{
-			mDirection = enums::eMoveDir::Left;
+			if (playerPosX < vonLeonPosX)
+			{
+				mDirection = enums::eMoveDir::Left;
+			}
+			if (playerPosX > vonLeonPosX)
+			{
+				mDirection = enums::eMoveDir::Right;
+			}
 		}
-		if (playerPosX > vonLeonPosX)
+		
+		if (mMonstersInfo.mHp <= 0)
 		{
-			mDirection = enums::eMoveDir::Right;
+			mMonsterState = eMonsterState::Dead;
 		}
 
 		switch (mMonsterState)

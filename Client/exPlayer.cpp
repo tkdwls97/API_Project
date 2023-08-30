@@ -229,8 +229,6 @@ namespace ex
 		float minDamage = mInfo->mMinDamage;
 		float maxDamage = mInfo->mMaxDamage;
 
-
-		bool bTest = mbBuffCheck;
 		PlayLevelUI();
 
 		// 플레이어가 떨어졌을시 
@@ -1223,6 +1221,7 @@ namespace ex
 	void Player::Death()
 	{
 		mRigidbody->SetVelocity(0.0f);
+		mbBuffCheck = false;
 		if (Input::GetKeyDown(eKeyCode::R))
 		{
 			enums::eMoveDir playerDir = mTransform->GetMoveDir();

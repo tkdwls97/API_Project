@@ -304,9 +304,9 @@ namespace ex
 		if (mMonstersInfo.mHp <= 0)
 		{
 			mMushMomDeadSound->Play(false);
-			mMonsterState = eMonsterState::Dead;
 			Player* player = SceneManager::GetPlayer();
 			player->GetInfo()->mExp += mMonstersInfo.mExp;
+			mMonsterState = eMonsterState::Dead;
 		}
 	}
 
@@ -340,12 +340,9 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
+
 				attList->insert(this);
 				mbMushMomHit = true;
 			}
@@ -362,12 +359,10 @@ namespace ex
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				attList->insert(this);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+
+				mMonsterState = eMonsterState::Hit;
+
 				mbMushMomHit = true;
 			}
 		}
@@ -380,12 +375,9 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
+
 				attList->insert(this);
 				mbMushMomHit = true;
 			}
@@ -399,12 +391,9 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
+
 				attList->insert(this);
 				mbMushMomHit = true;
 			}
@@ -418,12 +407,8 @@ namespace ex
 			if (attList->find(this) == attList->end())
 			{
 				mMushMomHitSound->Play(false);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
 				attList->insert(this);
 				mbMushMomHit = true;
 			}

@@ -68,11 +68,11 @@ namespace ex
 
 		for (size_t j = 0; j < mDamageSize; j++)
 		{
-			DamageSkin* damageSkin = new DamageSkin(mDamageIndexArr[j]);
-			object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
-			damageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
-			damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (38.0f * j) - (mDamageSize * 38.0f / 2.0f));
-			damageSkin->SetDamageDelay(_delay);
+			//DamageSkin* damageSkin = new DamageSkin(mDamageIndexArr[j]);
+			//object::ActiveSceneAddGameObject(enums::eLayerType::UI, damageSkin);
+			//damageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
+			//damageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (38.0f * j) - (mDamageSize * 38.0f / 2.0f));
+			//damageSkin->SetDamageDelay(_delay);
 		}
 	}
 
@@ -99,10 +99,10 @@ namespace ex
 
 		for (size_t i = 0; i < mDamageSize; i++)
 		{
-			MonsterDamageSkin* monsterDamageSkin = new MonsterDamageSkin(mDamageIndexArr[i]);
-			object::ActiveSceneAddGameObject(enums::eLayerType::UI, monsterDamageSkin);
-			monsterDamageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
-			monsterDamageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (27.0f * i) - (mDamageSize * 31.0f / 2.0f));
+			//MonsterDamageSkin* monsterDamageSkin = new MonsterDamageSkin(mDamageIndexArr[i]);
+			//object::ActiveSceneAddGameObject(enums::eLayerType::UI, monsterDamageSkin);
+			//monsterDamageSkin->GetComponent<Transform>()->SetPosition(this->GetPosition());
+			//monsterDamageSkin->GetComponent<Transform>()->SetPositionX(this->GetPositionX() + (27.0f * i) - (mDamageSize * 31.0f / 2.0f));
 		}
 		Player* player = SceneManager::GetPlayer();
 		player->GetInfo()->mHp -= mMonsterResultDamage;

@@ -319,12 +319,9 @@ namespace ex
 			{
 				mThanatosHitSound->Play(false);
 				attList->insert(this);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
+
 
 			}
 		}
@@ -340,12 +337,9 @@ namespace ex
 				RaisingblowHit* raisingBlowHit = new RaisingblowHit(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, raisingBlowHit);
 				attList->insert(this);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
+
 			}
 		}
 
@@ -358,12 +352,9 @@ namespace ex
 			{
 				mThanatosHitSound->Play(false);
 				attList->insert(this);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
+
 			}
 		}
 
@@ -376,13 +367,8 @@ namespace ex
 			{
 				mThanatosHitSound->Play(false);
 				attList->insert(this);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
 
+				mMonsterState = eMonsterState::Hit;
 			}
 		}
 
@@ -395,12 +381,8 @@ namespace ex
 			{
 				mThanatosHitSound->Play(false);
 				attList->insert(this);
-				if (mMonsterState == eMonsterState::Idle ||
-					mMonsterState == eMonsterState::Move ||
-					mMonsterState == eMonsterState::Chase)
-				{
-					mMonsterState = eMonsterState::Hit;
-				}
+
+				mMonsterState = eMonsterState::Hit;
 			}
 		}
 

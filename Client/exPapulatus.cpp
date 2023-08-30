@@ -152,8 +152,8 @@ namespace ex
 	void Papulatus::Update()
 	{
 
-		__int64 halfHp = mMonstersInfo.mMaxHp / 2;
-		if (halfHp >= mMonstersInfo.mHp && false == mbSleepOn)
+		float halfHp = mMonstersInfo.mMaxHp / 3.0f;
+		if (halfHp >= mMonstersInfo.mHp && false == mbSleepOn && mMonsterState != eMonsterState::Dead)
 		{
 			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 			float PapulatusPosX = mTransform->GetPositionX();
@@ -174,9 +174,22 @@ namespace ex
 			mMonsterState = eMonsterState::Skill5;
 		}
 
+		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
+		float papulatusPosX = mTransform->GetPositionX();
+
+		if (mMonsterState != eMonsterState::Dead)
+		{
+			if (playerPosX < papulatusPosX)
+			{
+				mDirection = enums::eMoveDir::Left;
+			}
+			if (playerPosX > papulatusPosX)
+			{
+				mDirection = enums::eMoveDir::Right;
+			}
+		}
 		if (mMonstersInfo.mHp <= 0)
 		{
-			mPapulatusDeadSound->Play(false);
 			mMonsterState = eMonsterState::Dead;
 		}
 
@@ -243,18 +256,6 @@ namespace ex
 			{
 				mMonsterState = eMonsterState::Chase;
 			}
-			else
-			{
-				if (mDirection == enums::eMoveDir::Left)
-				{
-					mDirection = enums::eMoveDir::Right;
-				}
-				else
-				{
-					mDirection = enums::eMoveDir::Left;
-				}
-				mMonsterState = eMonsterState::Move;
-			}
 			mIdleDelay = 0.0f;
 		}
 
@@ -269,7 +270,7 @@ namespace ex
 
 
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 0.75f)
+		if (mSkillDelay >= 1.0f)
 		{
 			math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
@@ -277,7 +278,7 @@ namespace ex
 
 			mUsingSkillNumber = rand() % 4 + 1;
 
-			if (distanceX < 600.0f && distanceY < 200.0f)
+			if (distanceX < 500.0f && distanceY < 500.0f)
 			{
 				float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 				float PapulatusPosX = mTransform->GetPositionX();
@@ -456,14 +457,20 @@ namespace ex
 		{
 			mMonsterState = eMonsterState::Idle;
 		}
+
+		if (mMonstersInfo.mHp <= 0)
+		{
+			mPapulatusDeadSound->Play(false);
+			Player* player = SceneManager::GetPlayer();
+			player->GetInfo()->mExp += mMonstersInfo.mExp;
+			mMonsterState = eMonsterState::Dead;
+		}
 		mTransform->SetMoveDir(mDirection);
 	}
 
 	void Papulatus::Dead()
 	{
 		mbChaseOn = false;
-		Player* player = SceneManager::GetPlayer();
-		player->GetInfo()->mExp += mMonstersInfo.mExp;
 		if (mDirection == enums::eMoveDir::Left)
 		{
 			mAnimator->PlayAnimation(L"PapulatusLeftDead", false);
@@ -477,8 +484,6 @@ namespace ex
 		bool bCheck = mAnimator->IsActiveAnimationComplete();
 		if (bCheck)
 		{
-			Player* player = SceneManager::GetPlayer();
-			player->GetInfo()->mExp += mMonstersInfo.mExp;
 			SceneManager::SetPortalCheck(true);
 			Destroy(this);
 		}
