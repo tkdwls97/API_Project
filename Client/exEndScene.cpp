@@ -10,6 +10,7 @@
 #include "exCamera.h"
 #include "exAnimator.h"
 #include "exCollisionManager.h"
+#include "exPlayer.h"
 
 
 
@@ -50,6 +51,11 @@ namespace ex
 		//bgsr->SetAlpha(0.2f);
 		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
 
+
+		Player* player = SceneManager::GetPlayer();
+
+		player->SetBuffCheck(false);
+		
 		mEndSound = ResourceManager::Load<Sound>(L"EndSound", L"..\\Resources\\Maple\\Sound\\Stage\\Title.wav");
 		mEndSound->Play(true);
 

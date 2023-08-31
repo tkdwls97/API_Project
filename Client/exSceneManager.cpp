@@ -62,7 +62,7 @@ namespace ex
 		ResourceManager::Load<Texture>(L"VonLeonBackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage3.bmp");
 		ResourceManager::Load<Texture>(L"EndBackGroundImgae", L"..\\Resources\\Maple\\Image\\Logo\\EndScene.bmp");
 
-		LoadScene(L"TitleScene");
+		LoadScene(L"BossScene2");
 	}
 
 	void SceneManager::Update()
@@ -107,6 +107,8 @@ namespace ex
 			delete mLevel3;
 			mLevel3 = nullptr;
 
+
+			
 		}
 
 		for (auto iter : mScenes)
@@ -166,23 +168,23 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel1);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel2);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel3);
+		}
 
-			// 현재 Scene에 그 전 Scene 레이어에 들어있던 GameObject의 사이즈만큼 순회하면서
-			// 넣어줌
-			for (size_t i = 0; i < buffObject.size(); i++)
-			{
-				mActiveScene->AddGameObject(enums::eLayerType::Buff, buffObject[i]);
-			}
+		// 현재 Scene에 그 전 Scene 레이어에 들어있던 GameObject의 사이즈만큼 순회하면서
+		// 넣어줌
+		for (size_t i = 0; i < buffObject.size(); i++)
+		{
+			mActiveScene->AddGameObject(enums::eLayerType::Buff, buffObject[i]);
+		}
 
-			for (size_t i = 0; i < buffEffectObject.size(); i++)
-			{
-				mActiveScene->AddGameObject(enums::eLayerType::BuffEffect, buffEffectObject[i]);
-			}
+		for (size_t i = 0; i < buffEffectObject.size(); i++)
+		{
+			mActiveScene->AddGameObject(enums::eLayerType::BuffEffect, buffEffectObject[i]);
+		}
 
-			for (size_t i = 0; i < buffUIObject.size(); i++)
-			{
-				mActiveScene->AddGameObject(enums::eLayerType::BuffUI, buffUIObject[i]);
-			}
+		for (size_t i = 0; i < buffUIObject.size(); i++)
+		{
+			mActiveScene->AddGameObject(enums::eLayerType::BuffUI, buffUIObject[i]);
 		}
 
 		mActiveScene->SceneIN();
