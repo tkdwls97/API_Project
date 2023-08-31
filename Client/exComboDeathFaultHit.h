@@ -12,7 +12,7 @@ namespace ex
 	class ComboDeathFaultHit : public EffectManger
 	{
 	public:
-		ComboDeathFaultHit(GameObject* _owner);
+		ComboDeathFaultHit();
 		virtual ~ComboDeathFaultHit();
 
 		virtual void Initialize() override;
@@ -23,9 +23,10 @@ namespace ex
 		virtual void OnCollisionStay(Collider* _other) override;
 		virtual void OnCollisionExit(Collider* _other) override;
 
-	private:
-		GameObject* mOwner;
+		void SetPos(math::Vector2 _pos) { mPos = _pos; }
 
+	private:
+		math::Vector2 mPos;
 		Animator* mAnimator;
 		Transform* mTransform;
 		Sound* mComboDeathFaultHitSound;

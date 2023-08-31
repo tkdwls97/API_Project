@@ -15,10 +15,10 @@
 
 namespace ex
 {
-	ComboDeathFaultHit::ComboDeathFaultHit(GameObject* _owner)
-		: EffectManger(_owner)
-		, mOwner(_owner)
+	ComboDeathFaultHit::ComboDeathFaultHit()
+		: EffectManger(nullptr)
 		, mComboDeathFaultHitSound(nullptr)
+		, mPos(0.0f)
 	{
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
@@ -26,10 +26,8 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"ComboDeathFaultHit"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\Hit");
 
-		math::Vector2 pos = _owner->GetPosition();
 
 		mAnimator->SetScale(math::Vector2(1.0f, 1.0f));
-		mTransform->SetPosition(math::Vector2(pos));
 		mAnimator->PlayAnimation(L"ComboDeathFaultHit", false);
 
 		mComboDeathFaultHitSound = ResourceManager::Load<Sound>(L"ComboDeathFaultHitSound", L"..\\Resources\\Maple\\Sound\\Skill\\ComboDeathFault_Hit.wav");
@@ -46,6 +44,8 @@ namespace ex
 
 	void ComboDeathFaultHit::Update()
 	{
+		mTransform->SetPosition(math::Vector2(mPos));
+
 		if (mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);

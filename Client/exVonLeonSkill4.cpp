@@ -87,8 +87,7 @@ namespace ex
 		{
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
-				DamageManager* damage = new DamageManager();
-				object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
+				DamageManager* damage = SceneManager::GetDamageManager();
 				damage->SetPosition(math::Vector2(player->GetPositionX(), player->GetPositionY() - 28.0f * i));
 				damage->PlayMonsterDamageAnimation(mVonLeonSkill4_Damege, this->GetEffectInfo().DamagePercentage);
 			}

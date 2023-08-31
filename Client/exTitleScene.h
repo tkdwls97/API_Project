@@ -18,7 +18,6 @@ namespace ex
 		virtual void SceneIN() override;
 		virtual void SceneOut() override;
 
-		void SoundLoad();
 	private:
 		Sound* mTitleSound;
 	};

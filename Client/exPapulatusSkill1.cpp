@@ -40,7 +40,6 @@ namespace ex
 	
 		PapulatusSkillArea* papulatusSkillArea2 = new PapulatusSkillArea(2);
 		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea2);
-		
 
 		PapulatusSkillArea* papulatusSkillArea3 = new PapulatusSkillArea(3);
 		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, papulatusSkillArea3);

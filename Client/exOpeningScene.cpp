@@ -40,6 +40,7 @@ namespace ex
 		mTransform->SetPosition(math::Vector2(640.0f, 360.0f));
 		mAnimator->CreateAnimationFolder(L"OpeningVideo", L"..\\Resources\\Maple\\Image\\Logo\\Nexon");
 		mAnimator->PlayAnimation(L"OpeningVideo", false);
+		SoundLoad();
 	}
 
 	void OpeningScene::Update()

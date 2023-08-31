@@ -62,6 +62,9 @@ namespace ex
 			mAnimator->PlayAnimation(L"ComboDeathFaultRightScreen", false);
 		}
 
+		ComboDeathFaultHit* comboDeathFaultHit = new ComboDeathFaultHit();
+		object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeathFaultHit);
+
 	}
 
 	ComboDeathFaultScreen::~ComboDeathFaultScreen()
@@ -103,8 +106,9 @@ namespace ex
 		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
 		if (monsters != nullptr)
 		{
-			ComboDeathFaultHit* comboDeathFaultHit = new ComboDeathFaultHit(_other->GetOwner());
+			ComboDeathFaultHit* comboDeathFaultHit = new ComboDeathFaultHit();
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeathFaultHit);
+			comboDeathFaultHit->SetPos(_other->GetPosition());
 
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
