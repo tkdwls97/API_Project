@@ -10,6 +10,8 @@
 #include "exPlayer.h"
 #include "exDamageSkin.h"
 #include "exMonsterDamageSkin.h"
+
+
 // Component
 #include "exTransform.h"
 #include "exAnimator.h"
@@ -21,7 +23,7 @@
 
 namespace ex
 {
-	DamageManager::DamageManager()
+	DamageManager::DamageManager(int _attackCount)
 		: mDamageSize(0)
 		, mPlayerDamage(0)
 		, mDamageIndex(0)
@@ -29,7 +31,12 @@ namespace ex
 		, mPlayerResultDamage(0)
 		, mMonsterResultDamage(0)
 		, mMonsterDamage(0)
+		, mDamageCount(_attackCount)
 	{
+		Player* player = SceneManager::GetPlayer();
+		int minDamage = (int)player->GetInfo()->mMinDamage;
+		int maxDamage = (int)player->GetInfo()->mMaxDamage;
+		mPlayerDamage = minDamage + std::rand() % (maxDamage - minDamage + 1);
 	}
 
 	DamageManager::~DamageManager()
@@ -42,14 +49,8 @@ namespace ex
 
 	void DamageManager::Update()
 	{
-		Player* player = SceneManager::GetPlayer();
-		int minDamage = (int)player->GetInfo()->mMinDamage;
-		int maxDamage = (int)player->GetInfo()->mMaxDamage;
-		mPlayerDamage = minDamage + std::rand() % (maxDamage - minDamage + 1);
 		UI::Update();
 	}
-
-
 
 	void DamageManager::Render(HDC _hdc)
 	{

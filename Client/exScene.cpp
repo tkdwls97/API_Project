@@ -6,6 +6,9 @@ namespace ex
 	Scene::Scene()
 	{
 		mLayers.resize((int)enums::eLayerType::End);
+		
+		mLayers[(int)enums::eLayerType::Effect].GetGameObjects().reserve(1000000);
+
 	}
 
 	Scene::~Scene()

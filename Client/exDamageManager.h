@@ -5,11 +5,12 @@
 namespace ex
 {
 	class Transform;
+	
 
 	class DamageManager : public UI
 	{
 	public:
-		DamageManager();
+		DamageManager(int _attackCount = 0);
 		virtual ~DamageManager();
 
 		virtual void Initialize() override;
@@ -41,6 +42,7 @@ namespace ex
 		int		 mDamageIndex;
 		int		 mPlayerResultDamage;
 		int		 mMonsterResultDamage;
+		int		 mDamageCount;
 	};
 
 }

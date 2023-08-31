@@ -8,15 +8,14 @@ namespace ex
 	class Animator;
 	class DamageManager;
 
+	struct EffectInfo
+	{
+		int AttackCount;
+		int DamagePercentage;
+	};
+
 	class EffectManger : public GameObject
 	{
-	public:
-		struct EffectInfo
-		{
-			int AttackCount;
-			int DamagePercentage;
-		};
-
 	public:
 		EffectManger(GameObject* _owner);
 		virtual ~EffectManger();

@@ -105,7 +105,7 @@ namespace ex
 		if (monsters != nullptr)
 		{
 
-			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
+			for (size_t i = 1; i <= mRaisingblowInfo.AttackCount; i++)
 			{
 				if (monsters->GetMonstersState() != eMonsterState::Sleep &&
 					monsters->GetMonstersState() != eMonsterState::WakeUp &&
