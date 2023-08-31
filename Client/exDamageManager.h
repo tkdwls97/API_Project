@@ -10,7 +10,7 @@ namespace ex
 	class DamageManager : public UI
 	{
 	public:
-		DamageManager(int _attackCount = 0);
+		DamageManager();
 		virtual ~DamageManager();
 
 		virtual void Initialize() override;
@@ -23,6 +23,7 @@ namespace ex
 
 		void PlayPlayerDamageAnimation(int _skillDamage, float _delay = 0);
 		void PlayMonsterDamageAnimation(int _monsterDamage, int _skillDamage = 1);
+		void Test();
 
 
 		int GetPlayerDamage() { return mPlayerDamage; }
@@ -31,6 +32,9 @@ namespace ex
 		int GetDamageIndex() { return mDamageIndex; }
 		int GetPlayerResultDamage() { return mPlayerResultDamage; }
 		int GetMonsterResultDamage() { return mMonsterResultDamage; }
+
+		void SetDamageCount(int _count) { mDamageCount = _count; }
+		void SetDamagePercentage(int _percentage) { mSkillDamagePercentage = _percentage; }
 
 
 	private:
@@ -43,6 +47,10 @@ namespace ex
 		int		 mPlayerResultDamage;
 		int		 mMonsterResultDamage;
 		int		 mDamageCount;
+		int		 mSkillDamagePercentage;
+
+		bool  test = true;
+		int   num = 0;
 	};
 
 }

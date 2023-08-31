@@ -23,7 +23,7 @@
 
 namespace ex
 {
-	DamageManager::DamageManager(int _attackCount)
+	DamageManager::DamageManager()
 		: mDamageSize(0)
 		, mPlayerDamage(0)
 		, mDamageIndex(0)
@@ -31,7 +31,8 @@ namespace ex
 		, mPlayerResultDamage(0)
 		, mMonsterResultDamage(0)
 		, mMonsterDamage(0)
-		, mDamageCount(_attackCount)
+		, mDamageCount(0)
+		, mSkillDamagePercentage(0)
 	{
 		Player* player = SceneManager::GetPlayer();
 		int minDamage = (int)player->GetInfo()->mMinDamage;
@@ -61,7 +62,6 @@ namespace ex
 	{
 		// resultDamage = 플레이어의 MaxDamage ~ MinDamage 사이의 랜덤 값 * 스킬 데미지
 		mPlayerResultDamage = mPlayerDamage * _skillDamage;
-
 
 		int temp = mPlayerResultDamage;
 		// 데미지의 Size를 구하기
@@ -121,6 +121,19 @@ namespace ex
 		player->GetInfo()->mHp -= mMonsterResultDamage;
 		player->SetState(eState::Hit);
 		player->SetInvincible(true);
+	}
+
+	void DamageManager::Test()
+	{
+		Player* player = SceneManager::GetPlayer();
+		for (int i = 0; i < mDamageCount; i++)
+		{
+			int minDamage = (int)player->GetInfo()->mMinDamage;
+			int maxDamage = (int)player->GetInfo()->mMaxDamage;
+			mPlayerDamage = minDamage + std::rand() % (maxDamage - minDamage + 1);
+			//mTransform->SetPosition();
+			PlayPlayerDamageAnimation(mSkillDamagePercentage, 0.15f * (i - 1));
+		}
 	}
 
 	void DamageManager::OnCollisionEnter(Collider* _other)

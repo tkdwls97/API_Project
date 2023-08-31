@@ -42,6 +42,7 @@ namespace ex
 		static Level* GetLevel_1() { return mLevel1; }
 		static Level* GetLevel_2() { return mLevel2; }
 		static Level* GetLevel_3() { return mLevel3; }
+		static DamageManager* GetDamageManager() { return mDamageManager; }
 
 		static bool GetPortalCheck() { return mbPortalCheck; }
 		static void SetPortalCheck(bool _data) { mbPortalCheck = _data; }
@@ -54,6 +55,7 @@ namespace ex
 		static ExpBar* mExpBar;
 		static HpBar* mHpBar;
 		static MpBar* mMpBar;
+		static DamageManager* mDamageManager;
 		static SkillSlot* mSkillSlot;
 		static Level*     mLevel1;
 		static Level*     mLevel2;

@@ -104,20 +104,20 @@ namespace ex
 		Monsters* monsters = dynamic_cast<Monsters*>(_other->GetOwner());
 		if (monsters != nullptr)
 		{
-
+			DamageManager* damage = SceneManager::GetDamageManager();
 			for (size_t i = 1; i <= mRaisingblowInfo.AttackCount; i++)
 			{
 				if (monsters->GetMonstersState() != eMonsterState::Sleep &&
 					monsters->GetMonstersState() != eMonsterState::WakeUp &&
 					monsters->GetMonstersState() != eMonsterState::Dead)
 				{
-					DamageManager* damage = new DamageManager();
-					object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
-					damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
-					damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
+					damage->SetDamageCount(mRaisingblowInfo.AttackCount);
+					damage->SetDamagePercentage(mRaisingblowInfo.DamagePercentage);
+					//damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
 					monsters->ReductiongHp(damage->GetPlayerResultDamage());
 				}
 			}
+				damage->Test();
 		}
 	}
 

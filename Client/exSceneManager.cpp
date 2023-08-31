@@ -31,6 +31,7 @@ namespace ex
 	ExpBar* SceneManager::mExpBar = new ExpBar;
 	HpBar* SceneManager::mHpBar = new HpBar;
 	MpBar* SceneManager::mMpBar = new MpBar;
+	DamageManager* SceneManager::mDamageManager = new DamageManager;
 	SkillSlot* SceneManager::mSkillSlot = new SkillSlot;
 	Level* SceneManager::mLevel1 = new Level;
 	Level* SceneManager::mLevel2 = new Level;
@@ -107,8 +108,8 @@ namespace ex
 			delete mLevel3;
 			mLevel3 = nullptr;
 
-
-			
+			delete mDamageManager;
+			mDamageManager = nullptr;
 		}
 
 		for (auto iter : mScenes)
@@ -148,6 +149,7 @@ namespace ex
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mLevel1);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mLevel2);
 		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mLevel3);
+		mActiveScene->RemoveGameObject(enums::eLayerType::UI, mDamageManager);
 
 		if (iter == mScenes.end())
 		{
@@ -168,6 +170,7 @@ namespace ex
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel1);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel2);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mLevel3);
+			mActiveScene->AddGameObject(enums::eLayerType::UI, mDamageManager);
 		}
 
 		// 현재 Scene에 그 전 Scene 레이어에 들어있던 GameObject의 사이즈만큼 순회하면서
