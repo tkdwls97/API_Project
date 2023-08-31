@@ -769,18 +769,6 @@ namespace ex
 			mRigidbody->SetVelocityX(0.0f);
 		}
 
-		if (mRigidbody->GetGround() == false)
-		{
-			if (playerDir == enums::eMoveDir::Left)
-			{
-				mAnimator->PlayAnimation(L"PlayerLeftJump", true);
-			}
-			else
-			{
-				mAnimator->PlayAnimation(L"PlayerRightJump", true);
-			}
-				mState = eState::Fall;
-		}
 		mTransform->SetPosition(pos);
 		mRigidbody->SetVelocity(velocity);
 	}
@@ -1659,6 +1647,41 @@ namespace ex
 
 		ResourceManager::Load<Texture>(L"ComboSynergyIcon"
 			, L"..\\Resources\\Maple\\Image\\UI\\BuffUI\\ComboSynergyIcon.png");
+
+
+		// 플레이어 데미지 스킨
+		ResourceManager::Load<Texture>(L"PlayerDamage_0"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_0.png");
+		
+		ResourceManager::Load<Texture>(L"PlayerDamage_1"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_1.png");
+		
+
+		ResourceManager::Load<Texture>(L"PlayerDamage_2"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_2.png");
+		
+
+		ResourceManager::Load<Texture>(L"PlayerDamage_3"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_3.png");
+	
+		ResourceManager::Load<Texture>(L"PlayerDamage_4"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_4.png");
+		
+		ResourceManager::Load<Texture>(L"PlayerDamage_5"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_5.png");
+		
+		ResourceManager::Load<Texture>(L"PlayerDamage_6"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_6.png");
+
+		ResourceManager::Load<Texture>(L"PlayerDamage_7"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_7.png");
+
+		ResourceManager::Load<Texture>(L"PlayerDamage_8"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_8.png");
+
+		 ResourceManager::Load<Texture>(L"PlayerDamage_9"
+			, L"..\\Resources\\Maple\\Image\\UI\\DamageSkin\\Player\\Player_9.png");
+		
 
 	}
 
