@@ -152,7 +152,7 @@ namespace ex
 	void Papulatus::Update()
 	{
 
-		float halfHp = mMonstersInfo.mMaxHp / 4.0f;
+		float halfHp = mMonstersInfo.mMaxHp / 4.3f;
 		if (halfHp >= mMonstersInfo.mHp && false == mbSleepOn && mMonsterState != eMonsterState::Dead)
 		{
 			float playerPosX = SceneManager::GetPlayer()->GetPositionX();

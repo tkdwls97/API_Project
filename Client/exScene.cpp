@@ -7,7 +7,7 @@ namespace ex
 	{
 		mLayers.resize((int)enums::eLayerType::End);
 		
-		mLayers[(int)enums::eLayerType::Effect].GetGameObjects().reserve(1000000);
+		mLayers[(int)enums::eLayerType::Effect].GetGameObjects().reserve(30000000);
 
 	}
 
