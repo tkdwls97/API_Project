@@ -22,7 +22,7 @@ namespace ex
 		, mUpperChargeSound(nullptr)
 	{
 		mUpperChargeInfo.AttackCount = 1;
-		mUpperChargeInfo.DamagePercentage = 304;
+		mUpperChargeInfo.DamagePercentage = 364;
 		SetEffectInfo(mUpperChargeInfo);
 
 		mAnimator = GetComponent<Animator>();

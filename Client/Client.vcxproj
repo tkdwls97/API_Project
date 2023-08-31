@@ -150,6 +150,7 @@
     <ClCompile Include="exEndScene.cpp" />
     <ClCompile Include="exGatekeeper.cpp" />
     <ClCompile Include="exGateKeeperAttack.cpp" />
+    <ClCompile Include="exOpeningScene.cpp" />
     <ClCompile Include="exStun.cpp" />
     <ClCompile Include="exVonLeonHpBar.cpp" />
     <ClCompile Include="exVonLeonHuman.cpp" />
@@ -256,6 +257,7 @@
     <ClInclude Include="exEndScene.h" />
     <ClInclude Include="exGatekeeper.h" />
     <ClInclude Include="exGateKeeperAttack.h" />
+    <ClInclude Include="exOpeningScene.h" />
     <ClInclude Include="exStun.h" />
     <ClInclude Include="exVonLeonHpBar.h" />
     <ClInclude Include="exVonLeonHuman.h" />

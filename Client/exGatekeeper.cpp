@@ -28,8 +28,8 @@ namespace ex
 		, mGateKeeperHitSound(nullptr)
 		, mGateKeeperDeadSound(nullptr)
 	{
-		mMonstersInfo.mMaxHp = 30000000;
-		mMonstersInfo.mHp = 30000000;
+		mMonstersInfo.mMaxHp = 6000000;
+		mMonstersInfo.mHp = 6000000;
 		mMonstersInfo.mLevel = 180;
 		mMonstersInfo.mDamage = 1212;
 		mSkillDamage = 257;

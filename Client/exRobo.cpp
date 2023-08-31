@@ -26,8 +26,8 @@ namespace ex
 		: mRoboDeadSound(nullptr)
 		, mRoboHitSound(nullptr)
 	{
-		mMonstersInfo.mMaxHp = 3000000;
-		mMonstersInfo.mHp = 3000000;
+		mMonstersInfo.mMaxHp = 60000;
+		mMonstersInfo.mHp = 60000;
 		mMonstersInfo.mLevel = 10;
 		mMonstersInfo.mDamage = 1033;
 		mMonstersInfo.mExp = 20;

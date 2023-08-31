@@ -76,9 +76,6 @@
     <Filter Include="Engine\Resource\Animation">
       <UniqueIdentifier>{67fa3087-845c-4481-9909-463e78384900}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\00.TitleScene">
-      <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Component\03.Collider">
       <UniqueIdentifier>{c67beacd-c660-44be-99d3-5a73103a699a}</UniqueIdentifier>
     </Filter>
@@ -108,18 +105,6 @@
     </Filter>
     <Filter Include="Contents\GameObject\08.Rope">
       <UniqueIdentifier>{6cae7a5a-935a-4167-8460-4a0960a40df4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\01.StageScene">
-      <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\02.MushMomScene">
-      <UniqueIdentifier>{941c8e49-64ab-487f-9113-b20653e10eb2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\03.StageScene2">
-      <UniqueIdentifier>{9be67ea4-d7b4-4376-9689-48569839a3ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\04.StageScene3">
-      <UniqueIdentifier>{76e88cc0-57ae-4836-aacf-a4baa64f3a42}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\GameObject\09.Login">
       <UniqueIdentifier>{b6723186-40b6-493c-895d-d2cbfb7e084a}</UniqueIdentifier>
@@ -189,9 +174,6 @@
     </Filter>
     <Filter Include="Contents\GameObject\04.UI\00.StatusBar\01.MonsterBar\00.MushMomBar">
       <UniqueIdentifier>{e5b7f68e-cdff-4404-9ce2-7ff1f6cfa0b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\05.BossScene">
-      <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\GameObject\03.Effect\01.MonsterEffect\00.GateKeeperAttack">
       <UniqueIdentifier>{5ebf8c6e-1af7-4b02-a865-6ef4bf5a0685}</UniqueIdentifier>
@@ -283,12 +265,6 @@
     <Filter Include="Contents\GameObject\04.UI\03.Level">
       <UniqueIdentifier>{49f3531f-d8f0-40a7-8c14-c864018c9ee5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Scene\07.EndScene">
-      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Scene\06.BossScene2">
-      <UniqueIdentifier>{dbed7756-885e-405a-8137-f1dfc3416375}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\GameObject\02.Monster\02.Boss\03.VonLeon">
       <UniqueIdentifier>{6d672e1a-26ee-4afe-8c66-97cad5a0ecf4}</UniqueIdentifier>
     </Filter>
@@ -345,6 +321,33 @@
     </Filter>
     <Filter Include="Contents\GameObject\04.UI\04.BuffIcon">
       <UniqueIdentifier>{26c28691-3c13-4f52-8da7-5311f0f0db78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\01.TitleScene">
+      <UniqueIdentifier>{32a1d304-5f0e-4dd1-b81d-ad846b0d22b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\02.StageScene">
+      <UniqueIdentifier>{8e47c0cc-3652-4862-9f5d-199c8ce445e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\03.MushMomScene">
+      <UniqueIdentifier>{941c8e49-64ab-487f-9113-b20653e10eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\04.StageScene2">
+      <UniqueIdentifier>{9be67ea4-d7b4-4376-9689-48569839a3ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\05.StageScene3">
+      <UniqueIdentifier>{76e88cc0-57ae-4836-aacf-a4baa64f3a42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\06.BossScene">
+      <UniqueIdentifier>{6fca0d45-61f0-4785-aac9-bfa3419e9423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\07.BossScene2">
+      <UniqueIdentifier>{dbed7756-885e-405a-8137-f1dfc3416375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\08.EndScene">
+      <UniqueIdentifier>{8e77b5f0-0e39-41c4-a7cd-f7a78e8d2c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\00.OpeningScene">
+      <UniqueIdentifier>{96d8d178-54d8-4805-aa12-9f381ea95a16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -418,10 +421,10 @@
       <Filter>Engine\Resource\Animation</Filter>
     </ClCompile>
     <ClCompile Include="exTitleScene.cpp">
-      <Filter>Contents\Scene\00.TitleScene</Filter>
+      <Filter>Contents\Scene\01.TitleScene</Filter>
     </ClCompile>
     <ClCompile Include="exStageScene.cpp">
-      <Filter>Contents\Scene\01.StageScene</Filter>
+      <Filter>Contents\Scene\02.StageScene</Filter>
     </ClCompile>
     <ClCompile Include="exGreenMush.cpp">
       <Filter>Contents\GameObject\02.Monster\00.Normal\00.GreenMush</Filter>
@@ -451,7 +454,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Boss\01.Papulatus</Filter>
     </ClCompile>
     <ClCompile Include="exBossScene.cpp">
-      <Filter>Contents\Scene\05.BossScene</Filter>
+      <Filter>Contents\Scene\06.BossScene</Filter>
     </ClCompile>
     <ClCompile Include="exPlayerAttack.cpp">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\00.Attack</Filter>
@@ -469,13 +472,13 @@
       <Filter>Contents\GameObject\08.Rope</Filter>
     </ClCompile>
     <ClCompile Include="exStageScene2.cpp">
-      <Filter>Contents\Scene\03.StageScene2</Filter>
+      <Filter>Contents\Scene\04.StageScene2</Filter>
     </ClCompile>
     <ClCompile Include="exMushMomScene.cpp">
-      <Filter>Contents\Scene\02.MushMomScene</Filter>
+      <Filter>Contents\Scene\03.MushMomScene</Filter>
     </ClCompile>
     <ClCompile Include="exStageScene3.cpp">
-      <Filter>Contents\Scene\04.StageScene3</Filter>
+      <Filter>Contents\Scene\05.StageScene3</Filter>
     </ClCompile>
     <ClCompile Include="exLogin.cpp">
       <Filter>Contents\GameObject\09.Login</Filter>
@@ -601,10 +604,10 @@
       <Filter>Contents\GameObject\04.UI\03.Level</Filter>
     </ClCompile>
     <ClCompile Include="exEndScene.cpp">
-      <Filter>Contents\Scene\07.EndScene</Filter>
+      <Filter>Contents\Scene\08.EndScene</Filter>
     </ClCompile>
     <ClCompile Include="exBossScene2.cpp">
-      <Filter>Contents\Scene\06.BossScene2</Filter>
+      <Filter>Contents\Scene\07.BossScene2</Filter>
     </ClCompile>
     <ClCompile Include="exVonLeon.cpp">
       <Filter>Contents\GameObject\02.Monster\02.Boss\03.VonLeon</Filter>
@@ -650,6 +653,9 @@
     </ClCompile>
     <ClCompile Include="exBuffIcon.cpp">
       <Filter>Contents\GameObject\04.UI\04.BuffIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="exOpeningScene.cpp">
+      <Filter>Contents\Scene\00.OpeningScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -732,10 +738,10 @@
       <Filter>Engine\Resource\Animation</Filter>
     </ClInclude>
     <ClInclude Include="exTitleScene.h">
-      <Filter>Contents\Scene\00.TitleScene</Filter>
+      <Filter>Contents\Scene\01.TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="exStageScene.h">
-      <Filter>Contents\Scene\01.StageScene</Filter>
+      <Filter>Contents\Scene\02.StageScene</Filter>
     </ClInclude>
     <ClInclude Include="exGreenMush.h">
       <Filter>Contents\GameObject\02.Monster\00.Normal\00.GreenMush</Filter>
@@ -765,7 +771,7 @@
       <Filter>Contents\GameObject\02.Monster\02.Boss\01.Papulatus</Filter>
     </ClInclude>
     <ClInclude Include="exBossScene.h">
-      <Filter>Contents\Scene\05.BossScene</Filter>
+      <Filter>Contents\Scene\06.BossScene</Filter>
     </ClInclude>
     <ClInclude Include="exPlayerAttack.h">
       <Filter>Contents\GameObject\03.Effect\00.PlayerEffect\00.Attack</Filter>
@@ -783,13 +789,13 @@
       <Filter>Contents\GameObject\08.Rope</Filter>
     </ClInclude>
     <ClInclude Include="exStageScene2.h">
-      <Filter>Contents\Scene\03.StageScene2</Filter>
+      <Filter>Contents\Scene\04.StageScene2</Filter>
     </ClInclude>
     <ClInclude Include="exMushMomScene.h">
-      <Filter>Contents\Scene\02.MushMomScene</Filter>
+      <Filter>Contents\Scene\03.MushMomScene</Filter>
     </ClInclude>
     <ClInclude Include="exStageScene3.h">
-      <Filter>Contents\Scene\04.StageScene3</Filter>
+      <Filter>Contents\Scene\05.StageScene3</Filter>
     </ClInclude>
     <ClInclude Include="exLogin.h">
       <Filter>Contents\GameObject\09.Login</Filter>
@@ -915,10 +921,10 @@
       <Filter>Contents\GameObject\04.UI\03.Level</Filter>
     </ClInclude>
     <ClInclude Include="exEndScene.h">
-      <Filter>Contents\Scene\07.EndScene</Filter>
+      <Filter>Contents\Scene\08.EndScene</Filter>
     </ClInclude>
     <ClInclude Include="exBossScene2.h">
-      <Filter>Contents\Scene\06.BossScene2</Filter>
+      <Filter>Contents\Scene\07.BossScene2</Filter>
     </ClInclude>
     <ClInclude Include="exVonLeon.h">
       <Filter>Contents\GameObject\02.Monster\02.Boss\03.VonLeon</Filter>
@@ -964,6 +970,9 @@
     </ClInclude>
     <ClInclude Include="exBuffIcon.h">
       <Filter>Contents\GameObject\04.UI\04.BuffIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="exOpeningScene.h">
+      <Filter>Contents\Scene\00.OpeningScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

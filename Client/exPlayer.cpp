@@ -63,8 +63,8 @@ namespace ex
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
-		mInfo->mMinDamage = 7300;
-		mInfo->mMaxDamage = 15212;
+		mInfo->mMinDamage = 835;
+		mInfo->mMaxDamage = 1521;
 		mInfo->mMaxExp = 100.0f;
 		mInfo->mExp = 0.0f;
 
@@ -569,16 +569,16 @@ namespace ex
 			{
 				mBuff = new Buff(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mBuff);
-				mInfo->mMinDamage += 4000.0f;
-				mInfo->mMaxDamage += 4000.0f;
+				mInfo->mMinDamage += 450.0f;
+				mInfo->mMaxDamage += 450.0f;
 				mbBuffCheck = true;
 			}
 			else if (mbBuffCheck)
 			{
 				mbBuffCheck = false;
 				mBuff = nullptr;
-				mInfo->mMinDamage -= 4000.0f;
-				mInfo->mMaxDamage -= 4000.0f;
+				mInfo->mMinDamage -= 450.0f;
+				mInfo->mMaxDamage -= 450.0f;
 			}
 
 			mState = eState::Buff;

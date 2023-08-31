@@ -28,8 +28,8 @@ namespace ex
 		, mThanatosDeadSound(nullptr)
 		, mAttackDelay(0.0f)
 	{
-		mMonstersInfo.mMaxHp = 27000000;
-		mMonstersInfo.mHp = 27000000;
+		mMonstersInfo.mMaxHp = 6000000;
+		mMonstersInfo.mHp = 6000000;
 		mMonstersInfo.mLevel = 180;
 		mMonstersInfo.mDamage = 1212;
 		mSkillDamage = 280;

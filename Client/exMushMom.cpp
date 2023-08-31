@@ -35,8 +35,8 @@ namespace ex
 		, mMushMomHitSound(nullptr)
 		, mMushMomDeadSound(nullptr)
 	{
-		mMonstersInfo.mMaxHp = 300000000;
-		mMonstersInfo.mHp = 300000000;
+		mMonstersInfo.mMaxHp = 35000000;
+		mMonstersInfo.mHp = 35000000;
 		mMonstersInfo.mLevel = 150;
 		mMonstersInfo.mDamage = 700;
 		mSkillDamage = 1303;

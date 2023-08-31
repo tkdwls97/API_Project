@@ -1,4 +1,5 @@
 #include "exSceneManager.h"
+#include "exOpeningScene.h"
 #include "exTitleScene.h"
 #include "exStageScene.h"
 #include "exInput.h"
@@ -40,6 +41,7 @@ namespace ex
 
 	void SceneManager::Initialize()
 	{
+		CreateScene<OpeningScene>(L"OpeningScene");
 		CreateScene<TitleScene>(L"TitleScene");
 		CreateScene<StageScene>(L"StageScene");
 		CreateScene<MushMomScene>(L"MushMomScene");
@@ -79,7 +81,7 @@ namespace ex
 	void SceneManager::Release()
 	{
 
-		if (mActiveScene->GetName() == L"TitleScene" || mActiveScene->GetName() == L"EndScene")
+		if (mActiveScene->GetName() == L"OpeningScene" || mActiveScene->GetName() == L"TitleScene" || mActiveScene->GetName() == L"EndScene")
 		{
 			delete mPlayer;
 			mPlayer = nullptr;
@@ -159,7 +161,7 @@ namespace ex
 		mActiveScene = iter->second;
 
 		// Å¸ÀÌÆ² ¾À End¾ÀÀÌ ¾Æ´Ï¸é ÇÃ·¹ÀÌ¾î¸¦ ¾À¿¡ ³Ö¾îÁÜ
-		if (_name != L"TitleScene" && _name != L"EndScene")
+		if (mActiveScene->GetName() != L"OpeningScene" && _name != L"TitleScene" && _name != L"EndScene")
 		{
 			mActiveScene->AddGameObject(enums::eLayerType::Player, mPlayer);
 			mActiveScene->AddGameObject(enums::eLayerType::UI, mStatusBar);

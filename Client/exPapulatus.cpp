@@ -45,8 +45,8 @@ namespace ex
 		, mSkill3Delay(0.0f)
 		, mbSleepOn(false)
 	{
-		mMonstersInfo.mMaxHp = 720000000;
-		mMonstersInfo.mHp = 720000000;
+		mMonstersInfo.mMaxHp = 100000000;
+		mMonstersInfo.mHp = 100000000;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 4017;
@@ -152,7 +152,7 @@ namespace ex
 	void Papulatus::Update()
 	{
 
-		float halfHp = mMonstersInfo.mMaxHp / 4.3f;
+		float halfHp = mMonstersInfo.mMaxHp / 2.2f;
 		if (halfHp >= mMonstersInfo.mHp && false == mbSleepOn && mMonsterState != eMonsterState::Dead)
 		{
 			float playerPosX = SceneManager::GetPlayer()->GetPositionX();
@@ -598,7 +598,7 @@ namespace ex
 				mAnimator->PlayAnimation(L"PapulatusRightSleep", false);
 				mDirection = enums::eMoveDir::Right;
 			}
-			mMonstersInfo.mHp += (int)(60000000 * Time::GetDeltaTime());
+			mMonstersInfo.mHp += (int)(6000000 * Time::GetDeltaTime());
 			if (mMonstersInfo.mHp >= mMonstersInfo.mMaxHp)
 			{
 				mMonstersInfo.mHp = mMonstersInfo.mMaxHp;

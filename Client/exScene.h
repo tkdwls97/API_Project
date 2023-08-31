@@ -2,8 +2,6 @@
 #include "exEntity.h"
 #include "exLayer.h"
 
-
-
 namespace ex
 {
 	class Scene : public Entity

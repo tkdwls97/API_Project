@@ -25,8 +25,8 @@ namespace ex
 	MasterRobo::MasterRobo()
 		: mMasterRoboDeadSound(nullptr)
 	{
-		mMonstersInfo.mMaxHp = 3500000;
-		mMonstersInfo.mHp = 3500000;
+		mMonstersInfo.mMaxHp = 80000;
+		mMonstersInfo.mHp = 80000;
 		mMonstersInfo.mLevel = 10;
 		mMonstersInfo.mDamage = 1212;
 		mMonstersInfo.mExp = 23;

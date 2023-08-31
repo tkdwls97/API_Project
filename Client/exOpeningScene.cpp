@@ -1,4 +1,4 @@
-#include "exTitleScene.h"
+#include "exOpeningScene.h"
 #include "exPlayer.h"
 #include "exSpriteRenderer.h"
 #include "exObject.h"
@@ -13,66 +13,63 @@
 #include "exCollisionManager.h"
 #include "exFloor.h"
 #include "exLogin.h"
+#include "exGameObject.h" 
 
 namespace ex
 {
-	TitleScene::TitleScene()
-		: mTitleSound(nullptr)
+	OpeningScene::OpeningScene()
+		: mOpeningSound(nullptr)
+		, mVideo(nullptr)
+		, mTransform(nullptr)
+		, mAnimator(nullptr)
+	{
+		ResourceManager::Load<Sound>(L"OpeningSound", L"..\\Resources\\Maple\\Sound\\Stage\\NexonLogo.wav");
+		mOpeningSound = ResourceManager::Load<Sound>(L"OpeningSound", L"..\\Resources\\Maple\\Sound\\Stage\\NexonLogo.wav");
+	}
+
+	OpeningScene::~OpeningScene()
 	{
 	}
 
-	TitleScene::~TitleScene()
+	void OpeningScene::Initialize()
 	{
+		mVideo = object::Instantiate<BackGround>(enums::eLayerType::Background);
+		mTransform = mVideo->GetComponent<Transform>();
+		mAnimator = mVideo->AddComponent<Animator>();
+
+		mTransform->SetPosition(math::Vector2(640.0f, 360.0f));
+		mAnimator->CreateAnimationFolder(L"OpeningVideo", L"..\\Resources\\Maple\\Image\\Logo\\Nexon");
+		mAnimator->PlayAnimation(L"OpeningVideo", false);
 	}
 
-	void TitleScene::Initialize()
-	{	
-		SoundLoad();
-
-	}
-
-	void TitleScene::Update()
+	void OpeningScene::Update()
 	{
 		Scene::Update();
-		
-		bool bLogin = Login::IsLoginCheck();
-		if (bLogin)
+
+		bool bCheck = mAnimator->IsActiveAnimationComplete();
+		if (bCheck)
 		{
-			SceneManager::LoadScene(L"StageScene");
+			SceneManager::LoadScene(L"TitleScene");
 		}
 	}
 
-	void TitleScene::Render(HDC _hdc)
+	void OpeningScene::Render(HDC _hdc)
 	{
-		Scene::Render(_hdc);		
+		Scene::Render(_hdc);
 	}
-	void TitleScene::SceneIN()
+	void OpeningScene::SceneIN()
 	{
-		Texture* image = ResourceManager::Load<Texture>(L"TitleBackGroundImgae"
-			, L"..\\Resources\\Maple\\Image\\Logo\\Title.bmp");
+		mOpeningSound->Play(false);
 
-		BackGround* bg = object::Instantiate<BackGround>(enums::eLayerType::Background);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetImage(image);
-		bgsr->SetScale(math::Vector2(1.7f, 1.8f));
-		bgsr->SetAffectCamera(true);
-		bg->GetComponent<Transform>()->SetPosition(math::Vector2(640.0f, 360.0f));
-
-		mTitleSound = ResourceManager::Load<Sound>(L"TitleSound", L"..\\Resources\\Maple\\Sound\\Stage\\Title.wav");
-		mTitleSound->Play(true);
-
-		Login* login = object::Instantiate<Login>(enums::eLayerType::Floor);
-		login->Initialize();
-		
 		Camera::SetTarget(nullptr);
 	}
-	void TitleScene::SceneOut()
+	void OpeningScene::SceneOut()
 	{
-		mTitleSound->Stop(true);
+		mOpeningSound->Stop(true);
 		Camera::SetTarget(nullptr);
 		CollisionManager::Clear();
 	}
-	void TitleScene::SoundLoad()
+	void OpeningScene::SoundLoad()
 	{
 		ResourceManager::Load<Sound>(L"TitleSound", L"..\\Resources\\Maple\\Sound\\Stage\\Title.wav");
 		ResourceManager::Load<Sound>(L"Stage1Sound", L"..\\Resources\\Maple\\Sound\\Stage\\Stage1.wav");
@@ -137,7 +134,7 @@ namespace ex
 
 		ResourceManager::Load<Sound>(L"BuffSound", L"..\\Resources\\Maple\\Sound\\Player\\player_Buff.wav");
 
-		ResourceManager::Load<Sound>(L"PlayerLevelUpSound",L"..\\Resources\\Maple\\Sound\\Player\\Player_LevelUp.wav");
+		ResourceManager::Load<Sound>(L"PlayerLevelUpSound", L"..\\Resources\\Maple\\Sound\\Player\\Player_LevelUp.wav");
 
 	}
 }

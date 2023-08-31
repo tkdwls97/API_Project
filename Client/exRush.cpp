@@ -23,7 +23,7 @@ namespace ex
 	{
 
 		mRushInfo.AttackCount = 1;
-		mRushInfo.DamagePercentage = 305;
+		mRushInfo.DamagePercentage = 325;
 		SetEffectInfo(mRushInfo);
 
 		mAnimator = GetComponent<Animator>();

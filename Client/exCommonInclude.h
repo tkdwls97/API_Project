@@ -36,6 +36,7 @@ namespace ex::enums
 	enum class eLayerType
 	{
 		Background,
+		Video,
 		Floor,
 		Wall,
 		Rope,
