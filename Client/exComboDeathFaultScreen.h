@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include "exEffectManger.h"
 
 namespace ex

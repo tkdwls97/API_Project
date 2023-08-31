@@ -50,6 +50,7 @@ namespace ex
 
 	void DamageManager::Update()
 	{
+
 		UI::Update();
 	}
 
@@ -123,18 +124,15 @@ namespace ex
 		player->SetInvincible(true);
 	}
 
-	void DamageManager::Test()
+	void DamageManager::SetRandomDamage()
 	{
 		Player* player = SceneManager::GetPlayer();
-		for (int i = 0; i < mDamageCount; i++)
-		{
-			int minDamage = (int)player->GetInfo()->mMinDamage;
-			int maxDamage = (int)player->GetInfo()->mMaxDamage;
-			mPlayerDamage = minDamage + std::rand() % (maxDamage - minDamage + 1);
-			//mTransform->SetPosition();
-			PlayPlayerDamageAnimation(mSkillDamagePercentage, 0.15f * (i - 1));
-		}
+		int minDamage = (int)player->GetInfo()->mMinDamage;
+		int maxDamage = (int)player->GetInfo()->mMaxDamage;
+		mPlayerDamage = minDamage + std::rand() % (maxDamage - minDamage + 1);
 	}
+
+
 
 	void DamageManager::OnCollisionEnter(Collider* _other)
 	{

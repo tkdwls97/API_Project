@@ -23,8 +23,8 @@ namespace ex
 		: EffectManger(_owner)
 		, mOwner(_owner)
 	{
-		mComboDeathFaultInfo.AttackCount = 8;
-		mComboDeathFaultInfo.DamagePercentage = 913;
+		mComboDeathFaultInfo.AttackCount = 14;
+		mComboDeathFaultInfo.DamagePercentage = 810;
 		SetEffectInfo(mComboDeathFaultInfo);
 		mAnimator = GetComponent<Animator>();
 		mTransform = GetComponent<Transform>();
@@ -65,7 +65,7 @@ namespace ex
 	}
 
 	ComboDeathFaultScreen::~ComboDeathFaultScreen()
-	{		
+	{
 	}
 
 	void ComboDeathFaultScreen::Initialize()
@@ -105,29 +105,27 @@ namespace ex
 		{
 			ComboDeathFaultHit* comboDeathFaultHit = new ComboDeathFaultHit(_other->GetOwner());
 			object::ActiveSceneAddGameObject(enums::eLayerType::Effect, comboDeathFaultHit);
-		
+
 			for (size_t i = 1; i <= this->GetEffectInfo().AttackCount; i++)
 			{
 				if (monsters->GetMonstersState() != eMonsterState::Sleep &&
 					monsters->GetMonstersState() != eMonsterState::WakeUp &&
 					monsters->GetMonstersState() != eMonsterState::Dead)
 				{
-					//DamageManager* damage = new DamageManager();
-					//object::ActiveSceneAddGameObject(enums::eLayerType::UI, damage);
-					//damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
-					//damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
-					//monsters->ReductiongHp(damage->GetPlayerResultDamage());
-					
+					DamageManager* damage = SceneManager::GetDamageManager();
+					damage->SetRandomDamage();
+					damage->SetPosition(math::Vector2(monsters->GetPositionX(), monsters->GetPositionY() - 28.0f * i));
+					damage->PlayPlayerDamageAnimation(this->GetEffectInfo().DamagePercentage, 0.15f * (i - 1));
+					monsters->ReductiongHp(damage->GetPlayerResultDamage());
 				}
 			}
 		}
 	}
+		void ComboDeathFaultScreen::OnCollisionStay(Collider * _other)
+		{
+		}
 
-	void ComboDeathFaultScreen::OnCollisionStay(Collider* _other)
-	{
+		void ComboDeathFaultScreen::OnCollisionExit(Collider * _other)
+		{
+		}
 	}
-
-	void ComboDeathFaultScreen::OnCollisionExit(Collider* _other)
-	{
-	}
-}

@@ -23,7 +23,6 @@ namespace ex
 
 		void PlayPlayerDamageAnimation(int _skillDamage, float _delay = 0);
 		void PlayMonsterDamageAnimation(int _monsterDamage, int _skillDamage = 1);
-		void Test();
 
 
 		int GetPlayerDamage() { return mPlayerDamage; }
@@ -35,6 +34,7 @@ namespace ex
 
 		void SetDamageCount(int _count) { mDamageCount = _count; }
 		void SetDamagePercentage(int _percentage) { mSkillDamagePercentage = _percentage; }
+		void SetRandomDamage();
 
 
 	private:
@@ -49,8 +49,6 @@ namespace ex
 		int		 mDamageCount;
 		int		 mSkillDamagePercentage;
 
-		bool  test = true;
-		int   num = 0;
 	};
 
 }
