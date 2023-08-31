@@ -35,13 +35,13 @@ namespace ex
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Left\\Left_ComboDeathFault_Screen.png");
 
 		mAnimator->CreateAnimation(L"ComboDeathFaultLeftScreen", image, math::Vector2(0.0f, 0.0f), math::Vector2(1370.0f, 768.0f)
-			, math::Vector2(1370.f, 768.f), 48, math::Vector2(0.0f, 0.0f), 0.07f);
+			, math::Vector2(1370.f, 768.f), 48, math::Vector2(0.0f, 0.0f), 0.03f);
 
 		image = ResourceManager::Load<Texture>(L"ComboDeathFaultRightScreen"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\ComboDeathFault\\ComboDeathFault_Screen\\Right\\Right_ComboDeathFault_Screen.png");
 
 		mAnimator->CreateAnimation(L"ComboDeathFaultRightScreen", image, math::Vector2(64390.f, 0.0f), math::Vector2(1370.0f, 768.0f)
-			, math::Vector2(-1370.0f, 0.0f), 48, math::Vector2(0.0f, 0.0f), 0.07f);
+			, math::Vector2(-1370.0f, 0.0f), 48, math::Vector2(0.0f, 0.0f), 0.03f);
 
 		mAnimator->SetScale(math::Vector2(1.0f, 1.3f));
 		enums::eMoveDir playerDir = _owner->GetTransform()->GetMoveDir();
