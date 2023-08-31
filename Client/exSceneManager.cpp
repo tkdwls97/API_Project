@@ -65,7 +65,7 @@ namespace ex
 		ResourceManager::Load<Texture>(L"VonLeonBackGroundImgae", L"..\\Resources\\Maple\\Image\\Map\\BossStage3.bmp");
 		ResourceManager::Load<Texture>(L"EndBackGroundImgae", L"..\\Resources\\Maple\\Image\\Logo\\EndScene.bmp");
 
-		LoadScene(L"TitleScene");
+		LoadScene(L"OpeningScene");
 	}
 
 	void SceneManager::Update()

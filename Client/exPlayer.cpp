@@ -569,16 +569,16 @@ namespace ex
 			{
 				mBuff = new Buff(this);
 				object::ActiveSceneAddGameObject(enums::eLayerType::Effect, mBuff);
-				mInfo->mMinDamage += 450.0f;
-				mInfo->mMaxDamage += 450.0f;
+				mInfo->mMinDamage += 1111.0f;
+				mInfo->mMaxDamage += 1111.0f;
 				mbBuffCheck = true;
 			}
 			else if (mbBuffCheck)
 			{
 				mbBuffCheck = false;
 				mBuff = nullptr;
-				mInfo->mMinDamage -= 450.0f;
-				mInfo->mMaxDamage -= 450.0f;
+				mInfo->mMinDamage -= 1111.0f;
+				mInfo->mMaxDamage -= 1111.0f;
 			}
 
 			mState = eState::Buff;
