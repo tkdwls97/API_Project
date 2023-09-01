@@ -60,7 +60,6 @@ namespace ex
 		int		mSkill2Damage;
 		int		mSkill3Damage;
 		int		mSkill4Damage;
-		PapulatusSkill1* mPapulatusSkill1;
 
 
 		Sound* mPapulatusHitSound;

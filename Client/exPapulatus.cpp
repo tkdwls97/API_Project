@@ -15,6 +15,7 @@
 #include "exSound.h"
 #include "exPapulatusHpBar.h"
 
+
 // PlayerSkill
 #include "exPlayerAttack.h"
 #include "exRaisingblow.h"
@@ -45,8 +46,8 @@ namespace ex
 		, mSkill3Delay(0.0f)
 		, mbSleepOn(false)
 	{
-		mMonstersInfo.mMaxHp = 100000000;
-		mMonstersInfo.mHp = 100000000;
+		mMonstersInfo.mMaxHp = 130000000;
+		mMonstersInfo.mHp = 130000000;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 4017;
@@ -75,7 +76,8 @@ namespace ex
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftDead",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Left", math::Vector2(0.0f, -100.0f));
 
-		// Left Skill
+		//Left Skill
+
 		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill1",
 			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left", math::Vector2(0.0f, -160.0f), 0.077f);
 
@@ -270,7 +272,7 @@ namespace ex
 
 
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 1.0f)
+		if (mSkillDelay >= 2.3f)
 		{
 			math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 			float distanceX = fabs(playerPos.x - this->GetPositionX());

@@ -212,7 +212,6 @@ namespace ex
 		mPortionSound = ResourceManager::Load<Sound>(L"PlayerPortion", L"..\\Resources\\Maple\\Sound\\Player\\Player_Portion.wav");
 		mPlayerDeadSound = ResourceManager::Load<Sound>(L"PlayerDieSound", L"..\\Resources\\Maple\\Sound\\Player\\Player_Die.wav");
 
-
 		mTransform->SetMoveDir(enums::eMoveDir::Right);
 		mCollider->SetSize(math::Vector2(45.0f, 70.0f));
 		mCollider->SetOffset(math::Vector2(-12.0f, 10.0f));
@@ -1595,6 +1594,9 @@ namespace ex
 
 	void Player::PlayerSkillLoad()
 	{
+		//ResourceManager::Load<Texture>(L"PapulatusLeftSkill1"
+		//	, L"..Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left\\Revision\\Papulatus_Left_Skill1.png");
+
 		// 레이징 블로우
 		ResourceManager::Load<Texture>(L"LeftRaisingblow"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Skill\\Raisingblow\\Left\\LeftRaisingblow.png");
