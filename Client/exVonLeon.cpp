@@ -44,8 +44,8 @@ namespace ex
 		, mSleepDelay(0.0f)
 		, mSkill3Delay(0.0f)
 	{
-		mMonstersInfo.mMaxHp = 20000000;
-		mMonstersInfo.mHp = 20000000;
+		mMonstersInfo.mMaxHp = 40000000;
+		mMonstersInfo.mHp = 40000000;
 		mMonstersInfo.mLevel = 200;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 4312;
