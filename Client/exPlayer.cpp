@@ -58,7 +58,7 @@ namespace ex
 		srand(static_cast<unsigned int>(time(nullptr)));
 
 		mInfo = new PlayerInfo();
-		mInfo->mMaxHp = 70000;
+		mInfo->mMaxHp = 75000;
 		mInfo->mHp = 70000;
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
