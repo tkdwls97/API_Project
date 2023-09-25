@@ -52,7 +52,7 @@ namespace ex
 			// 두 물체가 겹쳐있는 경우
 			if (fabs(gap) < mazino)
 			{
-				objPos.y -= (mazino - fabs(gap)) - 2.5f;
+				objPos.y -= (mazino - fabs(gap)) - 50.0f;
 				tr->SetPosition(objPos);
 			}
 			rb->SetGround(true);	// Floor 객체와 충돌한 객체가 땅에 붙어있는 상태로 만들어준다.
