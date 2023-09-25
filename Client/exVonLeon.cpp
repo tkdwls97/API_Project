@@ -48,7 +48,7 @@ namespace ex
 		mMonstersInfo.mHp = 40000000;
 		mMonstersInfo.mLevel = 200;
 		mMonstersInfo.mDamage = 750;
-		mSkill1Damage = 4312;
+		mSkill1Damage = 3612;
 		mSkill2Damage = 3617;
 		mSkill3Damage = 1878;
 		mSkill4Damage = 0;
