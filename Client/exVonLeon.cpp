@@ -44,8 +44,8 @@ namespace ex
 		, mSleepDelay(0.0f)
 		, mSkill3Delay(0.0f)
 	{
-		mMonstersInfo.mMaxHp = 40000000;
-		mMonstersInfo.mHp = 40000000;
+		mMonstersInfo.mMaxHp = 330000000;
+		mMonstersInfo.mHp = 330000000;
 		mMonstersInfo.mLevel = 200;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 3612;
@@ -239,7 +239,7 @@ namespace ex
 
 
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 2.3f)
+		if (mSkillDelay >= 2.1f)
 		{
 			math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 			float distanceX = fabs(playerPos.x - this->GetPositionX());

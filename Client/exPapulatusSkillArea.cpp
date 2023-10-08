@@ -33,8 +33,11 @@ namespace ex
 		mTransform = GetComponent<Transform>();
 		mCollider = AddComponent<Collider>();
 
-		mAnimator->CreateAnimationFolder(L"PapulatusSkillArea",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Area");
+		Texture* image = ResourceManager::Load<Texture>(L"PapulatusSkillArea"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Area\\Papulatus_SkillArea.png");
+		mAnimator->CreateAnimation(L"PapulatusSkillArea", image, math::Vector2(0.0f, 0.0f), math::Vector2(373.0f, 587.0f)
+			, math::Vector2(373.0f, 0.0f), 34, math::Vector2(0.0f, 0.0f), 0.1f);
+
 
 		mAnimator->PlayAnimation(L"PapulatusSkillArea", false);
 		mCollider->SetSize(math::Vector2(0.0f, 0.0f));

@@ -140,7 +140,7 @@ namespace ex
 			if (height < image->GetHeight())
 				height = image->GetHeight();
 
-			fileCout++;
+			++fileCout;
 		}
 
 		Texture* spriteSheet = Texture::Create(name, width * fileCout, height);

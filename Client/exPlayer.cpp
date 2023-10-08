@@ -59,11 +59,11 @@ namespace ex
 
 		mInfo = new PlayerInfo();
 		mInfo->mMaxHp = 75000;
-		mInfo->mHp = 70000;
+		mInfo->mHp = 75000;
 		mInfo->mMp = 20000;
 		mInfo->mMaxMp = 20000;
 		mInfo->mLevel = 200;
-		mInfo->mMinDamage = 835;
+		mInfo->mMinDamage = 1035;
 		mInfo->mMaxDamage = 1521;
 		mInfo->mMaxExp = 100.0f;
 		mInfo->mExp = 0.0f;
@@ -1594,8 +1594,6 @@ namespace ex
 
 	void Player::PlayerSkillLoad()
 	{
-		//ResourceManager::Load<Texture>(L"PapulatusLeftSkill1"
-		//	, L"..Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left\\Revision\\Papulatus_Left_Skill1.png");
 
 		// 레이징 블로우
 		ResourceManager::Load<Texture>(L"LeftRaisingblow"

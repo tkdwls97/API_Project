@@ -46,13 +46,13 @@ namespace ex
 		, mSkill3Delay(0.0f)
 		, mbSleepOn(false)
 	{
-		mMonstersInfo.mMaxHp = 130000000;
-		mMonstersInfo.mHp = 130000000;
+		mMonstersInfo.mMaxHp = 250000000;
+		mMonstersInfo.mHp = 250000000;
 		mMonstersInfo.mLevel = 190;
 		mMonstersInfo.mDamage = 750;
 		mSkill1Damage = 4017;
 		mSkill2Damage = 2412;
-		mSkill3Damage = 878;
+		mSkill3Damage = 1078;
 		mSkill4Damage = 0;
 		mMonstersInfo.mExp = 200;
 	}
@@ -64,76 +64,121 @@ namespace ex
 	void Papulatus::Initialize()
 	{
 		// Left
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Left", math::Vector2(0.0f, -100.0f));
+		Texture* image = ResourceManager::Load<Texture>(L"PapulatusLeftIdle"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Left\\Papulatus_Left_Idle.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(238.0f, 283.0f)
+			, math::Vector2(238.0f, 0.0f), 6, math::Vector2(0.0f, -80.0f), 0.15f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Left", math::Vector2(0.0f, -100.0f));
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftMove"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Left\\Papulatus_Left_Move.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(237.0f, 280.0f)
+			, math::Vector2(237.0f, 0.0f), 6, math::Vector2(0.0f, -80.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left", math::Vector2(0.0f, -100.0f));
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftHit"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Left\\Papulatus_Left_Hit.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftHit", image, math::Vector2(0.0f, 0.0f), math::Vector2(297.0f, 321.0f)
+			, math::Vector2(297.0f, 0.0f), 1, math::Vector2(0.0f, -80.0f));
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Left", math::Vector2(0.0f, -100.0f));
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftDead"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Left\\Papulatus_Left_Dead.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(307.0f, 390.0f)
+			, math::Vector2(307.0f, 0.0f), 17, math::Vector2(0.0, -80.0f), 0.1f);
 
 		//Left Skill
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left", math::Vector2(0.0f, -160.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftSkill1"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Left\\Papulatus_Left_Skill.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftSkill1", image, math::Vector2(0.0f, 0.0f), math::Vector2(542.0f, 638.0f)
+			, math::Vector2(542.0f, 0.0f), 22, math::Vector2(0.0f, -123.0f), 0.1f);
+		
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftSkill2"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left\\Papulatus_Left_Skill2.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftSkill2", image, math::Vector2(0.0f, 0.0f), math::Vector2(686.0f, 397.0f)
+			, math::Vector2(686.0f, 0.0f), 24, math::Vector2(-63.0f, -100.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Left", math::Vector2(-75.0f, -100.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftSkill3"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Left\\Papulatus_Left_Skill3.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftSkill3", image, math::Vector2(0.0f, 0.0f), math::Vector2(597.0f, 580.0f)
+			, math::Vector2(597.0f, 0.0f), 39, math::Vector2(0.0f, -123.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill3",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Left", math::Vector2(0.0f, -140.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftSkill4"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Left\\Papulatus_Left_Skill4.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftSkill4", image, math::Vector2(0.0f, 0.0f), math::Vector2(454.0f, 464.0f)
+			, math::Vector2(454.0f, 0.0f), 32, math::Vector2(0.0f, -80.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill4",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Left", math::Vector2(0.0f, -100.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftSkill5"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Left\\Papulatus_Left_Skill5.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftSkill5", image, math::Vector2(0.0f, 0.0f), math::Vector2(327.0f, 373.0f)
+			, math::Vector2(327.0f, 0.0f), 32, math::Vector2(0.0f, -80.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSkill5",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Left", math::Vector2(0.0f, -120.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftSleep"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Sleep\\Left\\Papulatus_Left_Sleep.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftSleep", image, math::Vector2(0.0f, 0.0f), math::Vector2(209.0f, 183.0f)
+			, math::Vector2(209.0f, 0.0f), 3, math::Vector2(0.0f, -40.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftSleep",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Sleep\\Left", math::Vector2(0.0f, -50.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusLeftWakeUp"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\WakeUp\\Left\\Papulatus_Left_WakeUp.png");
+		mAnimator->CreateAnimation(L"PapulatusLeftWakeUp", image, math::Vector2(0.0f, 0.0f), math::Vector2(264.0f, 396.0f)
+			, math::Vector2(264.0f, 0.0f), 25, math::Vector2(0.0f, -100.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusLeftWakeUp",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\WakeUp\\Left", math::Vector2(0.0f, -120.0f), 0.077f);
 
 
 		// Right
-		mAnimator->CreateAnimationFolder(L"PapulatusRightIdle",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Right", math::Vector2(0.0f, -100.0f));
+		image = ResourceManager::Load<Texture>(L"PapulatusRightIdle"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Idle\\Right\\Papulatus_Right_Idle.png");
+		mAnimator->CreateAnimation(L"PapulatusRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(238.0f, 283.0f)
+			, math::Vector2(238.0f, 0.0f), 6, math::Vector2(0.0f, -80.0f), 0.2f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightMove",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Right", math::Vector2(0.0f, -100.0f));
+		image = ResourceManager::Load<Texture>(L"PapulatusRightMove"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Move\\Right\\Papulatus_Right_Move.png");
+		mAnimator->CreateAnimation(L"PapulatusRightIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(237.0f, 280.0f)
+			, math::Vector2(237.0f, 0.0f), 6, math::Vector2(0.0f, -80.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightHit",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Right", math::Vector2(0.0f, -100.0f));
+		image = ResourceManager::Load<Texture>(L"PapulatusRightHit"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Hit\\Right\\Papulatus_Right_Hit.png");
+		mAnimator->CreateAnimation(L"PapulatusRightHit", image, math::Vector2(0.0f, 0.0f), math::Vector2(297.0f, 321.0f)
+			, math::Vector2(297.0f, 0.0f), 1, math::Vector2(0.0f, -80.0f));
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightDead",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Right", math::Vector2(0.0f, -100.0f));
+		image = ResourceManager::Load<Texture>(L"PapulatusRightDead"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Die\\Right\\Papulatus_Right_Dead.png");
+		mAnimator->CreateAnimation(L"PapulatusRightDead", image, math::Vector2(0.0f, 0.0f), math::Vector2(307.0f, 390.0f)
+			, math::Vector2(307.0f, 0.0f), 17, math::Vector2(0.0, -80.0f), 0.1f);
 
 		//Right Skill
-		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill1",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Right", math::Vector2(0.0f, -160.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusRightSkill1"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill1\\Right\\Papulatus_Right_Skill.png");
+		mAnimator->CreateAnimation(L"PapulatusRightSkill1", image, math::Vector2(0.0f, 0.0f), math::Vector2(542.0f, 638.0f)
+			, math::Vector2(542.0f, 0.0f), 22, math::Vector2(0.0f, -123.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill2",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Right", math::Vector2(75.0f, -100.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusRightSkill2"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill2\\Right\\Papulatus_Right_Skill2.png");
+		mAnimator->CreateAnimation(L"PapulatusRightSkill2", image, math::Vector2(0.0f, 0.0f), math::Vector2(686.0f, 397.0f)
+			, math::Vector2(686.0f, 0.0f), 24, math::Vector2(-63.0f, -100.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill3",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Right", math::Vector2(0.0f, -140.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusRightSkill3"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill3\\Right\\Papulatus_Right_Skill3.png");
+		mAnimator->CreateAnimation(L"PapulatusRightSkill3", image, math::Vector2(0.0f, 0.0f), math::Vector2(597.0f, 580.0f)
+			, math::Vector2(597.0f, 0.0f), 39, math::Vector2(0.0f, -123.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill4",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Right", math::Vector2(0.0f, -100.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusRightSkill4"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill4\\Right\\Papulatus_Right_Skill4.png");
+		mAnimator->CreateAnimation(L"PapulatusRightSkill4", image, math::Vector2(0.0f, 0.0f), math::Vector2(454.0f, 464.0f)
+			, math::Vector2(454.0f, 0.0f), 32, math::Vector2(0.0f, -80.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightSkill5",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Right", math::Vector2(0.0f, -120.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusRightSkill5"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Right\\Papulatus_Right_Skill5.png");
+		mAnimator->CreateAnimation(L"PapulatusRightSkill5", image, math::Vector2(0.0f, 0.0f), math::Vector2(327.0f, 373.0f)
+			, math::Vector2(327.0f, 0.0f), 32, math::Vector2(0.0f, -80.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightSleep",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Sleep\\Right", math::Vector2(0.0f, -50.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusRightSleep"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\Sleep\\Right\\Papulatus_Right_Sleep.png");
+		mAnimator->CreateAnimation(L"PapulatusRightSleep", image, math::Vector2(0.0f, 0.0f), math::Vector2(209.0f, 183.0f)
+			, math::Vector2(209.0f, 0.0f), 3, math::Vector2(0.0f, -40.0f), 0.1f);
 
-		mAnimator->CreateAnimationFolder(L"PapulatusRightWakeUp",
-			L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\WakeUp\\Right", math::Vector2(0.0f, -120.0f), 0.077f);
+		image = ResourceManager::Load<Texture>(L"PapulatusRightWakeUp"
+			, L"..\\Resources\\Maple\\Image\\Monster\\Boss\\Papulatus\\Skill5\\WakeUp\\Right\\Papulatus_Right_WakeUp.png");
+		mAnimator->CreateAnimation(L"PapulatusRightWakeUp", image, math::Vector2(0.0f, 0.0f), math::Vector2(264.0f, 396.0f)
+			, math::Vector2(264.0f, 0.0f), 25, math::Vector2(0.0f, -100.0f), 0.1f);
 
 
 
@@ -153,6 +198,11 @@ namespace ex
 
 	void Papulatus::Update()
 	{
+
+		if (mMonstersInfo.mMaxHp != mMonstersInfo.mHp)
+		{
+			mbChaseOn = true;
+		}
 
 		float halfHp = mMonstersInfo.mMaxHp / 2.2f;
 		if (halfHp >= mMonstersInfo.mHp && false == mbSleepOn && mMonsterState != eMonsterState::Dead)
@@ -272,7 +322,7 @@ namespace ex
 
 
 		mSkillDelay += Time::GetDeltaTime();
-		if (mSkillDelay >= 2.3f)
+		if (mSkillDelay >= 2.1f)
 		{
 			math::Vector2 playerPos = SceneManager::GetPlayer()->GetPosition();
 			float distanceX = fabs(playerPos.x - this->GetPositionX());
@@ -425,7 +475,6 @@ namespace ex
 
 	void Papulatus::Hit()
 	{
-		mbChaseOn = true;
 		float playerPosX = SceneManager::GetPlayer()->GetPositionX();
 		float GateKeeperPosX = mTransform->GetPositionX();
 		if (playerPosX <= GateKeeperPosX && mbChaseOn == false)
