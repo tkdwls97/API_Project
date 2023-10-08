@@ -30,6 +30,8 @@
 #include "exLevelUp.h"
 
 
+
+
 namespace ex
 {
 	Player::Player()
@@ -88,9 +90,9 @@ namespace ex
 
 		// 왼쪽 애니메이션
 		Texture* image = ResourceManager::Load<Texture>(L"PlayerLeftIdle"
-			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Player_Left_Idle.bmp");
-		mAnimator->CreateAnimation(L"PlayerLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(224.0f, 156.0f)
-			, math::Vector2(224.0f, 156.0f), 3, math::Vector2(-23.0f, 0.0f));
+			, L"..\\Resources\\Maple\\Image\\Player\\Temp.png");
+		mAnimator->CreateAnimation(L"PlayerLeftIdle", image, math::Vector2(0.0f, 0.0f), math::Vector2(51.0f, 64.0f)
+			, math::Vector2(51.0f, 0.0f), 3, math::Vector2(0.0f, 0.0f));
 
 		image = ResourceManager::Load<Texture>(L"PlayerLeftMove"
 			, L"..\\Resources\\Maple\\Image\\Player2\\Left\\Bmp\\Player_Left_Move.bmp");

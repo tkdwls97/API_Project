@@ -33,7 +33,6 @@ namespace ex
 	};
 
 
-
 	class Input
 	{
 	public:
